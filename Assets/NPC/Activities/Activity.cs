@@ -4,19 +4,11 @@ using UnityEngine;
 
 public class Activity : MonoBehaviour
 {
-    public List<GameObject> path;
+    public List<ActivityAction> actions;
 
-    private GameObject currentDestination;
-
-    public ActivityTypes ActivityType;
+    public ActivityFrequencies ActivityFrequency;
 
     public ClockTime ActivityTime;
-
-    public bool IsRunning { get; set; }
-
-    public bool LoopActivity { get; set; }
-
-    public int RunTimes { get; private set; }
 
     public string Name { get; set; }
 
@@ -32,93 +24,41 @@ public class Activity : MonoBehaviour
         
     }
 
-    public void BeginActivity()
-    {
-        IsRunning = true;
-        RunTimes = 0;
-    }
-
-    public virtual GameObject GetDestination()
-    {
-        if(currentDestination != null)
-        {
-            return currentDestination;
-        }
-        else
-        {
-            if(RunTimes == 0)
-            {
-                currentDestination = path[0];
-                return currentDestination;
-            }
-            else if (RunTimes > 0 && LoopActivity)
-            {
-                currentDestination = path[0];
-                return currentDestination;
-            }
-            else
-            {
-                return null;
-            }
-        }
-    }
-
-    public void DestinationReached()
-    {
-        int i;
-        for(i = 0; i < path.Count; i++)
-        {
-            if(path[i] == currentDestination)
-            {
-                break;
-            }
-        }
-        if(path.Count > i)
-        {
-            currentDestination = path[i + 1];
-        }
-        else
-        {
-            currentDestination = null;
-            RunTimes++;
-        }
-    }
-
     public bool IsActivityTime(ClockTime time)
     {
-        switch(ActivityType)
+        switch(ActivityFrequency)
         {
-            case Activity.ActivityTypes.Daily:
+            case Activity.ActivityFrequencies.Daily:
                 if(ActivityTime.Minute == time.Minute && ActivityTime.Day == time.Day)
                 {
                     return true;
                 }
                 break;
-            case Activity.ActivityTypes.Hourly:
+            case Activity.ActivityFrequencies.Hourly:
                 if(ActivityTime.Minute == time.Minute)
                 {
                     return true;
                 }
                 break;
-            case Activity.ActivityTypes.Once:
+            case Activity.ActivityFrequencies.Once:
                 if(ActivityTime.Minute == time.Minute && ActivityTime.Day == time.Day && ActivityTime.Hour == time.Hour)
                 {
                     return true;
                 }
                 break;
-            case Activity.ActivityTypes.Weekly:
+            case Activity.ActivityFrequencies.Weekly:
                 if(ActivityTime.Day == time.DayOfWeek && ActivityTime.Hour == time.Hour && ActivityTime.Minute == time.Minute)
                 {
                     return true;
                 }
                 break;
-            case Activity.ActivityTypes.Monthly:
+            case Activity.ActivityFrequencies.Monthly:
                 if(ActivityTime.Day == time.DayOfMonth && ActivityTime.Minute == time.Minute && ActivityTime.Hour == time.Hour)
                 {
                     return true;
                 }
                 break;
-            case Activity.ActivityTypes.Yearly:
+            case Activity.ActivityFrequencies.Yearly:
                 if(ActivityTime.Day == time.DayOfYear && ActivityTime.Hour == time.Hour && ActivityTime.Minute == time.Minute)
                 {
                     return true;
@@ -128,7 +68,7 @@ public class Activity : MonoBehaviour
         return false;
     }
 
-    public enum ActivityTypes
+    public enum ActivityFrequencies
     {
         Hourly,
         Daily,

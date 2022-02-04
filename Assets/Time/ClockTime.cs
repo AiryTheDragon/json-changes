@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ClockTime
 {
-    public int Hour { get; private set; }
+    public int Hour { get; set; }
 
-    public int Minute { get; private set; }
+    public int Minute { get; set; }
 
-    public int Day { get; private set; }
+    public int Day { get; set; }
 
     public int Week { get {
         return Day / 7;
@@ -53,6 +53,11 @@ public class ClockTime
     public ClockTime(int hour, int minute) : this (0, hour, minute)
     {
         
+    }
+
+    public ClockTime(ClockTime time) : this(time.Day, time.Hour, time.Minute)
+    {
+
     }
 
     public void SetTime(int days, int hours, int minutes)

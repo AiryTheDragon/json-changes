@@ -5,18 +5,20 @@ using UnityEngine;
 
 public class ClockBehavior : MonoBehaviour
 {
-    public List<Activity> Activities;
+    public static ClockBehavior MainClockBehavior;
+
+    //public static List<Activity> Activities;
 
     public DateTime LastUpdate;
 
     public ClockTime Time = new ClockTime(0, 8, 0);
 
-    public List<GameObject> NeedsClockUpdate;
+    public static List<INeedsClockUpdate> NeedsClockUpdate = new List<INeedsClockUpdate>();
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        MainClockBehavior = this;
     }
 
     // Update is called once per frame
@@ -26,6 +28,7 @@ public class ClockBehavior : MonoBehaviour
         {
             LastUpdate = DateTime.Now;
             Time.AddMinutes(1);
+            /*
             for(int i = 0; i < Activities.Count; i++)
             {
                 if(Activities[i].IsActivityTime(Time))
@@ -38,9 +41,10 @@ public class ClockBehavior : MonoBehaviour
                     i--;
                 }
             }
-            foreach(var updatable in NeedsClockUpdate)
+            */
+            for(int i = 0; i < NeedsClockUpdate.Count; i++)
             {
-                updatable.GetComponent<NeedsClockUpdate>().UpdateClock(Time);
+                NeedsClockUpdate[i].UpdateClock(Time);
             }
         }
     }
