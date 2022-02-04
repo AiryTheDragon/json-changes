@@ -12,6 +12,7 @@ public class TVScript : MonoBehaviour
     private float timeRemaining;
 
     public SpriteRenderer reflectionImage;
+    public AudioSource audioSounds;
 
     // Start is called before the first frame update
     void Start()
@@ -37,12 +38,14 @@ public class TVScript : MonoBehaviour
         isTVon = true;
         timeRemaining = getSwitchTime();
         switchStation();
+        audioSounds.Play();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         isTVon = false;
-        reflectionImage.color = new Color(255, 255, 255, 0); 
+        reflectionImage.color = new Color(255, 255, 255, 0);
+        audioSounds.Stop();
     }
 
     private float getSwitchTime()

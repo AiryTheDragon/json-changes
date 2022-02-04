@@ -11,6 +11,10 @@ public class Player : MonoBehaviour
     [SerializeField] float currentSpeed = 2f;
     [SerializeField] float messageDuration = 5f;
 
+    [SerializeField] private AudioClip _ow = null;
+    private AudioSource _source = null;
+
+
     private float messageTimeRemaining;
     private bool isMessage = false;
 
@@ -19,6 +23,20 @@ public class Player : MonoBehaviour
     void Start()
     {
         speechObject.SetActive(false);
+
+        _source = GetComponent<AudioSource>();
+        if (_source == null)
+        {
+            Debug.Log("Audio Source is NULL");
+        }
+        else
+        {
+            _source.clip = _ow;
+        }
+
+
+
+
     }
 
     // Update is called once per frame
@@ -62,7 +80,8 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag == "Wall")
         {
-            createMessage("Ouch.");
+            createMessage("Ow.");
+            _source.Play();
         }
 
         if (collision.gameObject.tag == "Door")
