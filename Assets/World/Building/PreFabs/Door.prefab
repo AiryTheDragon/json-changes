@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2801737426392268086}
   m_Layer: 0
   m_Name: DoorOpenedImage
-  m_TagString: Untagged
+  m_TagString: DoorOpen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 1166096157742042386}
   m_Layer: 0
   m_Name: DoorClosedImage
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

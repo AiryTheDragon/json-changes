@@ -9,6 +9,7 @@ TagManager:
   - Ceiling
   - Building
   - Door
+  - DoorOpen
   layers:
   - Default
   - TransparentFX
