@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - clock
+  - Wall
+  - Ceiling
+  - Building
   layers:
   - Default
   - TransparentFX
