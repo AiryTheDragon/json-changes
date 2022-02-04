@@ -72,6 +72,14 @@ public class Player : MonoBehaviour
 
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "TV")
+        {
+            createMessage("Stay Home.\nStay Safe.\nUgh.");
+        }
+    }
+
 
     void createMessage(string text)
     {
