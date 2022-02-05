@@ -199,6 +199,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1052631328548980028, guid: cbe4ddfdcae3f283b9faf13e4492d3fc, type: 3}
+      propertyPath: SuspicionPerMinute
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 2422026051248672471, guid: cbe4ddfdcae3f283b9faf13e4492d3fc, type: 3}
       propertyPath: m_ShapeTexture
       value: 
