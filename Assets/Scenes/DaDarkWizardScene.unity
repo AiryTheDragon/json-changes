@@ -1573,6 +1573,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5650450261695708736, guid: 58010bce2752d2a09a00aaede7b6d8a7, type: 3}
+      propertyPath: m_Text
+      value: 08:23
+      objectReference: {fileID: 0}
     - target: {fileID: 8409279177275331977, guid: 58010bce2752d2a09a00aaede7b6d8a7, type: 3}
       propertyPath: m_Name
       value: ClockTimeDisplay

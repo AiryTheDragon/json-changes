@@ -19,6 +19,12 @@ public class Player : MonoBehaviour
     private bool isMessage = false;
 
     public GameObject speechObject;
+
+
+    public int Suspicion;
+
+    public int MaxSuspicion = 100;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +44,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
- ;
+ 
         if (Input.GetAxis("Fire1")>0)
         {
             currentSpeed = runSpeed;
