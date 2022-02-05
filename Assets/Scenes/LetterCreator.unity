@@ -375,11 +375,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1458532709 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7107355274243809507, guid: 6eb90ab457364c6dc86a104e7c7f45c6, type: 3}
-  m_PrefabInstance: {fileID: 7107355275541238150}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6972519517152117655 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 171480350650192401, guid: 6eb90ab457364c6dc86a104e7c7f45c6, type: 3}
@@ -392,10 +387,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 487982634}
     m_Modifications:
-    - target: {fileID: 106023263780301213, guid: 6eb90ab457364c6dc86a104e7c7f45c6, type: 3}
-      propertyPath: ActivitySelector
-      value: 
-      objectReference: {fileID: 1458532709}
     - target: {fileID: 171480350650192401, guid: 6eb90ab457364c6dc86a104e7c7f45c6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
