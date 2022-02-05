@@ -36,12 +36,8 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         if (Activities != null  && Activities.Count>0)
         { 
             RunActivity(Activities[0]);
-            Debug.Log(this + " Has activities");
         }
-        else
-        {
 
-        }
         //GetComponent<AIDestinationSetter>().target = runningActivity.GetDestination().GetComponent<Transform>();
         //base.Start();
         base.Start();
@@ -103,6 +99,8 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         else if (action is ActivitySpeak)
         {
             createMessage(((ActivitySpeak)action).text);
+            runningActivity.CompleteAction();
+            BeginAction(runningActivity.GetCurrentAction());
         }
 
         Debug.Log(action.GetType() + " activity in process");
