@@ -21,7 +21,15 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
     [SerializeField] float messageDuration = 5f;
     private float messageTimeRemaining;
     private bool isMessage = false;
-    [SerializeField] public GameObject speechObject;
+    public GameObject speechObject;
+
+    public string PositionName;
+
+    public string Name;
+
+    public int Value;
+
+    public int ManipulationLevel;
 
     //[SerializeField] private AudioClip _ow = null;
     //private AudioSource _source = null;

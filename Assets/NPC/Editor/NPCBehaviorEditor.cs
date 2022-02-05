@@ -19,6 +19,10 @@ public class NPCBehaviorEditor : BaseAIEditor
         //PropertyField(FindProperty("paths"));
         PropertyField(FindProperty("Activities"));
         PropertyField(FindProperty("speechObject"));
+        PropertyField(FindProperty("Name"));
+        PropertyField(FindProperty("PositionName"));
+        PropertyField(FindProperty("Value"));
+        PropertyField(FindProperty("ManipulationLevel"));
         base.Inspector();
 		//ObjectField("paths", min: 0.01f);
 		//ObjectField("Activites", min: 0.01f);
