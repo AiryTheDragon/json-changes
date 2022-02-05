@@ -286,6 +286,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpeechBubble
       objectReference: {fileID: 0}
+    - target: {fileID: 705046345122879537, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 1232196572896474221, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
       propertyPath: m_text
       value: Ouch!
@@ -305,6 +309,10 @@ PrefabInstance:
     - target: {fileID: 1232196572896474221, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4278190080
+      objectReference: {fileID: 0}
+    - target: {fileID: 6310985967006252309, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 9053537657320410203, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
       propertyPath: m_Pivot.x
