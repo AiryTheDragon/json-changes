@@ -261,11 +261,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-<<<<<<< HEAD
   m_SortingOrder: 100
-=======
-  m_SortingOrder: 11
->>>>>>> a5e3d9cfaf9c5e6ed2b4394e036dc78c20ece29d
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &7505404179106925930
 MonoBehaviour:
@@ -359,8 +355,6 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
-<<<<<<< HEAD
-=======
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 6310985967006252309}
   m_maskType: 0
