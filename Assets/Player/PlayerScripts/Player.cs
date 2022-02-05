@@ -31,8 +31,6 @@ public class Player : MonoBehaviour
 
     public List<Person> PeopleKnown = new List<Person>();
 
-    
-
     // Start is called before the first frame update
     void Start()
     {
@@ -114,6 +112,36 @@ public class Player : MonoBehaviour
             _source.Play();
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
+        }
+        else if(collision.gameObject.tag == "Paper")
+        {
+            createMessage("More paper for more letters!");
+            invScript.addItem(collision.gameObject);
+            collision.gameObject.SetActive(false);
+        }
+        else if(collision.gameObject.tag == "Pen")
+        {
+            createMessage("Another pen for another letter!");
+            invScript.addItem(collision.gameObject);
+            collision.gameObject.SetActive(false);
+        }
+        else if(collision.gameObject.tag == "Writing Desk")
+        {
+            if(invScript.Paper >= 1 && invScript.Pens >= 1)
+            {
+                collision.gameObject.GetComponentInParent<WritingDeskBehavior>().OpenLetterCreator();
+            }
+            else if(invScript.Pens < 1)
+            {
+                createMessage("I don't have a pen to write anything.");
+                _source.clip = _ugh;
+                _source.Play();
+            }
+            else{
+                createMessage("I don't have any paper make letters.");
+                _source.clip = _ugh;
+                _source.Play();
+            }
         }
     }
 

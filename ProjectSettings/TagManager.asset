@@ -15,6 +15,9 @@ TagManager:
   - Inventory
   - Bed
   - Table
+  - Writing Desk
+  - Paper
+  - Pen
   layers:
   - Default
   - TransparentFX

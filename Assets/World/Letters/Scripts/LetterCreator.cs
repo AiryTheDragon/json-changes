@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using TMPro;
 
 public class LetterCreator : MonoBehaviour
 {
@@ -26,6 +27,10 @@ public class LetterCreator : MonoBehaviour
     public GameObject Player;
 
     public GameObject Creator;
+
+    public TextMeshProUGUI InkAmountText;
+
+    public TextMeshProUGUI PaperAmountText;
     
     // Start is called before the first frame update
     void Start()
@@ -123,6 +128,8 @@ public class LetterCreator : MonoBehaviour
         CurrentLetter.SetActive(true);
         BlackmailLetter.GetComponent<BlackmailLetterBehavior>().SelectPerson(null);
         People = Player.GetComponent<Player>().PeopleKnown;
+        InkAmountText.text = $"{Player.GetComponent<Player>().invScript.Pens}";
+        PaperAmountText.text = $"{Player.GetComponent<Player>().invScript.Paper}";
         Creator.SetActive(true);
     }
 }
