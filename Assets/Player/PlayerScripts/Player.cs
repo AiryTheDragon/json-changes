@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
 
     public int MaxSuspicion = 100;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -112,7 +114,10 @@ public class Player : MonoBehaviour
     }
 
 
-
+    public void AddSuspicion(int suspicion)
+    {
+        this.Suspicion += suspicion;
+    }
 
 
 }

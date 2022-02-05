@@ -9,7 +9,7 @@ public class ClockBehavior : MonoBehaviour
 
     //public static List<Activity> Activities;
 
-    public DateTime LastUpdate;
+    public DateTime LastUpdate = DateTime.Now;
 
     public ClockTime Time = new ClockTime(0, 8, 0);
 
@@ -42,6 +42,7 @@ public class ClockBehavior : MonoBehaviour
                 }
             }
             */
+            Debug.Log("Updated Clock");
             for(int i = 0; i < NeedsClockUpdate.Count; i++)
             {
                 NeedsClockUpdate[i].UpdateClock(Time);
