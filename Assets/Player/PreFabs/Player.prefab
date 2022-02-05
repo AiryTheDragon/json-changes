@@ -190,7 +190,10 @@ MonoBehaviour:
   messageDuration: 5
   _ow: {fileID: 8300000, guid: ac675039844092941adaf92f8d43adba, type: 3}
   _tada: {fileID: 8300000, guid: 17c73346af907c64bb99059c08787296, type: 3}
+  _ugh: {fileID: 8300000, guid: 021fae1e89af02a4a826e237e3a7cec3, type: 3}
+  _locked: {fileID: 8300000, guid: 3aed348e58e588e41ae02131fcd1c47a, type: 3}
   speechObject: {fileID: 1578639395141844188}
+  invScript: {fileID: 3089564746573505913}
   Suspicion: 0
   MaxSuspicion: 1000
 --- !u!114 &3089564746573505913

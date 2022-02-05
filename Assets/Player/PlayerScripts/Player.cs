@@ -13,8 +13,9 @@ public class Player : MonoBehaviour
 
     [SerializeField] private AudioClip _ow = null;
     [SerializeField] private AudioClip _tada = null;
+    [SerializeField] private AudioClip _ugh = null;
+    [SerializeField] private AudioClip _locked = null;
     private AudioSource _source = null;
-
 
     private float messageTimeRemaining;
     private bool isMessage = false;
@@ -93,6 +94,8 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Door")
         {
             createMessage("I don't have the key.");
+            _source.clip = _locked;
+            _source.Play();
         }
 
     }
@@ -115,6 +118,8 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "TV")
         {
             createMessage("Stay Home.\nStay Safe.\nUgh.");
+            _source.clip = _ugh;
+            _source.Play();
         }     
     }
 
