@@ -249,10 +249,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 446487240}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59a99ae9fc5813041ab328ee7cc1fd92, type: 3}
+  m_Script: {fileID: 11500000, guid: 45d560a1be6e0d51a9ec7a24e8598879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thingToFollow: {fileID: 526423950}
+  Target: {fileID: 526423950}
 --- !u!1 &526423950 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3185828098633542682, guid: 6c78c4ed1de0b8e4da05042155cf7863, type: 3}
