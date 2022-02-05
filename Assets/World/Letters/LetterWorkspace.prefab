@@ -567,7 +567,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6401090915523205597}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 106023263780301213}
+        m_TargetAssemblyTypeName: LetterCreator, Assembly-CSharp
+        m_MethodName: CreateLetter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1389617848197057783
 GameObject:
   m_ObjectHideFlags: 0
@@ -1667,7 +1679,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6210016688374780198}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 106023263780301213}
+        m_TargetAssemblyTypeName: LetterCreator, Assembly-CSharp
+        m_MethodName: LeaveCreator
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3566722532276958485
 GameObject:
   m_ObjectHideFlags: 0
@@ -2952,6 +2976,8 @@ MonoBehaviour:
   SelectedActivity: {fileID: 0}
   Player: {fileID: 0}
   Creator: {fileID: 6991000880820771969}
+  InkAmountText: {fileID: 2933895697370886801}
+  PaperAmountText: {fileID: 552643747329270824}
 --- !u!1 &7080721490628773525
 GameObject:
   m_ObjectHideFlags: 0

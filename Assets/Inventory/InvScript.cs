@@ -9,6 +9,10 @@ public class InvScript : MonoBehaviour
     public List<string> inventoryNames = new List<string>();
     public List<Letter> Letters = new List<Letter>();
 
+    public int Paper = 0;
+
+    public int Pens = 0;
+
     private Dictionary<string, GameObject> inventoryDict = new Dictionary<string, GameObject>();
 
     // Start is called before the first frame update
@@ -35,7 +39,16 @@ public class InvScript : MonoBehaviour
             inventoryDict.Add(thisName, gameObject);
 
         }
-
+        else if(gameObject.tag == "Paper")
+        {
+            Debug.Log("Added Paper");
+            Paper++;
+        }
+        else if(gameObject.tag == "Pen")
+        {
+            Debug.Log("Added pen");
+            Pens++;
+        }
     }
 
     public bool haveItem(string objectName)
