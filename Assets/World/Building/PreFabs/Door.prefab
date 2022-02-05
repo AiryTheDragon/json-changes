@@ -299,3 +299,4 @@ MonoBehaviour:
   needKey: 0
   openDoorObject: {fileID: 4825838317154527386}
   closedDoorObject: {fileID: 7051904065044371453}
+  playerInv: {fileID: 0}

@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class DoorBehavior : MonoBehaviour
 {
-    [SerializeField] string doorKeyName="House";
-    [SerializeField] bool needKey = false;
+    [SerializeField] string doorKeyName="HomeKey";
+    [SerializeField] bool needKey = true;
 
     public GameObject openDoorObject;
     public GameObject closedDoorObject;
+
+    public InvScript playerInv;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +27,7 @@ public class DoorBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!needKey)
+        if (!needKey || playerInv.haveItem(doorKeyName))
         {
             closedDoorObject.GetComponent<SpriteRenderer>().enabled = false;
             closedDoorObject.GetComponent<BoxCollider2D>().enabled = false;
