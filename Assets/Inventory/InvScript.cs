@@ -7,6 +7,7 @@ public class InvScript : MonoBehaviour
 
     public List<GameObject> inventoryObjects = new List<GameObject>();
     public List<string> inventoryNames = new List<string>();
+    public List<Letter> Letters = new List<Letter>();
 
     private Dictionary<string, GameObject> inventoryDict = new Dictionary<string, GameObject>();
 
@@ -44,6 +45,16 @@ public class InvScript : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void AddLetter(Letter letter)
+    {
+        Letters.Add(letter);
+    }
+
+    public void RemoveLetter(Letter letter)
+    {
+        Letters.Remove(letter);
     }
 
 

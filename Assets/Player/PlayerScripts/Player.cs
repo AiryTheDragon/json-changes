@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
 
     public int MaxSuspicion = 100;
 
+    public List<Person> PeopleKnown = new List<Person>();
+
     
 
     // Start is called before the first frame update
