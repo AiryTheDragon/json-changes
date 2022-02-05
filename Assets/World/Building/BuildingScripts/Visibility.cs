@@ -5,7 +5,7 @@ using UnityEngine;
 public class Visibility : MonoBehaviour
 {
     [SerializeField] Color32 showObject = new Color32(255, 255, 255, 255);
-    [SerializeField] Color32 noShowObject = new Color32(255, 255, 255, 128);
+    [SerializeField] Color32 noShowObject = new Color32(127, 127, 127, 128);
 
 
     // Start is called before the first frame update
