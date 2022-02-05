@@ -56,8 +56,11 @@ public class DoorBehavior : MonoBehaviour
         openDoorObject.GetComponent<SpriteRenderer>().enabled = false;
         openDoorObject.GetComponent<BoxCollider2D>().enabled = false;
 
-        _source.clip = _doorClose;
-        _source.Play();
+        if (!needKey || playerInv.haveItem(doorKeyName))
+        {
+            _source.clip = _doorClose;
+            _source.Play();
+        }
     }
 
 

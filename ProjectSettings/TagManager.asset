@@ -13,6 +13,8 @@ TagManager:
   - TV
   - Key
   - Inventory
+  - Bed
+  - Table
   layers:
   - Default
   - TransparentFX
