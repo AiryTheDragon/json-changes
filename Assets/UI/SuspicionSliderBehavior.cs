@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SuspicionSliderBehavior : MonoBehaviour, INeedsClockUpdate
 {
     
 
-    public GameObject Player {get; set;}
+    public GameObject Player;
 
     public GameObject Slider;
 

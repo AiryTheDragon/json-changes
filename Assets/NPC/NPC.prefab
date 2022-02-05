@@ -88,7 +88,7 @@ MonoBehaviour:
   centerOffsetCompatibility: NaN
   repathRateCompatibility: NaN
   canSearchCompability: 0
-  orientation: 0
+  orientation: 1
   enableRotation: 1
   autoRepath:
     mode: 0
@@ -107,8 +107,6 @@ MonoBehaviour:
   whenCloseToDestination: 0
   constrainInsideGraph: 0
   Activities: []
-  messageDuration: 5
-  speechObject: {fileID: 1286047480365800711}
 --- !u!114 &3725225578617467916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,11 +270,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
---- !u!1 &1286047480365800711 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 603582295781429553, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
-  m_PrefabInstance: {fileID: 1853424455560793142}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &7213657405908680813 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9053537657320410203, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
