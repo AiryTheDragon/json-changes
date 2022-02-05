@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: -1859217162319750795}
   - component: {fileID: 8479141760803311777}
   - component: {fileID: 8532518482002248306}
-  - component: {fileID: 696755768494748448}
-  m_Layer: 3
+  - component: {fileID: -7984263605123635357}
+  m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &696755768494748448
+--- !u!114 &-7984263605123635357
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -282,7 +282,47 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7819395850098107011}
     m_Modifications:
-    - target: {fileID: 2977865967196785322, guid: 783ef343a1480bb26a16c7f3e5d3afff, type: 3}
+    - target: {fileID: 603582295781429553, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+      propertyPath: m_Name
+      value: SpeechBubble
+      objectReference: {fileID: 0}
+    - target: {fileID: 705046345122879537, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232196572896474221, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+      propertyPath: m_text
+      value: Ouch!
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232196572896474221, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232196572896474221, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232196572896474221, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232196572896474221, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
+      objectReference: {fileID: 0}
+    - target: {fileID: 6310985967006252309, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 9053537657320410203, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9053537657320410203, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9053537657320410203, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
@@ -349,4 +389,9 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3735819554875427318, guid: 783ef343a1480bb26a16c7f3e5d3afff, type: 3}
   m_PrefabInstance: {fileID: 2916619964490532797}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6651573909049776447 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 603582295781429553, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+  m_PrefabInstance: {fileID: 6066201212698445838}
   m_PrefabAsset: {fileID: 0}

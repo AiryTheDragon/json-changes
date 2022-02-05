@@ -107,6 +107,8 @@ MonoBehaviour:
   whenCloseToDestination: 0
   constrainInsideGraph: 0
   Activities: []
+  messageDuration: 5
+  speechObject: {fileID: 1286047480365800711}
 --- !u!114 &3725225578617467916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +185,54 @@ PrefabInstance:
     - target: {fileID: 603582295781429553, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
       propertyPath: m_Name
       value: SpeechBubble
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232196572896474221, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+      propertyPath: m_text
+      value: Hello
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232196572896474221, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+      propertyPath: m_fontSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232196572896474221, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232196572896474221, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232196572896474221, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232196572896474221, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232196572896474221, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+      propertyPath: m_overflowMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232196572896474221, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232196572896474221, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232196572896474221, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232196572896474221, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6310985967006252309, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 9053537657320410203, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
       propertyPath: m_Pivot.x
@@ -270,6 +320,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+--- !u!1 &1286047480365800711 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 603582295781429553, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+  m_PrefabInstance: {fileID: 1853424455560793142}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &7213657405908680813 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9053537657320410203, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
