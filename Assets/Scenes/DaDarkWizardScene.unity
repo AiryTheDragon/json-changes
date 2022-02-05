@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f865811163a1cc947ba94af99453e263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Oh, this is too far.
+  text: Oh, this is too far!!
 --- !u!4 &50756264
 Transform:
   m_ObjectHideFlags: 0
