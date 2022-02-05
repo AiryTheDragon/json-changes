@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Pathfinding;
+using TMPro;
+
 public class NPCBehavior : AIPath, INeedsClockUpdate
 {
     //public List<GameObject> paths;
@@ -16,19 +18,47 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
 
     private ClockTime waitUntil;
 
+    [SerializeField] float messageDuration = 5f;
+    private float messageTimeRemaining;
+    private bool isMessage = false;
+    [SerializeField] public GameObject speechObject;
+
+    //[SerializeField] private AudioClip _ow = null;
+    //private AudioSource _source = null;
+
+
     // Start is called before the first frame update
     protected override void Start()
     {
-        RunActivity(Activities[0]);
+        speechObject.SetActive(false);
+
+
+        if (Activities != null  && Activities.Count>0)
+        { 
+            RunActivity(Activities[0]);
+        }
         //GetComponent<AIDestinationSetter>().target = runningActivity.GetDestination().GetComponent<Transform>();
         //base.Start();
         base.Start();
+
     }
 
     // Update is called once per frame
     protected override void Update()
     {
         base.Update();
+
+        if (isMessage)
+        {
+            messageTimeRemaining -= Time.deltaTime;
+
+            if (messageTimeRemaining < 0)
+            {
+                speechObject.SetActive(false);
+                isMessage = false;
+            }
+        }
+
     }
 
     public void RunActivity(Activity activity)
@@ -64,6 +94,10 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
             waitUntil = new ClockTime(((ActivityWaitUntilTime)action).Time);
             waitUntil.Day = ClockBehavior.MainClockBehavior.Time.Day;
             ClockBehavior.NeedsClockUpdate.Add(this);
+        }
+        else if (action is ActivitySpeak)
+        {
+            createMessage(((ActivitySpeak)action).text);
         }
     }
 
@@ -108,4 +142,16 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
             }
         }
     }
+
+    void createMessage(string text)
+    {
+        speechObject.SetActive(true);
+
+        speechObject.GetComponentInChildren<TextMeshPro>().text = text;
+        messageTimeRemaining = messageDuration;
+        isMessage = true;
+    }
+
+
+
 }

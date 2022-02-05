@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using Pathfinding;
+using TMPro;
 
 [CustomEditor(typeof(NPCBehavior), true)]
 [CanEditMultipleObjects]
@@ -17,6 +18,7 @@ public class NPCBehaviorEditor : BaseAIEditor
         Section("NPC");
         //PropertyField(FindProperty("paths"));
         PropertyField(FindProperty("Activities"));
+        PropertyField(FindProperty("speechObject"));
         base.Inspector();
 		//ObjectField("paths", min: 0.01f);
 		//ObjectField("Activites", min: 0.01f);

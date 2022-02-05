@@ -33,10 +33,6 @@ public class Player : MonoBehaviour
         {
             _source.clip = _ow;
         }
-
-
-
-
     }
 
     // Update is called once per frame
