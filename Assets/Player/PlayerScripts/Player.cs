@@ -31,6 +31,8 @@ public class Player : MonoBehaviour
 
     public List<Person> PeopleKnown = new List<Person>();
 
+    public CharacterBehavior CharacterBehavior;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,8 +66,12 @@ public class Player : MonoBehaviour
             currentSpeed = walkSpeed;
         }
 
+        
+
         float xChange = Input.GetAxis("Horizontal") * currentSpeed * Time.deltaTime;
         float yChange = Input.GetAxis("Vertical") * currentSpeed * Time.deltaTime;
+
+        CharacterBehavior.UpdateHead(Input.GetAxis("Horizontal") * currentSpeed, Input.GetAxis("Vertical") * currentSpeed);
 
         transform.Translate(xChange, 0, 0);
         transform.Translate(0, yChange, 0);
