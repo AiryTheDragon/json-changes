@@ -21,7 +21,15 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
     [SerializeField] float messageDuration = 5f;
     private float messageTimeRemaining;
     private bool isMessage = false;
-    [SerializeField] public GameObject speechObject;
+    public GameObject speechObject;
+
+    public string PositionName;
+
+    public string Name;
+
+    public int Value;
+
+    public int ManipulationLevel;
 
     //[SerializeField] private AudioClip _ow = null;
     //private AudioSource _source = null;
@@ -36,7 +44,6 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         if (Activities != null  && Activities.Count>0)
         { 
             RunActivity(Activities[0]);
-            Debug.Log(this + " Has activities");
         }
 
         //GetComponent<AIDestinationSetter>().target = runningActivity.GetDestination().GetComponent<Transform>();
@@ -100,6 +107,8 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         else if (action is ActivitySpeak)
         {
             createMessage(((ActivitySpeak)action).text);
+            runningActivity.CompleteAction();
+            BeginAction(runningActivity.GetCurrentAction());
         }
 
         Debug.Log(action.GetType() + " activity in process");

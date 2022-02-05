@@ -80,7 +80,7 @@ MonoBehaviour:
   radius: 0.5
   height: 2
   canMove: 1
-  maxSpeed: 1
+  maxSpeed: 2
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
@@ -91,7 +91,7 @@ MonoBehaviour:
   orientation: 1
   enableRotation: 1
   autoRepath:
-    mode: 0
+    mode: 2
     interval: NaN
     sensitivity: 10
     maximumInterval: 2
@@ -232,7 +232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6310985967006252309, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
       propertyPath: m_SortingOrder
-      value: 13
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 9053537657320410203, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
       propertyPath: m_Pivot.x
@@ -316,6 +316,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9053537657320410203, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9053537657320410203, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

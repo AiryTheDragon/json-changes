@@ -42,7 +42,6 @@ public class ClockBehavior : MonoBehaviour
                 }
             }
             */
-            Debug.Log("Updated Clock");
             for(int i = 0; i < NeedsClockUpdate.Count; i++)
             {
                 NeedsClockUpdate[i].UpdateClock(Time);
