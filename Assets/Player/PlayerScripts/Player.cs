@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] float messageDuration = 5f;
 
     [SerializeField] private AudioClip _ow = null;
+    [SerializeField] private AudioClip _tada = null;
     private AudioSource _source = null;
 
 
@@ -19,7 +20,7 @@ public class Player : MonoBehaviour
     private bool isMessage = false;
 
     public GameObject speechObject;
-
+    public InvScript invScript;
 
     public int Suspicion;
 
@@ -84,6 +85,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag == "Wall")
         {
+            _source.clip = _ow;
             createMessage("Ow.");
             _source.Play();
         }
@@ -95,12 +97,25 @@ public class Player : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Key")
+        {
+            Debug.Log("found a key");
+            _source.clip = _tada;
+            createMessage("Awesome!");
+            _source.Play();
+            invScript.addItem(collision.gameObject);
+            collision.gameObject.SetActive(false);
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "TV")
         {
             createMessage("Stay Home.\nStay Safe.\nUgh.");
-        }
+        }     
     }
 
 

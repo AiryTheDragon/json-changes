@@ -11,6 +11,8 @@ TagManager:
   - Door
   - DoorOpen
   - TV
+  - Key
+  - Inventory
   layers:
   - Default
   - TransparentFX
