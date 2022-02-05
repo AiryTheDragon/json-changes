@@ -38,10 +38,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
             RunActivity(Activities[0]);
             Debug.Log(this + " Has activities");
         }
-        else
-        {
 
-        }
         //GetComponent<AIDestinationSetter>().target = runningActivity.GetDestination().GetComponent<Transform>();
         //base.Start();
         base.Start();
