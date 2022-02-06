@@ -14,7 +14,7 @@ public class PersonDisplayBehavior : MonoBehaviour
 
     void Start()
     {
-        TextComponent.GetComponent<TextMeshProUGUI>().text = "";
+        SetPerson(DisplayedPerson);
     }
 
     public void SelectPerson()
@@ -29,61 +29,14 @@ public class PersonDisplayBehavior : MonoBehaviour
         var tmp = TextComponent.GetComponent<TextMeshProUGUI>();
         if(person is null)
         {
-            tmp.text = "";
+            tmp.SetText("");
         }
         else
         {
-            string confidenceLevel;
-            if(person.ManipulationLevel <= 0)
-            {
-                confidenceLevel = "Unknown";
-            }
-            else if (person.ManipulationLevel <= 1)
-            {
-                confidenceLevel = "Wavering";
-            }
-            else if (person.ManipulationLevel <= 2)
-            {
-                confidenceLevel = "Marginal";
-            }
-            else if (person.ManipulationLevel <= 3)
-            {
-                confidenceLevel = "OK";
-            }
-            else if (person.ManipulationLevel <=4)
-            {
-                confidenceLevel = "High";
-            }
-            else
-            {
-                confidenceLevel = "Rock Solid";
-            }
-            string importanceLevel;
-            if(person.Value <= 0)
-            {
-                importanceLevel = "None";
-            }
-            else if (person.Value <=1)
-            {
-                importanceLevel = "Very Low";
-            }
-            else if (person.Value <=2)
-            {
-                importanceLevel = "Low";
-            }
-            else if (person.Value <= 3)
-            {
-                importanceLevel = "Medium";
-            }
-            else if (person.Value <=4)
-            {
-                importanceLevel = "Somewhat High";
-            }
-            else
-            {
-                importanceLevel = "Very High";
-            }
-            tmp.text = $"{person.Name}\nConfidence Level:   {confidenceLevel}\nImportance:    {importanceLevel}";
+            string confidenceLevel = person.GetManipulationLevelText();
+
+            string importanceLevel = person.GetValueText();
+            tmp.SetText($"{person.Name}\nConfidence Level:   {confidenceLevel}\nImportance:    {importanceLevel}");
         }
     }
 }

@@ -4,17 +4,33 @@ using UnityEngine;
 
 public class BannedActivitiesBehavior : MonoBehaviour
 {
-    public Dictionary<Activity, int> BannedActivities;
+    public List<Activity> BannedActivities;
+
+    public List<int> BanLevels;
 
     public void BanActivity(Activity activity)
     {
-        if(BannedActivities.ContainsKey(activity))
+        if(BannedActivities.Contains(activity))
         {
-            BannedActivities[activity] += 1;
+            int i = BannedActivities.IndexOf(activity);
+            BanLevels[i] += 1;
         }
         else
         {
-            BannedActivities.Add(activity, 1);
+            BannedActivities.Add(activity);
+            BanLevels.Add(1);
+        }
+    }
+
+    public int GetBanLevel(Activity activity)
+    {
+        if(BannedActivities.Contains(activity))
+        {
+            return BanLevels[BannedActivities.IndexOf(activity)];
+        }
+        else
+        {
+            return 0;
         }
     }
 

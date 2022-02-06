@@ -14,7 +14,7 @@ public class SeenActionDisplayBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetDisplayActivity(null);
+        SetDisplayActivity(DisplayActivity);
     }
 
     // Update is called once per frame

@@ -14,6 +14,10 @@ public class LetterCreator : MonoBehaviour
 
     public GameObject BlackmailLetter;
 
+    public GameObject RevolutionLetter;
+
+    public TextMeshProUGUI RevolutionLetterText;
+
     public GameObject CurrentNotebook;
 
     public GameObject PersonSelector;
@@ -44,6 +48,17 @@ public class LetterCreator : MonoBehaviour
         
     }
 
+    public void SelectRevolutionLetter()
+    {
+        if(CurrentLetter != null)
+        {
+            CurrentLetter.SetActive(false);
+        }
+        CurrentLetter = RevolutionLetter;
+        RevolutionLetter.SetActive(true);
+        RevolutionLetterText.SetText($"\nViva\nLa\nRevolution\n\n-{Player.GetComponent<Player>().Name}");
+    }
+
     public void OpenPersonSelector()
     {
         if(CurrentNotebook != null)
@@ -51,6 +66,7 @@ public class LetterCreator : MonoBehaviour
             CurrentNotebook.SetActive(false);
         }
         CurrentNotebook = PersonSelector;
+        PersonSelector.GetComponent<PersonSelectorBehavior>().SetPeople(People);
         PersonSelector.SetActive(true);
     }
 
@@ -75,7 +91,7 @@ public class LetterCreator : MonoBehaviour
         {
             CurrentNotebook = ActivitySelector;
             ActivitySelector.GetComponent<ActionSelectorBehavior>().SetActivities(SelectedPerson.SeenActivities.Where(
-                    x => BannedActivitiesObject.GetComponent<BannedActivitiesBehavior>().BannedActivities.ContainsKey(x)
+                    x => BannedActivitiesObject.GetComponent<BannedActivitiesBehavior>().BannedActivities.Contains(x)
                 ).ToList());
             ActivitySelector.SetActive(true);
         }
@@ -99,11 +115,19 @@ public class LetterCreator : MonoBehaviour
             {
                 Letter letter = new Letter();
                 letter.Recieving = SelectedPerson;
-                letter.ManipulationLevelIncrease = BannedActivitiesObject.GetComponent<BannedActivitiesBehavior>().BannedActivities[SelectedActivity];
+                letter.ManipulationLevelIncrease = BannedActivitiesObject.GetComponent<BannedActivitiesBehavior>().GetBanLevel(SelectedActivity);
                 var player = Player.GetComponent<Player>();
                 player.invScript.AddLetter(letter);
+                player.invScript.Pens--;
+                player.invScript.Paper--;
+                player.PeopleKnown[letter.Recieving.Name].SeenActivities.Remove(SelectedActivity);
                 LeaveCreator();
             }
+        }
+        else if(CurrentLetter.name == "RevolutionLetter")
+        {
+            Player.GetComponent<Player>().Revolt;
+            LeaveCreator();
         }
     }
 
@@ -127,7 +151,7 @@ public class LetterCreator : MonoBehaviour
         CurrentLetter = BlackmailLetter;
         CurrentLetter.SetActive(true);
         BlackmailLetter.GetComponent<BlackmailLetterBehavior>().SelectPerson(null);
-        People = Player.GetComponent<Player>().PeopleKnown;
+        People = Player.GetComponent<Player>().PeopleKnown.Values.ToList();
         InkAmountText.text = $"{Player.GetComponent<Player>().invScript.Pens}";
         PaperAmountText.text = $"{Player.GetComponent<Player>().invScript.Paper}";
         Creator.SetActive(true);

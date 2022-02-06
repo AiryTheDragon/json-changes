@@ -18,6 +18,7 @@ TagManager:
   - Writing Desk
   - Paper
   - Pen
+  - NPC
   layers:
   - Default
   - TransparentFX
