@@ -23,6 +23,8 @@ TagManager:
   - Rock
   - Shrub
   - Guard
+  - BannableActivities
+  - BannedActivities
   layers:
   - Default
   - TransparentFX

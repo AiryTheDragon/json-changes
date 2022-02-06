@@ -5,22 +5,11 @@ using UnityEngine.UI;
 
 public class UpdateClockText : MonoBehaviour, INeedsClockUpdate
 {
-    bool initialized = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(!initialized)
-        {
-            ClockBehavior.NeedsClockUpdate.Add(this);
-            initialized = true;
-        }
+        GameObject.Find("Clock").GetComponent<ClockBehavior>().NeedsClockUpdate.Add(this);
     }
     
     public void UpdateClock(ClockTime time)

@@ -5,20 +5,18 @@ using UnityEngine;
 
 public class ClockBehavior : MonoBehaviour
 {
-    public static ClockBehavior MainClockBehavior;
-
     //public static List<Activity> Activities;
 
     public DateTime LastUpdate = DateTime.Now;
 
     public ClockTime Time = new ClockTime(0, 8, 0);
 
-    public static List<INeedsClockUpdate> NeedsClockUpdate = new List<INeedsClockUpdate>();
+    public List<INeedsClockUpdate> NeedsClockUpdate = new List<INeedsClockUpdate>();
 
     // Start is called before the first frame update
     void Start()
     {
-        MainClockBehavior = this;
+        
     }
 
     // Update is called once per frame
