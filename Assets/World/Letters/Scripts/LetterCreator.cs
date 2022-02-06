@@ -56,7 +56,7 @@ public class LetterCreator : MonoBehaviour
         }
         CurrentLetter = RevolutionLetter;
         RevolutionLetter.SetActive(true);
-        RevolutionLetterText.SetText($"\nViva\nLa\nRevolution\n\n-{Player.GetComponent<Player>().Name}");
+        RevolutionLetterText.SetText($"\nViva\nLa\nRevolution\n\n-{Player.GetComponent<Player>().GetType().Name}");
     }
 
     public void OpenPersonSelector()
@@ -126,7 +126,7 @@ public class LetterCreator : MonoBehaviour
         }
         else if(CurrentLetter.name == "RevolutionLetter")
         {
-            Player.GetComponent<Player>().Revolt;
+            Player.GetComponent<Player>().Revolt();
             LeaveCreator();
         }
     }
