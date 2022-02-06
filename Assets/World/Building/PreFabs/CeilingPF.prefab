@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 840577319086888226}
   - component: {fileID: -5888141469435472188}
   m_Layer: 0
-  m_Name: Ceiling
+  m_Name: CeilingPF
   m_TagString: Ceiling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 8658161271618951813}
   - component: {fileID: 3594212966226539277}
   m_Layer: 0
-  m_Name: Square
+  m_Name: CeilingImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,7 +131,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 78239e99ae8db7142962f21ae1705825, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
