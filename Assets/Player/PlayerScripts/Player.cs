@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         speechObject.SetActive(false);
-        NPCInfoUI = GameObject.Find("NPCInfo").GetComponent<NPCInfoBehavior>();
+        NPCInfoUI = Resources.FindObjectsOfTypeAll<NPCInfoBehavior>().First();
         _source = GetComponent<AudioSource>();
         if (_source == null)
         {
