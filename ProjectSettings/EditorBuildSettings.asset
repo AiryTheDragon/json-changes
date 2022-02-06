@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ActualGame/StartScene.unity
     guid: 249ec90a184634d2c920bfea560b54ca
+  - enabled: 1
+    path: Assets/Scenes/ActualGame/MainScene.unity
+    guid: c967e59a9d446364e9e7479e4951cac6
+  - enabled: 1
+    path: Assets/Scenes/ActualGame/CreditsScene.unity
+    guid: a68acec14ecbb604b9394b80d8825760
   m_configObjects: {}
