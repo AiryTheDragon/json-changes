@@ -9,6 +9,8 @@ public class IntroTextDisplay : MonoBehaviour
 {
     public List<GameObject> TextList;
 
+    public GameObject FinalPanel;
+
     private DateTime StartTime = DateTime.Now;
 
     public int SecondsPerText;
@@ -31,7 +33,17 @@ public class IntroTextDisplay : MonoBehaviour
         if(CurrentText != currentText && currentText < TextList.Count)
         {
             TextList[currentText - 1].SetActive(false);
-            TextList[currentText].SetActive(true);
+            TextList[currentText].SetActive(true);  
         }
+        else if(currentText >= TextList.Count)
+        {
+            this.gameObject.SetActive(false);
+            FinalPanel.SetActive(true);
+        }
+    }
+
+    public void BeginGame()
+    {
+        
     }
 }
