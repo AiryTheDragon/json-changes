@@ -8,9 +8,6 @@ public class BtnClick : MonoBehaviour
 {
     public void BtnNewScene()
     {
-
-        Player.Name = "George";
-        //PlayerPrefs.SetInt("score", 2500);
         SceneManager.LoadScene("MainScene");
     }
 
