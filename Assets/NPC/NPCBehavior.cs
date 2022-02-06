@@ -36,6 +36,17 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
 
     public int ManipulationLevel;
 
+    public Vector2 Velocity;
+
+    public double Suspicion = 0;
+
+    public double MaxSuspicion =  500;
+
+    public bool beingEscorted;
+
+    public bool initialized;
+
+
     //[SerializeField] private AudioClip _ow = null;
     //private AudioSource _source = null;
 
@@ -62,6 +73,12 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
     {
         base.Update();
 
+        if(!initialized)
+        {
+            ClockBehavior.NeedsClockUpdate.Add(this);
+            initialized = true;
+        }
+
         if (isMessage)
         {
             messageTimeRemaining -= Time.deltaTime;
@@ -72,8 +89,32 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
                 isMessage = false;
             }
         }
-        
-
+        if(runningActivity.GetCurrentAction() is ActivityEscortPlayer)
+        {
+            Player.GetComponent<Transform>().position = GetComponent<Transform>().position + (new Vector3(Velocity.normalized.x, Velocity.normalized.y, 0) * 0.6f);
+        }
+        else if(runningActivity.GetCurrentAction() is ActivityEscortNPC)
+        {
+            GetComponentInChildren<GuardBehavior>().Target.GetComponent<Transform>().position = GetComponent<Transform>().position + (new Vector3(Velocity.normalized.x, Velocity.normalized.y, 0) * 0.6f);
+        }
+        else if (runningActivity.GetCurrentAction() is ActivityCatchPlayer)
+        {
+            var activity = (ActivityCatchPlayer)runningActivity.GetCurrentAction();
+            if((GetComponent<Transform>().position - Player.GetComponent<Transform>().position).magnitude < 0.6)
+            {
+                runningActivity.CompleteAction();
+                BeginAction(runningActivity.GetCurrentAction());
+            }
+        }
+        else if (runningActivity.GetCurrentAction() is ActivityCatchNPC)
+        {
+            var activity = (ActivityCatchNPC)runningActivity.GetCurrentAction();
+            if((GetComponent<Transform>().position - GetComponentInChildren<GuardBehavior>().Target.GetComponent<Transform>().position).magnitude < 0.6)
+            {
+                runningActivity.CompleteAction();
+                BeginAction(runningActivity.GetCurrentAction());
+            }
+        }
     }
 
     /// <summary>Called during either Update or FixedUpdate depending on if rigidbodies are used for movement or not</summary>
@@ -133,7 +174,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         CharacterBehavior.UpdateHead(velocity2D.x, velocity2D.y);
 
         ApplyGravity(deltaTime);
-
+        Velocity = velocity2D;
 
         // Set how much the agent wants to move during this frame
         var delta2D = lastDeltaPosition = CalculateDeltaToMoveThisFrame(movementPlane.ToPlane(currentPosition), distanceToEnd, deltaTime);
@@ -212,6 +253,25 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
             runningActivity.CompleteAction();
             BeginAction(runningActivity.GetCurrentAction());
         }
+        else if (action is ActivityCatchPlayer)
+        {
+            GetComponent<AIDestinationSetter>().target = Player.GetComponent<Transform>();
+        }
+        else if (action is ActivityCatchNPC)
+        {
+            var npcAction = (ActivityCatchNPC)action;
+            GetComponent<AIDestinationSetter>().target = gameObject.GetComponentInChildren<GuardBehavior>().Target.GetComponent<Transform>();
+        }
+        else if (action is ActivityEscortPlayer)
+        {
+            GetComponent<AIDestinationSetter>().target = ((ActivityEscortPlayer)action).Destination.GetComponent<Transform>();
+            Player.beingEscorted = true;
+        }
+        else if (action is ActivityEscortNPC)
+        {
+            GetComponent<AIDestinationSetter>().target = ((ActivityEscortNPC)action).Destination.GetComponent<Transform>();
+            GetComponentInChildren<GuardBehavior>().Target.GetComponent<NPCBehavior>().beingEscorted = true;
+        }
     }
 
 
@@ -226,6 +286,30 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         {
             runningActivity.CompleteAction();
             BeginAction(runningActivity.GetCurrentAction());
+        }
+        else if (runningActivity.GetCurrentAction() is ActivityCatchPlayer)
+        {
+            runningActivity.CompleteAction();
+            BeginAction(runningActivity.GetCurrentAction());
+        }
+        else if (runningActivity.GetCurrentAction() is ActivityCatchNPC)
+        {
+            runningActivity.CompleteAction();
+            BeginAction(runningActivity.GetCurrentAction());
+        }
+        else if(runningActivity.GetCurrentAction() is ActivityEscortNPC)
+        {
+            runningActivity.CompleteAction();
+            GetComponentInChildren<GuardBehavior>().Target.GetComponent<NPCBehavior>().beingEscorted = false;
+            GetComponentInChildren<GuardBehavior>().Patrolling = true;
+            RunActivity(GetComponentInChildren<GuardBehavior>().Configuration.PatrolActivity);
+        }
+        else if(runningActivity.GetCurrentAction() is ActivityEscortPlayer)
+        {
+            runningActivity.CompleteAction();
+            Player.beingEscorted = false;
+            GetComponentInChildren<GuardBehavior>().Patrolling = true;
+            RunActivity(GetComponentInChildren<GuardBehavior>().Configuration.PatrolActivity);
         }
         base.OnTargetReached();
     }
@@ -252,6 +336,28 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
                 runningActivity.CompleteAction();
                 ClockBehavior.NeedsClockUpdate.Remove(this);
                 BeginAction(runningActivity.GetCurrentAction());
+            }
+        }
+        else if (runningActivity.GetCurrentAction() is ActivityCatchPlayer)
+        {
+            var activity = (ActivityCatchPlayer)runningActivity.GetCurrentAction();
+            if(activity.DistanceLimit >= 0 && Vector3.Distance(Player.GetComponent<Transform>().position, GetComponent<Transform>().position) > activity.DistanceLimit)
+            {
+                var guard = GetComponentInChildren<GuardBehavior>();
+                guard.Patrolling = true;
+                RunActivity(guard.Configuration.PatrolActivity);
+            }
+        }
+        else if (runningActivity.GetCurrentAction() is ActivityCatchNPC)
+        {
+            var activity = (ActivityCatchNPC)runningActivity.GetCurrentAction();
+            if(activity.DistanceLimit >= 0 && Vector3.Distance(
+                gameObject.GetComponentInChildren<GuardBehavior>().Target.GetComponent<Transform>().position,
+                GetComponent<Transform>().position) > activity.DistanceLimit)
+            {
+                var guard = GetComponentInChildren<GuardBehavior>();
+                guard.Patrolling = true;
+                RunActivity(guard.Configuration.PatrolActivity);
             }
         }
     }
