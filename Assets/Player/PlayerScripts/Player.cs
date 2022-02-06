@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
 
     public bool beingEscorted;
 
-    private static int Score = 0;
+    public static int Score = 0;
 
     // Start is called before the first frame update
     void Start()
