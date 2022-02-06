@@ -38,6 +38,8 @@ public class Player : MonoBehaviour
 
     public static string Name = "DaDarkWizard";
 
+    public bool beingEscorted;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -78,9 +80,12 @@ public class Player : MonoBehaviour
 
         CharacterBehavior.UpdateHead(Input.GetAxis("Horizontal") * currentSpeed, Input.GetAxis("Vertical") * currentSpeed);
 
-        transform.Translate(xChange, 0, 0);
-        transform.Translate(0, yChange, 0);
-
+        if(!beingEscorted)
+        {
+            transform.Translate(xChange, 0, 0);
+            transform.Translate(0, yChange, 0);
+        }
+        
         if (isMessage)
         {
             messageTimeRemaining -= Time.deltaTime;
