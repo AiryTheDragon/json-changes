@@ -9,7 +9,7 @@ public class WritingDeskBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        LetterCreator = GameObject.Find("LetterWorkspace");
     }
 
     // Update is called once per frame
