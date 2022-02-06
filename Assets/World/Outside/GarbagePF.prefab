@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6818821969587474385}
   - component: {fileID: 415599861621415626}
+  - component: {fileID: 6517820863759424190}
   m_Layer: 0
   m_Name: garbageCan
   m_TagString: Untagged
@@ -84,6 +85,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!70 &6517820863759424190
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677224938648769486}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.35, y: 2.61}
+  m_Direction: 0
 --- !u!1 &3307532966815837518
 GameObject:
   m_ObjectHideFlags: 0
