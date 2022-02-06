@@ -28,7 +28,7 @@ public class LetterCreator : MonoBehaviour
 
     public Activity SelectedActivity;
 
-    public GameObject Player;
+    public GameObject PlayerVariable;
 
     public GameObject Creator;
 
@@ -39,7 +39,7 @@ public class LetterCreator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        PlayerVariable = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -56,7 +56,7 @@ public class LetterCreator : MonoBehaviour
         }
         CurrentLetter = RevolutionLetter;
         RevolutionLetter.SetActive(true);
-        RevolutionLetterText.SetText($"\nViva\nLa\nRevolution\n\n-{Player.GetComponent<Player>().GetType().Name}");
+        RevolutionLetterText.SetText($"\nViva\nLa\nRevolution\n\n-{Player.Name}");
     }
 
     public void OpenPersonSelector()
@@ -116,7 +116,7 @@ public class LetterCreator : MonoBehaviour
                 Letter letter = new Letter();
                 letter.Recieving = SelectedPerson;
                 letter.ManipulationLevelIncrease = BannedActivitiesObject.GetComponent<BannedActivitiesBehavior>().GetBanLevel(SelectedActivity);
-                var player = Player.GetComponent<Player>();
+                var player = PlayerVariable.GetComponent<Player>();
                 player.invScript.AddLetter(letter);
                 player.invScript.Pens--;
                 player.invScript.Paper--;
@@ -126,7 +126,7 @@ public class LetterCreator : MonoBehaviour
         }
         else if(CurrentLetter.name == "RevolutionLetter")
         {
-            Player.GetComponent<Player>().Revolt();
+            PlayerVariable.GetComponent<Player>().Revolt();
             LeaveCreator();
         }
     }
@@ -151,9 +151,9 @@ public class LetterCreator : MonoBehaviour
         CurrentLetter = BlackmailLetter;
         CurrentLetter.SetActive(true);
         BlackmailLetter.GetComponent<BlackmailLetterBehavior>().SelectPerson(null);
-        People = Player.GetComponent<Player>().PeopleKnown.Values.ToList();
-        InkAmountText.text = $"{Player.GetComponent<Player>().invScript.Pens}";
-        PaperAmountText.text = $"{Player.GetComponent<Player>().invScript.Paper}";
+        People = PlayerVariable.GetComponent<Player>().PeopleKnown.Values.ToList();
+        InkAmountText.text = $"{PlayerVariable.GetComponent<Player>().invScript.Pens}";
+        PaperAmountText.text = $"{PlayerVariable.GetComponent<Player>().invScript.Paper}";
         Creator.SetActive(true);
     }
 }
