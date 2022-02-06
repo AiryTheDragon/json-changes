@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Linq;
+using System;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -39,6 +41,8 @@ public class Player : MonoBehaviour
     public static string Name = "DaDarkWizard";
 
     public bool beingEscorted;
+
+    private static int Score = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -200,6 +204,17 @@ public class Player : MonoBehaviour
 
     public void Revolt()
     {
+        CalculateScore();
+        SceneManager.LoadScene("CreditsScene");
+    }
 
+    private void CalculateScore()
+    {
+        int score = 0;
+        foreach(var person in PeopleKnown.Values)
+        {
+            score += person.Value - (Math.Max(0, 5 - person.ManipulationLevel));
+        }
+        Score = score;
     }
 }
