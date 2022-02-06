@@ -5,5 +5,4 @@ using UnityEngine;
 public class KeyScript : MonoBehaviour
 {
     public string objectName = "Home";
-
 }

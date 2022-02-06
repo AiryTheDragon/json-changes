@@ -133,7 +133,6 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Key")
         {
-            Debug.Log("found a key");
             _source.clip = _tada;
             createMessage("Awesome!");
             _source.Play();
