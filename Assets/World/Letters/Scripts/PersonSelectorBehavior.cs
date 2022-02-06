@@ -53,12 +53,18 @@ public class PersonSelectorBehavior : MonoBehaviour
         {
             return;
         }
-
         this.page = page;
-        for(int i = 0; i < PersonDisplays.Count; i++)
+        int i = 0;
+        for(; i < PersonDisplays.Count && i + (page - 1) * PersonDisplays.Count < People.Count; i++)
         {
             PersonDisplays[i].GetComponent<PersonDisplayBehavior>().SetPerson(People[i + (page - 1) * PersonDisplays.Count]);
         }
+
+        for(; i < PersonDisplays.Count; i++)
+        {
+            PersonDisplays[i].GetComponent<PersonDisplayBehavior>().SetPerson(null);
+        }
+
         PageNumberDisplay.GetComponent<TextMeshProUGUI>().text = $"Page {this.page}/{this.totalPages}";
         if(HasNextPage())
         {

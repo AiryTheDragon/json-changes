@@ -6,7 +6,7 @@ public class RunActivity
 {
     private int currentAction;
 
-    private Activity activity;
+    public Activity activity;
 
 
     public RunActivity(Activity activity)

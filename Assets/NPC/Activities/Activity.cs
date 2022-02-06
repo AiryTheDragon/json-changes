@@ -10,7 +10,7 @@ public class Activity : MonoBehaviour
 
     public ClockTime ActivityTime;
 
-    public string Name { get; set; }
+    public string Name;
 
     // Start is called before the first frame update
     void Start()

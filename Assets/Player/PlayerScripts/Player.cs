@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 public class Player : MonoBehaviour
 {
@@ -29,9 +30,13 @@ public class Player : MonoBehaviour
 
     public int MaxSuspicion = 100;
 
-    public List<Person> PeopleKnown = new List<Person>();
+    public Dictionary<string, Person> PeopleKnown = new Dictionary<string, Person>();
 
     public CharacterBehavior CharacterBehavior;
+
+    public NPCInfoBehavior NPCInfoUI;
+
+    public static string Name = "DaDarkWizard";
 
     // Start is called before the first frame update
     void Start()
@@ -106,6 +111,17 @@ public class Player : MonoBehaviour
             _source.Play();
         }
 
+        if (collision.gameObject.tag == "NPC")
+        {
+            var npc = collision.gameObject.GetComponent<NPCBehavior>();
+            if(invScript.Letters.Where(x => x.Recieving.Name == npc.Name).Any())
+            {
+                Letter letter = invScript.Letters.Where(x => x.Recieving.Name == npc.Name).First();
+                invScript.RemoveLetter(letter);
+                npc.ManipulationLevel += letter.ManipulationLevelIncrease;
+            }
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -177,5 +193,8 @@ public class Player : MonoBehaviour
         this.Suspicion += suspicion;
     }
 
+    public void Revolt()
+    {
 
+    }
 }
