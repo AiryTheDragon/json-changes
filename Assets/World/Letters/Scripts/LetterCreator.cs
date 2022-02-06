@@ -148,10 +148,7 @@ public class LetterCreator : MonoBehaviour
 
     public void EnterCreator()
     {
-        if(PlayerVariable is null)
-        {
-            PlayerVariable = GameObject.Find("Player");
-        }
+        PlayerVariable = GameObject.Find("Player");
         CurrentLetter = BlackmailLetter;
         CurrentLetter.SetActive(true);
         BlackmailLetter.GetComponent<BlackmailLetterBehavior>().SelectPerson(null);
