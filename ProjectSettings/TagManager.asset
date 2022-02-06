@@ -19,6 +19,9 @@ TagManager:
   - Paper
   - Pen
   - NPC
+  - Garbage
+  - Rock
+  - Shrub
   layers:
   - Default
   - TransparentFX
