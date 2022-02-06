@@ -10,23 +10,16 @@ public class CCTVStationBehavior : MonoBehaviour, INeedsClockUpdate
 
     public int GuardsWatching = 0;
 
-    private bool initialized = false;
-
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameObject.Find("Clock").GetComponent<ClockBehavior>().NeedsClockUpdate.Add(this);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!initialized)
-        {
-            initialized = true;
-            ClockBehavior.NeedsClockUpdate.Add(this);
-        }
     }
 
     public void UpdateClock(ClockTime time)

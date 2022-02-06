@@ -11,7 +11,6 @@ public class GuardBehavior : MonoBehaviour, INeedsClockUpdate
 
     public bool Patrolling = true;
 
-    private bool initialized;
 
     private List<Collider2D> watchedPeople = new List<Collider2D>();
 
@@ -21,6 +20,7 @@ public class GuardBehavior : MonoBehaviour, INeedsClockUpdate
     void Start()
     {
         MyNPCBehavior.RunActivity(Configuration.PatrolActivity);
+        GameObject.Find("Clock").GetComponent<ClockBehavior>().NeedsClockUpdate.Add(this);
     }
 
     // Update is called once per frame
@@ -28,11 +28,7 @@ public class GuardBehavior : MonoBehaviour, INeedsClockUpdate
     {
         float rotation = (float)(Math.Atan2(MyNPCBehavior.Velocity.y, MyNPCBehavior.Velocity.x) / (2 * Math.PI));
         GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, rotation * 360 + 90);
-        if(!initialized)
-        {
-            initialized = true;
-            ClockBehavior.NeedsClockUpdate.Add(this);
-        }
+
     }
 
     void OnTriggerEnter2D(Collider2D collider)

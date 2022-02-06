@@ -11,7 +11,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
 {
     //public List<GameObject> paths;
 
-    public Player Player;
+    private Player Player;
 
     public List<Activity> Activities;
 
@@ -44,7 +44,11 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
 
     public bool beingEscorted;
 
-    public bool initialized;
+    public Transform home;
+
+    private ClockBehavior Clock;
+
+    public GameObject WaypointPrefab;
 
 
     //[SerializeField] private AudioClip _ow = null;
@@ -55,11 +59,19 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
     protected override void Start()
     {
         speechObject.SetActive(false);
-
-
+        Clock = GameObject.Find("Clock").GetComponent<ClockBehavior>();
+        Clock.NeedsClockUpdate.Add(this);
+        Player = GameObject.Find("Player").GetComponent<Player>();
         if (Activities != null  && Activities.Count>0)
         { 
             RunActivity(Activities[0]);
+        }
+
+        if(home is null)
+        {
+            var waypoint = Instantiate(WaypointPrefab);
+            waypoint.transform.SetParent(GameObject.Find("Clock").transform, true);
+            home = waypoint.transform;
         }
 
         //GetComponent<AIDestinationSetter>().target = runningActivity.GetDestination().GetComponent<Transform>();
@@ -72,12 +84,6 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
     protected override void Update()
     {
         base.Update();
-
-        if(!initialized)
-        {
-            ClockBehavior.NeedsClockUpdate.Add(this);
-            initialized = true;
-        }
 
         if (isMessage)
         {
@@ -227,9 +233,9 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         }
         if(action is ActivityWait)
         {
-            waitUntil = new ClockTime(ClockBehavior.MainClockBehavior.Time);
+            waitUntil = new ClockTime(Clock.Time);
             waitUntil.AddMinutes(((ActivityWait)action).Minutes);
-            ClockBehavior.NeedsClockUpdate.Add(this);
+            Clock.NeedsClockUpdate.Add(this);
         }
         else if (action is ActivityRepeat)
         {
@@ -244,8 +250,8 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         else if (action is ActivityWaitUntilTime)
         {
             waitUntil = new ClockTime(((ActivityWaitUntilTime)action).Time);
-            waitUntil.Day = ClockBehavior.MainClockBehavior.Time.Day;
-            ClockBehavior.NeedsClockUpdate.Add(this);
+            waitUntil.Day = Clock.Time.Day;
+            Clock.NeedsClockUpdate.Add(this);
         }
         else if (action is ActivitySpeak)
         {
@@ -272,6 +278,32 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
             GetComponent<AIDestinationSetter>().target = ((ActivityEscortNPC)action).Destination.GetComponent<Transform>();
             GetComponentInChildren<GuardBehavior>().Target.GetComponent<NPCBehavior>().beingEscorted = true;
         }
+        else if (action is ActivityEndEscort)
+        {
+            GetComponentInChildren<GuardBehavior>().Patrolling = true;
+            RunActivity(GetComponentInChildren<GuardBehavior>().Configuration.PatrolActivity);
+        }
+        else if (action is ActivityEnd)
+        {
+            var currentActivity = runningActivity.activity;
+            for(int i = 0; i < Activities.Count; i++)
+            {
+                if(Activities[i] == currentActivity)
+                {
+                    if(i + 1 < Activities.Count)
+                    {
+                        RunActivity(Activities[i + 1]);
+                        return;
+                    }
+                }
+            }
+            RunActivity(Activities[0]);
+        }
+        else if (action is ActivityGoHome)
+        {
+            GetComponent<AIDestinationSetter>().target = home;
+            Debug.Log("Going Home");
+        }
     }
 
 
@@ -282,9 +314,10 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         {
             GetComponent<AIDestinationSetter>().target = runningActivity.GetDestination().GetComponent<Transform>();
         }*/
-        if(runningActivity.GetCurrentAction() is ActivityWalk)
+        if(runningActivity.GetCurrentAction() is ActivityWalk || runningActivity.GetCurrentAction() is ActivityGoHome)
         {
             runningActivity.CompleteAction();
+            Debug.Log("Went Home");
             BeginAction(runningActivity.GetCurrentAction());
         }
         else if (runningActivity.GetCurrentAction() is ActivityCatchPlayer)
@@ -301,15 +334,13 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         {
             runningActivity.CompleteAction();
             GetComponentInChildren<GuardBehavior>().Target.GetComponent<NPCBehavior>().beingEscorted = false;
-            GetComponentInChildren<GuardBehavior>().Patrolling = true;
-            RunActivity(GetComponentInChildren<GuardBehavior>().Configuration.PatrolActivity);
+            BeginAction(runningActivity.GetCurrentAction());
         }
         else if(runningActivity.GetCurrentAction() is ActivityEscortPlayer)
         {
             runningActivity.CompleteAction();
             Player.beingEscorted = false;
-            GetComponentInChildren<GuardBehavior>().Patrolling = true;
-            RunActivity(GetComponentInChildren<GuardBehavior>().Configuration.PatrolActivity);
+            BeginAction(runningActivity.GetCurrentAction());
         }
         base.OnTargetReached();
     }
@@ -323,7 +354,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
                 waitUntil.Day == time.Day && waitUntil.Hour == time.Hour && waitUntil.Minute <= time.Minute)
             {
                 runningActivity.CompleteAction();
-                ClockBehavior.NeedsClockUpdate.Remove(this);
+                Clock.NeedsClockUpdate.Remove(this);
                 BeginAction(runningActivity.GetCurrentAction());
             }
         }
@@ -334,7 +365,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
                 waitUntil.Day == time.Day && waitUntil.Hour == time.Hour && waitUntil.Minute <= time.Minute)
             {
                 runningActivity.CompleteAction();
-                ClockBehavior.NeedsClockUpdate.Remove(this);
+                Clock.NeedsClockUpdate.Remove(this);
                 BeginAction(runningActivity.GetCurrentAction());
             }
         }
@@ -370,7 +401,4 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         messageTimeRemaining = messageDuration;
         isMessage = true;
     }
-
-
-
 }

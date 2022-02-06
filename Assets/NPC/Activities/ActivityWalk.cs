@@ -8,6 +8,6 @@ public class ActivityWalk : ActivityAction
 
     void Start()
     {
-        Destination.SetActive(false);
+        
     }
 }

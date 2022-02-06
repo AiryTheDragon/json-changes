@@ -108,7 +108,6 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
-  Player: {fileID: 0}
   Activities: []
   CharacterBehavior: {fileID: 3006328800399384229}
   messageDuration: 5
@@ -117,6 +116,12 @@ MonoBehaviour:
   Name: 
   Value: 0
   ManipulationLevel: 0
+  Velocity: {x: 0, y: 0}
+  Suspicion: 0
+  MaxSuspicion: 500
+  beingEscorted: 0
+  home: {fileID: 0}
+  WaypointPrefab: {fileID: 4441818672936420333, guid: 109ea93d2c5b939c58f88a4434919dfd, type: 3}
 --- !u!114 &3725225578617467916
 MonoBehaviour:
   m_ObjectHideFlags: 0

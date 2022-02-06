@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class DoorBehavior : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class DoorBehavior : MonoBehaviour
     public GameObject closedDoorObject;
 
     public InvScript playerInv;
+
+    int colliding = 0;
+    bool open = false;
 
     // Start is called before the first frame update
     void Start()
@@ -37,30 +41,58 @@ public class DoorBehavior : MonoBehaviour
     {
         if (!needKey || playerInv.haveItem(doorKeyName))
         {
-            closedDoorObject.GetComponent<SpriteRenderer>().enabled = false;
-            closedDoorObject.GetComponent<BoxCollider2D>().enabled = false;
-            openDoorObject.GetComponent<SpriteRenderer>().enabled = true;
-            openDoorObject.GetComponent<BoxCollider2D>().enabled = true;
+            if(!open)
+            {
+                closedDoorObject.GetComponent<SpriteRenderer>().enabled = false;
+                closedDoorObject.GetComponent<BoxCollider2D>().enabled = false;
+                openDoorObject.GetComponent<SpriteRenderer>().enabled = true;
+                openDoorObject.GetComponent<BoxCollider2D>().enabled = true;
 
-            _source.clip = _doorOpen;
-            _source.Play();
+                _source.clip = _doorOpen;
+                _source.Play();
+                open = true;
+            }
+            colliding++;
+        }
+        else if(collision.tag == "Guard" || collision.tag == "NPC")
+        {
+            if(!open)
+            {
+                closedDoorObject.GetComponent<SpriteRenderer>().enabled = false;
+                closedDoorObject.GetComponent<BoxCollider2D>().enabled = false;
+                openDoorObject.GetComponent<SpriteRenderer>().enabled = true;
+                openDoorObject.GetComponent<BoxCollider2D>().enabled = true;
 
-
+                _source.clip = _doorOpen;
+                _source.Play();
+                open = true;
+            }
+            colliding++;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        closedDoorObject.GetComponent<SpriteRenderer>().enabled = true;
-        closedDoorObject.GetComponent<BoxCollider2D>().enabled = true;
-        openDoorObject.GetComponent<SpriteRenderer>().enabled = false;
-        openDoorObject.GetComponent<BoxCollider2D>().enabled = false;
-
-        if (!needKey || playerInv.haveItem(doorKeyName))
+        if(collision.tag == "Guard" || collision.tag == "NPC")
         {
+            colliding = Math.Max(0, colliding - 1);
+        }
+        else if (!needKey || playerInv.haveItem(doorKeyName))
+        {
+            colliding = Math.Max(0, colliding - 1);
+        }
+        
+        if(colliding == 0 && open)
+        {
+            closedDoorObject.GetComponent<SpriteRenderer>().enabled = true;
+            closedDoorObject.GetComponent<BoxCollider2D>().enabled = true;
+            openDoorObject.GetComponent<SpriteRenderer>().enabled = false;
+            openDoorObject.GetComponent<BoxCollider2D>().enabled = false;
             _source.clip = _doorClose;
             _source.Play();
+            open = false;
         }
+        
     }
 
 
