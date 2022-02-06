@@ -59,7 +59,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
- 
+        Debug.Log("Player name is: " + Name);
+
         if (Input.GetAxis("Fire1")>0)
         {
             currentSpeed = runSpeed;
