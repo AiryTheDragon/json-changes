@@ -129,6 +129,7 @@ public class Player : MonoBehaviour
                 Letter letter = invScript.Letters.Where(x => x.Recieving.Name == npc.Name).First();
                 invScript.RemoveLetter(letter);
                 npc.ManipulationLevel += letter.ManipulationLevelIncrease;
+                PeopleKnown[npc.Name].ManipulationLevel = npc.ManipulationLevel;
             }
         }
 
