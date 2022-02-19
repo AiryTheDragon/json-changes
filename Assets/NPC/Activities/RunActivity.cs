@@ -23,7 +23,7 @@ public class RunActivity
     {
         if(currentAction >= activity.actions.Count)
         {
-            return null;
+            return new ActivityFindNewActivity();
         }
         var my = activity.actions[currentAction];
         return my;
