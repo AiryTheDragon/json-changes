@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class ClockBehavior : MonoBehaviour
 {
-    //public static List<Activity> Activities;
 
     public DateTime LastUpdate = DateTime.Now;
 
