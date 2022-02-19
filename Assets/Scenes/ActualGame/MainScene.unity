@@ -80172,6 +80172,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7617974501953363069, guid: 95ec87ad472d13e4fbcab910a264a92c, type: 3}
+      propertyPath: playerInv
+      value: 
+      objectReference: {fileID: 526423961}
+    - target: {fileID: 7617974501953363069, guid: 95ec87ad472d13e4fbcab910a264a92c, type: 3}
       propertyPath: doorKeyName
       value: LibertyKey
       objectReference: {fileID: 0}

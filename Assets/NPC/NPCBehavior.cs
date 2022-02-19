@@ -36,6 +36,8 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
 
     public int ManipulationLevel;
 
+    public int activityPos = 0;
+
     public Vector2 Velocity;
 
     public double Suspicion = 0;
@@ -64,7 +66,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         Player = GameObject.Find("Player").GetComponent<Player>();
         if (Activities != null  && Activities.Count>0)
         { 
-            RunActivity(Activities[0]);
+            RunActivity(0);
         }
 
         if(home is null)
@@ -219,6 +221,12 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         return person;
     }
 
+    public void RunActivity(int index)
+    {
+        activityPos = index;
+        RunActivity(Activities[index]);
+    }
+
     public void RunActivity(Activity activity)
     {
         runningActivity = new RunActivity(activity);
@@ -285,19 +293,13 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         }
         else if (action is ActivityEnd)
         {
-            var currentActivity = runningActivity.activity;
-            for(int i = 0; i < Activities.Count; i++)
+               
+            if(activityPos + 1 < Activities.Count)
             {
-                if(Activities[i] == currentActivity)
-                {
-                    if(i + 1 < Activities.Count)
-                    {
-                        RunActivity(Activities[i + 1]);
-                        return;
-                    }
-                }
+                RunActivity(activityPos+1);
+                return;
             }
-            RunActivity(Activities[0]);
+            RunActivity(0);
         }
         else if (action is ActivityGoHome)
         {
