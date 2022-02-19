@@ -72,10 +72,10 @@ public class ClockTime
         Minute += minutes;
 
         int hours = Minute / 60;
-        Minute %= 60;
+        Minute = Minute % 60;
         Hour += hours;
         int days = Hour / 24;
-        hours %= 24;
+        Hour = Hour % 24;
         Day += days;
     }
 
