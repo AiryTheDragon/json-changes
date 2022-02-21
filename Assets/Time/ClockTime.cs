@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ClockTime
 {
-    public int Hour { get; set; }
+    public int Hour;
 
-    public int Minute { get; set; }
+    public int Minute;
 
-    public int Day { get; set; }
+    public int Day;
 
     public int Week { get {
         return Day / 7;

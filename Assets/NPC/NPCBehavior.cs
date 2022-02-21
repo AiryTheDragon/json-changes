@@ -306,6 +306,10 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
             GetComponent<AIDestinationSetter>().target = home;
             Debug.Log("Going Home");
         }
+        else if (action is ActivityFindNewActivity)
+        {
+            
+        }
     }
 
 
