@@ -231,17 +231,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1735342432262477660}
     m_Modifications:
+    - target: {fileID: -5888141469435472188, guid: 45ee50e1e44dc9b409b55e88a66be5b9, type: 3}
+      propertyPath: m_Size.x
+      value: 39.727196
+      objectReference: {fileID: 0}
+    - target: {fileID: -5888141469435472188, guid: 45ee50e1e44dc9b409b55e88a66be5b9, type: 3}
+      propertyPath: m_Size.y
+      value: 19.501358
+      objectReference: {fileID: 0}
+    - target: {fileID: -5888141469435472188, guid: 45ee50e1e44dc9b409b55e88a66be5b9, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0000009536743
+      objectReference: {fileID: 0}
+    - target: {fileID: -5888141469435472188, guid: 45ee50e1e44dc9b409b55e88a66be5b9, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.039331436
+      objectReference: {fileID: 0}
     - target: {fileID: 840577319086888226, guid: 45ee50e1e44dc9b409b55e88a66be5b9, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 840577319086888226, guid: 45ee50e1e44dc9b409b55e88a66be5b9, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.47
+      value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 840577319086888226, guid: 45ee50e1e44dc9b409b55e88a66be5b9, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.47
+      value: 0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 840577319086888226, guid: 45ee50e1e44dc9b409b55e88a66be5b9, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.9787234
       objectReference: {fileID: 0}
     - target: {fileID: 840577319086888226, guid: 45ee50e1e44dc9b409b55e88a66be5b9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -283,6 +303,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 840577319086888226, guid: 45ee50e1e44dc9b409b55e88a66be5b9, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3594212966226539277, guid: 45ee50e1e44dc9b409b55e88a66be5b9, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -297,7 +321,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8857398053992805485, guid: 45ee50e1e44dc9b409b55e88a66be5b9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8862589326628108933, guid: 45ee50e1e44dc9b409b55e88a66be5b9, type: 3}
       propertyPath: m_Name

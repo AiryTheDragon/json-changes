@@ -270,6 +270,8 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         else if (action is ActivityCatchPlayer)
         {
             GetComponent<AIDestinationSetter>().target = Player.GetComponent<Transform>();
+            //Player._source.Stop();
+            //((ActivityCatchPlayer)action).chaseMusic.Play();
         }
         else if (action is ActivityCatchNPC)
         {
@@ -280,6 +282,8 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         {
             GetComponent<AIDestinationSetter>().target = ((ActivityEscortPlayer)action).Destination.GetComponent<Transform>();
             Player.beingEscorted = true;
+            //Player._source.Stop();
+            //((ActivityEscortPlayer)action).escortMusic.Play();
         }
         else if (action is ActivityEscortNPC)
         {
@@ -290,6 +294,17 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         {
             GetComponentInChildren<GuardBehavior>().Patrolling = true;
             RunActivity(GetComponentInChildren<GuardBehavior>().Configuration.PatrolActivity);
+            //Player._source.Stop();
+        }
+        else if (action is ActivityBGMusicStop)  // TODO test this
+        {
+            //Player._source.Stop();
+            //((ActivityBGMusicStop)action).music.Stop();
+        }
+        else if (action is ActivityBGMusicUpdate)  // TODO test this 
+        {
+            //Player._source.Stop();
+            //((ActivityBGMusicUpdate)action).music.Play();
         }
         else if (action is ActivityEnd)
         {

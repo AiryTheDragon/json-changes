@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip _locked = null;
     [SerializeField] private AudioClip _footsteps = null;
 
-    private AudioSource _source = null;
+    public AudioSource _source = null;
 
     private float messageTimeRemaining;
     private bool isMessage = false;

@@ -5,6 +5,7 @@ using UnityEngine;
 public class ActivityEscortPlayer : ActivityAction
 {
     public GameObject Destination;
+    public AudioSource escortMusic;
 }
 
 
