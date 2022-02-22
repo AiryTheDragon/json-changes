@@ -25,6 +25,7 @@ TagManager:
   - Guard
   - BannableActivities
   - BannedActivities
+  - FreedomBook
   layers:
   - Default
   - TransparentFX

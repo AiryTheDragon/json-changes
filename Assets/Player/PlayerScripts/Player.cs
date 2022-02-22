@@ -157,6 +157,12 @@ public class Player : MonoBehaviour
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
         }
+        else if (collision.gameObject.tag == "FreedomBook")
+        {
+            createMessage("Freedom!");
+            invScript.addItem(collision.gameObject);
+            collision.gameObject.SetActive(false);
+        }
         else if(collision.gameObject.tag == "Writing Desk")
         {
             if(invScript.Paper >= 1 && invScript.Pens >= 1)
