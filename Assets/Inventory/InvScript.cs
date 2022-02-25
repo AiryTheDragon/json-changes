@@ -33,7 +33,7 @@ public class InvScript : MonoBehaviour
         {
             string thisName = gameObject.GetComponent<KeyScript>().objectName;
 
-            inventoryNames.Add(gameObject.GetComponent<KeyScript>().objectName);
+            inventoryNames.Add(thisName);
             inventoryObjects.Add(gameObject);
             Debug.Log(thisName + "   " + gameObject.name);
             inventoryDict.Add(thisName, gameObject);

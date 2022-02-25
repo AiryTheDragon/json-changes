@@ -46,6 +46,7 @@ public class GuardBehavior : MonoBehaviour, INeedsClockUpdate
             }
             else if(collider.tag == "NPC")
             {
+                Debug.Log("NPC Collision!");
                 var npc = collider.GetComponent<NPCBehavior>();
                 if(npc.Suspicion >= npc.MaxSuspicion || Configuration.EscortOnSight)
                 {
