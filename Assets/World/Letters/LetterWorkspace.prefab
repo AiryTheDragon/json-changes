@@ -646,7 +646,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <b>(Select Activity)<b>
+  m_text: (Select Activity)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e33ee0f6c4800fea19f3c8e982ddf5ed, type: 2}
   m_sharedMaterial: {fileID: -8551299574259237557, guid: e33ee0f6c4800fea19f3c8e982ddf5ed, type: 2}
@@ -1759,7 +1759,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: (Enter Name),
+  m_text: (Select Name)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e33ee0f6c4800fea19f3c8e982ddf5ed, type: 2}
   m_sharedMaterial: {fileID: -8551299574259237557, guid: e33ee0f6c4800fea19f3c8e982ddf5ed, type: 2}
@@ -2637,9 +2637,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '0
-
-'
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -3141,7 +3139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7293199080521281481
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3316,7 +3314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BannedActivitiesObject: {fileID: 0}
-  CurrentLetter: {fileID: 0}
+  CurrentLetter: {fileID: 6973835458869540916}
   BlackmailLetter: {fileID: 6973835458869540916}
   RevolutionLetter: {fileID: 4214533150775143907}
   RevolutionLetterText: {fileID: 5071504511008592456}
@@ -3324,7 +3322,7 @@ MonoBehaviour:
   PersonSelector: {fileID: 7107355275588589210}
   ActivitySelector: {fileID: 7107355274243809507}
   SelectedActivity: {fileID: 0}
-  Player: {fileID: 0}
+  PlayerVariable: {fileID: 0}
   Creator: {fileID: 6991000880820771969}
   InkAmountText: {fileID: 2933895697370886801}
   PaperAmountText: {fileID: 552643747329270824}
@@ -4993,9 +4991,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '0
-
-'
+  m_text: 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}

@@ -128,22 +128,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'New Text for the very unlikely event that I no longer have enough
+  m_text: 'Name:  Onna Clinesmith
 
-    infor
-    on a;sldkfja;slkdjf
+    Position:   Retired
 
-    asdf
+    Value:   Very High
 
-    asdflas
+    Confidence:  
+    Unknown
 
-    dfas;ldfjasd
-
-    fa''sldfjas
-
-    d''fa;sldkjfa
-
-    asdffdf'
+    Currently:   Complaining about the government.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e33ee0f6c4800fea19f3c8e982ddf5ed, type: 2}
   m_sharedMaterial: {fileID: -8551299574259237557, guid: e33ee0f6c4800fea19f3c8e982ddf5ed, type: 2}
