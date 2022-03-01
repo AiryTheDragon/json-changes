@@ -103,6 +103,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         }
         else if(runningActivity.GetCurrentAction() is ActivityEscortNPC)
         {
+            Debug.Log("Is escorting NPC");
             GetComponentInChildren<GuardBehavior>().Target.GetComponent<Transform>().position = GetComponent<Transform>().position + (new Vector3(Velocity.normalized.x, Velocity.normalized.y, 0) * 0.6f);
         }
         else if (runningActivity.GetCurrentAction() is ActivityCatchPlayer)
@@ -116,6 +117,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         }
         else if (runningActivity.GetCurrentAction() is ActivityCatchNPC)
         {
+            Debug.Log("Is catching NPC");
             var activity = (ActivityCatchNPC)runningActivity.GetCurrentAction();
             if((GetComponent<Transform>().position - GetComponentInChildren<GuardBehavior>().Target.GetComponent<Transform>().position).magnitude < 0.6)
             {
