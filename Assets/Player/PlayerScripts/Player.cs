@@ -63,8 +63,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Player name is: " + Name);
-
         if (Input.GetAxis("Fire1")>0)
         {
             currentSpeed = runSpeed;
@@ -220,8 +218,12 @@ public class Player : MonoBehaviour
         int score = 0;
         foreach(var person in PeopleKnown.Values)
         {
-            score += person.Value - (Math.Max(0, 5 - person.ManipulationLevel));
+            int change = person.Value - ((Math.Max(0, Math.Min(person.Value, 5 - person.ManipulationLevel))));
+            Debug.Log("Max value:" + person.Value + " change:" + change);
+            score += change;
         }
+        Debug.Log("Total score:" + score);
+
         Score = score;
     }
 }
