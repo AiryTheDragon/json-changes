@@ -51,17 +51,15 @@ public class GuardBehavior : MonoBehaviour, INeedsClockUpdate
 
                 Debug.Log("NPC Collision! with " + npc.Name);
 
+
                 if (npc.Suspicion >= npc.MaxSuspicion || Configuration.EscortOnSight)
                 {
+                    Debug.Log("In escorting block");
                     MyNPCBehavior.RunActivity(Configuration.EscortNPCActivity);
                     Target = collider.gameObject;
                     Patrolling = false;
+                    Debug.Log("Setting Target to " + collider.gameObject.name);
                 }
-            }
-            else if (collider.tag == "Guard")
-            {
-                Debug.Log("Guard Collision!");
-                
             }
         }
         if(Configuration.SuspicionPerMinute >= 0 && (collider.tag == "Player" || collider.tag == "NPC"))
