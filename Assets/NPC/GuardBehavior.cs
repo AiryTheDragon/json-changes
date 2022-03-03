@@ -45,15 +45,23 @@ public class GuardBehavior : MonoBehaviour, INeedsClockUpdate
                 }
             }
             else if(collider.tag == "NPC")
-            {
-                Debug.Log("NPC Collision!");
+            {              
+
                 var npc = collider.GetComponent<NPCBehavior>();
-                if(npc.Suspicion >= npc.MaxSuspicion || Configuration.EscortOnSight)
+
+                Debug.Log("NPC Collision! with " + npc.Name);
+
+                if (npc.Suspicion >= npc.MaxSuspicion || Configuration.EscortOnSight)
                 {
                     MyNPCBehavior.RunActivity(Configuration.EscortNPCActivity);
                     Target = collider.gameObject;
                     Patrolling = false;
                 }
+            }
+            else if (collider.tag == "Guard")
+            {
+                Debug.Log("Guard Collision!");
+                
             }
         }
         if(Configuration.SuspicionPerMinute >= 0 && (collider.tag == "Player" || collider.tag == "NPC"))
