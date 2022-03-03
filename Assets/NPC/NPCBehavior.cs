@@ -271,17 +271,20 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         }
         else if (action is ActivityCatchPlayer)
         {
+            Debug.Log("action is ActivityCatchPlayer");
             GetComponent<AIDestinationSetter>().target = Player.GetComponent<Transform>();
             //Player._source.Stop();
             //((ActivityCatchPlayer)action).chaseMusic.Play();
         }
         else if (action is ActivityCatchNPC)
         {
+            Debug.Log("action is ActivityCatchNPC");
             var npcAction = (ActivityCatchNPC)action;
             GetComponent<AIDestinationSetter>().target = gameObject.GetComponentInChildren<GuardBehavior>().Target.GetComponent<Transform>();
         }
         else if (action is ActivityEscortPlayer)
         {
+            Debug.Log("action is ActivityEscortPlayer");
             GetComponent<AIDestinationSetter>().target = ((ActivityEscortPlayer)action).Destination.GetComponent<Transform>();
             Player.beingEscorted = true;
             //Player._source.Stop();
@@ -289,6 +292,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         }
         else if (action is ActivityEscortNPC)
         {
+            Debug.Log("action is ActivityEscortNPC");
             GetComponent<AIDestinationSetter>().target = ((ActivityEscortNPC)action).Destination.GetComponent<Transform>();
             GetComponentInChildren<GuardBehavior>().Target.GetComponent<NPCBehavior>().beingEscorted = true;
         }
