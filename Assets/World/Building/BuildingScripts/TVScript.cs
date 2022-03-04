@@ -37,15 +37,22 @@ public class TVScript : MonoBehaviour
     {
         isTVon = true;
         timeRemaining = getSwitchTime();
-        switchStation();
-        audioSounds.Play();
+
+        if (collision.tag == "Player")
+        {
+            switchStation();
+            audioSounds.Play();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         isTVon = false;
         reflectionImage.color = new Color(255, 255, 255, 0);
-        audioSounds.Stop();
+        if (collision.tag == "Player")
+        {
+            audioSounds.Stop();
+        }
     }
 
     private float getSwitchTime()

@@ -28,6 +28,7 @@ TagManager:
   - FreedomBook
   - GuardNPC
   - Lava
+  - Cupcake
   layers:
   - Default
   - TransparentFX

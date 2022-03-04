@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip _ugh = null;
     [SerializeField] private AudioClip _locked = null;
     [SerializeField] private AudioClip _footsteps = null;
+    [SerializeField] private AudioClip _pen = null;
+    [SerializeField] private AudioClip _paper = null;
 
     public AudioSource _source = null;
 
@@ -147,18 +149,29 @@ public class Player : MonoBehaviour
         else if(collision.gameObject.tag == "Paper")
         {
             createMessage("More paper for more letters!");
+
+            _source.clip = _paper;
+            _source.Play();
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
         }
         else if(collision.gameObject.tag == "Pen")
         {
             createMessage("Another pen for another letter!");
+            _source.clip = _pen;
+            _source.Play();
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
         }
         else if (collision.gameObject.tag == "FreedomBook")
         {
             createMessage("Freedom!");
+            invScript.addItem(collision.gameObject);
+            collision.gameObject.SetActive(false);
+        }
+        else if (collision.gameObject.tag == "Cupcake")
+        {
+            createMessage("Yum!");
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
         }
