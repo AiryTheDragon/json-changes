@@ -18,7 +18,7 @@ public class DoorBehavior : MonoBehaviour
 
     public InvScript playerInv;
 
-    int colliding = 0;
+    public int colliding = 0;
     bool open = false;
 
     // Start is called before the first frame update
@@ -39,7 +39,7 @@ public class DoorBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!needKey || playerInv.haveItem(doorKeyName))
+        if (collision.tag == "Player" && (!needKey || playerInv.haveItem(doorKeyName)))
         {
             if(!open)
             {
@@ -54,7 +54,7 @@ public class DoorBehavior : MonoBehaviour
             }
             colliding++;
         }
-        else if(collision.tag == "Guard" || collision.tag == "NPC")
+        else if(collision.tag == "GuardNPC" || collision.tag == "NPC")
         {
             if(!open)
             {
@@ -63,8 +63,8 @@ public class DoorBehavior : MonoBehaviour
                 openDoorObject.GetComponent<SpriteRenderer>().enabled = true;
                 openDoorObject.GetComponent<BoxCollider2D>().enabled = true;
 
-                _source.clip = _doorOpen;
-                _source.Play();
+                //_source.clip = _doorOpen;
+                //_source.Play();
                 open = true;
             }
             colliding++;
@@ -73,23 +73,28 @@ public class DoorBehavior : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.tag == "Guard" || collision.tag == "NPC")
+        if(collision.tag == "GuardNPC" || collision.tag == "NPC")
         {
             colliding = Math.Max(0, colliding - 1);
         }
-        else if (!needKey || playerInv.haveItem(doorKeyName))
+        else if (collision.tag == "Player" && (!needKey || playerInv.haveItem(doorKeyName)))
         {
             colliding = Math.Max(0, colliding - 1);
         }
-        
-        if(colliding == 0 && open)
+
+        if (colliding == 0 && open)
         {
             closedDoorObject.GetComponent<SpriteRenderer>().enabled = true;
             closedDoorObject.GetComponent<BoxCollider2D>().enabled = true;
             openDoorObject.GetComponent<SpriteRenderer>().enabled = false;
             openDoorObject.GetComponent<BoxCollider2D>().enabled = false;
-            _source.clip = _doorClose;
-            _source.Play();
+
+
+            if (collision.tag == "Player")
+            {
+                _source.clip = _doorClose;
+                _source.Play();
+            }
             open = false;
         }
         

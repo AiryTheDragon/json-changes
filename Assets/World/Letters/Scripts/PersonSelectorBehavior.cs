@@ -87,7 +87,7 @@ public class PersonSelectorBehavior : MonoBehaviour
 
     private bool HasNextPage()
     {
-        if((People.Count - 1) / 2 > page)
+        if(((People.Count - 1) + 1)/ 2 > page)
         {
             return true;
         }
