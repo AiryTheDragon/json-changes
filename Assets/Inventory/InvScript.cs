@@ -49,6 +49,14 @@ public class InvScript : MonoBehaviour
             Debug.Log("Added pen");
             Pens++;
         }
+        else if (gameObject.tag == "Cupcake")
+        {
+            string thisName = gameObject.GetComponent<KeyScript>().objectName;
+            inventoryNames.Add(thisName);
+            inventoryObjects.Add(gameObject);
+            Debug.Log(thisName + "   " + gameObject.name);
+            inventoryDict.Add(thisName, gameObject);
+        }
     }
 
     public bool haveItem(string objectName)
