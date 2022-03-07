@@ -107,7 +107,7 @@ public class Player : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Rock" || collision.gameObject.tag == "Shrub" 
+        if (collision.gameObject.tag == "Rock" || collision.gameObject.tag == "Shrub" 
             || collision.gameObject.tag == "Lava")
         {
             _source.clip = _ow;
