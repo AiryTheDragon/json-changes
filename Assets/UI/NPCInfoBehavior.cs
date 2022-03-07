@@ -21,6 +21,7 @@ public class NPCInfoBehavior : MonoBehaviour
 
     public void OpenNPCInfo(NPCBehavior behavior)
     {
+        Debug.Log("Clicked on someone.");
         Person person = behavior.GetPersonInformation();
         if(person is null)
         {

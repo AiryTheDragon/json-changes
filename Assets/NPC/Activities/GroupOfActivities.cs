@@ -9,7 +9,7 @@ public class GroupOfActivities : MonoBehaviour
     public List<Activity> Activities;
 
     // TODO: Make this a clocktime.
-    //public ClockTime startTime;
+    public ClockTime startTime;
     public int StartHour;
     public int StartMinute;
     public int EndHour;
@@ -57,7 +57,7 @@ public class GroupOfActivities : MonoBehaviour
         else
         {
             if((time.Hour > StartHour || (time.Hour == StartHour && time.Minute >= StartMinute)) ||
-                ((time.Hour < EndHour) || (time.Hour == EndHour && time.Minute < EndMinute))
+                ((time.Hour < EndHour) || (time.Hour == EndHour && time.Minute < EndMinute)))
             {
                 return true;
             }
