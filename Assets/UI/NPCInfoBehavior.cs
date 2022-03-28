@@ -30,9 +30,9 @@ public class NPCInfoBehavior : MonoBehaviour
         else
         {
             string activityName = "";
-            if(behavior.runningActivity != null)
+            if(behavior.ActivityTracker?.RunningActivity != null)
             {
-                activityName = behavior.runningActivity.activity.Name;
+                activityName = behavior.ActivityTracker.RunningActivity.Name;
             }
             TextComponent.text = $"Name:  {person.Name}\nPosition:   {person.PositionName}\n"
             + $"Value:   {person.GetValueText()}\nConfidence:   {person.GetManipulationLevelText()}\n" +
