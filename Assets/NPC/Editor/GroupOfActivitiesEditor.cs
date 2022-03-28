@@ -4,7 +4,7 @@ using System.Collections;
 using System;
 
 
-[CustomEditor(typeof(GroupOfActivities)), CanEditMultipleObjects]
+/*[CustomEditor(typeof(GroupOfActivities)), CanEditMultipleObjects]
 public class GroupOfActivitiesEditor : Editor
 {
     int hour = 8;
@@ -41,4 +41,4 @@ public class GroupOfActivitiesEditor : Editor
             }
         }
     }
-}
+}*/
