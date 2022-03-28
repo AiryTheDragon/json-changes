@@ -19,7 +19,7 @@ public class GuardBehavior : MonoBehaviour, INeedsClockUpdate
     // Start is called before the first frame update
     void Start()
     {
-        MyNPCBehavior.RunActivity(Configuration.PatrolActivity);
+        MyNPCBehavior.ActivityTracker.RunActivityGroup(Configuration.PatrolActivityGroup);
         GameObject.Find("Clock").GetComponent<ClockBehavior>().NeedsClockUpdate.Add(this);
     }
 
@@ -40,7 +40,7 @@ public class GuardBehavior : MonoBehaviour, INeedsClockUpdate
             {
                 if(Configuration.EscortOnSight || collider.gameObject.GetComponent<Player>().Suspicion >= collider.gameObject.GetComponent<Player>().MaxSuspicion)
                 {
-                    MyNPCBehavior.RunActivity(Configuration.EscortPlayerActivity);
+                    MyNPCBehavior.ActivityTracker.RunActivityGroup(Configuration.EscortPlayerActivityGroup);
                     Patrolling = false;
                 }
             }
@@ -55,7 +55,7 @@ public class GuardBehavior : MonoBehaviour, INeedsClockUpdate
                 if (npc.Suspicion >= npc.MaxSuspicion || Configuration.EscortOnSight)
                 {
                     Debug.Log("In escorting block");
-                    MyNPCBehavior.RunActivity(Configuration.EscortNPCActivity);
+                    MyNPCBehavior.ActivityTracker.RunActivityGroup(Configuration.EscortNPCActivityGroup);
                     Target = collider.gameObject;
                     Patrolling = false;
                     Debug.Log("Setting Target to " + collider.gameObject.name);

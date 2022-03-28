@@ -13,13 +13,13 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
 
     private Player Player;
 
-    public List<Activity> Activities;
+    // Activity Variables.
+    public List<GroupOfActivities> ActivityGroups;
+    public RunActivityGroups ActivityTracker;
 
     public CharacterBehavior CharacterBehavior;
 
     private DateTime LastPathfind = DateTime.Now;
-
-    public RunActivity runningActivity;
 
     private ClockTime waitUntil;
 
@@ -35,8 +35,6 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
     public int Value;
 
     public int ManipulationLevel;
-
-    public int activityPos = 0;
 
     public Vector2 Velocity;
 
@@ -64,9 +62,10 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         Clock = GameObject.Find("Clock").GetComponent<ClockBehavior>();
         Clock.NeedsClockUpdate.Add(this);
         Player = GameObject.Find("Player").GetComponent<Player>();
-        if (Activities != null  && Activities.Count>0)
+        ActivityTracker = new RunActivityGroups(ActivityGroups);
+        if (ActivityGroups != null  && ActivityGroups.Count>0)
         { 
-            RunActivity(0);
+            RunNextActivityGroup();
         }
 
         if(home is null)
@@ -97,32 +96,33 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
                 isMessage = false;
             }
         }
-        if(runningActivity.GetCurrentAction() is ActivityEscortPlayer)
+
+        if(ActivityTracker.GetCurrentAction() is ActivityEscortPlayer)
         {
             Player.GetComponent<Transform>().position = GetComponent<Transform>().position + (new Vector3(Velocity.normalized.x, Velocity.normalized.y, 0) * 0.6f);
         }
-        else if(runningActivity.GetCurrentAction() is ActivityEscortNPC)
+        else if(ActivityTracker.GetCurrentAction() is ActivityEscortNPC)
         {
             Debug.Log("Is escorting NPC");
             GetComponentInChildren<GuardBehavior>().Target.GetComponent<Transform>().position = GetComponent<Transform>().position + (new Vector3(Velocity.normalized.x, Velocity.normalized.y, 0) * 0.6f);
         }
-        else if (runningActivity.GetCurrentAction() is ActivityCatchPlayer)
+        else if (ActivityTracker.GetCurrentAction() is ActivityCatchPlayer)
         {
-            var activity = (ActivityCatchPlayer)runningActivity.GetCurrentAction();
+            var activity = (ActivityCatchPlayer)ActivityTracker.GetCurrentAction();
             if((GetComponent<Transform>().position - Player.GetComponent<Transform>().position).magnitude < 0.6)
             {
-                runningActivity.CompleteAction();
-                BeginAction(runningActivity.GetCurrentAction());
+                ActivityTracker.CompleteAction(Clock.Time);
+                BeginAction(ActivityTracker.GetCurrentAction());
             }
         }
-        else if (runningActivity.GetCurrentAction() is ActivityCatchNPC)
+        else if (ActivityTracker.GetCurrentAction() is ActivityCatchNPC)
         {
             Debug.Log("Is catching NPC");
-            var activity = (ActivityCatchNPC)runningActivity.GetCurrentAction();
+            var activity = (ActivityCatchNPC)ActivityTracker.GetCurrentAction();
             if((GetComponent<Transform>().position - GetComponentInChildren<GuardBehavior>().Target.GetComponent<Transform>().position).magnitude < 0.6)
             {
-                runningActivity.CompleteAction();
-                BeginAction(runningActivity.GetCurrentAction());
+                ActivityTracker.CompleteAction(Clock.Time);
+                BeginAction(ActivityTracker.GetCurrentAction());
             }
         }
     }
@@ -197,17 +197,17 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         var person = GetPersonInformation();
         if(Player.PeopleKnown.ContainsKey(person.Name))
         {
-            if(runningActivity != null && !Player.PeopleKnown[person.Name].SeenActivities.Contains(runningActivity.activity))
+            if(ActivityTracker.RunningActivity != null && !Player.PeopleKnown[person.Name].SeenActivities.Contains(ActivityTracker.RunningActivity))
             {
-                Player.PeopleKnown[person.Name].SeenActivities.Add(runningActivity.activity);
+                Player.PeopleKnown[person.Name].SeenActivities.Add(ActivityTracker.RunningActivity);
             }
         }
         else
         {
             Player.PeopleKnown.Add(this.Name, person);
-            if(runningActivity != null)
+            if(ActivityTracker.RunningActivity != null)
             {
-                person.SeenActivities.Add(runningActivity.activity);
+                person.SeenActivities.Add(ActivityTracker.RunningActivity);
             }
         }
         Player.NPCInfoUI.OpenNPCInfo(this);
@@ -223,9 +223,29 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         return person;
     }
 
+    public void RunNextActivityGroup()
+    {
+        ActivityTracker.RunNextActivityGroup(Clock.Time);
+        BeginAction(ActivityTracker.RunningAction);
+    }
+
+    /*public void RunActivityGroup(int index)
+    {
+        ActivityGroupIndex = index;
+        if(ActivityGroupIndex > ActivityGroups.Count)
+        {
+            throw new Exception("Activity group index out of range!");
+        }
+        RunActivity(0);
+    }
+
     public void RunActivity(int index)
     {
-        activityPos = index;
+        ActivityIndex = index;
+        if(ActivityIndex > ActivityGroups[ActivityGroupIndex].Activities.Count)
+        {
+            throw new Exception("Activity index out of range for activity group!");
+        }
         RunActivity(Activities[index]);
     }
 
@@ -233,7 +253,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
     {
         runningActivity = new RunActivity(activity);
         BeginAction(runningActivity.GetCurrentAction());
-    }
+    }*/
 
     public void BeginAction(ActivityAction action)
     {
@@ -249,8 +269,9 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         }
         else if (action is ActivityRepeat)
         {
-            runningActivity.ResetActivity();
-            BeginAction(runningActivity.GetCurrentAction());
+            throw new Exception("ActivityRepeat is depreciated! Do not use it!");
+            //runningActivity.ResetActivity();
+            //BeginAction(runningActivity.GetCurrentAction());
         }
         else if (action is ActivityWalk)
         {
@@ -266,8 +287,8 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         else if (action is ActivitySpeak)
         {
             createMessage(((ActivitySpeak)action).text);
-            runningActivity.CompleteAction();
-            BeginAction(runningActivity.GetCurrentAction());
+            ActivityTracker.CompleteAction(Clock.Time);
+            BeginAction(ActivityTracker.GetCurrentAction());
         }
         else if (action is ActivityCatchPlayer)
         {
@@ -299,7 +320,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         else if (action is ActivityEndEscort)
         {
             GetComponentInChildren<GuardBehavior>().Patrolling = true;
-            RunActivity(GetComponentInChildren<GuardBehavior>().Configuration.PatrolActivity);
+            ActivityTracker.RunActivityGroup(GetComponentInChildren<GuardBehavior>().Configuration.PatrolActivityGroup);
             //Player._source.Stop();
         }
         else if (action is ActivityBGMusicStop)  // TODO test this
@@ -314,13 +335,14 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         }
         else if (action is ActivityEnd)
         {
-               
+            throw new Exception("Do not use ActivityEnd! It is depreciated!");
+            /* 
             if(activityPos + 1 < Activities.Count)
             {
                 RunActivity(activityPos+1);
                 return;
             }
-            RunActivity(0);
+            RunActivity(0);*/
         }
         else if (action is ActivityGoHome)
         {
@@ -341,81 +363,81 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         {
             GetComponent<AIDestinationSetter>().target = runningActivity.GetDestination().GetComponent<Transform>();
         }*/
-        if(runningActivity.GetCurrentAction() is ActivityWalk || runningActivity.GetCurrentAction() is ActivityGoHome)
+        if(ActivityTracker.GetCurrentAction() is ActivityWalk || ActivityTracker.GetCurrentAction() is ActivityGoHome)
         {
-            runningActivity.CompleteAction();
+            ActivityTracker.CompleteAction(Clock.Time);
             Debug.Log("Went Home");
-            BeginAction(runningActivity.GetCurrentAction());
+            BeginAction(ActivityTracker.GetCurrentAction());
         }
-        else if (runningActivity.GetCurrentAction() is ActivityCatchPlayer)
+        else if (ActivityTracker.GetCurrentAction() is ActivityCatchPlayer)
         {
-            runningActivity.CompleteAction();
-            BeginAction(runningActivity.GetCurrentAction());
+            ActivityTracker.CompleteAction(Clock.Time);
+            BeginAction(ActivityTracker.GetCurrentAction());
         }
-        else if (runningActivity.GetCurrentAction() is ActivityCatchNPC)
+        else if (ActivityTracker.GetCurrentAction() is ActivityCatchNPC)
         {
-            runningActivity.CompleteAction();
-            BeginAction(runningActivity.GetCurrentAction());
+            ActivityTracker.CompleteAction(Clock.Time);
+            BeginAction(ActivityTracker.GetCurrentAction());
         }
-        else if(runningActivity.GetCurrentAction() is ActivityEscortNPC)
+        else if(ActivityTracker.GetCurrentAction() is ActivityEscortNPC)
         {
-            runningActivity.CompleteAction();
+            ActivityTracker.CompleteAction(Clock.Time);
             GetComponentInChildren<GuardBehavior>().Target.GetComponent<NPCBehavior>().beingEscorted = false;
-            BeginAction(runningActivity.GetCurrentAction());
+            BeginAction(ActivityTracker.GetCurrentAction());
         }
-        else if(runningActivity.GetCurrentAction() is ActivityEscortPlayer)
+        else if(ActivityTracker.GetCurrentAction() is ActivityEscortPlayer)
         {
-            runningActivity.CompleteAction();
+            ActivityTracker.CompleteAction(Clock.Time);
             Player.beingEscorted = false;
-            BeginAction(runningActivity.GetCurrentAction());
+            BeginAction(ActivityTracker.GetCurrentAction());
         }
         base.OnTargetReached();
     }
 
     public void UpdateClock(ClockTime time)
     {
-        if(runningActivity.GetCurrentAction() is ActivityWait)
+        if(ActivityTracker.GetCurrentAction() is ActivityWait)
         {
             if(waitUntil.Day < time.Day ||
                 waitUntil.Day == time.Day && waitUntil.Hour < time.Hour ||
                 waitUntil.Day == time.Day && waitUntil.Hour == time.Hour && waitUntil.Minute <= time.Minute)
             {
-                runningActivity.CompleteAction();
+                ActivityTracker.CompleteAction(Clock.Time);
                 Clock.NeedsClockUpdate.Remove(this);
-                BeginAction(runningActivity.GetCurrentAction());
+                BeginAction(ActivityTracker.GetCurrentAction());
             }
         }
-        else if (runningActivity.GetCurrentAction() is ActivityWaitUntilTime)
+        else if (ActivityTracker.GetCurrentAction() is ActivityWaitUntilTime)
         {
             if(waitUntil.Day < time.Day ||
                 waitUntil.Day == time.Day && waitUntil.Hour < time.Hour ||
                 waitUntil.Day == time.Day && waitUntil.Hour == time.Hour && waitUntil.Minute <= time.Minute)
             {
-                runningActivity.CompleteAction();
+                ActivityTracker.CompleteAction(Clock.Time);
                 Clock.NeedsClockUpdate.Remove(this);
-                BeginAction(runningActivity.GetCurrentAction());
+                BeginAction(ActivityTracker.GetCurrentAction());
             }
         }
-        else if (runningActivity.GetCurrentAction() is ActivityCatchPlayer)
+        else if (ActivityTracker.GetCurrentAction() is ActivityCatchPlayer)
         {
-            var activity = (ActivityCatchPlayer)runningActivity.GetCurrentAction();
+            var activity = (ActivityCatchPlayer)ActivityTracker.GetCurrentAction();
             if(activity.DistanceLimit >= 0 && Vector3.Distance(Player.GetComponent<Transform>().position, GetComponent<Transform>().position) > activity.DistanceLimit)
             {
                 var guard = GetComponentInChildren<GuardBehavior>();
                 guard.Patrolling = true;
-                RunActivity(guard.Configuration.PatrolActivity);
+                ActivityTracker.RunActivityGroup(guard.Configuration.PatrolActivityGroup);
             }
         }
-        else if (runningActivity.GetCurrentAction() is ActivityCatchNPC)
+        else if (ActivityTracker.GetCurrentAction() is ActivityCatchNPC)
         {
-            var activity = (ActivityCatchNPC)runningActivity.GetCurrentAction();
+            var activity = (ActivityCatchNPC)ActivityTracker.GetCurrentAction();
             if(activity.DistanceLimit >= 0 && Vector3.Distance(
                 gameObject.GetComponentInChildren<GuardBehavior>().Target.GetComponent<Transform>().position,
                 GetComponent<Transform>().position) > activity.DistanceLimit)
             {
                 var guard = GetComponentInChildren<GuardBehavior>();
                 guard.Patrolling = true;
-                RunActivity(guard.Configuration.PatrolActivity);
+                ActivityTracker.RunActivityGroup(guard.Configuration.PatrolActivityGroup);
             }
         }
     }

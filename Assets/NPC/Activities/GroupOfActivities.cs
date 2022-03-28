@@ -16,6 +16,11 @@ public class GroupOfActivities : MonoBehaviour
     public int EndMinute;
     public bool LoopMidnight;
 
+    /// <summary>
+    /// Returns true if the ClockTime given is within the time this activity runs for.
+    /// </summary>
+    /// <param name="time">The time to check against</param>
+    /// <returns>True if the time is within the run time.</returns>
     public bool TimeWithin(ClockTime time)
     {
         if(!LoopMidnight)

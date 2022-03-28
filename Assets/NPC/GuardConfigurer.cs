@@ -8,11 +8,11 @@ public class GuardConfigurer : MonoBehaviour
 
     public bool EscortOnSight;
 
-    public Activity EscortPlayerActivity;
+    public GroupOfActivities EscortPlayerActivityGroup;
 
-    public Activity EscortNPCActivity;
+    public GroupOfActivities EscortNPCActivityGroup;
 
-    public Activity PatrolActivity;
+    public GroupOfActivities PatrolActivityGroup;
 
     public Transform EscortTarget;
 }

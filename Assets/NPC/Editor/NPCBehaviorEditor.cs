@@ -17,7 +17,7 @@ public class NPCBehaviorEditor : BaseAIEditor
 
         Section("NPC");
         //PropertyField(FindProperty("paths"));
-        PropertyField(FindProperty("Activities"));
+        PropertyField(FindProperty("ActivityGroups"));
         PropertyField(FindProperty("speechObject"));
         PropertyField(FindProperty("Name"));
         PropertyField(FindProperty("PositionName"));
