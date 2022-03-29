@@ -72,7 +72,7 @@ public class RunActivityGroups
         {
             ActionIndex = 0;
             ActivityIndex++;
-            if(ActivityIndex > RunningGroup.Activities.Count)
+            if(ActivityIndex >= RunningGroup.Activities.Count)
             {
                 ActivityIndex = 0;
             }
