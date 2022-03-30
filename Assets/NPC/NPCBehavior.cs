@@ -259,6 +259,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
     {
         if(action is null)
         {
+            Clock.NeedsClockUpdate.Add(this);
             return;
         }
         if(action is ActivityWait)
@@ -438,6 +439,15 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
                 var guard = GetComponentInChildren<GuardBehavior>();
                 guard.Patrolling = true;
                 ActivityTracker.RunActivityGroup(guard.Configuration.PatrolActivityGroup);
+            }
+        }
+        else if (ActivityTracker.GetCurrentAction() is null)
+        {
+            ActivityTracker.RunNextActivityGroup(time);
+            if(ActivityTracker.GetCurrentAction() != null)
+            {
+                Clock.NeedsClockUpdate.Remove(this);
+                BeginAction(ActivityTracker.GetCurrentAction());
             }
         }
     }
