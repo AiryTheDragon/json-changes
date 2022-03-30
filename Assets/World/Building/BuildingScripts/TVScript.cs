@@ -11,7 +11,7 @@ public class TVScript : MonoBehaviour
 
     private float timeRemaining;
 
-    public SpriteRenderer reflectionImage;
+    public UnityEngine.Rendering.Universal.Light2D reflectionImage;
     public AudioSource audioSounds;
 
     // Start is called before the first frame update
