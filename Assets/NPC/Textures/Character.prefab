@@ -180,7 +180,7 @@ MonoBehaviour:
   - {x: 0.006569743, y: -0.42103875, z: 0}
   m_ShapePathHash: -1214798377
   m_Mesh: {fileID: 0}
-  m_InstanceId: 77372
+  m_InstanceId: 743988
 --- !u!1001 &78229270776240797
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -188,6 +188,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7925677224147551241}
     m_Modifications:
+    - target: {fileID: 2027964690267389381, guid: 9db7b4f350f70bf32bceeb909c211d66, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 5787404029933858662, guid: 9db7b4f350f70bf32bceeb909c211d66, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 6627394580412375220, guid: 9db7b4f350f70bf32bceeb909c211d66, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -276,7 +284,7 @@ MonoBehaviour:
   - {x: 0.011881709, y: -0.2592886, z: 0}
   m_ShapePathHash: -2025653421
   m_Mesh: {fileID: 0}
-  m_InstanceId: 77360
+  m_InstanceId: 743976
 --- !u!4 &9031025131233200259 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8953517357756584478, guid: 9db7b4f350f70bf32bceeb909c211d66, type: 3}

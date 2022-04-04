@@ -45,8 +45,10 @@ public class DoorBehavior : MonoBehaviour
             {
                 closedDoorObject.GetComponent<SpriteRenderer>().enabled = false;
                 closedDoorObject.GetComponent<BoxCollider2D>().enabled = false;
+                closedDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = false;
                 openDoorObject.GetComponent<SpriteRenderer>().enabled = true;
                 openDoorObject.GetComponent<BoxCollider2D>().enabled = true;
+                openDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = true;
 
                 _source.clip = _doorOpen;
                 _source.Play();
@@ -60,8 +62,10 @@ public class DoorBehavior : MonoBehaviour
             {
                 closedDoorObject.GetComponent<SpriteRenderer>().enabled = false;
                 closedDoorObject.GetComponent<BoxCollider2D>().enabled = false;
+                closedDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = false;
                 openDoorObject.GetComponent<SpriteRenderer>().enabled = true;
                 openDoorObject.GetComponent<BoxCollider2D>().enabled = true;
+                openDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = true;
 
                 //_source.clip = _doorOpen;
                 //_source.Play();
@@ -86,8 +90,10 @@ public class DoorBehavior : MonoBehaviour
         {
             closedDoorObject.GetComponent<SpriteRenderer>().enabled = true;
             closedDoorObject.GetComponent<BoxCollider2D>().enabled = true;
+            closedDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = true;
             openDoorObject.GetComponent<SpriteRenderer>().enabled = false;
             openDoorObject.GetComponent<BoxCollider2D>().enabled = false;
+            openDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = false;
 
 
             if (collision.tag == "Player")

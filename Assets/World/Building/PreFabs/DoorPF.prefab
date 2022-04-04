@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3647202366688721933}
   - component: {fileID: 1629845634659276681}
   - component: {fileID: 2801737426392268086}
+  - component: {fileID: 8421446399415003675}
   m_Layer: 3
   m_Name: DoorOpenedImage
   m_TagString: DoorOpen
@@ -31,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6736818685284785269}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 315}
 --- !u!212 &1629845634659276681
 SpriteRenderer:
@@ -53,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,6 +112,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.52058756, y: 2.0520427}
   m_EdgeRadius: 0
+--- !u!114 &8421446399415003675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4825838317154527386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.22699516, y: -0.9992147, z: 0}
+  - {x: -0.23702422, y: 0.9891864, z: 0}
+  - {x: 0.25206742, y: 0.98417157, z: 0}
+  - {x: 0.25206742, y: -0.98417187, z: 0}
+  m_ShapePathHash: 1251275800
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 1324094
 --- !u!1 &7051904065044371453
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,6 +150,7 @@ GameObject:
   - component: {fileID: 4417325210520228739}
   - component: {fileID: 8400074606338575241}
   - component: {fileID: 1166096157742042386}
+  - component: {fileID: 8554571227772977604}
   m_Layer: 3
   m_Name: DoorClosedImage
   m_TagString: Door
@@ -142,7 +171,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6736818685284785269}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8400074606338575241
 SpriteRenderer:
@@ -164,7 +193,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -222,6 +251,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.51033974, y: 1.9981534}
   m_EdgeRadius: 0
+--- !u!114 &8554571227772977604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7051904065044371453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 0
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.25, y: -1, z: 0}
+  - {x: -0.25, y: 1, z: 0}
+  - {x: 0.25, y: 1, z: 0}
+  - {x: 0.25, y: -1, z: 0}
+  m_ShapePathHash: 0
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 1324096
 --- !u!1 &7221564317370684249
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,8 +309,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4417325210520228739}
   - {fileID: 3647202366688721933}
+  - {fileID: 4417325210520228739}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -303,6 +359,7 @@ MonoBehaviour:
   openDoorObject: {fileID: 4825838317154527386}
   closedDoorObject: {fileID: 7051904065044371453}
   playerInv: {fileID: 0}
+  colliding: 0
 --- !u!82 &-1086901268784557216
 AudioSource:
   m_ObjectHideFlags: 0
