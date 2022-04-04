@@ -54,7 +54,6 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
     //[SerializeField] private AudioClip _ow = null;
     //private AudioSource _source = null;
 
-
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -62,7 +61,10 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         Clock = GameObject.Find("Clock").GetComponent<ClockBehavior>();
         Clock.NeedsClockUpdate.Add(this);
         Player = GameObject.Find("Player").GetComponent<Player>();
-        ActivityTracker = new RunActivityGroups(ActivityGroups);
+        if(ActivityTracker is null)
+        {
+            ActivityTracker = new RunActivityGroups(ActivityGroups);
+        }
         if (ActivityGroups != null  && ActivityGroups.Count>0)
         { 
             RunNextActivityGroup();

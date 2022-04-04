@@ -19,7 +19,12 @@ public class GuardBehavior : MonoBehaviour, INeedsClockUpdate
     // Start is called before the first frame update
     void Start()
     {
+        if(MyNPCBehavior.ActivityTracker is null)
+        {
+            MyNPCBehavior.ActivityTracker = new RunActivityGroups(new List<GroupOfActivities>());
+        }
         MyNPCBehavior.ActivityTracker.RunActivityGroup(Configuration.PatrolActivityGroup);
+        MyNPCBehavior.BeginAction(MyNPCBehavior.ActivityTracker.GetCurrentAction());
         GameObject.Find("Clock").GetComponent<ClockBehavior>().NeedsClockUpdate.Add(this);
     }
 
@@ -35,13 +40,13 @@ public class GuardBehavior : MonoBehaviour, INeedsClockUpdate
     {
         if(Patrolling)
         {
-            Debug.Log("Collision!");
             if(collider.tag == "Player")
             {
                 if(Configuration.EscortOnSight || collider.gameObject.GetComponent<Player>().Suspicion >= collider.gameObject.GetComponent<Player>().MaxSuspicion)
                 {
                     MyNPCBehavior.ActivityTracker.RunActivityGroup(Configuration.EscortPlayerActivityGroup);
                     Patrolling = false;
+                    MyNPCBehavior.BeginAction(MyNPCBehavior.ActivityTracker.GetCurrentAction());
                 }
             }
             else if(collider.tag == "NPC")
@@ -54,11 +59,10 @@ public class GuardBehavior : MonoBehaviour, INeedsClockUpdate
 
                 if (npc.Suspicion >= npc.MaxSuspicion || Configuration.EscortOnSight)
                 {
-                    Debug.Log("In escorting block");
                     MyNPCBehavior.ActivityTracker.RunActivityGroup(Configuration.EscortNPCActivityGroup);
                     Target = collider.gameObject;
                     Patrolling = false;
-                    Debug.Log("Setting Target to " + collider.gameObject.name);
+                    MyNPCBehavior.BeginAction(MyNPCBehavior.ActivityTracker.GetCurrentAction());
                 }
             }
         }
