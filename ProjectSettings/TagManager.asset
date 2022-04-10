@@ -29,6 +29,7 @@ TagManager:
   - GuardNPC
   - Lava
   - Cupcake
+  - Campfire
   layers:
   - Default
   - TransparentFX
