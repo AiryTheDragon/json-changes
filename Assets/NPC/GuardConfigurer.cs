@@ -12,7 +12,5 @@ public class GuardConfigurer : MonoBehaviour
 
     public GroupOfActivities EscortNPCActivityGroup;
 
-    public GroupOfActivities PatrolActivityGroup;
-
     public Transform EscortTarget;
 }

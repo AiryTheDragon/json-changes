@@ -24,7 +24,6 @@ public class CCTVStationBehavior : MonoBehaviour, INeedsClockUpdate
 
     public void UpdateClock(ClockTime time)
     {
-        Debug.Log("Updated clock!");
         if(GuardsWatching > 0)
         {
             foreach(var camera in Cameras)

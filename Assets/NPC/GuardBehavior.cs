@@ -19,12 +19,6 @@ public class GuardBehavior : MonoBehaviour, INeedsClockUpdate
     // Start is called before the first frame update
     void Start()
     {
-        if(MyNPCBehavior.ActivityTracker is null)
-        {
-            MyNPCBehavior.ActivityTracker = new RunActivityGroups(new List<GroupOfActivities>());
-        }
-        MyNPCBehavior.ActivityTracker.RunActivityGroup(Configuration.PatrolActivityGroup);
-        MyNPCBehavior.BeginAction(MyNPCBehavior.ActivityTracker.GetCurrentAction());
         GameObject.Find("Clock").GetComponent<ClockBehavior>().NeedsClockUpdate.Add(this);
     }
 
@@ -53,8 +47,6 @@ public class GuardBehavior : MonoBehaviour, INeedsClockUpdate
             {              
 
                 var npc = collider.GetComponent<NPCBehavior>();
-
-                Debug.Log("NPC Collision! with " + npc.Name);
 
 
                 if (npc.Suspicion >= npc.MaxSuspicion || Configuration.EscortOnSight)

@@ -105,7 +105,6 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         }
         else if(ActivityTracker.GetCurrentAction() is ActivityEscortNPC)
         {
-            Debug.Log("Is escorting NPC");
             GetComponentInChildren<GuardBehavior>().Target.GetComponent<Transform>().position = GetComponent<Transform>().position + (new Vector3(Velocity.normalized.x, Velocity.normalized.y, 0) * 0.6f);
         }
         else if (ActivityTracker.GetCurrentAction() is ActivityCatchPlayer)
@@ -119,7 +118,6 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         }
         else if (ActivityTracker.GetCurrentAction() is ActivityCatchNPC)
         {
-            Debug.Log("Is catching NPC");
             var activity = (ActivityCatchNPC)ActivityTracker.GetCurrentAction();
             if((GetComponent<Transform>().position - GetComponentInChildren<GuardBehavior>().Target.GetComponent<Transform>().position).magnitude < 0.6)
             {
@@ -295,20 +293,17 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         }
         else if (action is ActivityCatchPlayer)
         {
-            Debug.Log("action is ActivityCatchPlayer");
             GetComponent<AIDestinationSetter>().target = Player.GetComponent<Transform>();
             //Player._source.Stop();
             //((ActivityCatchPlayer)action).chaseMusic.Play();
         }
         else if (action is ActivityCatchNPC)
         {
-            Debug.Log("action is ActivityCatchNPC");
             var npcAction = (ActivityCatchNPC)action;
             GetComponent<AIDestinationSetter>().target = gameObject.GetComponentInChildren<GuardBehavior>().Target.GetComponent<Transform>();
         }
         else if (action is ActivityEscortPlayer)
         {
-            Debug.Log("action is ActivityEscortPlayer");
             GetComponent<AIDestinationSetter>().target = ((ActivityEscortPlayer)action).Destination.GetComponent<Transform>();
             Player.beingEscorted = true;
             //Player._source.Stop();
@@ -316,14 +311,13 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         }
         else if (action is ActivityEscortNPC)
         {
-            Debug.Log("action is ActivityEscortNPC");
             GetComponent<AIDestinationSetter>().target = ((ActivityEscortNPC)action).Destination.GetComponent<Transform>();
             GetComponentInChildren<GuardBehavior>().Target.GetComponent<NPCBehavior>().beingEscorted = true;
         }
         else if (action is ActivityEndEscort)
         {
-            GetComponentInChildren<GuardBehavior>().Patrolling = true;
-            ActivityTracker.RunActivityGroup(GetComponentInChildren<GuardBehavior>().Configuration.PatrolActivityGroup);
+            //GetComponentInChildren<GuardBehavior>().Patrolling = true;
+            RunNextActivityGroup();
             //Player._source.Stop();
         }
         else if (action is ActivityBGMusicStop)  // TODO test this
@@ -356,6 +350,14 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         {
             
         }
+        else if (action is ActivityStartPatrol)
+        {
+            GetComponentInChildren<GuardBehavior>().Patrolling = true;
+        }
+        else if (action is ActivityStartPatrol)
+        {
+            GetComponentInChildren<GuardBehavior>().Patrolling = false;
+        }
     }
 
 
@@ -369,7 +371,6 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         if(ActivityTracker.GetCurrentAction() is ActivityWalk || ActivityTracker.GetCurrentAction() is ActivityGoHome)
         {
             ActivityTracker.CompleteAction(Clock.Time);
-            Debug.Log("Went Home");
             BeginAction(ActivityTracker.GetCurrentAction());
         }
         else if (ActivityTracker.GetCurrentAction() is ActivityCatchPlayer)
@@ -426,9 +427,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
             var activity = (ActivityCatchPlayer)ActivityTracker.GetCurrentAction();
             if(activity.DistanceLimit >= 0 && Vector3.Distance(Player.GetComponent<Transform>().position, GetComponent<Transform>().position) > activity.DistanceLimit)
             {
-                var guard = GetComponentInChildren<GuardBehavior>();
-                guard.Patrolling = true;
-                ActivityTracker.RunActivityGroup(guard.Configuration.PatrolActivityGroup);
+                RunNextActivityGroup();
             }
         }
         else if (ActivityTracker.GetCurrentAction() is ActivityCatchNPC)
@@ -438,9 +437,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
                 gameObject.GetComponentInChildren<GuardBehavior>().Target.GetComponent<Transform>().position,
                 GetComponent<Transform>().position) > activity.DistanceLimit)
             {
-                var guard = GetComponentInChildren<GuardBehavior>();
-                guard.Patrolling = true;
-                ActivityTracker.RunActivityGroup(guard.Configuration.PatrolActivityGroup);
+                RunNextActivityGroup();
             }
         }
         else if (ActivityTracker.GetCurrentAction() is null)

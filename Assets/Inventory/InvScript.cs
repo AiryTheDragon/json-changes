@@ -35,7 +35,6 @@ public class InvScript : MonoBehaviour
 
             inventoryNames.Add(thisName);
             inventoryObjects.Add(gameObject);
-            Debug.Log(thisName + "   " + gameObject.name);
             inventoryDict.Add(thisName, gameObject);
 
         }

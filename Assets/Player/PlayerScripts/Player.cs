@@ -18,7 +18,10 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip _tada = null;
     [SerializeField] private AudioClip _ugh = null;
     [SerializeField] private AudioClip _locked = null;
+
+    #pragma warning disable 414
     [SerializeField] private AudioClip _footsteps = null;
+    #pragma warning restore 414
     [SerializeField] private AudioClip _pen = null;
     [SerializeField] private AudioClip _paper = null;
 
