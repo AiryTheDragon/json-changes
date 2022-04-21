@@ -291,6 +291,19 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
             ActivityTracker.CompleteAction(Clock.Time);
             BeginAction(ActivityTracker.GetCurrentAction());
         }
+        else if (action is ActivityTurnOn)
+        {
+            ((ActivityTurnOn)action).lampObject.GetComponent<LampBehavior>().TurnOn();
+            ActivityTracker.CompleteAction(Clock.Time);
+            BeginAction(ActivityTracker.GetCurrentAction());
+        }
+        else if (action is ActivityTurnOff)
+        {
+            ((ActivityTurnOff)action).lampObject.GetComponent<LampBehavior>().TurnOff();
+            ActivityTracker.CompleteAction(Clock.Time);
+            BeginAction(ActivityTracker.GetCurrentAction());
+
+        }
         else if (action is ActivityCatchPlayer)
         {
             GetComponent<AIDestinationSetter>().target = Player.GetComponent<Transform>();
