@@ -1,0 +1,78 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+using UnityEngine.Rendering.Universal;
+
+public class LampBehavior : MonoBehaviour
+{
+    [SerializeField] private AudioClip _turnLightOn = null;
+    [SerializeField] private AudioClip _turnLightOff = null;
+
+    private AudioSource _source = null;
+
+    public GameObject onDoorObject;
+    public GameObject offDoorObject;
+
+    bool on = false;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        _source = GetComponent<AudioSource>();
+        if (_source == null)
+        {
+            Debug.Log("Audio Source is NULL");
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public void TurnOn()
+    {
+        if (!on)
+        {
+            offDoorObject.GetComponent<SpriteRenderer>().enabled = false;
+            // offDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = false;
+            onDoorObject.GetComponent<SpriteRenderer>().enabled = true;
+            onDoorObject.GetComponent<Light2D>().enabled = true;
+            // onDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = true;
+
+            //_source.clip = _turnLightOn;
+            //_source.Play();
+            on = true;
+        }
+    }
+
+    public void TurnOff()
+    {
+        if (on)
+        {
+            onDoorObject.GetComponent<SpriteRenderer>().enabled = false;
+            onDoorObject.GetComponent<Light2D>().enabled = false;
+            // onDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = false;
+            offDoorObject.GetComponent<SpriteRenderer>().enabled = true;
+            // offDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = true;
+
+            //_source.clip = _turnLightOff;
+            //_source.Play();
+            on = false;
+        }
+    }
+    public void Toggle()
+    {
+        if (on)
+        {
+            TurnOff();
+        }
+         else 
+        {
+            TurnOn();
+        }
+    }
+
+}
