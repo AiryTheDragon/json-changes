@@ -1112,6 +1112,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 149681349199907810}
     m_Modifications:
+    - target: {fileID: 5572366588340287237, guid: bf5f175d29bf82f45b76b289be73e740, type: 3}
+      propertyPath: m_InstanceId
+      value: -409022
+      objectReference: {fileID: 0}
+    - target: {fileID: 5709447464100502746, guid: bf5f175d29bf82f45b76b289be73e740, type: 3}
+      propertyPath: m_InstanceId
+      value: -409012
+      objectReference: {fileID: 0}
     - target: {fileID: 6907064607839135128, guid: bf5f175d29bf82f45b76b289be73e740, type: 3}
       propertyPath: m_Name
       value: DoorStonePF (4)
@@ -3370,6 +3378,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 149681349199907810}
     m_Modifications:
+    - target: {fileID: 5572366588340287237, guid: bf5f175d29bf82f45b76b289be73e740, type: 3}
+      propertyPath: m_InstanceId
+      value: -409930
+      objectReference: {fileID: 0}
+    - target: {fileID: 5709447464100502746, guid: bf5f175d29bf82f45b76b289be73e740, type: 3}
+      propertyPath: m_InstanceId
+      value: -409920
+      objectReference: {fileID: 0}
     - target: {fileID: 6907064607839135128, guid: bf5f175d29bf82f45b76b289be73e740, type: 3}
       propertyPath: m_Name
       value: DoorStonePF (3)
@@ -3580,6 +3596,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 149681349199907810}
     m_Modifications:
+    - target: {fileID: 5572366588340287237, guid: bf5f175d29bf82f45b76b289be73e740, type: 3}
+      propertyPath: m_InstanceId
+      value: -409982
+      objectReference: {fileID: 0}
+    - target: {fileID: 5709447464100502746, guid: bf5f175d29bf82f45b76b289be73e740, type: 3}
+      propertyPath: m_InstanceId
+      value: -409972
+      objectReference: {fileID: 0}
     - target: {fileID: 6907064607839135128, guid: bf5f175d29bf82f45b76b289be73e740, type: 3}
       propertyPath: m_Name
       value: DoorStonePF (1)
@@ -4012,6 +4036,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 149681349199907810}
     m_Modifications:
+    - target: {fileID: 5572366588340287237, guid: bf5f175d29bf82f45b76b289be73e740, type: 3}
+      propertyPath: m_InstanceId
+      value: -410070
+      objectReference: {fileID: 0}
+    - target: {fileID: 5709447464100502746, guid: bf5f175d29bf82f45b76b289be73e740, type: 3}
+      propertyPath: m_InstanceId
+      value: -410060
+      objectReference: {fileID: 0}
     - target: {fileID: 6907064607839135128, guid: bf5f175d29bf82f45b76b289be73e740, type: 3}
       propertyPath: m_Name
       value: DoorStonePF (6)
@@ -6110,6 +6142,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 149681349199907810}
     m_Modifications:
+    - target: {fileID: 5572366588340287237, guid: bf5f175d29bf82f45b76b289be73e740, type: 3}
+      propertyPath: m_InstanceId
+      value: -411214
+      objectReference: {fileID: 0}
+    - target: {fileID: 5709447464100502746, guid: bf5f175d29bf82f45b76b289be73e740, type: 3}
+      propertyPath: m_InstanceId
+      value: -411204
+      objectReference: {fileID: 0}
     - target: {fileID: 6907064607839135128, guid: bf5f175d29bf82f45b76b289be73e740, type: 3}
       propertyPath: m_Name
       value: DoorStonePF (2)
@@ -6596,7 +6636,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8857398053992805485, guid: 45ee50e1e44dc9b409b55e88a66be5b9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45ee50e1e44dc9b409b55e88a66be5b9, type: 3}
@@ -6612,6 +6652,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 149681349199907810}
     m_Modifications:
+    - target: {fileID: 5572366588340287237, guid: bf5f175d29bf82f45b76b289be73e740, type: 3}
+      propertyPath: m_InstanceId
+      value: -411572
+      objectReference: {fileID: 0}
+    - target: {fileID: 5709447464100502746, guid: bf5f175d29bf82f45b76b289be73e740, type: 3}
+      propertyPath: m_InstanceId
+      value: -411562
+      objectReference: {fileID: 0}
     - target: {fileID: 6907064607839135128, guid: bf5f175d29bf82f45b76b289be73e740, type: 3}
       propertyPath: m_Name
       value: DoorStonePF (5)
@@ -8006,6 +8054,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 149681349199907810}
     m_Modifications:
+    - target: {fileID: 5572366588340287237, guid: bf5f175d29bf82f45b76b289be73e740, type: 3}
+      propertyPath: m_InstanceId
+      value: -411816
+      objectReference: {fileID: 0}
+    - target: {fileID: 5709447464100502746, guid: bf5f175d29bf82f45b76b289be73e740, type: 3}
+      propertyPath: m_InstanceId
+      value: -411806
+      objectReference: {fileID: 0}
     - target: {fileID: 6907064607839135128, guid: bf5f175d29bf82f45b76b289be73e740, type: 3}
       propertyPath: m_Name
       value: DoorStonePF
