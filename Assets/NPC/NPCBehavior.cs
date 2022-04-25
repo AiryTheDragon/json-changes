@@ -404,7 +404,6 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         {
             ActivityTracker.CompleteAction(Clock.Time);
             GetComponentInChildren<GuardBehavior>().Target.GetComponent<NPCBehavior>().beingEscorted = false;
-            GetComponentInChildren<GuardBehavior>().Target.GetComponent<NPCBehavior>().RunNextActivityGroup();
             BeginAction(ActivityTracker.GetCurrentAction());
         }
         else if(ActivityTracker.GetCurrentAction() is ActivityEscortPlayer)
