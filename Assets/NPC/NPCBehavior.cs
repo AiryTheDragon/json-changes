@@ -366,10 +366,14 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         else if (action is ActivityStartPatrol)
         {
             GetComponentInChildren<GuardBehavior>().Patrolling = true;
+            ActivityTracker.CompleteAction(Clock.Time);
+            BeginAction(ActivityTracker.GetCurrentAction());
         }
         else if (action is ActivityStartPatrol)
         {
             GetComponentInChildren<GuardBehavior>().Patrolling = false;
+            ActivityTracker.CompleteAction(Clock.Time);
+            BeginAction(ActivityTracker.GetCurrentAction());
         }
     }
 
