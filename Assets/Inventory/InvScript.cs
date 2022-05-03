@@ -40,12 +40,10 @@ public class InvScript : MonoBehaviour
         }
         else if(gameObject.tag == "Paper")
         {
-            Debug.Log("Added Paper");
             Paper++;
         }
         else if(gameObject.tag == "Pen")
         {
-            Debug.Log("Added pen");
             Pens++;
         }
         else if (gameObject.tag == "Cupcake")
