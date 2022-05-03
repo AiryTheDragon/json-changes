@@ -25,6 +25,7 @@ public class NPCBehaviorEditor : BaseAIEditor
         PropertyField(FindProperty("ManipulationLevel"));
         PropertyField(FindProperty("CharacterBehavior"));
         PropertyField(FindProperty("WaypointPrefab"));
+        PropertyField(FindProperty("ReturnLocation"));
         base.Inspector();
 		//ObjectField("paths", min: 0.01f);
 		//ObjectField("Activites", min: 0.01f);

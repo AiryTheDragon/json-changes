@@ -50,6 +50,8 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
 
     public GameObject WaypointPrefab;
 
+    public GameObject ReturnLocation;
+
 
     //[SerializeField] private AudioClip _ow = null;
     //private AudioSource _source = null;
@@ -324,7 +326,8 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         }
         else if (action is ActivityEscortNPC)
         {
-            GetComponent<AIDestinationSetter>().target = ((ActivityEscortNPC)action).Destination.GetComponent<Transform>();
+            //GetComponent<AIDestinationSetter>().target = ((ActivityEscortNPC)action).Destination.GetComponent<Transform>();
+            GetComponent<AIDestinationSetter>().target = GetComponentInChildren<GuardBehavior>().Target.GetComponent<NPCBehavior>().ReturnLocation.GetComponent<Transform>();
             GetComponentInChildren<GuardBehavior>().Target.GetComponent<NPCBehavior>().beingEscorted = true;
         }
         else if (action is ActivityEndEscort)
