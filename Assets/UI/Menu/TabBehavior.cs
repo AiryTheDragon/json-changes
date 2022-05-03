@@ -3,26 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class TabBehavior : MonoBehaviour
+public class TabBehavior : ButtonBase
 {
     bool movingRight = false;
     bool movingLeft = false;
-    bool movesRight = true;
+    public bool movesRight = true;
 
     float startTime = 0f;
 
     float startPos;
-    float maxMove = 10f;
+    public float maxMove = 10f;
 
-    float moveTime = 0.1f;
+    public float moveTime = 0.1f;
 
-    bool selected = false;
+    public bool selected = false;
+
+    public GameObject menu;
 
 
     // Start is called before the first frame update
     void Start()
     {
         startPos = GetComponent<Transform>().position.x;
+        if(selected)
+        {
+            OnPointerClick(null);
+        }
     }
 
     private void ResetPosition()
@@ -40,7 +46,7 @@ public class TabBehavior : MonoBehaviour
 
             float dif = Time.time - startTime;
             Vector3 currentPosition = GetComponent<Transform>().position;
-            if(dif >= moveTime || dif <= 0)
+            if(dif >= moveTime || dif < 0)
             {
                 movingRight = false;
                 if(movesRight)
@@ -51,6 +57,7 @@ public class TabBehavior : MonoBehaviour
                 {
                     currentPosition = new Vector3(startPos, currentPosition.y, currentPosition.z);
                 }
+                startTime = 0;
             }
             else
             {
@@ -71,7 +78,7 @@ public class TabBehavior : MonoBehaviour
         {
             Vector3 currentPosition = GetComponent<Transform>().position;
             float dif = Time.time - startTime;
-            if(dif >= moveTime || dif <= 0)
+            if(dif >= moveTime || dif < 0)
             {
                 movingLeft = false;
                 if(movesRight)
@@ -82,6 +89,7 @@ public class TabBehavior : MonoBehaviour
                 {
                     currentPosition = new Vector3(startPos - maxMove, currentPosition.y, currentPosition.z);
                 }
+                startTime = 0;
             }
             else
             {
@@ -100,7 +108,7 @@ public class TabBehavior : MonoBehaviour
         }
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    /*public void OnPointerEnter(PointerEventData eventData)
     {
         //mouse_over = true;
         Debug.Log("Mouse enter");
@@ -110,21 +118,22 @@ public class TabBehavior : MonoBehaviour
     {
         //mouse_over = false;
         Debug.Log("Mouse exit");
-    }
-/*
-    void OnMouseOver()
+    }*/
+
+    public override void OnPointerEnter(PointerEventData pointerData)
     {
-        Debug.Log("Test");
         if(!selected)
         {
-            if(moveTime < Time.time - startTime)
+            if(startTime != 0)
             {
                 movingLeft = false;
                 movingRight = false;
+                startTime = 0;
                 ResetPosition();
             }
             else
             {
+                startTime = Time.time;
                 if(movesRight)
                 {
                     movingRight = true;
@@ -139,18 +148,20 @@ public class TabBehavior : MonoBehaviour
         }
     }
 
-    void OnMouseExit()
+    public override void OnPointerExit(PointerEventData pointerData)
     {
         if(!selected)
         {
-            if(moveTime < Time.time - startTime)
+            if(startTime != 0)
             {
                 movingLeft = false;
                 movingRight = false;
+                startTime = 0;
                 ResetPosition();
             }
             else
             {
+                startTime = Time.time;
                 if(movesRight)
                 {
                     movingLeft = true;
@@ -164,5 +175,54 @@ public class TabBehavior : MonoBehaviour
             }
         }
     }
-    */
+
+    public override void OnPointerClick(PointerEventData eventData)
+    {
+        if(!selected)
+        {
+            GetComponentInParent<MenuBehavior>().SelectTab(this);
+        }
+    }
+
+    public void Select()
+    {
+        selected = true;
+        Vector3 currentPosition = GetComponent<Transform>().position;
+        if(movesRight)
+        {
+            currentPosition = new Vector3(startPos + maxMove, currentPosition.y, currentPosition.z);
+        }
+        else
+        {
+            currentPosition = new Vector3(startPos - maxMove, currentPosition.y, currentPosition.z);
+        }
+        GetComponent<Transform>().position = currentPosition;
+        if(menu != null)
+        {
+            menu.SetActive(true);
+        }
+    }
+
+    public void Deselect()
+    {
+        selected = false;
+        Vector3 currentPosition = GetComponent<Transform>().position;
+        currentPosition = new Vector3(startPos, currentPosition.y, currentPosition.z);
+        GetComponent<Transform>().position = currentPosition;
+        startTime = Time.time;
+        if(movesRight)
+        {
+            movingLeft = true;
+            movingRight = false;
+        }
+        else
+        {
+            movingRight = true;
+            movingLeft = false;
+        }
+        if(menu != null)
+        {
+            menu.SetActive(false);
+        }
+    }
 }

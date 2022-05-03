@@ -49,11 +49,19 @@ public class Player : MonoBehaviour
 
     public static int Score = 0;
 
+    //Input keys
+    private MenuBehavior menu;
+    private bool iDown;
+    private bool escDown;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         speechObject.SetActive(false);
         NPCInfoUI = Resources.FindObjectsOfTypeAll<NPCInfoBehavior>().First();
+        menu = Resources.FindObjectsOfTypeAll<MenuBehavior>().First();
         _source = GetComponent<AudioSource>();
         if (_source == null)
         {
@@ -103,6 +111,32 @@ public class Player : MonoBehaviour
                 speechObject.SetActive(false);
                 isMessage = false;
             }
+        }
+
+        if(Input.GetKey(KeyCode.Escape) && !escDown)
+        {
+            escDown = true;
+            if(!menu.Active())
+            {
+                menu.Open(KeyCode.Escape);
+            }
+        }
+        else if(escDown)
+        {
+            escDown = false;
+        }
+
+        if(Input.GetKey(KeyCode.I) && !iDown)
+        {
+            iDown = true;
+            if(!menu.Active())
+            {
+                menu.Open(KeyCode.I);
+            }
+        }
+        else if(iDown)
+        {
+            iDown = false;
         }
 
     }
