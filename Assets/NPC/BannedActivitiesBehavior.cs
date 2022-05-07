@@ -53,8 +53,8 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
 
     public void UpdateClock(ClockTime time)
     {
-        // time to ban and unban activities (every hour)
-        if (time.Minute==0)
+        // time to ban and unban activities (at 7:00 every day)
+        if (time.Minute==0 && time.Hour==7)
         {
             UpdateBans();
 
