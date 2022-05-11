@@ -45,6 +45,7 @@ public class MenuBehavior : MonoBehaviour, IManualUpdate
             if(!armed)
             {
                 armed = true;
+                escDown = false;
             }
             else
             {
@@ -57,7 +58,8 @@ public class MenuBehavior : MonoBehaviour, IManualUpdate
     public void SelectTab(TabBehavior tab)
     {
         tab.Select();
-        selectedTab?.Deselect();
+        if(selectedTab != tab)
+            selectedTab?.Deselect();
         selectedTab = tab;
     }
 
@@ -70,10 +72,6 @@ public class MenuBehavior : MonoBehaviour, IManualUpdate
             {
                 x.ManualUpdate();
             }
-            else
-            {
-                Debug.Log("NULL");
-            }
         }
     }
 
@@ -85,10 +83,12 @@ public class MenuBehavior : MonoBehaviour, IManualUpdate
         }
         player.inputEnabled = false;
         parent.SetActive(true);
+        selectedTab = null;
         if(key == KeyCode.Escape)
         {
             SelectTab(escapeTab.GetComponent<TabBehavior>());
             escDown = true;
+            armed = false;
         }
         else if(key == KeyCode.I)
         {
@@ -99,6 +99,8 @@ public class MenuBehavior : MonoBehaviour, IManualUpdate
 
     public void Close()
     {
+        selectedTab?.Deselect();
+        selectedTab = null;
         player.inputEnabled = true;
         parent.SetActive(false);
     }

@@ -29,6 +29,7 @@ public class InventoryMenu : MonoBehaviour, IManualUpdate
         if(player is null)
         {
             Start();
+            return;
         }
         StringBuilder text = new("Paper: ");
         text.Append(player.invScript.Paper.ToString()).Append("\t\tPens: ");
