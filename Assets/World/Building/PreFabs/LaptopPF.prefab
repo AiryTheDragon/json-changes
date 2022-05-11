@@ -362,6 +362,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8352130059493069655}
   - component: {fileID: 6783433694990609189}
+  - component: {fileID: 523064091547807786}
   m_Layer: 0
   m_Name: LaptopPF
   m_TagString: Campfire
@@ -402,3 +403,29 @@ MonoBehaviour:
   _turnLightOff: {fileID: 0}
   onDoorObject: {fileID: 6871881411945821894}
   offDoorObject: {fileID: 465449368290059944}
+--- !u!61 &523064091547807786
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8337027798744187500}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.03906381, y: 0.05682005}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.6093621, y: 0.6448746}
+  m_EdgeRadius: 0
