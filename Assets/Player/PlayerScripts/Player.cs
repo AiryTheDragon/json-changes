@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
     private bool iDown;
     private bool escDown;
 
-
+    public bool inputEnabled = true;
 
     // Start is called before the first frame update
     void Start()
@@ -76,17 +76,23 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis("Fire1")>0)
+        if(inputEnabled)
         {
-            currentSpeed = runSpeed;
+            if (Input.GetAxis("Fire1")>0)
+            {
+                currentSpeed = runSpeed;
+            }
+            else if (Input.GetAxis("Fire2") > 0)
+            {
+                currentSpeed = slowSpeed;
+            }
+            else
+            {
+                currentSpeed = walkSpeed;
+            }
         }
-        else if (Input.GetAxis("Fire2") > 0)
-        {
-            currentSpeed = slowSpeed;
-        }
-        else
-        {
-            currentSpeed = walkSpeed;
+        else{
+            currentSpeed = 0;
         }
 
         
@@ -113,32 +119,24 @@ public class Player : MonoBehaviour
             }
         }
 
-        if(Input.GetKey(KeyCode.Escape) && !escDown)
+        if(inputEnabled)
         {
-            escDown = true;
-            if(!menu.Active())
+            if(Input.GetKey(KeyCode.Escape))
             {
-                menu.Open(KeyCode.Escape);
+                if(!menu.Active())
+                {
+                    menu.Open(KeyCode.Escape);
+                }
+            }
+
+            if(Input.GetKey(KeyCode.I))
+            {
+                if(!menu.Active())
+                {
+                    menu.Open(KeyCode.I);
+                }
             }
         }
-        else if(escDown)
-        {
-            escDown = false;
-        }
-
-        if(Input.GetKey(KeyCode.I) && !iDown)
-        {
-            iDown = true;
-            if(!menu.Active())
-            {
-                menu.Open(KeyCode.I);
-            }
-        }
-        else if(iDown)
-        {
-            iDown = false;
-        }
-
     }
 
     void OnCollisionEnter2D(Collision2D collision)

@@ -20,14 +20,19 @@ public class TabBehavior : ButtonBase
 
     public GameObject menu;
 
+    bool started;
 
     // Start is called before the first frame update
     void Start()
     {
-        startPos = GetComponent<Transform>().position.x;
-        if(selected)
+        if(!started)
         {
-            OnPointerClick(null);
+            started = true;
+            startPos = GetComponent<Transform>().position.x;
+            if(selected)
+            {
+                OnPointerClick(null);
+            }
         }
     }
 
@@ -186,6 +191,10 @@ public class TabBehavior : ButtonBase
 
     public void Select()
     {
+        if(!started)
+        {
+            Start();
+        }
         selected = true;
         Vector3 currentPosition = GetComponent<Transform>().position;
         if(movesRight)
@@ -205,6 +214,10 @@ public class TabBehavior : ButtonBase
 
     public void Deselect()
     {
+        if(!started)
+        {
+            Start();
+        }
         selected = false;
         Vector3 currentPosition = GetComponent<Transform>().position;
         currentPosition = new Vector3(startPos, currentPosition.y, currentPosition.z);
