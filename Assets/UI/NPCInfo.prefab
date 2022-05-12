@@ -128,16 +128,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Name:  Onna Clinesmith
+  m_text: 'Name:  Isaac
 
-    Position:   Retired
+    Position:   Toddler
 
-    Value:   Very High
+    Value:   Very Low
 
     Confidence:  
     Unknown
 
-    Currently:   Complaining about the government.'
+    Currently:   Running around the room'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e33ee0f6c4800fea19f3c8e982ddf5ed, type: 2}
   m_sharedMaterial: {fileID: -8551299574259237557, guid: e33ee0f6c4800fea19f3c8e982ddf5ed, type: 2}

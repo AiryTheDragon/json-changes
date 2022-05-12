@@ -60,6 +60,9 @@ MonoBehaviour:
   inventoryTab: {fileID: 610630927061658843}
   escapeTab: {fileID: 7386867514984167962}
   parent: {fileID: 4114742172599171182}
+  started: 1
+  escDown: 0
+  armed: 0
 --- !u!1 &4952841739798399190
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +205,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Pens: 10\t\tPaper: 20"
+  m_text: "Paper: 0\t\tPens: 0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e33ee0f6c4800fea19f3c8e982ddf5ed, type: 2}
   m_sharedMaterial: {fileID: -8551299574259237557, guid: e33ee0f6c4800fea19f3c8e982ddf5ed, type: 2}
@@ -408,7 +411,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 238506991444241990, guid: b42cef32f1ea9f46aa331c3e628f995c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -623
+      value: -653
       objectReference: {fileID: 0}
     - target: {fileID: 238506991444241990, guid: b42cef32f1ea9f46aa331c3e628f995c, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -482,6 +485,10 @@ PrefabInstance:
       propertyPath: menu
       value: 
       objectReference: {fileID: 6965996867415190400}
+    - target: {fileID: 8308720842876518910, guid: b42cef32f1ea9f46aa331c3e628f995c, type: 3}
+      propertyPath: selected
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8308720842876518910, guid: b42cef32f1ea9f46aa331c3e628f995c, type: 3}
       propertyPath: movesRight
       value: 0

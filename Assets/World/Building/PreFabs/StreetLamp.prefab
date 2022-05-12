@@ -480,7 +480,7 @@ GameObject:
   - component: {fileID: 7133781465083292673}
   m_Layer: 0
   m_Name: StreetLamp
-  m_TagString: Untagged
+  m_TagString: Campfire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -617,7 +617,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.8542756}
+  m_Offset: {x: 0.0043999553, y: -0.8542756}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -628,5 +628,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 1.4164488}
+  m_Size: {x: 0.5439997, y: 1.4164488}
   m_EdgeRadius: 0
