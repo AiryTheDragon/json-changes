@@ -13,7 +13,11 @@ public class MenuBehavior : MonoBehaviour, IManualUpdate
 
     public bool started;
 
-    private Player player;
+    private Player _player;
+    private Player player { get {return _player;} set {
+        if(player != null) return;
+        _player = value;
+    }}
 
     public bool escDown;
     public bool armed;
