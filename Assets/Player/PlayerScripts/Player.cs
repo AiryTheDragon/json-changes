@@ -18,8 +18,9 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip _tada = null;
     [SerializeField] private AudioClip _ugh = null;
     [SerializeField] private AudioClip _locked = null;
+    [SerializeField] private AudioClip _brush = null;
 
-    #pragma warning disable 414
+#pragma warning disable 414
     [SerializeField] private AudioClip _footsteps = null;
     #pragma warning restore 414
     [SerializeField] private AudioClip _pen = null;
@@ -142,11 +143,16 @@ public class Player : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.gameObject.tag == "Rock" || collision.gameObject.tag == "Shrub" 
-            || collision.gameObject.tag == "Lava")
+        if (collision.gameObject.tag == "Rock" ||  collision.gameObject.tag == "Lava")
         {
             _source.clip = _ow;
             createMessage("Ow.");
+            _source.Play();
+        }
+
+        if ( collision.gameObject.tag == "Shrub")
+        {
+            _source.clip = _brush;
             _source.Play();
         }
 

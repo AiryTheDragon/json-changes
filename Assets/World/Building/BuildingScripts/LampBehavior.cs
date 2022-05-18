@@ -42,8 +42,8 @@ public class LampBehavior : MonoBehaviour
             onDoorObject.GetComponent<Light2D>().enabled = true;
             // onDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = true;
 
-            //_source.clip = _turnLightOn;
-            //_source.Play();
+            _source.clip = _turnLightOn;
+            _source.Play();
             on = true;
         }
     }
@@ -58,8 +58,8 @@ public class LampBehavior : MonoBehaviour
             offDoorObject.GetComponent<SpriteRenderer>().enabled = true;
             // offDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = true;
 
-            //_source.clip = _turnLightOff;
-            //_source.Play();
+            _source.clip = _turnLightOff;
+            _source.Play();
             on = false;
         }
     }
