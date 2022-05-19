@@ -67,8 +67,8 @@ public class DoorBehavior : MonoBehaviour
                 openDoorObject.GetComponent<BoxCollider2D>().enabled = true;
                 openDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = true;
 
-                //_source.clip = _doorOpen;
-                //_source.Play();
+                _source.clip = _doorOpen;
+                _source.Play();
                 open = true;
             }
             colliding++;

@@ -172,6 +172,9 @@ public class Player : MonoBehaviour
                 invScript.RemoveLetter(letter);
                 npc.ManipulationLevel += letter.ManipulationLevelIncrease;
                 PeopleKnown[npc.Name].ManipulationLevel = npc.ManipulationLevel;
+
+                Debug.Log("Delivered a letter to " + npc.Name + " affecting morale by " + letter.ManipulationLevelIncrease);
+                Debug.Log(npc.Name + "'s level is now " + npc.ManipulationLevel);
             }
         }
 

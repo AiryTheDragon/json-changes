@@ -121,6 +121,7 @@ public class LetterCreator : MonoBehaviour
                 player.invScript.Pens--;
                 player.invScript.Paper--;
                 player.PeopleKnown[letter.Recieving.Name].SeenActivities.Remove(SelectedActivity);
+                Debug.Log("Wrote a letter to " + SelectedPerson.Name + " about " + SelectedActivity.Name + " affecting morale by " + letter.ManipulationLevelIncrease);
                 LeaveCreator();
             }
         }

@@ -138,7 +138,7 @@ MonoBehaviour:
   - {x: 0.25206742, y: -0.98417187, z: 0}
   m_ShapePathHash: 1251275800
   m_Mesh: {fileID: 0}
-  m_InstanceId: 1096522
+  m_InstanceId: 690270
 --- !u!1 &7051904065044371453
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,7 +277,7 @@ MonoBehaviour:
   - {x: 0.25, y: -1, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 1096524
+  m_InstanceId: 690272
 --- !u!1 &7221564317370684249
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,9 +381,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 40
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -416,7 +416,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
