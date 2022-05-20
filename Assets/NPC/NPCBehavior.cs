@@ -13,6 +13,8 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
 
     private Player Player;
 
+    [SerializeField] private AudioClip _halt = null;
+
     // Activity Variables.
     public List<GroupOfActivities> ActivityGroups;
     public RunActivityGroups ActivityTracker;
@@ -52,6 +54,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
 
     public GameObject ReturnLocation;
 
+    public AudioSource _source = null;
 
     //[SerializeField] private AudioClip _ow = null;
     //private AudioSource _source = null;
@@ -72,7 +75,18 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
             RunNextActivityGroup();
         }
 
-        if(home is null)
+        _source = GetComponent<AudioSource>();
+        if (_source == null)
+        {
+            Debug.Log("Audio Source is NULL");
+        }
+        else
+        {
+            _source.clip = _halt;
+        }
+
+
+        if (home is null)
         {
             var waypoint = Instantiate(WaypointPrefab);
             waypoint.transform.SetParent(GameObject.Find("Clock").transform, true);
@@ -336,16 +350,26 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
             RunNextActivityGroup();
             //Player._source.Stop();
         }
-        else if (action is ActivityBGMusicStop)  // TODO test this
+        else if (action is ActivityBGMusicStop)  
         {
-            //Player._source.Stop();
-            //((ActivityBGMusicStop)action).music.Stop();
+            ((ActivityBGMusicStop)action).stopClip();
+            ActivityTracker.CompleteAction(Clock.Time);
+            BeginAction(ActivityTracker.GetCurrentAction());
         }
-        else if (action is ActivityBGMusicUpdate)  // TODO test this 
+        else if (action is ActivityBGMusicUpdate) 
         {
-            //Player._source.Stop();
-            //((ActivityBGMusicUpdate)action).music.Play();
+            ((ActivityBGMusicUpdate)action).playClip();
+            ActivityTracker.CompleteAction(Clock.Time);
+            BeginAction(ActivityTracker.GetCurrentAction());
         }
+        else if (action is ActivityPlaySound)
+        {
+            _source.clip = ((ActivityPlaySound)action).audioClip;
+            _source.Play();
+            ActivityTracker.CompleteAction(Clock.Time);
+            BeginAction(ActivityTracker.GetCurrentAction());
+        }
+
         else if (action is ActivityEnd)
         {
             throw new Exception("Do not use ActivityEnd! It is depreciated!");
