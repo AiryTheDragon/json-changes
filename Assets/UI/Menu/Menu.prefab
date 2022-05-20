@@ -60,7 +60,6 @@ MonoBehaviour:
   inventoryTab: {fileID: 610630927061658843}
   escapeTab: {fileID: 7386867514984167962}
   parent: {fileID: 4114742172599171182}
-  started: 1
   escDown: 0
   armed: 0
 --- !u!1 &4952841739798399190
@@ -411,7 +410,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 238506991444241990, guid: b42cef32f1ea9f46aa331c3e628f995c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -653
+      value: -623
       objectReference: {fileID: 0}
     - target: {fileID: 238506991444241990, guid: b42cef32f1ea9f46aa331c3e628f995c, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -487,7 +486,7 @@ PrefabInstance:
       objectReference: {fileID: 6965996867415190400}
     - target: {fileID: 8308720842876518910, guid: b42cef32f1ea9f46aa331c3e628f995c, type: 3}
       propertyPath: selected
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8308720842876518910, guid: b42cef32f1ea9f46aa331c3e628f995c, type: 3}
       propertyPath: movesRight

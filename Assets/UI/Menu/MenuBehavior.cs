@@ -11,7 +11,7 @@ public class MenuBehavior : MonoBehaviour, IManualUpdate
     public GameObject escapeTab;
     public GameObject parent;
 
-    public bool started;
+    private bool started;
 
     private Player _player;
     private Player player { get {return _player;} set {
@@ -46,14 +46,13 @@ public class MenuBehavior : MonoBehaviour, IManualUpdate
         }
         else if(escDown)
         {
+            escDown = false;
             if(!armed)
             {
                 armed = true;
-                escDown = false;
             }
             else
             {
-                escDown = false;
                 Close();
             }
         }
