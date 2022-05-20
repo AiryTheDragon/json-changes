@@ -17,8 +17,11 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip _ow = null;
     [SerializeField] private AudioClip _tada = null;
     [SerializeField] private AudioClip _ugh = null;
+    [SerializeField] private AudioClip _sigh = null;
+    private int ughCount = 0;
     [SerializeField] private AudioClip _locked = null;
     [SerializeField] private AudioClip _brush = null;
+    [SerializeField] private AudioClip _wallbump = null;
 
 #pragma warning disable 414
     [SerializeField] private AudioClip _footsteps = null;
@@ -96,8 +99,6 @@ public class Player : MonoBehaviour
             currentSpeed = 0;
         }
 
-        
-
         float xChange = Input.GetAxis("Horizontal") * currentSpeed * Time.deltaTime;
         float yChange = Input.GetAxis("Vertical") * currentSpeed * Time.deltaTime;
 
@@ -143,7 +144,7 @@ public class Player : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.gameObject.tag == "Rock" ||  collision.gameObject.tag == "Lava")
+        if ( collision.gameObject.tag == "Lava")
         {
             _source.clip = _ow;
             createMessage("Ow.");
@@ -163,6 +164,12 @@ public class Player : MonoBehaviour
             _source.Play();
         }
 
+        if (collision.gameObject.tag == "Rock" || collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Garbage")
+        {
+            _source.clip = _wallbump;
+            _source.Play();
+        }
+
         if (collision.gameObject.tag == "NPC" || collision.gameObject.tag == "GuardNPC")
         {
             var npc = collision.gameObject.GetComponent<NPCBehavior>();
@@ -177,7 +184,6 @@ public class Player : MonoBehaviour
                 Debug.Log(npc.Name + "'s level is now " + npc.ManipulationLevel);
             }
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -243,12 +249,19 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "TV")
         {
-            createMessage("Stay Home.\nStay Safe.\nUgh.");
-            _source.clip = _ugh;
-            _source.Play();
+            if (ughCount % 10 == 0)
+            {
+                createMessage("Stay Home.\nStay Safe.\nUgh.");
+                _source.clip = _ugh;
+            }
+            else
+            { 
+                _source.clip = _sigh;
+            }
+            ughCount++;
+            _source.Play();      
         }     
     }
-
 
     void createMessage(string text)
     {
@@ -258,7 +271,6 @@ public class Player : MonoBehaviour
         messageTimeRemaining = messageDuration;
         isMessage = true;
     }
-
 
     public void AddSuspicion(int suspicion)
     {
