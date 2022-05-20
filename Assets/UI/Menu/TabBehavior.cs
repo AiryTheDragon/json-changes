@@ -211,6 +211,7 @@ public class TabBehavior : ButtonBase
         if(menu != null)
         {
             menu.SetActive(true);
+            menu.GetComponent<IManualUpdate>()?.ManualUpdate();
         }
     }
 
