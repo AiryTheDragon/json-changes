@@ -20,7 +20,7 @@ public class TabBehavior : ButtonBase
 
     public GameObject menu;
 
-    bool started;
+    private bool started;
 
     // Start is called before the first frame update
     void Start()
@@ -206,6 +206,8 @@ public class TabBehavior : ButtonBase
             currentPosition = new Vector3(startPos - maxMove, currentPosition.y, currentPosition.z);
         }
         GetComponent<Transform>().position = currentPosition;
+        movingLeft = false;
+        movingRight = false;
         if(menu != null)
         {
             menu.SetActive(true);
