@@ -163,7 +163,7 @@ public class Player : MonoBehaviour
             _source.Play();
         }
 
-        if (collision.gameObject.tag == "NPC")
+        if (collision.gameObject.tag == "NPC" || collision.gameObject.tag == "GuardNPC")
         {
             var npc = collision.gameObject.GetComponent<NPCBehavior>();
             if(invScript.Letters.Where(x => x.Recieving.Name == npc.Name).Any())
