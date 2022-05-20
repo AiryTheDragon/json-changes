@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class NoMusicTriggerScript : MonoBehaviour
 {
-    public AudioSource audioSounds;
+    public BackgroundMusicScript backMusic;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            
-            audioSounds.Stop();
+
+            backMusic.stop();
 
         }
     }

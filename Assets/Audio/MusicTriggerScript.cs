@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class MusicTriggerScript : MonoBehaviour
 {
-    public AudioSource audioSounds;
+    public AudioClip audioClip;
+    public BackgroundMusicScript backMusic;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            if (!audioSounds.isPlaying)
+
+            if (!backMusic.isPlaying())
             {
-                audioSounds.Play();
+                Debug.Log("Not playing background music.");
+                backMusic.play(audioClip);
+                // backMusic.playSneakingAround();
             }
         }
     }
+
 }
