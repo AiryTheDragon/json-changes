@@ -10,6 +10,8 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
 
     public BannableActivityList ListOfBannableActivities;
 
+    public Log log;
+
     private ClockBehavior Clock;
 
     public void BanActivity(Activity activity)
@@ -131,6 +133,7 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
         if (changed)
         {
             Debug.Log(AC.UnBanText + " " + AC.GroupName + " is no longer banned.");
+            log.addItem("Notice", AC.UnBanText + " " + AC.GroupName + " is no longer banned.");
         }
         else
         {
@@ -155,6 +158,7 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
                 index = getPos(act);
                 BanLevels[index] = BanLevels[index] + 1;
                 Debug.Log(act + " is now banned at level " + BanLevels[index]);
+                log.addItem("Notice", act + " is now banned at level " + BanLevels[index]);
             }
             else
             {
@@ -162,15 +166,18 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
                 BannedActivities.Add(act);
                 BanLevels.Add(1);
                 Debug.Log(act + " is now banned at level 1");
+                log.addItem("Notice", act + " is now banned at level 1");
             }
         }
         if (changed) // new addition to list
         {
             Debug.Log(AC.BanText + " " + AC.GroupName + " is now banned.");
+            log.addItem("Notice", AC.BanText + " " + AC.GroupName + " is now banned.");
         }
         else // already on list
         {
             Debug.Log(AC.MoreBanText + " " + AC.GroupName + " is now more strongly banned.");
+            log.addItem("Notice", AC.MoreBanText + " " + AC.GroupName + " is now more strongly banned.");
         }
     }
 

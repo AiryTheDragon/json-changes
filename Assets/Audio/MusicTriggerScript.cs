@@ -14,9 +14,7 @@ public class MusicTriggerScript : MonoBehaviour
 
             if (!backMusic.isPlaying())
             {
-                Debug.Log("Not playing background music.");
                 backMusic.play(audioClip);
-                // backMusic.playSneakingAround();
             }
         }
     }
