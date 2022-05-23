@@ -156,4 +156,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f3a898934fc5a24da4d6c0cfc1ecd1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSounds: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: c1465beed305b724ba8666788da4368c, type: 3}
+  backMusic: {fileID: 0}

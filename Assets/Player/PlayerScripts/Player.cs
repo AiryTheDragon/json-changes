@@ -53,6 +53,8 @@ public class Player : MonoBehaviour
 
     public static int Score = 0;
 
+    public Log log;
+
     //Input keys
     private MenuBehavior menu;
     private bool iDown;
@@ -182,6 +184,8 @@ public class Player : MonoBehaviour
 
                 Debug.Log("Delivered a letter to " + npc.Name + " affecting morale by " + letter.ManipulationLevelIncrease);
                 Debug.Log(npc.Name + "'s level is now " + npc.ManipulationLevel);
+                log.addItem("Notice", "Delivered a letter to " + npc.Name + " affecting morale by " + letter.ManipulationLevelIncrease);
+                log.addItem(npc.Name, "Morale is now " + letter.ManipulationLevelIncrease + ".");
             }
         }
     }

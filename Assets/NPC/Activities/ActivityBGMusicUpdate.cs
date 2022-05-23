@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class ActivityBGMusicUpdate : ActivityAction
 {
-    public AudioSource music;
+    public BackgroundMusicScript backMusic;
+    public AudioClip audioClip;
+
+    public void playClip()
+    {
+        backMusic.play(audioClip);
+    }
+
+
 }
 
 
