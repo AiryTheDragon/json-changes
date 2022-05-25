@@ -47,6 +47,8 @@ public class Player : MonoBehaviour
 
     public NPCInfoBehavior NPCInfoUI;
 
+    public AchievementList achievementList;
+
     public static string Name = "DaDarkWizard";
 
     public bool beingEscorted;
@@ -185,7 +187,25 @@ public class Player : MonoBehaviour
                 Debug.Log("Delivered a letter to " + npc.Name + " affecting morale by " + letter.ManipulationLevelIncrease);
                 Debug.Log(npc.Name + "'s level is now " + npc.ManipulationLevel);
                 log.addItem("Notice", "Delivered a letter to " + npc.Name + " affecting morale by " + letter.ManipulationLevelIncrease);
-                log.addItem(npc.Name, "Morale is now " + letter.ManipulationLevelIncrease + ".");
+                log.addItem(npc.Name, "Morale is now " + npc.ManipulationLevel + ".");
+
+                // check morale achievements
+                if (npc.Name.Equals("Daniel") || npc.Name.Equals("Mike")) // TODO, correct to get both
+                {
+                    if (npc.ManipulationLevel >=5)
+                    {
+                        AchievementItem achItem = achievementList.getItem("Win over the creators");
+                        if (!achItem.isDone)
+                        {
+                            achievementList.makeAchievement(achItem);
+                        }
+
+                    }
+                }
+
+
+
+
             }
         }
     }
