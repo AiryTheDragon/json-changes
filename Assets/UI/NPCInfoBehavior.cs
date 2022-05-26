@@ -40,6 +40,22 @@ public class NPCInfoBehavior : MonoBehaviour
         this.gameObject.SetActive(true);
     }
 
+    public void AchievementInfo(AchievementItem item)
+    {
+
+        if (item is null)
+        {
+            TextComponent.text = "";
+        }
+        else
+        {
+            TextComponent.text = $"New Achievement!\n\n"
+            + $"Achievement:  {item.AchievementName}\nDescription:   {item.AchievementDescription}\n";
+        }
+        this.gameObject.SetActive(true);
+    }
+
+
     public void OnClick()
     {
         this.gameObject.SetActive(false);

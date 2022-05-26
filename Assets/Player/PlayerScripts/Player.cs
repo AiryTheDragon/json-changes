@@ -177,7 +177,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "NPC" || collision.gameObject.tag == "GuardNPC")
         {
             var npc = collision.gameObject.GetComponent<NPCBehavior>();
-            if(invScript.Letters.Where(x => x.Recieving.Name == npc.Name).Any())
+            if (invScript.Letters.Where(x => x.Recieving.Name == npc.Name).Any())
             {
                 Letter letter = invScript.Letters.Where(x => x.Recieving.Name == npc.Name).First();
                 invScript.RemoveLetter(letter);
@@ -190,22 +190,85 @@ public class Player : MonoBehaviour
                 log.addItem(npc.Name, "Morale is now " + npc.ManipulationLevel + ".");
 
                 // check morale achievements
-                if (npc.Name.Equals("Daniel") || npc.Name.Equals("Mike")) // TODO, correct to get both
+                if (npc.ManipulationLevel >= 5)
                 {
-                    if (npc.ManipulationLevel >=5)
+                    
+                    bool maxMike = false;
+                    bool maxDaniel = false;
+                    bool maxOnna = false;
+                    bool maxDonald = false;
+                    foreach (var person in PeopleKnown.Values)
+                    {
+                        if (person.Name.Equals("Mike") && person.ManipulationLevel >= 5)
+                        {
+                            maxMike = true;
+                            Debug.Log("Mike is maxed");
+                        }
+                        if (person.Name.Equals("Daniel") && person.ManipulationLevel >= 5)
+                        {
+                            maxDaniel = true;
+                            Debug.Log("Daniel is maxed");
+                        }
+                        if (person.Name.Equals("Onna") && person.ManipulationLevel >= 5)
+                        {
+                            maxOnna = true;
+                            Debug.Log("Onna is maxed");
+                        }
+                        if (person.Name.Equals("Donald") && person.ManipulationLevel >= 5)
+                        {
+                            maxDonald = true;
+                            Debug.Log("Donald is maxed");
+                        }
+                    }
+                    if (maxMike && maxDaniel)
                     {
                         AchievementItem achItem = achievementList.getItem("Win over the creators");
                         if (!achItem.isDone)
                         {
                             achievementList.makeAchievement(achItem);
                         }
-
+                    }
+                    if (maxOnna && maxDonald)
+                    {
+                        AchievementItem achItem = achievementList.getItem("Parential Approval");
+                        if (!achItem.isDone)
+                        {
+                            achievementList.makeAchievement(achItem);
+                        }
+                    }
+                    if (npc.Name.Equals("Airy"))
+                    {
+                        AchievementItem achItem = achievementList.getItem("Tame the dragon");
+                        if (!achItem.isDone)
+                        {
+                            achievementList.makeAchievement(achItem);
+                        }
+                    }
+                    if (npc.Name.Equals("Manager George"))
+                    {
+                        AchievementItem achItem = achievementList.getItem("Manage the manager");
+                        if (!achItem.isDone)
+                        {
+                            achievementList.makeAchievement(achItem);
+                        }
+                    }
+                }            
+                if (npc.Name.Equals("Manager George"))
+                {
+                    AchievementItem achItem = achievementList.getItem("Hypocrisy");
+                    if (!achItem.isDone)
+                    {
+                        achievementList.makeAchievement(achItem);
                     }
                 }
-
-
-
-
+                if (npc.tag.Equals("GuardNPC"))
+                {
+                    AchievementItem achItem = achievementList.getItem("Catch the guards");
+                    if (!achItem.isDone)
+                    {
+                        achievementList.makeAchievement(achItem);
+                    }
+                }
             }
         }
     }
