@@ -122,6 +122,16 @@ public class LetterCreator : MonoBehaviour
                 player.invScript.Paper--;
                 player.PeopleKnown[letter.Recieving.Name].SeenActivities.Remove(SelectedActivity);
                 Debug.Log("Wrote a letter to " + SelectedPerson.Name + " about " + SelectedActivity.Name + " affecting morale by " + letter.ManipulationLevelIncrease);
+
+                // Check on writing letter achievement.
+                AchievementItem achItem = player.achievementList.getItem(Achievement.MightierThanTheSword);
+                if (!achItem.isDone)
+                {
+                    player.achievementList.makeAchievement(achItem);
+                }
+
+
+
                 LeaveCreator();
             }
         }

@@ -153,6 +153,13 @@ public class Player : MonoBehaviour
             _source.clip = _ow;
             createMessage("Ow.");
             _source.Play();
+
+            AchievementItem achItem = achievementList.getItem(Achievement.Burned);
+            if (!achItem.isDone)
+            {
+                achievementList.makeAchievement(achItem);
+            }
+
         }
 
         if ( collision.gameObject.tag == "Shrub")
@@ -222,7 +229,7 @@ public class Player : MonoBehaviour
                     }
                     if (maxMike && maxDaniel)
                     {
-                        AchievementItem achItem = achievementList.getItem("Win over the creators");
+                        AchievementItem achItem = achievementList.getItem(Achievement.WinOverTheCreators);
                         if (!achItem.isDone)
                         {
                             achievementList.makeAchievement(achItem);
@@ -230,7 +237,7 @@ public class Player : MonoBehaviour
                     }
                     if (maxOnna && maxDonald)
                     {
-                        AchievementItem achItem = achievementList.getItem("Parential Approval");
+                        AchievementItem achItem = achievementList.getItem(Achievement.ParentialApproval);
                         if (!achItem.isDone)
                         {
                             achievementList.makeAchievement(achItem);
@@ -238,7 +245,7 @@ public class Player : MonoBehaviour
                     }
                     if (npc.Name.Equals("Airy"))
                     {
-                        AchievementItem achItem = achievementList.getItem("Tame the dragon");
+                        AchievementItem achItem = achievementList.getItem(Achievement.TameTheDragon);
                         if (!achItem.isDone)
                         {
                             achievementList.makeAchievement(achItem);
@@ -246,7 +253,7 @@ public class Player : MonoBehaviour
                     }
                     if (npc.Name.Equals("Manager George"))
                     {
-                        AchievementItem achItem = achievementList.getItem("Manage the manager");
+                        AchievementItem achItem = achievementList.getItem(Achievement.ManageTheManager);
                         if (!achItem.isDone)
                         {
                             achievementList.makeAchievement(achItem);
@@ -255,7 +262,7 @@ public class Player : MonoBehaviour
                 }            
                 if (npc.Name.Equals("Manager George"))
                 {
-                    AchievementItem achItem = achievementList.getItem("Hypocrisy");
+                    AchievementItem achItem = achievementList.getItem(Achievement.Hypocrisy);
                     if (!achItem.isDone)
                     {
                         achievementList.makeAchievement(achItem);
@@ -263,7 +270,7 @@ public class Player : MonoBehaviour
                 }
                 if (npc.tag.Equals("GuardNPC"))
                 {
-                    AchievementItem achItem = achievementList.getItem("Catch the guards");
+                    AchievementItem achItem = achievementList.getItem(Achievement.CatchTheGuards);
                     if (!achItem.isDone)
                     {
                         achievementList.makeAchievement(achItem);
