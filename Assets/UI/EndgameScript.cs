@@ -9,28 +9,35 @@ public class EndgameScript : MonoBehaviour
 
     public GameObject NextPanel;
 
+    private int MaxScore = 78;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        if(Player.Score <= 0)
+        if(Player.Score <= (int)(.1 * MaxScore))
         {
             LetterText.text = TextFailure();
         }
-        else if (Player.Score <= 3)
+        else if (Player.Score <= (int)(.25 * MaxScore))
         {
             LetterText.text = TextAlmostBad();
         }
-        else if (Player.Score <= 6)
+        else if (Player.Score <= (int)(.4 * MaxScore))
         {
             LetterText.text = TextBad();
         }
-        else if (Player.Score <= 9)
+        else if (Player.Score <= (int)(.6 * MaxScore))
         {
             LetterText.text = TextAlmostGood();
         }
-        else if (Player.Score > 9)
+        else if (Player.Score < MaxScore)
         {
             LetterText.text = TextGood();
+        }
+        else
+        {
+            LetterText.text = TextAwesome();
         }
     }
 
@@ -85,4 +92,16 @@ public class EndgameScript : MonoBehaviour
                 "transition by putting the few set in their old ways to rest.\n\nWe hope your skill and ideas will continue to be a beacon of hope." +   
                 "Thank You,\nA New Community.";
     }
+
+    public string TextAwesome()
+    {
+        return $"Dear PlayerName,\n\nWe are is awe of your skill and wisdom at how you managed to gain the confidence and support of the " + 
+                "entire community! Thank you for leading us to a bright new future!" +
+                "\n\nWe have confidence in your skill and know your ideas will be a lasting beacon of hope to all of us." +
+                "Thank You,\nA New Community.";
+    }
+
+
+
+
 }
