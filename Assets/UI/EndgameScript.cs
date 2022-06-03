@@ -15,29 +15,61 @@ public class EndgameScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AchievementList achList = new AchievementList();
+
         if(Player.Score <= (int)(.1 * MaxScore))
         {
             LetterText.text = TextFailure();
+            AchievementItem achItem = achList.getItem(Achievement.WhiskedAway);
+            if (!achItem.isDone)
+            {
+                achList.makeAchievement(achItem);
+            }
         }
         else if (Player.Score <= (int)(.25 * MaxScore))
         {
             LetterText.text = TextAlmostBad();
+            AchievementItem achItem = achList.getItem(Achievement.Isolation);
+            if (!achItem.isDone)
+            {
+                achList.makeAchievement(achItem);
+            }
         }
         else if (Player.Score <= (int)(.4 * MaxScore))
         {
             LetterText.text = TextBad();
+            AchievementItem achItem = achList.getItem(Achievement.Executed);
+            if (!achItem.isDone)
+            {
+                achList.makeAchievement(achItem);
+            }
         }
         else if (Player.Score <= (int)(.6 * MaxScore))
         {
             LetterText.text = TextAlmostGood();
+            AchievementItem achItem = achList.getItem(Achievement.BatteredButFree);
+            if (!achItem.isDone)
+            {
+                achList.makeAchievement(achItem);
+            }
         }
         else if (Player.Score < MaxScore)
         {
             LetterText.text = TextGood();
+            AchievementItem achItem = achList.getItem(Achievement.Victorious);
+            if (!achItem.isDone)
+            {
+                achList.makeAchievement(achItem);
+            }
         }
         else
         {
             LetterText.text = TextAwesome();
+            AchievementItem achItem = achList.getItem(Achievement.SilverTongue);
+            if (!achItem.isDone)
+            {
+                achList.makeAchievement(achItem);
+            }
         }
     }
 

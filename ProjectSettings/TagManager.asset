@@ -30,6 +30,7 @@ TagManager:
   - Lava
   - Cupcake
   - Campfire
+  - PeeShrub
   layers:
   - Default
   - TransparentFX

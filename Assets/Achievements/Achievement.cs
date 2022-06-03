@@ -14,6 +14,19 @@ public enum Achievement
     Hypocrisy,
     ManageTheManager,
     MightierThanTheSword,
-    Burned
+    Burned,
+    SightseeThePrison,
+    LockedIn,
+    AreYouAllowedInHere,
+    MeetThePress,
+    WhiskedAway,
+    Isolation,
+    Executed,
+    BatteredButFree,
+    Victorious,
+    SilverTongue,
+    Hoarder,
+    Aaaaaaaaaah
+
 }
 

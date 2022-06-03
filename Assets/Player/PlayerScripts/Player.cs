@@ -168,6 +168,18 @@ public class Player : MonoBehaviour
             _source.Play();
         }
 
+        if (collision.gameObject.tag == "PeeShrub")
+        {
+            createMessage("Aaaaaaaaaah.");
+            _source.clip = _brush;
+            _source.Play();
+            AchievementItem achItem = achievementList.getItem(Achievement.Aaaaaaaaaah);
+            if (!achItem.isDone)
+            {
+                achievementList.makeAchievement(achItem);
+            }
+        }
+
         if (collision.gameObject.tag == "Door")
         {
             createMessage("I don't have the key.");

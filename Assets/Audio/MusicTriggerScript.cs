@@ -11,8 +11,8 @@ public class MusicTriggerScript : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-
-            if (!backMusic.isPlaying())
+            //if (!backMusic.isPlaying())
+            if (!backMusic.isPlaying() || !backMusic._source.clip.Equals(audioClip) )
             {
                 backMusic.play(audioClip);
             }

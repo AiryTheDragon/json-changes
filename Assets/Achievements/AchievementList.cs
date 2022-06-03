@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AchievementList : MonoBehaviour
 {
-    public List<AchievementItem> achievementList = new List<AchievementItem>();
+    public static List<AchievementItem> achievementList = new List<AchievementItem>();
     public Player player;
 
     public void Start()
@@ -77,6 +77,118 @@ public class AchievementList : MonoBehaviour
         Item8.AchievementDescription = "Touch the lava.";
         Item8.isDone = false;
         achievementList.Add(Item8);
+
+        AchievementItem Item9 = AchievementItem.CreateInstance<AchievementItem>();
+        // Enter Jail achievement
+        Item9.AchievementType = Achievement.SightseeThePrison;
+        Item9.AchievementName = "Sightsee the prison";
+        Item9.AchievementDescription = "Enter the jail.";
+        Item9.isDone = false;
+        achievementList.Add(Item9);
+
+        AchievementItem Item10 = AchievementItem.CreateInstance<AchievementItem>();
+        // Enter Jail cell achievement
+        Item10.AchievementType = Achievement.LockedIn;
+        Item10.AchievementName = "Locked in";
+        Item10.AchievementDescription = "Enter the jail cell.";
+        Item10.isDone = false;
+        achievementList.Add(Item10);
+
+        AchievementItem Item11 = AchievementItem.CreateInstance<AchievementItem>();
+        // Enter the manager House
+        Item11.AchievementType = Achievement.AreYouAllowedInHere;
+        Item11.AchievementName = "Are you allowed in here?";
+        Item11.AchievementDescription = "Enter the manager's house.";
+        Item11.isDone = false;
+        achievementList.Add(Item11);
+
+        AchievementItem Item12 = AchievementItem.CreateInstance<AchievementItem>();
+        // Enter the printing press room
+        Item12.AchievementType = Achievement.MeetThePress;
+        Item12.AchievementName = "Meet the press";
+        Item12.AchievementDescription = "Enter the printing press room.";
+        Item12.isDone = false;
+        achievementList.Add(Item12);
+
+        AchievementItem Item13 = AchievementItem.CreateInstance<AchievementItem>();
+        // Less than 10% support
+        Item13.AchievementType = Achievement.WhiskedAway;
+        Item13.AchievementName = "Whisked away";
+        Item13.AchievementDescription = "Attempt a rebellion with marginal support.";
+        Item13.isDone = false;
+        achievementList.Add(Item13);
+
+        AchievementItem Item14 = AchievementItem.CreateInstance<AchievementItem>();
+        // 10 - 25% support
+        Item14.AchievementType = Achievement.Isolation;
+        Item14.AchievementName = "Isolation";
+        Item14.AchievementDescription = "Attempt a rebellions with a small amount of support.";
+        Item14.isDone = false;
+        achievementList.Add(Item14);
+
+        AchievementItem Item15 = AchievementItem.CreateInstance<AchievementItem>();
+        // 25% - 40% support
+        Item15.AchievementType = Achievement.Executed;
+        Item15.AchievementName = "Executed";
+        Item15.AchievementDescription = "Attempt a rebellion with moderate support.";
+        Item15.isDone = false;
+        achievementList.Add(Item15);
+
+        AchievementItem Item16 = AchievementItem.CreateInstance<AchievementItem>();
+        // 40 - 60% support
+        Item16.AchievementType = Achievement.BatteredButFree;
+        Item16.AchievementName = "Battered but free";
+        Item16.AchievementDescription = "Attempt a rebellion with sufficient support.";
+        Item16.isDone = false;
+        achievementList.Add(Item16);
+
+        AchievementItem Item17 = AchievementItem.CreateInstance<AchievementItem>();
+        // 60 - 99% support
+        Item17.AchievementType = Achievement.Victorious;
+        Item17.AchievementName = "Victorious";
+        Item17.AchievementDescription = "Attempt a rebellion with major support.";
+        Item17.isDone = false;
+        achievementList.Add(Item17);
+
+        AchievementItem Item18 = AchievementItem.CreateInstance<AchievementItem>();
+        // 100% support
+        Item18.AchievementType = Achievement.SilverTongue;
+        Item18.AchievementName = "Silver tongue";
+        Item18.AchievementDescription = "Attempt a rebellion with complete support.";
+        Item18.isDone = false;
+        achievementList.Add(Item18);
+
+        AchievementItem Item19 = AchievementItem.CreateInstance<AchievementItem>();
+        // Hoard at least 10 pens and pieces of paper
+        Item19.AchievementType = Achievement.Hoarder;
+        Item19.AchievementName = "Hoarder";
+        Item19.AchievementDescription = "Hold at least 10 pens and pieces of paper.";
+        Item19.isDone = false;
+        achievementList.Add(Item19);
+
+        AchievementItem Item20 = AchievementItem.CreateInstance<AchievementItem>();
+        // Pee in the bushes
+        Item20.AchievementType = Achievement.Aaaaaaaaaah;
+        Item20.AchievementName = "Aaaaaaaaaah";
+        Item20.AchievementDescription = "Pee in the bushes.";
+        Item20.isDone = false;
+        achievementList.Add(Item20);
+
+        AchievementItem Item21 = AchievementItem.CreateInstance<AchievementItem>();
+        // Enter the printing press room
+        Item21.AchievementType = Achievement.MeetThePress;
+        Item21.AchievementName = "Meet the press";
+        Item21.AchievementDescription = "Enter the printing press room.";
+        Item21.isDone = false;
+        achievementList.Add(Item21);
+
+        AchievementItem Item22 = AchievementItem.CreateInstance<AchievementItem>();
+        // Enter the printing press room
+        Item22.AchievementType = Achievement.MeetThePress;
+        Item22.AchievementName = "Meet the press";
+        Item22.AchievementDescription = "Enter the printing press room.";
+        Item22.isDone = false;
+        achievementList.Add(Item22);
     }
 
     // Searches for an achievement by its position in the list.
@@ -118,8 +230,15 @@ public class AchievementList : MonoBehaviour
 
     private void awardAchievement(AchievementItem item)
     {
-        player.NPCInfoUI.AchievementInfo(item);
-        player.log.addItem("Achievement", $"New Achievement:  {item.AchievementName}\nDescription:   {item.AchievementDescription}");
+        if (player != null)
+        {
+            player.NPCInfoUI.AchievementInfo(item);
+            player.log.addItem("Achievement", $"New Achievement:  {item.AchievementName}\nDescription:   {item.AchievementDescription}");
+        }
+        else
+        {
+            Debug.Log("Made achievement " + item.AchievementName);
+        }
         // do something!
     }
 }
