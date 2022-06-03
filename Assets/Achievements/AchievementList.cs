@@ -174,21 +174,6 @@ public class AchievementList : MonoBehaviour
         Item20.isDone = false;
         achievementList.Add(Item20);
 
-        AchievementItem Item21 = AchievementItem.CreateInstance<AchievementItem>();
-        // Enter the printing press room
-        Item21.AchievementType = Achievement.MeetThePress;
-        Item21.AchievementName = "Meet the press";
-        Item21.AchievementDescription = "Enter the printing press room.";
-        Item21.isDone = false;
-        achievementList.Add(Item21);
-
-        AchievementItem Item22 = AchievementItem.CreateInstance<AchievementItem>();
-        // Enter the printing press room
-        Item22.AchievementType = Achievement.MeetThePress;
-        Item22.AchievementName = "Meet the press";
-        Item22.AchievementDescription = "Enter the printing press room.";
-        Item22.isDone = false;
-        achievementList.Add(Item22);
     }
 
     // Searches for an achievement by its position in the list.

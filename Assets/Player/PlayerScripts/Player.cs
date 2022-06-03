@@ -310,6 +310,15 @@ public class Player : MonoBehaviour
             _source.Play();
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
+
+            if (invScript.Paper>=10 && invScript.Pens>=10)
+            {
+                AchievementItem achItem = achievementList.getItem(Achievement.Hoarder);
+                if (!achItem.isDone)
+                {
+                    achievementList.makeAchievement(achItem);
+                }
+            }
         }
         else if(collision.gameObject.tag == "Pen")
         {
@@ -318,6 +327,15 @@ public class Player : MonoBehaviour
             _source.Play();
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
+
+            if (invScript.Paper >= 10 && invScript.Pens >= 10)
+            {
+                AchievementItem achItem = achievementList.getItem(Achievement.Hoarder);
+                if (!achItem.isDone)
+                {
+                    achievementList.makeAchievement(achItem);
+                }
+            }
         }
         else if (collision.gameObject.tag == "FreedomBook")
         {
