@@ -29,7 +29,7 @@ public class MenuBehavior : MonoBehaviour, IManualUpdate
         {
             started = true;
             selectedTab = null;
-            SelectTab(inventoryTab.GetComponent<TabBehavior>());
+            //SelectTab(inventoryTab.GetComponent<TabBehavior>());
             player = Resources.FindObjectsOfTypeAll<Player>().First();
         }
     }
