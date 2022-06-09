@@ -31,6 +31,7 @@ TagManager:
   - Cupcake
   - Campfire
   - PeeShrub
+  - Sign
   layers:
   - Default
   - TransparentFX
