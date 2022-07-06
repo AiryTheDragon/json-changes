@@ -63,6 +63,13 @@ public class LampBehavior : MonoBehaviour
             on = false;
         }
     }
+
+    private void OnMouseUpAsButton()
+    {
+        Toggle();
+        Debug.Log("Light is toggled.");
+    }
+
     public void Toggle()
     {
         if (on)

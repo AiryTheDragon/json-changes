@@ -503,4 +503,162 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         messageTimeRemaining = messageDuration;
         isMessage = true;
     }
+
+    // This method sets the current activity action, activity and group of activity, based on information given object.  It does so by using the
+    // current information stored in the NPC's Activity groups
+    public void setBehavior(BehaviorSet behaviorSet)
+    {
+        // set the group of activities
+        bool found = false;
+        for (int i=0; i< ActivityTracker.ActivityGroups.Count && !found; i++)
+        {
+            if (ActivityTracker.ActivityGroups[i].GroupName.Equals(behaviorSet.groupOfActivitiesName))
+            {
+                found = true;
+                ActivityTracker.ActivityGroupIndex = i;
+            }
+        }
+        if (!found)
+        {
+            ActivityTracker.ActivityGroupIndex = 0;
+            ActivityTracker.ActivityIndex = 0;
+            ActivityTracker.RunningActivity = ActivityTracker.RunningGroup.Activities[0];
+            ActivityTracker.ActionIndex = 0;
+            ActivityTracker.RunningAction = ActivityTracker.RunningActivity.actions[0];
+
+            Debug.LogError("Activity Group " + behaviorSet.groupOfActivitiesName + " not found, resetting all indexes in Activity Tracker to 0.");
+            return;
+        }
+
+        ActivityTracker.ActivityIndex = behaviorSet.activityPos;
+        ActivityTracker.RunningActivity = ActivityTracker.RunningGroup.Activities[ActivityTracker.ActivityIndex];
+        ActivityTracker.ActionIndex = behaviorSet.actionPos;
+        ActivityTracker.RunningAction = ActivityTracker.RunningActivity.actions[ActivityTracker.ActionIndex];
+
+        // some activities need set up
+        if (behaviorSet.actionInfo.type == ActivityActionType.CatchNPC)
+        {
+            if (!(ActivityTracker.RunningAction is ActivityCatchNPC))
+            {
+                Debug.LogError("Action " + ActivityTracker.RunningAction.name + " is not of type " +behaviorSet.actionInfo.type + ".");
+                return;
+            }
+            //TODO
+            Debug.Log("NPC " + name + " needs to be set to catch NPC " + behaviorSet.actionInfo.data + ".");
+        }
+        else if (behaviorSet.actionInfo.type == ActivityActionType.CatchPlayer)
+        {
+            //TODO
+            Debug.Log("NPC " + name + " needs to be set to catch Player.");
+        }
+        else if (behaviorSet.actionInfo.type == ActivityActionType.EscortNPC)
+        {
+            if (!(ActivityTracker.RunningAction is ActivityEscortNPC))
+            {
+                Debug.LogError("Action " + ActivityTracker.RunningAction.name + " is not of type " + behaviorSet.actionInfo.type + ".");
+                return;
+            }
+            //TODO
+            Debug.Log("NPC " + name + " needs to be set to escort NPC " + behaviorSet.actionInfo.data + ".");
+        }
+        else if (behaviorSet.actionInfo.type == ActivityActionType.EscortPlayer)
+        {
+            //TODO
+            Debug.Log("NPC " + name + " needs to be set to escort Player.");
+        }
+        else if (behaviorSet.actionInfo.type == ActivityActionType.Wait)
+        {
+            waitUntil = behaviorSet.actionInfo.endTime;
+        }
+
+    }
+
+    // This method gets the current activity action, activity and group of activity information and saves it as an object which can be later reset
+    public BehaviorSet getBehavior()
+    {
+        ActivityActionSet actionInfo = ActivityActionSet.CreateInstance<ActivityActionSet>();
+        BehaviorSet behaviorInfo = BehaviorSet.CreateInstance<BehaviorSet>();
+        ActivityAction action = ActivityTracker.GetCurrentAction();
+
+        behaviorInfo.NPCName = name;
+        behaviorInfo.groupOfActivitiesName = ActivityTracker.ActivityGroups[ActivityTracker.ActivityGroupIndex].GroupName;
+        behaviorInfo.activityPos = ActivityTracker.ActivityIndex;
+        behaviorInfo.actionPos = ActivityTracker.ActionIndex;
+
+        if (action is ActivityBGMusicStop )
+        {
+            actionInfo.type = ActivityActionType.BGMusicStop;
+        }
+        else if (action is ActivityBGMusicUpdate)
+        {
+            actionInfo.type = ActivityActionType.BGMusicUpdate;
+        }
+        else if (action is ActivityCatchNPC)
+        {
+            actionInfo.type = ActivityActionType.CatchNPC;
+            actionInfo.data = gameObject.GetComponentInChildren<GuardBehavior>().Target.name;
+        }
+        else if (action is ActivityCatchPlayer)
+        {
+            actionInfo.type = ActivityActionType.CatchPlayer;
+        }
+        else if (action is ActivityEndEscort)
+        {
+            actionInfo.type = ActivityActionType.EndEscort;
+        }
+        else if (action is ActivityEndPatrol)
+        {
+            actionInfo.type = ActivityActionType.EndPatrol;
+        }
+        else if (action is ActivityEscortNPC)
+        {
+            actionInfo.type = ActivityActionType.EscortNPC;
+            actionInfo.data = gameObject.GetComponentInChildren<GuardBehavior>().Target.name;
+        }
+        else if (action is ActivityEscortPlayer)
+        {
+            actionInfo.type = ActivityActionType.EscortPlayer;
+        }
+        else if (action is ActivityPlaySound)
+        {
+            actionInfo.type = ActivityActionType.PlaySound;
+        }
+        else if (action is ActivitySpeak)
+        {
+            actionInfo.type = ActivityActionType.Speak;
+        }
+        else if (action is ActivityStartPatrol)
+        {
+            actionInfo.type = ActivityActionType.StartPartrol;
+        }
+        else if (action is ActivityTurnOff)
+        {
+            actionInfo.type = ActivityActionType.TurnOff;
+        }
+        else if (action is ActivityTurnOn)
+        {
+            actionInfo.type = ActivityActionType.TurnOn;
+        }
+        else if (action is ActivityWait)
+        {
+            actionInfo.type = ActivityActionType.Wait;
+            actionInfo.endTime = waitUntil;
+        }
+        else if (action is ActivityWaitUntilTime)
+        {
+            actionInfo.type = ActivityActionType.WaitUntil;
+        }
+        else if (action is ActivityWalk)
+        {
+            actionInfo.type = ActivityActionType.Walk;
+        }
+        else
+        {
+            actionInfo.type = ActivityActionType.Unknown;
+            Debug.Log("No activity associated with this action.");
+        }
+        behaviorInfo.actionInfo = actionInfo;
+        return behaviorInfo;
+    }
+
 }

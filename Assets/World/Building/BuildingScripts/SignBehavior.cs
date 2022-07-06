@@ -35,15 +35,6 @@ public class SignBehavior : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        if (canvasSign==null)
-        {
-            Debug.Log("Canvas sign is null");
-        }
-        else
-        {
-            Debug.Log("Canvas sign is not null");
-        }
-
         canvasSign.Open(expandedText);
     }
 

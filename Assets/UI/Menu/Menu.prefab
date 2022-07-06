@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6448181851970723447
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2400,7 +2400,7 @@ MonoBehaviour:
   inventoryTab: {fileID: 610630927061658843}
   escapeTab: {fileID: 7386867514984167962}
   parent: {fileID: 4114742172599171182}
-  escDown: 0
+  escDown: 1
   armed: 0
 --- !u!1 &4667313198124860785
 GameObject:
@@ -4060,7 +4060,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 238506991444241990, guid: b42cef32f1ea9f46aa331c3e628f995c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 615
+      value: 645
       objectReference: {fileID: 0}
     - target: {fileID: 238506991444241990, guid: b42cef32f1ea9f46aa331c3e628f995c, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4130,6 +4130,10 @@ PrefabInstance:
       propertyPath: menu
       value: 
       objectReference: {fileID: 98140256773111421}
+    - target: {fileID: 8308720842876518910, guid: b42cef32f1ea9f46aa331c3e628f995c, type: 3}
+      propertyPath: selected
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8325732129741274038, guid: b42cef32f1ea9f46aa331c3e628f995c, type: 3}
       propertyPath: m_Color.b
       value: 0.6962229

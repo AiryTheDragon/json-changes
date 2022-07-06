@@ -23,11 +23,9 @@ public class CanvasSignBehavior : MonoBehaviour
     }
 
     public void Close()
-    {
-        Debug.Log("Setting components to false");
+    { 
         thisSign.SetActive(false);
         thisText.SetActive(false);
-
     }
 
     public void Open(string text)
@@ -35,9 +33,6 @@ public class CanvasSignBehavior : MonoBehaviour
         thisSign.SetActive(true);
         thisText.SetActive(true);
         thisText.GetComponent<TextMeshProUGUI>().text = text;
-
-        Debug.Log("Setting components to true");
-
     }
 
 }
