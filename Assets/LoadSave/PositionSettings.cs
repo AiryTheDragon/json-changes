@@ -30,6 +30,12 @@ public class PositionSettings : ScriptableObject
         return positionSettings;
     }
 
+    public Vector3 getPlayerPositionSettings(Player player)
+    {
+        playerPositionSettings = player.transform.position;
+        return player.transform.position;
+    }
+
     public void setAllPositionSettings(NPCBehavior[] NPClist)
     {
 
@@ -46,6 +52,12 @@ public class PositionSettings : ScriptableObject
             }
         }
 
+        return;
+    }
+
+    public void setPlayerPositionSettings(Player player)
+    {
+        player.transform.position = playerPositionSettings;
         return;
     }
 

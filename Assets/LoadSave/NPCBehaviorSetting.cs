@@ -51,9 +51,10 @@ public class NPCBehaviorSetting : ScriptableObject
     {
         int pos = -1;
         bool found = false;
+
         for (int i=0; i<behaviorSetting.Length && !found; i++)
         {
-            if (behaviorSetting[i].name.Equals(name))
+            if (behaviorSetting[i].NPCName.Equals(name))
             {
                 pos = i;
                 found = true;

@@ -544,12 +544,12 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
                 return;
             }
             //TODO
-            Debug.Log("NPC " + Name + " needs to be set to catch NPC " + behaviorSet.actionInfo.data + ".");
+            Debug.Log("NPC " + name + " needs to be set to catch NPC " + behaviorSet.actionInfo.data + ".");
         }
         else if (behaviorSet.actionInfo.type == ActivityActionType.CatchPlayer)
         {
             //TODO
-            Debug.Log("NPC " + Name + " needs to be set to catch Player.");
+            Debug.Log("NPC " + name + " needs to be set to catch Player.");
         }
         else if (behaviorSet.actionInfo.type == ActivityActionType.EscortNPC)
         {
@@ -559,12 +559,12 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
                 return;
             }
             //TODO
-            Debug.Log("NPC " + Name + " needs to be set to escort NPC " + behaviorSet.actionInfo.data + ".");
+            Debug.Log("NPC " + name + " needs to be set to escort NPC " + behaviorSet.actionInfo.data + ".");
         }
         else if (behaviorSet.actionInfo.type == ActivityActionType.EscortPlayer)
         {
             //TODO
-            Debug.Log("NPC " + Name + " needs to be set to escort Player.");
+            Debug.Log("NPC " + name + " needs to be set to escort Player.");
         }
         else if (behaviorSet.actionInfo.type == ActivityActionType.Wait)
         {
@@ -581,6 +581,8 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         ActivityAction action = ActivityTracker.GetCurrentAction();
 
         behaviorInfo.NPCName = Name;
+        Debug.Log("Storing " + Name + "'s behaviors.");
+
         behaviorInfo.groupOfActivitiesName = ActivityTracker.ActivityGroups[ActivityTracker.ActivityGroupIndex].GroupName;
         behaviorInfo.activityPos = ActivityTracker.ActivityIndex;
         behaviorInfo.actionPos = ActivityTracker.ActionIndex;
