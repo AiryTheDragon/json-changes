@@ -128,16 +128,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Name:  Isaac
+  m_text: 'Name:  Helpful Phil
 
-    Position:   Toddler
+    Position:   Guide
 
     Value:   Very Low
 
     Confidence:  
     Unknown
 
-    Currently:   Running around the room'
+    Currently:   Guiding the player'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e33ee0f6c4800fea19f3c8e982ddf5ed, type: 2}
   m_sharedMaterial: {fileID: -8551299574259237557, guid: e33ee0f6c4800fea19f3c8e982ddf5ed, type: 2}
