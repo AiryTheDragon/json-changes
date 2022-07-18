@@ -2126,7 +2126,7 @@ GameObject:
   - component: {fileID: 5723194733710015318}
   - component: {fileID: 2177339869663474619}
   m_Layer: 0
-  m_Name: TurnRightButton
+  m_Name: MoveUpButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2139,17 +2139,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3085551383257514083}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5310834699550752640}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 470, y: -290}
+  m_AnchoredPosition: {x: -67.596, y: 246.54}
   m_SizeDelta: {x: 135.1915, y: 92.3495}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6966143551126333000
@@ -3990,7 +3990,7 @@ GameObject:
   - component: {fileID: 2441227797008567916}
   - component: {fileID: 6631396620660500084}
   m_Layer: 0
-  m_Name: TurnLeftButton
+  m_Name: MoveDownButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4003,17 +4003,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7433538319853325647}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalRotation: {x: 0, y: -0, z: 0.7071068, w: -0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5310834699550752640}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -472.38785, y: -290}
+  m_AnchoredPosition: {x: -67.596, y: -290}
   m_SizeDelta: {x: 135.1915, y: 92.3495}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6311919440680843267
@@ -4126,7 +4126,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5310834699550752640
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4863,8 +4863,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -286.93933, y: 46.969627}
-  m_SizeDelta: {x: 483.1076, y: 491.4893}
+  m_AnchoredPosition: {x: -286.93933, y: 56.167625}
+  m_SizeDelta: {x: 483.1076, y: 509.89}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6626831225363752544
 CanvasRenderer:
@@ -4971,7 +4971,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 18, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
