@@ -4126,7 +4126,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5310834699550752640
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4839,6 +4839,7 @@ GameObject:
   - component: {fileID: 2782866450960189442}
   - component: {fileID: 6626831225363752544}
   - component: {fileID: 5033425728173594409}
+  - component: {fileID: 8519639974544681948}
   m_Layer: 0
   m_Name: LeftColumn
   m_TagString: Untagged
@@ -4977,6 +4978,34 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8519639974544681948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8753606882606782916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c82bef13f6749e94a101e5a9eb7e22b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rows: 10
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1260357937786144970}
+        m_TargetAssemblyTypeName: EventsMenuBehavior, Assembly-CSharp
+        m_MethodName: SelectLine
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9099176113187421750
 GameObject:
   m_ObjectHideFlags: 0

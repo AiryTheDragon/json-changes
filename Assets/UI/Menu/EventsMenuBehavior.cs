@@ -30,16 +30,33 @@ public class EventsMenuBehavior : MonoBehaviour, IManualUpdate
         }
     }
 
-    public void TurnPageRight()
+    public void MoveColumnDown()
     {
         currentPage++;
         SetPage();
+        
+        
     }
 
-    public void TurnPageLeft()
+    public void MoveColumnUp()
     {
         currentPage--;
         SetPage();
+    }
+
+    public void SelectLine(int index)
+    {
+        var page = eventLog.LogList.OrderBy(x => x.Number).Skip((currentPage - 1) * 10).Take(10).ToList();
+        if(index >= page.Count)
+        {
+            return;
+        }
+        LogItem item = page[index];
+        StringBuilder logDisplay = new();
+        logDisplay.Append($"Day {item.Time.Day}, {item.Time.Hour}:{item.Time.Minute}\n");
+        logDisplay.Append(item.NoticeType).Append("\n\n");
+        logDisplay.Append(item.Entry);
+        rightColumn.GetComponent<TextMeshProUGUI>().text = logDisplay.ToString();
     }
 
     public void SetPage()
@@ -47,23 +64,18 @@ public class EventsMenuBehavior : MonoBehaviour, IManualUpdate
         if (currentPage < 1) currentPage = 1;
         if (currentPage > pages) currentPage = pages;
 
-        List<string> readable = eventLog.LogList.OrderBy(x => x.Number).Skip((currentPage - 1) * 10).Take(10).Select(x => x.Entry).ToList();
+        List<LogItem> readable = eventLog.LogList.OrderBy(x => x.Number).Skip((currentPage - 1) * 10).Take(10).ToList();
         StringBuilder leftText = new StringBuilder();
         StringBuilder rightText = new StringBuilder();
-        for (int i = 0; i < 5 && i < readable.Count; i++)
+        for (int i = 0; i < 10 && i < readable.Count; i++)
         {
             leftText.Append(readable[i]).Append("\n");
-        }
-        if (readable.Count > 5)
-        {
-            for (int i = 5; i < readable.Count; i++)
-            {
-                rightText.Append(readable[i]).Append("\n");
-            }
+            leftText.Append("Day ").Append(readable[i].Time.Day.ToString()).Append(" ")
+                    .Append(readable[i].Time.Hour.ToString()).Append(":").Append(readable[i].Time.Hour.ToString());
+            leftText.Append("  ").Append(readable[i].NoticeType).Append("\n");
         }
 
         leftColumn.GetComponent<TextMeshProUGUI>().text = leftText.ToString();
-        rightColumn.GetComponent<TextMeshProUGUI>().text = rightText.ToString();
     }
 
     public void ManualUpdate()
