@@ -61,6 +61,19 @@ public class PositionSettings : ScriptableObject
         return;
     }
 
+    public void setPositions(float[] posSettings, string[] posNames, float[] playerPos)
+    {
+        positionSettings = new Vector3[posSettings.Length / 3];
+        positionNames = new string[posNames.Length];
+        playerPositionSettings = new Vector3(playerPos[0], playerPos[1], playerPos[2]);
+
+        for (int i = 0; i < posNames.Length; i++)
+        {
+            positionSettings[i] = new Vector3(posSettings[3 * i], posSettings[3 * i + 1], posSettings[3 * i + 2]);
+            positionNames[i] = posNames[i];
+        }
+    }
+
     // method to get the position of the NPC in the Behavior list
     // returns the index if it exists, otherwise returns -1
     private int getListPos(string name)
@@ -78,6 +91,12 @@ public class PositionSettings : ScriptableObject
         return pos;
     }
 
+    public PositionSettingsConversion convertToFloats()
+    {
+        PositionSettingsConversion conversion = PositionSettingsConversion.CreateInstance<PositionSettingsConversion>();
+        conversion.setPositions(positionSettings, positionNames, playerPositionSettings);
 
+        return conversion;
+    }
 
 }

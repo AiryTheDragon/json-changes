@@ -9,7 +9,7 @@ public class ClockBehavior : MonoBehaviour
 
     public DateTime LastUpdate = DateTime.Now;
 
-    public ClockTime Time = new ClockTime(0, 4, 50);
+    public ClockTime Time = new ClockTime(0, 4, 0);
 
     public List<INeedsClockUpdate> NeedsClockUpdate = new List<INeedsClockUpdate>();
 
