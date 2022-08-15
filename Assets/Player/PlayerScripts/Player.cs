@@ -205,8 +205,8 @@ public class Player : MonoBehaviour
 
                 Debug.Log("Delivered a letter to " + npc.Name + " affecting morale by " + letter.ManipulationLevelIncrease);
                 Debug.Log(npc.Name + "'s level is now " + npc.ManipulationLevel);
-                log.addItem("Notice", "Delivered a letter to " + npc.Name + " affecting morale by " + letter.ManipulationLevelIncrease);
-                log.addItem(npc.Name, "Morale is now " + npc.ManipulationLevel + ".");
+                log.AddItem("Notice", "Delivered a letter to " + npc.Name + " affecting morale by " + letter.ManipulationLevelIncrease);
+                log.AddItem(npc.Name, "Morale is now " + npc.ManipulationLevel + ".");
 
                 // check morale achievements
                 if (npc.ManipulationLevel >= 5)

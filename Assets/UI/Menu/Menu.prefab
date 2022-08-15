@@ -4166,6 +4166,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftColumn: {fileID: 8753606882606782916}
   rightColumn: {fileID: 8165974499517055014}
+  previousButton: {fileID: 3085551383257514083}
+  nextButton: {fileID: 7433538319853325647}
 --- !u!1 &7698791310067768455
 GameObject:
   m_ObjectHideFlags: 0
@@ -4864,9 +4866,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -286.93933, y: 56.167625}
+  m_AnchoredPosition: {x: -528.4941, y: 311.1126}
   m_SizeDelta: {x: 483.1076, y: 509.89}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.000000051832828, y: 1}
 --- !u!222 &6626831225363752544
 CanvasRenderer:
   m_ObjectHideFlags: 0

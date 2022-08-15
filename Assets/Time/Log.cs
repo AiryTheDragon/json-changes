@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class Log : MonoBehaviour
 {
-    public List<LogItem> LogList = new List<LogItem>();
+    public List<LogItem> LogList = new();
     public int Counter = 1; // note Log numbers begin at 1
     public ClockBehavior clock;
 
-    public void addItem(string type, string note)
+    public void AddItem(string type, string note)
     {
 
         LogItem logItem = LogItem.CreateInstance<LogItem>();
         logItem.Number = Counter;
-        logItem.Time = clock.Time;
+        logItem.Time = new ClockTime(clock.Time);
         logItem.NoticeType = type;
         logItem.Entry = note;
 
