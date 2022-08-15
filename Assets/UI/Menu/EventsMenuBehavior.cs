@@ -14,6 +14,12 @@ public class EventsMenuBehavior : MonoBehaviour, IManualUpdate
     [SerializeField]
     private GameObject rightColumn;
 
+    [SerializeField]
+    private GameObject previousButton;
+
+    [SerializeField]
+    private GameObject nextButton;
+
     private bool started = false;
 
     private int currentPage = 1;
@@ -27,6 +33,10 @@ public class EventsMenuBehavior : MonoBehaviour, IManualUpdate
         {
             started = true;
             eventLog = Resources.FindObjectsOfTypeAll<Log>().FirstOrDefault();
+            eventLog.AddItem("Test", "Here's a test item");
+            eventLog.AddItem("Test", "Here's another test item.");
+            eventLog.AddItem("Test", "Here's a third test item.");
+            eventLog.AddItem("Thing", "Here's a thing");
         }
     }
 
@@ -61,15 +71,31 @@ public class EventsMenuBehavior : MonoBehaviour, IManualUpdate
 
     public void SetPage()
     {
-        if (currentPage < 1) currentPage = 1;
-        if (currentPage > pages) currentPage = pages;
+        if (currentPage <= 1) 
+        {
+            currentPage = 1;
+            previousButton.SetActive(false);
+        }
+        else
+        {
+            previousButton.SetActive(true);
+        }
+        if (currentPage >= pages)
+        {
+            currentPage = pages;
+            nextButton.SetActive(false);
+        }
+        else
+        {
+            nextButton.SetActive(true);
+        }
 
         List<LogItem> readable = eventLog.LogList.OrderBy(x => x.Number).Skip((currentPage - 1) * 10).Take(10).ToList();
-        StringBuilder leftText = new StringBuilder();
-        StringBuilder rightText = new StringBuilder();
+        StringBuilder leftText = new();
+        StringBuilder rightText = new();
         for (int i = 0; i < 10 && i < readable.Count; i++)
         {
-            leftText.Append(readable[i]).Append("\n");
+            //leftText.Append(readable[i]).Append("\n");
             leftText.Append("Day ").Append(readable[i].Time.Day.ToString()).Append(" ")
                     .Append(readable[i].Time.Hour.ToString()).Append(":").Append(readable[i].Time.Hour.ToString());
             leftText.Append("  ").Append(readable[i].NoticeType).Append("\n");
@@ -84,7 +110,7 @@ public class EventsMenuBehavior : MonoBehaviour, IManualUpdate
         {
             Start();
         }
-        pages = Math.Max(0, (eventLog.LogList.Count - 1)) / 10 + 1;
+        pages = Math.Max(0, eventLog.LogList.Count - 1) / 10 + 1;
         SetPage();
     }
 }
