@@ -2236,7 +2236,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1260357937786144970}
         m_TargetAssemblyTypeName: EventsMenuBehavior, Assembly-CSharp
-        m_MethodName: TurnPageRight
+        m_MethodName: MoveColumnUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4100,7 +4100,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1260357937786144970}
         m_TargetAssemblyTypeName: EventsMenuBehavior, Assembly-CSharp
-        m_MethodName: TurnPageLeft
+        m_MethodName: MoveColumnDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
