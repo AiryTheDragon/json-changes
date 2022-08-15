@@ -35,9 +35,12 @@ public class ScrollColumnBehavior : ButtonBase
 
     public override void OnPointerClick(PointerEventData eventData)
     {
+        // It is very important for this function that the pivot point is
+        // at the *top* of the element.
+        // Otherwize the position is based on the center and who knows how that works.
         var location = GetComponent<RectTransform>();
         float pressY = eventData.pressPosition.y - location.position.y;
-        int index = (int)(pressY / location.sizeDelta.y * Rows);
+        int index = (int)(pressY / location.sizeDelta.y * Rows * -1);
         OnClick?.Invoke(index);
     }
 }
