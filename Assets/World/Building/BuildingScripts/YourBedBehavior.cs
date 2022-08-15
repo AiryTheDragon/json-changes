@@ -10,6 +10,7 @@ public class YourBedBehavior : MonoBehaviour, IConfirmScript
     public GameObject confirmObject;
     public AudioClip _inBed;
     private AudioSource _source = null;
+    public LoadSave loadSaveObject;
     
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,7 @@ public class YourBedBehavior : MonoBehaviour, IConfirmScript
     public void ConfirmAction()
     {
         Debug.Log("In Confirm Action.");
+        loadSaveObject.LoadNextDayState();
     }
 
 
@@ -37,7 +39,7 @@ public class YourBedBehavior : MonoBehaviour, IConfirmScript
     private void OnMouseUpAsButton()
     {
         confirmObject.GetComponent<ConfirmMenu>().script = this;
-        confirmObject.GetComponent<ConfirmMenu>().UpdateText("What is the answer?");
+        confirmObject.GetComponent<ConfirmMenu>().UpdateText("Do you want to sleep until the next day?");
         _source.clip = _inBed;
         _source.Play();
         confirmObject.SetActive(true);
