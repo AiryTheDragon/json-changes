@@ -218,7 +218,7 @@ public class AchievementList : MonoBehaviour
         if (player != null)
         {
             player.NPCInfoUI.AchievementInfo(item);
-            player.log.addItem("Achievement", $"New Achievement:  {item.AchievementName}\nDescription:   {item.AchievementDescription}");
+            player.log.AddItem("Achievement", $"New Achievement:  {item.AchievementName}\nDescription:   {item.AchievementDescription}");
         }
         else
         {
