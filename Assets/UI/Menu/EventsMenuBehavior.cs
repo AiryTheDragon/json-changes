@@ -33,10 +33,6 @@ public class EventsMenuBehavior : MonoBehaviour, IManualUpdate
         {
             started = true;
             eventLog = Resources.FindObjectsOfTypeAll<Log>().FirstOrDefault();
-            eventLog.AddItem("Test", "Here's a test item");
-            eventLog.AddItem("Test", "Here's another test item.");
-            eventLog.AddItem("Test", "Here's a third test item.");
-            eventLog.AddItem("Thing", "Here's a thing");
         }
     }
 
