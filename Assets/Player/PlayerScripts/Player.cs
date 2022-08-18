@@ -19,20 +19,9 @@ public class Player : MonoBehaviour
 
     [SerializeField] float messageDuration = 5f;
 
-    [SerializeField] private AudioClip _ow = null;
-    [SerializeField] private AudioClip _tada = null;
-    [SerializeField] private AudioClip _ugh = null;
-    [SerializeField] private AudioClip _sigh = null;
     private int ughCount = 0;
-    [SerializeField] private AudioClip _locked = null;
-    [SerializeField] private AudioClip _brush = null;
-    [SerializeField] private AudioClip _wallbump = null;
 
-#pragma warning disable 414
-    [SerializeField] private AudioClip _footsteps = null;
-#pragma warning restore 414
-    [SerializeField] private AudioClip _pen = null;
-    [SerializeField] private AudioClip _paper = null;
+    private PlayerSounds _playerSounds;
 
     /// <summary>
     /// The source player noises come from.
@@ -79,13 +68,14 @@ public class Player : MonoBehaviour
         NPCInfoUI = Resources.FindObjectsOfTypeAll<NPCInfoBehavior>().First();
         menu = Resources.FindObjectsOfTypeAll<MenuBehavior>().First();
         _source = GetComponent<AudioSource>();
+        _playerSounds = GetComponent<PlayerSounds>();
         if (_source == null)
         {
             Debug.Log("Audio Source is NULL");
         }
         else
         {
-            _source.clip = _ow;
+            _source.clip = _playerSounds.Ow;
         }
     }
 
@@ -159,7 +149,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag == "Lava")
         {
-            _source.clip = _ow;
+            _source.clip = _playerSounds.Ow;
             CreateMessage("Ow.");
             _source.Play();
 
@@ -169,14 +159,14 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag == "Shrub")
         {
-            _source.clip = _brush;
+            _source.clip = _playerSounds.Brush;
             _source.Play();
         }
 
         if (collision.gameObject.tag == "PeeShrub")
         {
             CreateMessage("Aaaaaaaaaah.");
-            _source.clip = _brush;
+            _source.clip = _playerSounds.Brush;
             _source.Play();
             achievementList.TryGetAchievement(Achievement.Aaaaaaaaaah);
         }
@@ -184,13 +174,13 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Door")
         {
             CreateMessage("I don't have the key.");
-            _source.clip = _locked;
+            _source.clip = _playerSounds.Locked;
             _source.Play();
         }
 
         if (collision.gameObject.tag == "Rock" || collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Garbage")
         {
-            _source.clip = _wallbump;
+            _source.clip = _playerSounds.Wallbump;
             _source.Play();
         }
 
@@ -220,7 +210,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Key")
         {
             CreateMessage("Awesome!");
-            PlayAudioClip(_tada);
+            PlayAudioClip(_playerSounds.Tada);
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
         }
@@ -228,7 +218,7 @@ public class Player : MonoBehaviour
         {
             CreateMessage("More paper for more letters!");
 
-            PlayAudioClip(_paper);
+            PlayAudioClip(_playerSounds.Paper);
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
 
@@ -244,7 +234,7 @@ public class Player : MonoBehaviour
         else if (collision.gameObject.tag == "Pen")
         {
             CreateMessage("Another pen for another letter!");
-            PlayAudioClip(_pen);
+            PlayAudioClip(_playerSounds.Pen);
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
 
@@ -278,12 +268,12 @@ public class Player : MonoBehaviour
             else if (invScript.Pens < 1)
             {
                 CreateMessage("I don't have a pen to write anything.");
-                PlayAudioClip(_ugh);
+                PlayAudioClip(_playerSounds.Ugh);
             }
             else
             {
                 CreateMessage("I don't have any paper make letters.");
-                PlayAudioClip(_ugh);
+                PlayAudioClip(_playerSounds.Ugh);
             }
         }
     }
@@ -295,11 +285,11 @@ public class Player : MonoBehaviour
             if (ughCount % 10 == 0)
             {
                 CreateMessage("Stay Home.\nStay Safe.\nUgh.");
-                _source.clip = _ugh;
+                _source.clip = _playerSounds.Ugh;
             }
             else
             {
-                _source.clip = _sigh;
+                _source.clip = _playerSounds.Sigh;
             }
             ughCount++;
             _source.Play();
