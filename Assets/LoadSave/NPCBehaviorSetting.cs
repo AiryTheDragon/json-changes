@@ -31,6 +31,9 @@ public class NPCBehaviorSetting : ScriptableObject
 
         for (int i = 0; i < NPClist.Length; i++)
         {
+            Debug.Log("behaviorSetting length" + behaviorSetting.Length);
+
+
             int j = getListPos(NPClist[i].Name);
             if (j >= 0)
             {

@@ -88,4 +88,16 @@ public class ClockTime
     {
         AddHours(days * 24);
     }
+
+    /*
+    public ClockTime addClockTime()
+    {
+
+    }
+
+    public ClockTime subtractClockTime()
+    {
+
+    }
+    */
 }

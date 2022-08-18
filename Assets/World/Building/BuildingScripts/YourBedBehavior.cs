@@ -32,6 +32,8 @@ public class YourBedBehavior : MonoBehaviour, IConfirmScript
     {
         Debug.Log("In Confirm Action.");
         loadSaveObject.LoadNextDayState();
+        loadSaveObject.NextDayUpdates();
+        loadSaveObject.CreateSaveData();
     }
 
 

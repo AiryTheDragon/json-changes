@@ -11,6 +11,8 @@ public class ClockBehavior : MonoBehaviour
 
     public ClockTime Time = new ClockTime(0, 4, 0);
 
+    public ClockTime NewDayTime = new ClockTime(0, 6, 50);
+
     public List<INeedsClockUpdate> NeedsClockUpdate = new List<INeedsClockUpdate>();
 
     // Start is called before the first frame update
@@ -82,5 +84,13 @@ public class ClockBehavior : MonoBehaviour
                 NeedsClockUpdate[i].UpdateClock(Time);
             }
         }
+
+        /*
+        public ClockTime timeToNextDay()
+        {
+            ClockTime toNextDay = new ClockTime
+        }
+        */
+
     }
 }

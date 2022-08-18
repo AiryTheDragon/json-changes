@@ -83,7 +83,7 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
 
     public void LoadNextDayState()
     {
-        //TODO load NextDayState()
+        ImportNextDayState();
         SetBehaviorSettings();
         SetPositionSettings();
         SetLightSettings();
@@ -465,6 +465,13 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
         keySettings.setAllObjectSettings(keyList);
     }
 
+    public void NextDayUpdates()
+    {
+
+    }
+
+
+
     // currently being used for testing purposes
     public void UpdateClock(ClockTime time)
     {
@@ -486,4 +493,7 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
         */
         
     }
+
+
+
 }
