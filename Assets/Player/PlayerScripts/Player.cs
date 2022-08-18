@@ -404,6 +404,10 @@ public class Player : MonoBehaviour
     public void AddSuspicion(double suspicion)
     {
         this.Suspicion += suspicion / 2f * CurrentSpeed;
+        if(Suspicion >= MaxSuspicion)
+        {
+            Revolt();
+        }
     }
 
     public void Revolt()
