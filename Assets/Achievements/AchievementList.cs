@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class AchievementList : MonoBehaviour
@@ -287,6 +288,16 @@ public class AchievementList : MonoBehaviour
             {
                 makeAchievement(achItem);
             }
+        }
+    }
+
+    public void TryGetAchievement(Achievement ach)
+    {
+        var achievement = achievementList.First(x => x.AchievementType == ach);
+        if(!achievement.isDone)
+        {
+            achievement.isDone = true;
+            awardAchievement(achievement);
         }
     }
 

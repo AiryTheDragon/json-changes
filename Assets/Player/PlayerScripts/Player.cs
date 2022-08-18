@@ -19,22 +19,14 @@ public class Player : MonoBehaviour
 
     [SerializeField] float messageDuration = 5f;
 
-    [SerializeField] private AudioClip _ow = null;
-    [SerializeField] private AudioClip _tada = null;
-    [SerializeField] private AudioClip _ugh = null;
-    [SerializeField] private AudioClip _sigh = null;
     private int ughCount = 0;
-    [SerializeField] private AudioClip _locked = null;
-    [SerializeField] private AudioClip _brush = null;
-    [SerializeField] private AudioClip _wallbump = null;
 
-#pragma warning disable 414
-    [SerializeField] private AudioClip _footsteps = null;
-    #pragma warning restore 414
-    [SerializeField] private AudioClip _pen = null;
-    [SerializeField] private AudioClip _paper = null;
+    private PlayerSounds _playerSounds;
 
-    public AudioSource _source = null;
+    /// <summary>
+    /// The source player noises come from.
+    /// </summary>
+    private AudioSource _source = null;
 
     private float messageTimeRemaining;
     private bool isMessage = false;
@@ -76,22 +68,23 @@ public class Player : MonoBehaviour
         NPCInfoUI = Resources.FindObjectsOfTypeAll<NPCInfoBehavior>().First();
         menu = Resources.FindObjectsOfTypeAll<MenuBehavior>().First();
         _source = GetComponent<AudioSource>();
+        _playerSounds = GetComponent<PlayerSounds>();
         if (_source == null)
         {
             Debug.Log("Audio Source is NULL");
         }
         else
         {
-            _source.clip = _ow;
+            _source.clip = _playerSounds.Ow;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(inputEnabled)
+        if (inputEnabled)
         {
-            if (Input.GetAxis("Fire1")>0)
+            if (Input.GetAxis("Fire1") > 0)
             {
                 CurrentSpeed = runSpeed;
             }
@@ -104,7 +97,8 @@ public class Player : MonoBehaviour
                 CurrentSpeed = walkSpeed;
             }
         }
-        else{
+        else
+        {
             CurrentSpeed = 0;
         }
 
@@ -113,12 +107,12 @@ public class Player : MonoBehaviour
 
         CharacterBehavior.UpdateHead(Input.GetAxis("Horizontal") * CurrentSpeed, Input.GetAxis("Vertical") * CurrentSpeed);
 
-        if(!beingEscorted)
+        if (!beingEscorted)
         {
             transform.Translate(xChange, 0, 0);
             transform.Translate(0, yChange, 0);
         }
-        
+
         if (isMessage)
         {
             messageTimeRemaining -= Time.deltaTime;
@@ -130,19 +124,19 @@ public class Player : MonoBehaviour
             }
         }
 
-        if(inputEnabled)
+        if (inputEnabled)
         {
-            if(Input.GetKey(KeyCode.Escape))
+            if (Input.GetKey(KeyCode.Escape))
             {
-                if(!menu.Active())
+                if (!menu.Active())
                 {
                     menu.Open(KeyCode.Escape);
                 }
             }
 
-            if(Input.GetKey(KeyCode.I))
+            if (Input.GetKey(KeyCode.I))
             {
-                if(!menu.Active())
+                if (!menu.Active())
                 {
                     menu.Open(KeyCode.I);
                 }
@@ -153,48 +147,40 @@ public class Player : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if ( collision.gameObject.tag == "Lava")
+        if (collision.gameObject.tag == "Lava")
         {
-            _source.clip = _ow;
-            createMessage("Ow.");
+            _source.clip = _playerSounds.Ow;
+            CreateMessage("Ow.");
             _source.Play();
 
-            AchievementItem achItem = achievementList.getItem(Achievement.Burned);
-            if (!achItem.isDone)
-            {
-                achievementList.makeAchievement(achItem);
-            }
+            achievementList.TryGetAchievement(Achievement.Burned);
 
         }
 
-        if ( collision.gameObject.tag == "Shrub")
+        if (collision.gameObject.tag == "Shrub")
         {
-            _source.clip = _brush;
+            _source.clip = _playerSounds.Brush;
             _source.Play();
         }
 
         if (collision.gameObject.tag == "PeeShrub")
         {
-            createMessage("Aaaaaaaaaah.");
-            _source.clip = _brush;
+            CreateMessage("Aaaaaaaaaah.");
+            _source.clip = _playerSounds.Brush;
             _source.Play();
-            AchievementItem achItem = achievementList.getItem(Achievement.Aaaaaaaaaah);
-            if (!achItem.isDone)
-            {
-                achievementList.makeAchievement(achItem);
-            }
+            achievementList.TryGetAchievement(Achievement.Aaaaaaaaaah);
         }
 
         if (collision.gameObject.tag == "Door")
         {
-            createMessage("I don't have the key.");
-            _source.clip = _locked;
+            CreateMessage("I don't have the key.");
+            _source.clip = _playerSounds.Locked;
             _source.Play();
         }
 
         if (collision.gameObject.tag == "Rock" || collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Garbage")
         {
-            _source.clip = _wallbump;
+            _source.clip = _playerSounds.Wallbump;
             _source.Play();
         }
 
@@ -215,7 +201,7 @@ public class Player : MonoBehaviour
 
                 // Check whether colliding with this npc gave us an achievement.
                 achievementList.CheckMoralAchievements(npc);
-            }   
+            }
         }
     }
 
@@ -223,22 +209,20 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Key")
         {
-            _source.clip = _tada;
-            createMessage("Awesome!");
-            _source.Play();
+            CreateMessage("Awesome!");
+            PlayAudioClip(_playerSounds.Tada);
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
         }
-        else if(collision.gameObject.tag == "Paper")
+        else if (collision.gameObject.tag == "Paper")
         {
-            createMessage("More paper for more letters!");
+            CreateMessage("More paper for more letters!");
 
-            _source.clip = _paper;
-            _source.Play();
+            PlayAudioClip(_playerSounds.Paper);
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
 
-            if (invScript.Paper>=10 && invScript.Pens>=10)
+            if (invScript.Paper >= 10 && invScript.Pens >= 10)
             {
                 AchievementItem achItem = achievementList.getItem(Achievement.Hoarder);
                 if (!achItem.isDone)
@@ -247,11 +231,10 @@ public class Player : MonoBehaviour
                 }
             }
         }
-        else if(collision.gameObject.tag == "Pen")
+        else if (collision.gameObject.tag == "Pen")
         {
-            createMessage("Another pen for another letter!");
-            _source.clip = _pen;
-            _source.Play();
+            CreateMessage("Another pen for another letter!");
+            PlayAudioClip(_playerSounds.Pen);
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
 
@@ -266,32 +249,31 @@ public class Player : MonoBehaviour
         }
         else if (collision.gameObject.tag == "FreedomBook")
         {
-            createMessage("Freedom!");
+            CreateMessage("Freedom!");
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
         }
         else if (collision.gameObject.tag == "Cupcake")
         {
-            createMessage("Yum!");
+            CreateMessage("Yum!");
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
         }
-        else if(collision.gameObject.tag == "Writing Desk")
+        else if (collision.gameObject.tag == "Writing Desk")
         {
-            if(invScript.Paper >= 1 && invScript.Pens >= 1)
+            if (invScript.Paper >= 1 && invScript.Pens >= 1)
             {
                 collision.gameObject.GetComponentInParent<WritingDeskBehavior>().OpenLetterCreator();
             }
-            else if(invScript.Pens < 1)
+            else if (invScript.Pens < 1)
             {
-                createMessage("I don't have a pen to write anything.");
-                _source.clip = _ugh;
-                _source.Play();
+                CreateMessage("I don't have a pen to write anything.");
+                PlayAudioClip(_playerSounds.Ugh);
             }
-            else{
-                createMessage("I don't have any paper make letters.");
-                _source.clip = _ugh;
-                _source.Play();
+            else
+            {
+                CreateMessage("I don't have any paper make letters.");
+                PlayAudioClip(_playerSounds.Ugh);
             }
         }
     }
@@ -302,19 +284,23 @@ public class Player : MonoBehaviour
         {
             if (ughCount % 10 == 0)
             {
-                createMessage("Stay Home.\nStay Safe.\nUgh.");
-                _source.clip = _ugh;
+                CreateMessage("Stay Home.\nStay Safe.\nUgh.");
+                _source.clip = _playerSounds.Ugh;
             }
             else
-            { 
-                _source.clip = _sigh;
+            {
+                _source.clip = _playerSounds.Sigh;
             }
             ughCount++;
-            _source.Play();      
-        }     
+            _source.Play();
+        }
     }
 
-    void createMessage(string text)
+    /// <summary>
+    /// Activate the speech bubble above the player's head and<br/>
+    /// set the text inside it.
+    /// </summary>
+    private void CreateMessage(string text)
     {
         speechObject.SetActive(true);
 
@@ -323,15 +309,23 @@ public class Player : MonoBehaviour
         isMessage = true;
     }
 
+    /// <summary>
+    /// Called when we need to add suspicion to the player.<br/>
+    /// Handles player-based multipliers.
+    /// </summary>
     public void AddSuspicion(double suspicion)
     {
+        // If we multiply by the move speed and divide by two, suspicion will range from 1 - 4
         this.Suspicion += suspicion / 2f * CurrentSpeed;
-        if(Suspicion >= MaxSuspicion)
+        if (Suspicion >= MaxSuspicion)
         {
             Revolt();
         }
     }
 
+    /// <summary>
+    /// Called when we want to end the game.
+    /// </summary>
     public void Revolt()
     {
         CalculateScore();
@@ -341,15 +335,22 @@ public class Player : MonoBehaviour
     private void CalculateScore()
     {
         int score = 0;
-        foreach(var person in PeopleKnown.Values)
+        foreach (var person in PeopleKnown.Values)
         {
             int change = person.Value - ((Math.Max(0, Math.Min(person.Value, 5 - person.ManipulationLevel))));
-            Debug.Log("Max value:" + person.Value + " change:" + change);
             score += change;
         }
-        Debug.Log("Total score:" + score);
 
         Score = score;
+    }
+
+    /// <summary>
+    /// Helper function for playing an audio clip.
+    /// </summary>
+    private void PlayAudioClip(AudioClip clip)
+    {
+        _source.clip = clip;
+        _source.Play();
     }
 
 }
