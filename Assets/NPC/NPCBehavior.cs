@@ -40,7 +40,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
 
     public Vector2 Velocity;
 
-    public double Suspicion = 0;
+    public double Suspicion { get; private set; }
 
     public double MaxSuspicion =  500;
 
@@ -661,6 +661,11 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         }
         behaviorInfo.actionInfo = actionInfo;
         return behaviorInfo;
+    }
+
+    public void AddSuspicion(double amount)
+    {
+        this.Suspicion += amount;
     }
 
 }
