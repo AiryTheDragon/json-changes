@@ -89,15 +89,26 @@ public class ClockTime
         AddHours(days * 24);
     }
 
-    /*
-    public ClockTime addClockTime()
+ 
+    public ClockTime addClockTime(ClockTime timeToAdd)
     {
+        ClockTime sumClockTime = new ClockTime(Day, Hour, Minute);
+        sumClockTime.AddDays(timeToAdd.Day);
+        sumClockTime.AddHours(timeToAdd.Hour);
+        sumClockTime.AddMinutes(timeToAdd.Minute);
+
+        return sumClockTime;
 
     }
 
-    public ClockTime subtractClockTime()
+    public ClockTime subtractClockTime(ClockTime timeToSubtract)
     {
+        ClockTime differenceClockTime = new ClockTime(Day, Hour, Minute);
+        differenceClockTime.AddDays(-1 * timeToSubtract.Day);
+        differenceClockTime.AddHours(-1 * timeToSubtract.Hour);
+        differenceClockTime.AddMinutes(-1 * timeToSubtract.Minute);
 
+        return differenceClockTime;
     }
-    */
+
 }
