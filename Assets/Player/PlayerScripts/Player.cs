@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
 
 #pragma warning disable 414
     [SerializeField] private AudioClip _footsteps = null;
-    #pragma warning restore 414
+#pragma warning restore 414
     [SerializeField] private AudioClip _pen = null;
     [SerializeField] private AudioClip _paper = null;
 
@@ -92,9 +92,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(inputEnabled)
+        if (inputEnabled)
         {
-            if (Input.GetAxis("Fire1")>0)
+            if (Input.GetAxis("Fire1") > 0)
             {
                 CurrentSpeed = runSpeed;
             }
@@ -107,7 +107,8 @@ public class Player : MonoBehaviour
                 CurrentSpeed = walkSpeed;
             }
         }
-        else{
+        else
+        {
             CurrentSpeed = 0;
         }
 
@@ -116,12 +117,12 @@ public class Player : MonoBehaviour
 
         CharacterBehavior.UpdateHead(Input.GetAxis("Horizontal") * CurrentSpeed, Input.GetAxis("Vertical") * CurrentSpeed);
 
-        if(!beingEscorted)
+        if (!beingEscorted)
         {
             transform.Translate(xChange, 0, 0);
             transform.Translate(0, yChange, 0);
         }
-        
+
         if (isMessage)
         {
             messageTimeRemaining -= Time.deltaTime;
@@ -133,19 +134,19 @@ public class Player : MonoBehaviour
             }
         }
 
-        if(inputEnabled)
+        if (inputEnabled)
         {
-            if(Input.GetKey(KeyCode.Escape))
+            if (Input.GetKey(KeyCode.Escape))
             {
-                if(!menu.Active())
+                if (!menu.Active())
                 {
                     menu.Open(KeyCode.Escape);
                 }
             }
 
-            if(Input.GetKey(KeyCode.I))
+            if (Input.GetKey(KeyCode.I))
             {
-                if(!menu.Active())
+                if (!menu.Active())
                 {
                     menu.Open(KeyCode.I);
                 }
@@ -156,7 +157,7 @@ public class Player : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if ( collision.gameObject.tag == "Lava")
+        if (collision.gameObject.tag == "Lava")
         {
             _source.clip = _ow;
             CreateMessage("Ow.");
@@ -166,7 +167,7 @@ public class Player : MonoBehaviour
 
         }
 
-        if ( collision.gameObject.tag == "Shrub")
+        if (collision.gameObject.tag == "Shrub")
         {
             _source.clip = _brush;
             _source.Play();
@@ -210,7 +211,7 @@ public class Player : MonoBehaviour
 
                 // Check whether colliding with this npc gave us an achievement.
                 achievementList.CheckMoralAchievements(npc);
-            }   
+            }
         }
     }
 
@@ -223,7 +224,7 @@ public class Player : MonoBehaviour
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
         }
-        else if(collision.gameObject.tag == "Paper")
+        else if (collision.gameObject.tag == "Paper")
         {
             CreateMessage("More paper for more letters!");
 
@@ -231,7 +232,7 @@ public class Player : MonoBehaviour
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
 
-            if (invScript.Paper>=10 && invScript.Pens>=10)
+            if (invScript.Paper >= 10 && invScript.Pens >= 10)
             {
                 AchievementItem achItem = achievementList.getItem(Achievement.Hoarder);
                 if (!achItem.isDone)
@@ -240,7 +241,7 @@ public class Player : MonoBehaviour
                 }
             }
         }
-        else if(collision.gameObject.tag == "Pen")
+        else if (collision.gameObject.tag == "Pen")
         {
             CreateMessage("Another pen for another letter!");
             PlayAudioClip(_pen);
@@ -268,18 +269,19 @@ public class Player : MonoBehaviour
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
         }
-        else if(collision.gameObject.tag == "Writing Desk")
+        else if (collision.gameObject.tag == "Writing Desk")
         {
-            if(invScript.Paper >= 1 && invScript.Pens >= 1)
+            if (invScript.Paper >= 1 && invScript.Pens >= 1)
             {
                 collision.gameObject.GetComponentInParent<WritingDeskBehavior>().OpenLetterCreator();
             }
-            else if(invScript.Pens < 1)
+            else if (invScript.Pens < 1)
             {
                 CreateMessage("I don't have a pen to write anything.");
                 PlayAudioClip(_ugh);
             }
-            else{
+            else
+            {
                 CreateMessage("I don't have any paper make letters.");
                 PlayAudioClip(_ugh);
             }
@@ -296,12 +298,12 @@ public class Player : MonoBehaviour
                 _source.clip = _ugh;
             }
             else
-            { 
+            {
                 _source.clip = _sigh;
             }
             ughCount++;
-            _source.Play();      
-        }     
+            _source.Play();
+        }
     }
 
     /// <summary>
@@ -325,7 +327,7 @@ public class Player : MonoBehaviour
     {
         // If we multiply by the move speed and divide by two, suspicion will range from 1 - 4
         this.Suspicion += suspicion / 2f * CurrentSpeed;
-        if(Suspicion >= MaxSuspicion)
+        if (Suspicion >= MaxSuspicion)
         {
             Revolt();
         }
@@ -343,7 +345,7 @@ public class Player : MonoBehaviour
     private void CalculateScore()
     {
         int score = 0;
-        foreach(var person in PeopleKnown.Values)
+        foreach (var person in PeopleKnown.Values)
         {
             int change = person.Value - ((Math.Max(0, Math.Min(person.Value, 5 - person.ManipulationLevel))));
             score += change;
