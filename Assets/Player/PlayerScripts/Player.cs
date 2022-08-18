@@ -213,87 +213,9 @@ public class Player : MonoBehaviour
                 log.AddItem("Notice", "Delivered a letter to " + npc.Name + " affecting morale by " + letter.ManipulationLevelIncrease);
                 log.AddItem(npc.Name, "Morale is now " + npc.ManipulationLevel + ".");
 
-                // check morale achievements
-                if (npc.ManipulationLevel >= 5)
-                {
-                    
-                    bool maxMike = false;
-                    bool maxDaniel = false;
-                    bool maxOnna = false;
-                    bool maxDonald = false;
-                    foreach (var person in PeopleKnown.Values)
-                    {
-                        if (person.Name.Equals("Mike") && person.ManipulationLevel >= 5)
-                        {
-                            maxMike = true;
-                            Debug.Log("Mike is maxed");
-                        }
-                        if (person.Name.Equals("Daniel") && person.ManipulationLevel >= 5)
-                        {
-                            maxDaniel = true;
-                            Debug.Log("Daniel is maxed");
-                        }
-                        if (person.Name.Equals("Onna") && person.ManipulationLevel >= 5)
-                        {
-                            maxOnna = true;
-                            Debug.Log("Onna is maxed");
-                        }
-                        if (person.Name.Equals("Donald") && person.ManipulationLevel >= 5)
-                        {
-                            maxDonald = true;
-                            Debug.Log("Donald is maxed");
-                        }
-                    }
-                    if (maxMike && maxDaniel)
-                    {
-                        AchievementItem achItem = achievementList.getItem(Achievement.WinOverTheCreators);
-                        if (!achItem.isDone)
-                        {
-                            achievementList.makeAchievement(achItem);
-                        }
-                    }
-                    if (maxOnna && maxDonald)
-                    {
-                        AchievementItem achItem = achievementList.getItem(Achievement.ParentialApproval);
-                        if (!achItem.isDone)
-                        {
-                            achievementList.makeAchievement(achItem);
-                        }
-                    }
-                    if (npc.Name.Equals("Airy"))
-                    {
-                        AchievementItem achItem = achievementList.getItem(Achievement.TameTheDragon);
-                        if (!achItem.isDone)
-                        {
-                            achievementList.makeAchievement(achItem);
-                        }
-                    }
-                    if (npc.Name.Equals("Manager George"))
-                    {
-                        AchievementItem achItem = achievementList.getItem(Achievement.ManageTheManager);
-                        if (!achItem.isDone)
-                        {
-                            achievementList.makeAchievement(achItem);
-                        }
-                    }
-                }            
-                if (npc.Name.Equals("Manager George"))
-                {
-                    AchievementItem achItem = achievementList.getItem(Achievement.Hypocrisy);
-                    if (!achItem.isDone)
-                    {
-                        achievementList.makeAchievement(achItem);
-                    }
-                }
-                if (npc.tag.Equals("GuardNPC"))
-                {
-                    AchievementItem achItem = achievementList.getItem(Achievement.CatchTheGuards);
-                    if (!achItem.isDone)
-                    {
-                        achievementList.makeAchievement(achItem);
-                    }
-                }
-            }
+                // Check whether colliding with this npc gave us an achievement.
+                achievementList.CheckMoralAchievements(npc);
+            }   
         }
     }
 

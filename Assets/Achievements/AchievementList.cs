@@ -204,6 +204,92 @@ public class AchievementList : MonoBehaviour
         return Item;
     }
 
+    public void CheckMoralAchievements(NPCBehavior npc)
+    {
+        var player = GameObject.FindObjectOfType<Player>();
+
+        // check morale achievements
+        if (npc.ManipulationLevel >= 5)
+        {
+            
+            bool maxMike = false;
+            bool maxDaniel = false;
+            bool maxOnna = false;
+            bool maxDonald = false;
+            foreach (var person in player.PeopleKnown.Values)
+            {
+                if (person.Name.Equals("Mike") && person.ManipulationLevel >= 5)
+                {
+                    maxMike = true;
+                    Debug.Log("Mike is maxed");
+                }
+                if (person.Name.Equals("Daniel") && person.ManipulationLevel >= 5)
+                {
+                    maxDaniel = true;
+                    Debug.Log("Daniel is maxed");
+                }
+                if (person.Name.Equals("Onna") && person.ManipulationLevel >= 5)
+                {
+                    maxOnna = true;
+                    Debug.Log("Onna is maxed");
+                }
+                if (person.Name.Equals("Donald") && person.ManipulationLevel >= 5)
+                {
+                    maxDonald = true;
+                    Debug.Log("Donald is maxed");
+                }
+            }
+            if (maxMike && maxDaniel)
+            {
+                AchievementItem achItem = getItem(Achievement.WinOverTheCreators);
+                if (!achItem.isDone)
+                {
+                    makeAchievement(achItem);
+                }
+            }
+            if (maxOnna && maxDonald)
+            {
+                AchievementItem achItem = getItem(Achievement.ParentialApproval);
+                if (!achItem.isDone)
+                {
+                    makeAchievement(achItem);
+                }
+            }
+            if (npc.Name.Equals("Airy"))
+            {
+                AchievementItem achItem = getItem(Achievement.TameTheDragon);
+                if (!achItem.isDone)
+                {
+                    makeAchievement(achItem);
+                }
+            }
+            if (npc.Name.Equals("Manager George"))
+            {
+                AchievementItem achItem = getItem(Achievement.ManageTheManager);
+                if (!achItem.isDone)
+                {
+                    makeAchievement(achItem);
+                }
+            }
+        }            
+        if (npc.Name.Equals("Manager George"))
+        {
+            AchievementItem achItem = getItem(Achievement.Hypocrisy);
+            if (!achItem.isDone)
+            {
+                makeAchievement(achItem);
+            }
+        }
+        if (npc.tag.Equals("GuardNPC"))
+        {
+            AchievementItem achItem = getItem(Achievement.CatchTheGuards);
+            if (!achItem.isDone)
+            {
+                makeAchievement(achItem);
+            }
+        }
+    }
+
     public void makeAchievement(AchievementItem item)
     {
         if (!item.isDone)
