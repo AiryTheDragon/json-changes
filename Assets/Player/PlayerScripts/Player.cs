@@ -11,7 +11,12 @@ public class Player : MonoBehaviour
     [SerializeField] float slowSpeed = 1f;
     [SerializeField] float walkSpeed = 2f;
     [SerializeField] float runSpeed = 4f;
-    [SerializeField] float currentSpeed = 2f;
+
+    /// <summary>
+    /// The current speed of the player.
+    /// </summary>
+    public float CurrentSpeed { get; set; }
+
     [SerializeField] float messageDuration = 5f;
 
     [SerializeField] private AudioClip _ow = null;
@@ -37,9 +42,9 @@ public class Player : MonoBehaviour
     public GameObject speechObject;
     public InvScript invScript;
 
-    public int Suspicion;
+    public double Suspicion { get; private set; }
 
-    public int MaxSuspicion = 100;
+    public double MaxSuspicion = 100;
 
     public Dictionary<string, Person> PeopleKnown = new Dictionary<string, Person>();
 
@@ -88,25 +93,25 @@ public class Player : MonoBehaviour
         {
             if (Input.GetAxis("Fire1")>0)
             {
-                currentSpeed = runSpeed;
+                CurrentSpeed = runSpeed;
             }
             else if (Input.GetAxis("Fire2") > 0)
             {
-                currentSpeed = slowSpeed;
+                CurrentSpeed = slowSpeed;
             }
             else
             {
-                currentSpeed = walkSpeed;
+                CurrentSpeed = walkSpeed;
             }
         }
         else{
-            currentSpeed = 0;
+            CurrentSpeed = 0;
         }
 
-        float xChange = Input.GetAxis("Horizontal") * currentSpeed * Time.deltaTime;
-        float yChange = Input.GetAxis("Vertical") * currentSpeed * Time.deltaTime;
+        float xChange = Input.GetAxis("Horizontal") * CurrentSpeed * Time.deltaTime;
+        float yChange = Input.GetAxis("Vertical") * CurrentSpeed * Time.deltaTime;
 
-        CharacterBehavior.UpdateHead(Input.GetAxis("Horizontal") * currentSpeed, Input.GetAxis("Vertical") * currentSpeed);
+        CharacterBehavior.UpdateHead(Input.GetAxis("Horizontal") * CurrentSpeed, Input.GetAxis("Vertical") * CurrentSpeed);
 
         if(!beingEscorted)
         {
@@ -396,9 +401,9 @@ public class Player : MonoBehaviour
         isMessage = true;
     }
 
-    public void AddSuspicion(int suspicion)
+    public void AddSuspicion(double suspicion)
     {
-        this.Suspicion += suspicion;
+        this.Suspicion += suspicion / 2f * CurrentSpeed;
     }
 
     public void Revolt()
@@ -420,4 +425,5 @@ public class Player : MonoBehaviour
 
         Score = score;
     }
+
 }

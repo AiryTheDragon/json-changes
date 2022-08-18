@@ -78,11 +78,11 @@ public class GuardBehavior : MonoBehaviour, INeedsClockUpdate
         {
             if(person.tag == "Player")
             {
-                person.gameObject.GetComponent<Player>().Suspicion += Configuration.SuspicionPerMinute;
+                person.gameObject.GetComponent<Player>().AddSuspicion(Configuration.SuspicionPerMinute);
             }
             else if(person.tag == "NPC")
             {
-                person.gameObject.GetComponent<NPCBehavior>().Suspicion += Configuration.SuspicionPerMinute;
+                person.gameObject.GetComponent<NPCBehavior>().AddSuspicion(Configuration.SuspicionPerMinute);
             }
         }
     }

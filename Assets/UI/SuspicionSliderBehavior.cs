@@ -26,6 +26,6 @@ public class SuspicionSliderBehavior : MonoBehaviour, INeedsClockUpdate
 
     public void UpdateClock(ClockTime time)
     {
-        Slider.GetComponent<Slider>().value = Player.GetComponent<Player>().Suspicion;
+        Slider.GetComponent<Slider>().value = (float)Player.GetComponent<Player>().Suspicion;
     }
 }
