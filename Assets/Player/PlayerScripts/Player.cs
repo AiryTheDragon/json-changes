@@ -162,11 +162,7 @@ public class Player : MonoBehaviour
             CreateMessage("Ow.");
             _source.Play();
 
-            AchievementItem achItem = achievementList.getItem(Achievement.Burned);
-            if (!achItem.isDone)
-            {
-                achievementList.makeAchievement(achItem);
-            }
+            achievementList.TryGetAchievement(Achievement.Burned);
 
         }
 
@@ -181,11 +177,7 @@ public class Player : MonoBehaviour
             CreateMessage("Aaaaaaaaaah.");
             _source.clip = _brush;
             _source.Play();
-            AchievementItem achItem = achievementList.getItem(Achievement.Aaaaaaaaaah);
-            if (!achItem.isDone)
-            {
-                achievementList.makeAchievement(achItem);
-            }
+            achievementList.TryGetAchievement(Achievement.Aaaaaaaaaah);
         }
 
         if (collision.gameObject.tag == "Door")
@@ -226,9 +218,8 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Key")
         {
-            _source.clip = _tada;
             CreateMessage("Awesome!");
-            _source.Play();
+            PlayAudioClip(_tada);
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
         }
@@ -236,8 +227,7 @@ public class Player : MonoBehaviour
         {
             CreateMessage("More paper for more letters!");
 
-            _source.clip = _paper;
-            _source.Play();
+            PlayAudioClip(_paper);
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
 
@@ -253,8 +243,7 @@ public class Player : MonoBehaviour
         else if(collision.gameObject.tag == "Pen")
         {
             CreateMessage("Another pen for another letter!");
-            _source.clip = _pen;
-            _source.Play();
+            PlayAudioClip(_pen);
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
 
@@ -288,13 +277,11 @@ public class Player : MonoBehaviour
             else if(invScript.Pens < 1)
             {
                 CreateMessage("I don't have a pen to write anything.");
-                _source.clip = _ugh;
-                _source.Play();
+                PlayAudioClip(_ugh);
             }
             else{
                 CreateMessage("I don't have any paper make letters.");
-                _source.clip = _ugh;
-                _source.Play();
+                PlayAudioClip(_ugh);
             }
         }
     }
@@ -363,6 +350,15 @@ public class Player : MonoBehaviour
         }
 
         Score = score;
+    }
+
+    /// <summary>
+    /// Helper function for playing an audio clip.
+    /// </summary>
+    private void PlayAudioClip(AudioClip clip)
+    {
+        _source.clip = clip;
+        _source.Play();
     }
 
 }
