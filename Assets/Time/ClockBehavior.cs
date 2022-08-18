@@ -65,32 +65,21 @@ public class ClockBehavior : MonoBehaviour
                 Sun.intensity = 0.1f;
             }
 
-            /*
-            for(int i = 0; i < Activities.Count; i++)
-            {
-                if(Activities[i].IsActivityTime(Time))
-                {
-                    Activities[i].BeginActivity();
-                }
-                if(Activities[i].ActivityType == Activity.ActivityTypes.Once)
-                {
-                    Activities.RemoveAt(i);
-                    i--;
-                }
-            }
-            */
+            
             for(int i = 0; i < NeedsClockUpdate.Count; i++)
             {
                 NeedsClockUpdate[i].UpdateClock(Time);
             }
-        }
+        }     
 
-        /*
-        public ClockTime timeToNextDay()
-        {
-            ClockTime toNextDay = new ClockTime
-        }
-        */
+    }
+    public ClockTime timeToNextDay()
+    {
 
+        ClockTime toNextDay = new ClockTime(NewDayTime);
+        toNextDay = NewDayTime.subtractClockTime(Time);
+        toNextDay.Day = 0;
+
+        return toNextDay;
     }
 }
