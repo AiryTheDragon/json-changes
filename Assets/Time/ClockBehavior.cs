@@ -73,6 +73,7 @@ public class ClockBehavior : MonoBehaviour
         }     
 
     }
+    // This method will calculate the time to the next wakeup time
     public ClockTime timeToNextDay()
     {
 
@@ -81,5 +82,17 @@ public class ClockBehavior : MonoBehaviour
         toNextDay.Day = 0;
 
         return toNextDay;
+    }
+
+    // The method will return the next wakeup time with the proper day
+    public ClockTime nextDayTime()
+    {
+        ClockTime nextTime = new ClockTime(NewDayTime);
+        ClockTime thisDayTime = new ClockTime(Time);
+        thisDayTime.Day = 0;
+        ClockTime difference = NewDayTime.subtractClockTime(thisDayTime);  // if the curent time is after reset time, difference.hour = -1
+        nextTime.Day = Time.Day - difference.Day; // add one if current time is after reset time
+
+        return nextTime;
     }
 }

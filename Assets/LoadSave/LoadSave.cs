@@ -467,7 +467,7 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
 
     public void NextDayUpdates()
     {
-
+        Clock.Time = Clock.nextDayTime();
     }
 
 
