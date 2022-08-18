@@ -34,7 +34,10 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip _pen = null;
     [SerializeField] private AudioClip _paper = null;
 
-    public AudioSource _source = null;
+    /// <summary>
+    /// The source player noises come from.
+    /// </summary>
+    private AudioSource _source = null;
 
     private float messageTimeRemaining;
     private bool isMessage = false;
@@ -156,7 +159,7 @@ public class Player : MonoBehaviour
         if ( collision.gameObject.tag == "Lava")
         {
             _source.clip = _ow;
-            createMessage("Ow.");
+            CreateMessage("Ow.");
             _source.Play();
 
             AchievementItem achItem = achievementList.getItem(Achievement.Burned);
@@ -175,7 +178,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag == "PeeShrub")
         {
-            createMessage("Aaaaaaaaaah.");
+            CreateMessage("Aaaaaaaaaah.");
             _source.clip = _brush;
             _source.Play();
             AchievementItem achItem = achievementList.getItem(Achievement.Aaaaaaaaaah);
@@ -187,7 +190,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag == "Door")
         {
-            createMessage("I don't have the key.");
+            CreateMessage("I don't have the key.");
             _source.clip = _locked;
             _source.Play();
         }
@@ -224,14 +227,14 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Key")
         {
             _source.clip = _tada;
-            createMessage("Awesome!");
+            CreateMessage("Awesome!");
             _source.Play();
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
         }
         else if(collision.gameObject.tag == "Paper")
         {
-            createMessage("More paper for more letters!");
+            CreateMessage("More paper for more letters!");
 
             _source.clip = _paper;
             _source.Play();
@@ -249,7 +252,7 @@ public class Player : MonoBehaviour
         }
         else if(collision.gameObject.tag == "Pen")
         {
-            createMessage("Another pen for another letter!");
+            CreateMessage("Another pen for another letter!");
             _source.clip = _pen;
             _source.Play();
             invScript.addItem(collision.gameObject);
@@ -266,13 +269,13 @@ public class Player : MonoBehaviour
         }
         else if (collision.gameObject.tag == "FreedomBook")
         {
-            createMessage("Freedom!");
+            CreateMessage("Freedom!");
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
         }
         else if (collision.gameObject.tag == "Cupcake")
         {
-            createMessage("Yum!");
+            CreateMessage("Yum!");
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
         }
@@ -284,12 +287,12 @@ public class Player : MonoBehaviour
             }
             else if(invScript.Pens < 1)
             {
-                createMessage("I don't have a pen to write anything.");
+                CreateMessage("I don't have a pen to write anything.");
                 _source.clip = _ugh;
                 _source.Play();
             }
             else{
-                createMessage("I don't have any paper make letters.");
+                CreateMessage("I don't have any paper make letters.");
                 _source.clip = _ugh;
                 _source.Play();
             }
@@ -302,7 +305,7 @@ public class Player : MonoBehaviour
         {
             if (ughCount % 10 == 0)
             {
-                createMessage("Stay Home.\nStay Safe.\nUgh.");
+                CreateMessage("Stay Home.\nStay Safe.\nUgh.");
                 _source.clip = _ugh;
             }
             else
@@ -314,7 +317,11 @@ public class Player : MonoBehaviour
         }     
     }
 
-    void createMessage(string text)
+    /// <summary>
+    /// Activate the speech bubble above the player's head and<br/>
+    /// set the text inside it.
+    /// </summary>
+    private void CreateMessage(string text)
     {
         speechObject.SetActive(true);
 
@@ -323,8 +330,13 @@ public class Player : MonoBehaviour
         isMessage = true;
     }
 
+    /// <summary>
+    /// Called when we need to add suspicion to the player.<br/>
+    /// Handles player-based multipliers.
+    /// </summary>
     public void AddSuspicion(double suspicion)
     {
+        // If we multiply by the move speed and divide by two, suspicion will range from 1 - 4
         this.Suspicion += suspicion / 2f * CurrentSpeed;
         if(Suspicion >= MaxSuspicion)
         {
@@ -332,6 +344,9 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called when we want to end the game.
+    /// </summary>
     public void Revolt()
     {
         CalculateScore();
@@ -344,10 +359,8 @@ public class Player : MonoBehaviour
         foreach(var person in PeopleKnown.Values)
         {
             int change = person.Value - ((Math.Max(0, Math.Min(person.Value, 5 - person.ManipulationLevel))));
-            Debug.Log("Max value:" + person.Value + " change:" + change);
             score += change;
         }
-        Debug.Log("Total score:" + score);
 
         Score = score;
     }
