@@ -28,15 +28,22 @@ public class NPCBehaviorSetting : ScriptableObject
 
     public void setAllBehaviorSettings(NPCBehavior[] NPClist)
     {
-
+        Debug.Log("behaviorSetting length" + behaviorSetting.Length);
         for (int i = 0; i < NPClist.Length; i++)
         {
-            Debug.Log("behaviorSetting length" + behaviorSetting.Length);
+
 
 
             int j = getListPos(NPClist[i].Name);
             if (j >= 0)
             {
+                Debug.Log("Setting behaviors for " + NPClist[i] + " into position " + i + " from position " + j + ".");
+                Debug.Log("Behavior setting[" + j + "].groupOfActivitiesName: " + behaviorSetting[j].groupOfActivitiesName);
+                Debug.Log("Behavior setting[" + j + "].activityPos: " + behaviorSetting[j].activityPos);
+                Debug.Log("Behavior setting[" + j + "].actionPos: " + behaviorSetting[j].actionPos);
+                Debug.Log("Behavior setting[" + j + "].actionInfo.type: " + behaviorSetting[j].actionInfo.type.ToString());
+
+
                 NPClist[i].setBehavior(behaviorSetting[j]);
             }
             else
