@@ -573,6 +573,11 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
             waitUntil = behaviorSet.actionInfo.endTime;
         }
 
+        if (behaviorSet.isGuard) // if NPC is a guard, check patrolling status
+        {
+            gameObject.GetComponentInChildren<GuardBehavior>().Patrolling = behaviorSet.isPatrolling;
+        }
+
     }
 
     // This method gets the current activity action, activity and group of activity information and saves it as an object which can be later reset
@@ -662,6 +667,22 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
             Debug.Log("No activity associated with this action.");
         }
         behaviorInfo.actionInfo = actionInfo;
+
+        // check if NPC is a guard and set patrolling info
+        GuardBehavior guardBehavior = gameObject.GetComponentInChildren<GuardBehavior>();
+        if (guardBehavior==null)    
+        {
+            behaviorInfo.isGuard = false;
+            behaviorInfo.isPatrolling = false;
+        }
+        else
+        {
+            behaviorInfo.isGuard = true;
+            behaviorInfo.isPatrolling = guardBehavior.Patrolling;
+        }
+
+
+
         return behaviorInfo;
     }
 

@@ -37,12 +37,15 @@ public class NPCBehaviorSetting : ScriptableObject
             int j = getListPos(NPClist[i].Name);
             if (j >= 0)
             {
+                /*
                 Debug.Log("Setting behaviors for " + NPClist[i] + " into position " + i + " from position " + j + ".");
                 Debug.Log("Behavior setting[" + j + "].groupOfActivitiesName: " + behaviorSetting[j].groupOfActivitiesName);
                 Debug.Log("Behavior setting[" + j + "].activityPos: " + behaviorSetting[j].activityPos);
                 Debug.Log("Behavior setting[" + j + "].actionPos: " + behaviorSetting[j].actionPos);
                 Debug.Log("Behavior setting[" + j + "].actionInfo.type: " + behaviorSetting[j].actionInfo.type.ToString());
-
+                Debug.Log("Behavior setting[" + j + "].isGuard: " + behaviorSetting[j].isGuard);
+                Debug.Log("Behavior setting[" + j + "].isPatrolling: " + behaviorSetting[j].isPatrolling);
+                */
 
                 NPClist[i].setBehavior(behaviorSetting[j]);
             }

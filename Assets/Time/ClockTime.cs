@@ -70,13 +70,25 @@ public class ClockTime
     public void AddMinutes(int minutes)
     {
         Minute += minutes;
-
         int hours = Minute / 60;
         Minute = Minute % 60;
+        if (Minute<0)  // adjusts for negative minutes
+        {
+            Minute += 60;
+            hours--;
+        }
+        
         Hour += hours;
         int days = Hour / 24;
         Hour = Hour % 24;
+        if (Hour < 0) // adjusts for negative hours
+        {
+            Hour += 24;
+            days--;
+        }
+
         Day += days;
+
     }
 
     public void AddHours(int hours)
