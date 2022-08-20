@@ -516,11 +516,13 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
             {
                 found = true;
                 ActivityTracker.ActivityGroupIndex = i;
+                ActivityTracker.RunningGroup = ActivityTracker.ActivityGroups[i];
             }
         }
         if (!found)
         {
             ActivityTracker.ActivityGroupIndex = 0;
+            ActivityTracker.RunningGroup = ActivityTracker.ActivityGroups[0];
             ActivityTracker.ActivityIndex = 0;
             ActivityTracker.RunningActivity = ActivityTracker.RunningGroup.Activities[0];
             ActivityTracker.ActionIndex = 0;
@@ -583,7 +585,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         behaviorInfo.NPCName = Name;
         Debug.Log("Storing " + Name + "'s behaviors.");
 
-        behaviorInfo.groupOfActivitiesName = ActivityTracker.ActivityGroups[ActivityTracker.ActivityGroupIndex].GroupName;
+        behaviorInfo.groupOfActivitiesName = ActivityTracker.RunningGroup.GroupName;
         behaviorInfo.activityPos = ActivityTracker.ActivityIndex;
         behaviorInfo.actionPos = ActivityTracker.ActionIndex;
 
