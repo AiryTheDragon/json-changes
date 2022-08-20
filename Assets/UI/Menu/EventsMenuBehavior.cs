@@ -92,8 +92,8 @@ public class EventsMenuBehavior : MonoBehaviour, IManualUpdate
         for (int i = 0; i < 10 && i < readable.Count; i++)
         {
             //leftText.Append(readable[i]).Append("\n");
-            leftText.Append("Day ").Append(readable[i].Time.Day.ToString()).Append(" ")
-                    .Append(readable[i].Time.Hour.ToString()).Append(":").Append(readable[i].Time.Hour.ToString());
+            leftText.Append("Day ").Append(readable[i].Time.Day.ToString()).Append(", ")
+                    .Append(readable[i].Time.Hour.ToString("D2")).Append(":").Append(readable[i].Time.Minute.ToString("D2"));
             leftText.Append("  ").Append(readable[i].NoticeType).Append("\n");
         }
 
