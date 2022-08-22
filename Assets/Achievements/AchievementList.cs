@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AchievementList : MonoBehaviour
 {
-    public static List<AchievementItem> achievementList = new List<AchievementItem>();
+    public static List<AchievementItem> AllAchievements { get; set; }= new();
     public Player player;
 
     public void Start()
@@ -21,7 +21,7 @@ public class AchievementList : MonoBehaviour
         Item1.AchievementName = "Win over the creators";
         Item1.AchievementDescription = "Achieve full support of Mike and Daniel.";
         Item1.isDone = false;
-        achievementList.Add(Item1);
+        AllAchievements.Add(Item1);
 
         AchievementItem Item2 = AchievementItem.CreateInstance<AchievementItem>();
         // Airy support achievement
@@ -29,7 +29,7 @@ public class AchievementList : MonoBehaviour
         Item2.AchievementName = "Tame the dragon";
         Item2.AchievementDescription = "Achieve full support of Airy.";
         Item2.isDone = false;
-        achievementList.Add(Item2);
+        AllAchievements.Add(Item2);
 
         AchievementItem Item3 = AchievementItem.CreateInstance<AchievementItem>();
         // Don and Onna support achievement
@@ -37,7 +37,7 @@ public class AchievementList : MonoBehaviour
         Item3.AchievementName = "Parential approval";
         Item3.AchievementDescription = "Achieve full support of Don and Onna.";
         Item3.isDone = false;
-        achievementList.Add(Item3);
+        AllAchievements.Add(Item3);
 
         AchievementItem Item4 = AchievementItem.CreateInstance<AchievementItem>();
         // Guard caught achievement
@@ -45,7 +45,7 @@ public class AchievementList : MonoBehaviour
         Item4.AchievementName = "Catch the guards";
         Item4.AchievementDescription = "Catch a guard in an illegal act.";
         Item4.isDone = false;
-        achievementList.Add(Item4);
+        AllAchievements.Add(Item4);
 
         AchievementItem Item5 = AchievementItem.CreateInstance<AchievementItem>();
         // George caught achievement
@@ -53,7 +53,7 @@ public class AchievementList : MonoBehaviour
         Item5.AchievementName = "Hypocrisy";
         Item5.AchievementDescription = "Catch George in an illegal act.";
         Item5.isDone = false;
-        achievementList.Add(Item5);
+        AllAchievements.Add(Item5);
 
         AchievementItem Item6 = AchievementItem.CreateInstance<AchievementItem>();
         // Manager George support achievement
@@ -61,7 +61,7 @@ public class AchievementList : MonoBehaviour
         Item6.AchievementName = "Manage the manager";
         Item6.AchievementDescription = "Achieve full support of George.";
         Item6.isDone = false;
-        achievementList.Add(Item6);
+        AllAchievements.Add(Item6);
 
         AchievementItem Item7 = AchievementItem.CreateInstance<AchievementItem>();
         // Writing letter achievement
@@ -69,7 +69,7 @@ public class AchievementList : MonoBehaviour
         Item7.AchievementName = "Mightier than the sword";
         Item7.AchievementDescription = "Write a letter.";
         Item7.isDone = false;
-        achievementList.Add(Item7);
+        AllAchievements.Add(Item7);
 
         AchievementItem Item8 = AchievementItem.CreateInstance<AchievementItem>();
         // Touching lava achievement
@@ -77,7 +77,7 @@ public class AchievementList : MonoBehaviour
         Item8.AchievementName = "Burned";
         Item8.AchievementDescription = "Touch the lava.";
         Item8.isDone = false;
-        achievementList.Add(Item8);
+        AllAchievements.Add(Item8);
 
         AchievementItem Item9 = AchievementItem.CreateInstance<AchievementItem>();
         // Enter Jail achievement
@@ -85,7 +85,7 @@ public class AchievementList : MonoBehaviour
         Item9.AchievementName = "Sightsee the prison";
         Item9.AchievementDescription = "Enter the jail.";
         Item9.isDone = false;
-        achievementList.Add(Item9);
+        AllAchievements.Add(Item9);
 
         AchievementItem Item10 = AchievementItem.CreateInstance<AchievementItem>();
         // Enter Jail cell achievement
@@ -93,7 +93,7 @@ public class AchievementList : MonoBehaviour
         Item10.AchievementName = "Locked in";
         Item10.AchievementDescription = "Enter the jail cell.";
         Item10.isDone = false;
-        achievementList.Add(Item10);
+        AllAchievements.Add(Item10);
 
         AchievementItem Item11 = AchievementItem.CreateInstance<AchievementItem>();
         // Enter the manager House
@@ -101,7 +101,7 @@ public class AchievementList : MonoBehaviour
         Item11.AchievementName = "Are you allowed in here?";
         Item11.AchievementDescription = "Enter the manager's house.";
         Item11.isDone = false;
-        achievementList.Add(Item11);
+        AllAchievements.Add(Item11);
 
         AchievementItem Item12 = AchievementItem.CreateInstance<AchievementItem>();
         // Enter the printing press room
@@ -109,7 +109,7 @@ public class AchievementList : MonoBehaviour
         Item12.AchievementName = "Meet the press";
         Item12.AchievementDescription = "Enter the printing press room.";
         Item12.isDone = false;
-        achievementList.Add(Item12);
+        AllAchievements.Add(Item12);
 
         AchievementItem Item13 = AchievementItem.CreateInstance<AchievementItem>();
         // Less than 10% support
@@ -117,7 +117,7 @@ public class AchievementList : MonoBehaviour
         Item13.AchievementName = "Whisked away";
         Item13.AchievementDescription = "Attempt a rebellion with marginal support.";
         Item13.isDone = false;
-        achievementList.Add(Item13);
+        AllAchievements.Add(Item13);
 
         AchievementItem Item14 = AchievementItem.CreateInstance<AchievementItem>();
         // 10 - 25% support
@@ -125,7 +125,7 @@ public class AchievementList : MonoBehaviour
         Item14.AchievementName = "Isolation";
         Item14.AchievementDescription = "Attempt a rebellions with a small amount of support.";
         Item14.isDone = false;
-        achievementList.Add(Item14);
+        AllAchievements.Add(Item14);
 
         AchievementItem Item15 = AchievementItem.CreateInstance<AchievementItem>();
         // 25% - 40% support
@@ -133,7 +133,7 @@ public class AchievementList : MonoBehaviour
         Item15.AchievementName = "Executed";
         Item15.AchievementDescription = "Attempt a rebellion with moderate support.";
         Item15.isDone = false;
-        achievementList.Add(Item15);
+        AllAchievements.Add(Item15);
 
         AchievementItem Item16 = AchievementItem.CreateInstance<AchievementItem>();
         // 40 - 60% support
@@ -141,7 +141,7 @@ public class AchievementList : MonoBehaviour
         Item16.AchievementName = "Battered but free";
         Item16.AchievementDescription = "Attempt a rebellion with sufficient support.";
         Item16.isDone = false;
-        achievementList.Add(Item16);
+        AllAchievements.Add(Item16);
 
         AchievementItem Item17 = AchievementItem.CreateInstance<AchievementItem>();
         // 60 - 99% support
@@ -149,7 +149,7 @@ public class AchievementList : MonoBehaviour
         Item17.AchievementName = "Victorious";
         Item17.AchievementDescription = "Attempt a rebellion with major support.";
         Item17.isDone = false;
-        achievementList.Add(Item17);
+        AllAchievements.Add(Item17);
 
         AchievementItem Item18 = AchievementItem.CreateInstance<AchievementItem>();
         // 100% support
@@ -157,7 +157,7 @@ public class AchievementList : MonoBehaviour
         Item18.AchievementName = "Silver tongue";
         Item18.AchievementDescription = "Attempt a rebellion with complete support.";
         Item18.isDone = false;
-        achievementList.Add(Item18);
+        AllAchievements.Add(Item18);
 
         AchievementItem Item19 = AchievementItem.CreateInstance<AchievementItem>();
         // Hoard at least 10 pens and pieces of paper
@@ -165,7 +165,7 @@ public class AchievementList : MonoBehaviour
         Item19.AchievementName = "Hoarder";
         Item19.AchievementDescription = "Hold at least 10 pens and pieces of paper.";
         Item19.isDone = false;
-        achievementList.Add(Item19);
+        AllAchievements.Add(Item19);
 
         AchievementItem Item20 = AchievementItem.CreateInstance<AchievementItem>();
         // Pee in the bushes
@@ -173,7 +173,7 @@ public class AchievementList : MonoBehaviour
         Item20.AchievementName = "Aaaaaaaaaah";
         Item20.AchievementDescription = "Pee in the bushes.";
         Item20.isDone = false;
-        achievementList.Add(Item20);
+        AllAchievements.Add(Item20);
 
     }
 
@@ -181,9 +181,9 @@ public class AchievementList : MonoBehaviour
     public AchievementItem getItem(int number)
     {
         AchievementItem Item = null;
-        if (number < achievementList.Count && number>=0)
+        if (number < AllAchievements.Count && number>=0)
         {
-            Item = achievementList[number];
+            Item = AllAchievements[number];
         }
         return Item;
     }
@@ -194,11 +194,11 @@ public class AchievementList : MonoBehaviour
     {
         AchievementItem Item = null;
         bool found = false;
-        for (int i=0; i<achievementList.Count && !found; i++)
+        for (int i=0; i<AllAchievements.Count && !found; i++)
         {
-            if (achievementList[i].AchievementType == ach)
+            if (AllAchievements[i].AchievementType == ach)
             {
-                Item = achievementList[i];
+                Item = AllAchievements[i];
                 found = true;
             }
         }
@@ -293,7 +293,7 @@ public class AchievementList : MonoBehaviour
 
     public void TryGetAchievement(Achievement ach)
     {
-        var achievement = achievementList.First(x => x.AchievementType == ach);
+        var achievement = AllAchievements.First(x => x.AchievementType == ach);
         if(!achievement.isDone)
         {
             achievement.isDone = true;

@@ -3,17 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
    
-public class LightSettings : ScriptableObject
+public class LightSettings
 {
 
     public bool[] lightSettings;
 
-    public void Start()
-    {
-
-    }
-
-    public bool[] getAllLightSettings(LampBehavior[] lampList)
+    public bool[] GetAllLightSettings(LampBehavior[] lampList)
     {
         lightSettings = new bool[lampList.Length];
 
@@ -25,7 +20,7 @@ public class LightSettings : ScriptableObject
         return lightSettings;
     }
 
-    public void setAllLightSettings(LampBehavior[] lampList)
+    public void SetAllLightSettings(LampBehavior[] lampList)
     {
 
         for (int i = 0; i < lampList.Length && i<lightSettings.Length; i++)

@@ -4,19 +4,14 @@ using UnityEngine;
 
 
    
-public class PositionSettings : ScriptableObject
+public class PositionSettings
 {
 
     public Vector3[] positionSettings;
     public string[] positionNames;
     public Vector3 playerPositionSettings;
 
-    public void Start()
-    {
-
-    }
-
-    public Vector3[] getAllPositionSettings(NPCBehavior[] NPClist)
+    public Vector3[] GetAllPositionSettings(NPCBehavior[] NPClist)
     {
         positionSettings = new Vector3[NPClist.Length];
         positionNames = new string[NPClist.Length];
@@ -30,13 +25,13 @@ public class PositionSettings : ScriptableObject
         return positionSettings;
     }
 
-    public Vector3 getPlayerPositionSettings(Player player)
+    public Vector3 GetPlayerPositionSettings(Player player)
     {
         playerPositionSettings = player.transform.position;
         return player.transform.position;
     }
 
-    public void setAllPositionSettings(NPCBehavior[] NPClist)
+    public void SetAllPositionSettings(NPCBehavior[] NPClist)
     {
 
         for (int i = 0; i < NPClist.Length; i++)
@@ -55,13 +50,13 @@ public class PositionSettings : ScriptableObject
         return;
     }
 
-    public void setPlayerPositionSettings(Player player)
+    public void SetPlayerPositionSettings(Player player)
     {
         player.transform.position = playerPositionSettings;
         return;
     }
 
-    public void setPositions(float[] posSettings, string[] posNames, float[] playerPos)
+    public void SetPositions(float[] posSettings, string[] posNames, float[] playerPos)
     {
         positionSettings = new Vector3[posSettings.Length / 3];
         positionNames = new string[posNames.Length];
@@ -93,7 +88,7 @@ public class PositionSettings : ScriptableObject
 
     public PositionSettingsConversion convertToFloats()
     {
-        PositionSettingsConversion conversion = PositionSettingsConversion.CreateInstance<PositionSettingsConversion>();
+        PositionSettingsConversion conversion = new PositionSettingsConversion();
         conversion.setPositions(positionSettings, positionNames, playerPositionSettings);
 
         return conversion;

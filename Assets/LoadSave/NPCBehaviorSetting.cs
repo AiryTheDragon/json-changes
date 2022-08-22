@@ -4,15 +4,10 @@ using UnityEngine;
 
 
    
-public class NPCBehaviorSetting : ScriptableObject
+public class NPCBehaviorSetting
 {
 
     public BehaviorSet[] behaviorSetting;
-
-    public void Start()
-    {
-
-    }
 
     public BehaviorSet[] getAllBehaviorSettings(NPCBehavior[] NPClist)
     {
