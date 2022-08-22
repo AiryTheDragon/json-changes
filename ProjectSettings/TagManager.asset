@@ -32,6 +32,7 @@ TagManager:
   - Campfire
   - PeeShrub
   - Sign
+  - SecurityCamera
   layers:
   - Default
   - TransparentFX

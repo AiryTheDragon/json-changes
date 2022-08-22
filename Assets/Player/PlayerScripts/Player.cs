@@ -276,6 +276,10 @@ public class Player : MonoBehaviour
                 PlayAudioClip(_playerSounds.Ugh);
             }
         }
+        else if(collision.gameObject.tag == "SecurityCamera")
+        {
+            collision.gameObject.GetComponent<SecurityCameraBehavior>().seesPlayer = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -293,6 +297,10 @@ public class Player : MonoBehaviour
             }
             ughCount++;
             _source.Play();
+        }
+        else if (collision.gameObject.tag == "SecurityCamera")
+        {
+            collision.gameObject.GetComponent<SecurityCameraBehavior>().seesPlayer = false;
         }
     }
 
