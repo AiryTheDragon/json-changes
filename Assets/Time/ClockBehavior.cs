@@ -92,8 +92,8 @@ public class ClockBehavior : MonoBehaviour
         thisDayTime.Day = 0;
         ClockTime difference = NewDayTime.subtractClockTime(thisDayTime);  // if the curent time is after reset time, difference.hour = -1
         nextTime.Day = Time.Day - difference.Day; // add one if current time is after reset time
-        Debug.Log("Difference between now and next time is " + difference.Day + ", hour " + difference.Hour + ", minute " + difference.Minute);
-        Debug.Log("Time being set to day " + nextTime.Day + ", hour " + nextTime.Hour + ", minute " + nextTime.Minute);
+ //       Debug.Log("Difference between now and next time is " + difference.Day + ", hour " + difference.Hour + ", minute " + difference.Minute);
+ //       Debug.Log("Time being set to day " + nextTime.Day + ", hour " + nextTime.Hour + ", minute " + nextTime.Minute);
 
         return nextTime;
     }

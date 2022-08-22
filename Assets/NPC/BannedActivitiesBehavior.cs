@@ -133,11 +133,11 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
         if (changed)
         {
             Debug.Log(AC.UnBanText + " " + AC.GroupName + " is no longer banned.");
-            log.AddItem("Notice", AC.UnBanText + " " + AC.GroupName + " is no longer banned.");
+            log.AddItem("Unban", AC.UnBanText + " " + AC.GroupName + " is no longer banned.");
         }
         else
         {
-            Debug.Log("The 'Boss' has itchy fingers.");
+            Debug.Log("The 'Manager' has itchy fingers.");
         }
     }
 
@@ -158,7 +158,7 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
                 index = getPos(act);
                 BanLevels[index] = BanLevels[index] + 1;
                 Debug.Log(act + " is now banned at level " + BanLevels[index]);
-                log.AddItem("Notice", act + " is now banned at level " + BanLevels[index]);
+                log.AddItem("Tougher ban", act + " is now banned at level " + BanLevels[index]);
             }
             else
             {
@@ -166,18 +166,18 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
                 BannedActivities.Add(act);
                 BanLevels.Add(1);
                 Debug.Log(act + " is now banned at level 1");
-                log.AddItem("Notice", act + " is now banned at level 1");
+                log.AddItem("New ban", act + " is now banned at level 1");
             }
         }
         if (changed) // new addition to list
         {
             Debug.Log(AC.BanText + " " + AC.GroupName + " is now banned.");
-            log.AddItem("Notice", AC.BanText + " " + AC.GroupName + " is now banned.");
+            log.AddItem("The Manager", AC.BanText + " " + AC.GroupName + " is now banned.");
         }
         else // already on list
         {
             Debug.Log(AC.MoreBanText + " " + AC.GroupName + " is now more strongly banned.");
-            log.AddItem("Notice", AC.MoreBanText + " " + AC.GroupName + " is now more strongly banned.");
+            log.AddItem("The Manager", AC.MoreBanText + " " + AC.GroupName + " is now more strongly banned.");
         }
     }
 

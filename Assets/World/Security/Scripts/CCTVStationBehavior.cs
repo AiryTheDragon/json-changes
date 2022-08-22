@@ -15,6 +15,7 @@ public class CCTVStationBehavior : MonoBehaviour, INeedsClockUpdate
     void Start()
     {
         GameObject.Find("Clock").GetComponent<ClockBehavior>().NeedsClockUpdate.Add(this);
+        Debug.Log("Security Monitoring initialized");
     }
 
     // Update is called once per frame
@@ -24,7 +25,7 @@ public class CCTVStationBehavior : MonoBehaviour, INeedsClockUpdate
 
     public void UpdateClock(ClockTime time)
     {
-        if(GuardsWatching > 0)
+        if (GuardsWatching > 0)
         {
             foreach(var camera in Cameras)
             {
@@ -32,6 +33,7 @@ public class CCTVStationBehavior : MonoBehaviour, INeedsClockUpdate
                 if(cameraBehavior.seesPlayer)
                 {
                     cameraBehavior.playerCollision.GetComponentInParent<Player>().AddSuspicion(cameraBehavior.SuspicionPerMinute);
+                    Debug.Log("Your behaviors is regarded as suspicious..." + cameraBehavior.SuspicionPerMinute);
                 }
             }
         }
@@ -39,17 +41,25 @@ public class CCTVStationBehavior : MonoBehaviour, INeedsClockUpdate
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.tag == "Guard")
+        
+        Debug.Log("A " + collision.collider.tag + " is by the security monitors.");
+
+
+        if(collision.collider.tag == "GuardNPC")
         {
             GuardsWatching++;
+            Debug.Log("A guard is watching the security monitors.");
         }
         UpdateMonitors();
+        
     }
 
     public void OnCollisionExit2D(Collision2D collision)
     {
-        if(collision.collider.tag == "Guard")
+        
+        if(collision.collider.tag == "GuardNPC")
         {
+            Debug.Log("A guard is no longer watching the security monitors.");
             GuardsWatching--;
             if(GuardsWatching < 0)
             {
@@ -57,6 +67,7 @@ public class CCTVStationBehavior : MonoBehaviour, INeedsClockUpdate
             }
         }
         UpdateMonitors();
+        
     }
 
     public void UpdateMonitors()
