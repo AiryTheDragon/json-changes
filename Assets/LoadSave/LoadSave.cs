@@ -74,11 +74,11 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
         //TODO Load inventory
         //TODO Load log
     }
-
-    /*****************************************************************
-     * This method is to be used during development process to create
-     * a good next day state for the game.
-     ****************************************************************/
+    
+    /// <summary>
+    /// This method is to be used during development process to create
+    /// a good next day state for the game.
+    /// </summary>
     public void CreateNextDayState()
     {
         CreateBehaviorSettings();
@@ -86,11 +86,11 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
         CreateLightSettings();
     }
 
-    /*****************************************************************
-     * This method loads the data regarding the next day state into memory
-     * from files, then sets the values regarding the behavior and positions
-     * of the NPCs and player, and also sets the light object settings.
-     ****************************************************************/
+    /// <summary>
+    /// This method loads the data regarding the next day state into memory
+    /// from files, then sets the values regarding the behavior and positions
+    /// of the NPCs and player, and also sets the light object settings.
+    /// </summary>
     public void LoadNextDayState()
     {
         ImportNextDayState();
