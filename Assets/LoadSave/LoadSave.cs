@@ -1,30 +1,30 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
 using System.IO;
+using System.Linq;
 
 public class LoadSave : MonoBehaviour, INeedsClockUpdate
 {
+    private NPCBehavior[] npcList;
+    private LampBehavior[] lampList;
+    private GameObject[] paperList;
+    private GameObject[] penList;
+    private GameObject[] keyList;
+    private GameObject[] miscList; // TODO
 
-    public NPCBehavior[] npcList;
-    public NPCBehaviorSetting NPCsettings;
-    public PositionSettings positionSettings;
-    public LampBehavior[] lampList;
-    public LightSettings lampSettings;
-    public GameObject[] paperList;
-    public GameObject[] penList;
-    public GameObject[] keyList;
-    public GameObject[] miscList; // TODO
-    public PickableObjectSettings paperSettings;
-    public PickableObjectSettings penSettings;
-    public PickableObjectSettings keySettings;
-    public PickableObjectSettings miscSettings; // TODO
+    private readonly AchievementSettings achievementSettings = new();
+
     public InvScript invSettings; // TODO
     public BannedActivitiesBehavior bannedActivitiesSettings; // TODO
     public Log logSettings; // TODO
     public ClockBehavior Clock;
     public Player player;
+
+    private SaveFile saveFile;
+
     private string fileFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
     private string subpathString = "EEData";
     private string pathString;
@@ -34,13 +34,7 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
     {
         pathString = System.IO.Path.Combine(fileFolder, subpathString);
 
-        NPCsettings = NPCBehaviorSetting.CreateInstance<NPCBehaviorSetting>();
-        positionSettings = PositionSettings.CreateInstance<PositionSettings>();
-        lampSettings = LightSettings.CreateInstance<LightSettings>();
-        paperSettings = PickableObjectSettings.CreateInstance<PickableObjectSettings>();
-        penSettings = PickableObjectSettings.CreateInstance<PickableObjectSettings>();
-        keySettings = PickableObjectSettings.CreateInstance<PickableObjectSettings>();
-        miscSettings = PickableObjectSettings.CreateInstance<PickableObjectSettings>();
+        saveFile = new SaveFile();
 
         npcList = GameObject.FindObjectsOfType<NPCBehavior>();
         lampList = GameObject.FindObjectsOfType<LampBehavior>();
@@ -53,6 +47,7 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
 
     public void CreateSaveData(string saveName)
     {
+        saveFile = new();
         CreateBehaviorSettings();
         CreatePositionSettings();
         CreateLightSettings();
@@ -64,6 +59,7 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
 
     public void LoadSaveData(string saveName)
     {
+        saveFile = new();
         SetBehaviorSettings();
         SetPositionSettings();
         SetLightSettings();
@@ -71,8 +67,6 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
         SetAchievementSettings();
         SetInventory();
         SetLog();
-        //TODO Load inventory
-        //TODO Load log
     }
     
     /// <summary>
@@ -81,6 +75,7 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
     /// </summary>
     public void CreateNextDayState()
     {
+        saveFile = new();
         CreateBehaviorSettings();
         CreatePositionSettings();
         CreateLightSettings();
@@ -93,6 +88,7 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
     /// </summary>
     public void LoadNextDayState()
     {
+        saveFile = new();
         ImportNextDayState();
         SetBehaviorSettings();
         SetPositionSettings();
@@ -103,7 +99,7 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
     // Do I need this one?
     public void SaveNextDayState()
     {
-
+        
     }
 
     /*--------------------------------------------------------
@@ -118,11 +114,11 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
     {
         Debug.Log("Testing File saving");
 
-        // save behavior data
+        // save next day data
 
-        string behaviorFileName = "BehaviorData.json";
-        string totalPathString = System.IO.Path.Combine(pathString, behaviorFileName);
-        string behaviorData = JsonConvert.SerializeObject(NPCsettings); // converts data in the NPCsettings object into a string
+        string nextDayFileName = "NextDay.json";
+        string totalPathString = System.IO.Path.Combine(pathString, nextDayFileName);
+        string nextDayData = JsonConvert.SerializeObject(saveFile); // converts data in the NPCsettings object into a string
 
         System.IO.Directory.CreateDirectory(pathString);
 
@@ -135,55 +131,11 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
         {
             using var sr = new StreamWriter(fs);
 
-            sr.Write(behaviorData);
+            sr.Write(nextDayData);
         }
 
         Debug.Log("Creating file \"" + totalPathString + "\" with behavior data.");
 
-        // save position data
-
-        string positionFileName = "PositionData.json";
-        totalPathString = System.IO.Path.Combine(pathString, positionFileName);
-
-        PositionSettingsConversion posSetConv = positionSettings.convertToFloats(); // converts positions into easier to serialize object
-
-        string positionData = JsonConvert.SerializeObject(posSetConv); // converts position data into a string
-
-        if (System.IO.File.Exists(totalPathString))
-        {
-            Debug.Log("Overwriting file \"" + totalPathString + "\".");
-        }
- 
-        using (System.IO.FileStream fs = System.IO.File.Create(totalPathString))
-        {
-            using var sr = new StreamWriter(fs);
-
-            sr.Write(positionData);
-        }
-
-        Debug.Log("Creating file \"" + totalPathString + "\" with position data.");
-
-        // save light data
-
-        string lightFileName = "LightData.json";
-        totalPathString = System.IO.Path.Combine(pathString, lightFileName);
-        string lightData = JsonConvert.SerializeObject(lampSettings); // converts data in the NPCsettings object into a string
-
-        System.IO.Directory.CreateDirectory(pathString);
-
-        if (System.IO.File.Exists(totalPathString))
-        {
-            Debug.Log("Overwriting file \"" + totalPathString + "\".");
-        }
-
-        using (System.IO.FileStream fs = System.IO.File.Create(totalPathString))
-        {
-            using var sr = new StreamWriter(fs);
-
-            sr.Write(lightData);
-        }
-
-        Debug.Log("Creating file \"" + totalPathString + "\" with light data.");
 
     }
 
@@ -198,9 +150,9 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
 
         // load behavior data
 
-        string behaviorFileName = "BehaviorData.json";
-        string totalPathString = System.IO.Path.Combine(pathString, behaviorFileName);
-        string behaviorData;
+        string nextDayFileName = "NextDay.json";
+        string totalPathString = System.IO.Path.Combine(pathString, nextDayFileName);
+        string nextDayData;
         //= JsonConvert.SerializeObject(NPCsettings); // converts data in the NPCsettings object into a string
 
         if (!System.IO.File.Exists(totalPathString))
@@ -213,81 +165,30 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
             {
                 using var sr = new StreamReader(fs);
 
-                behaviorData = sr.ReadToEnd();
+                nextDayData = sr.ReadToEnd();
             }
 
             Debug.Log("Loading behavior data from file \"" + totalPathString + "\".");
 
-            NPCsettings = JsonConvert.DeserializeObject<NPCBehaviorSetting>(behaviorData);
+            saveFile = JsonConvert.DeserializeObject<SaveFile>(nextDayData);
 
             Debug.Log("Setting up NPCBehaviorSetting object.");
 
         }
-        // load position data
+        
 
-        string positionFileName = "PositionData.json";
-        totalPathString = System.IO.Path.Combine(pathString, positionFileName);
-        string positionDataFloat;
-        if (!System.IO.File.Exists(totalPathString))
-        {
-            Debug.Log("Error, file \"" + totalPathString + "\" not found.");
-        }
-        else
-        {
-            using (System.IO.FileStream fs = System.IO.File.OpenRead(totalPathString))
-            {
-                using var sr = new StreamReader(fs);
-
-                positionDataFloat = sr.ReadToEnd();
-            }
-
-            Debug.Log("Loading position data from file \"" + totalPathString + "\".");
-
-            PositionSettingsConversion posSetConv = JsonConvert.DeserializeObject<PositionSettingsConversion>(positionDataFloat);
-            positionSettings = posSetConv.convertToVector3();
-
-            Debug.Log("Setting up PositionSetting object.");
-
-        } 
-
-        // save light data
-
-        string lightFileName = "LightData.json";
-        totalPathString = System.IO.Path.Combine(pathString, lightFileName);
-        string lightData;
-        //= JsonConvert.SerializeObject(lampSettings); // converts data in the NPCsettings object into a string
-
-        System.IO.Directory.CreateDirectory(pathString);
-
-        if (!System.IO.File.Exists(totalPathString))
-        {
-            Debug.Log("Error, file \"" + totalPathString + "\" not found.");
-        }
-        else
-        {
-            using (System.IO.FileStream fs = System.IO.File.OpenRead(totalPathString))
-            {
-                using var sr = new StreamReader(fs);
-
-                lightData = sr.ReadToEnd();
-            }
-
-            Debug.Log("Loading position data from file \"" + totalPathString + "\".");
-            lampSettings = JsonConvert.DeserializeObject<LightSettings>(lightData);
-
-        }
+        
     }
 
     public void ExportSaveData(string savename)
     {
-        Debug.Log("Exporting Data");
         Debug.Log("Testing File saving");
 
-        // save behavior data
+        // save next day data
 
-        string behaviorFileName = "BehaviorData.json";
-        string totalPathString = System.IO.Path.Combine(pathString, behaviorFileName);
-        string behaviorData = JsonConvert.SerializeObject(NPCsettings); // converts data in the NPCsettings object into a string
+        string savesFolderPath = Path.Combine(pathString, "saves");
+        string totalPathString = System.IO.Path.Combine(savesFolderPath, savename + ".json");
+        string saveData = JsonConvert.SerializeObject(saveFile); // converts data in the NPCsettings object into a string
 
         System.IO.Directory.CreateDirectory(pathString);
 
@@ -295,44 +196,21 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
         {
             Debug.Log("Overwriting file \"" + totalPathString + "\".");
         }
-
+        
         using (System.IO.FileStream fs = System.IO.File.Create(totalPathString))
         {
             using var sr = new StreamWriter(fs);
 
-            sr.Write(behaviorData);
+            sr.Write(saveData);
         }
 
         Debug.Log("Creating file \"" + totalPathString + "\" with behavior data.");
 
-        // save position data
+        // save achievement data
 
-        string positionFileName = "PositionData.json";
-        totalPathString = System.IO.Path.Combine(pathString, positionFileName);
-
-        PositionSettingsConversion posSetConv = positionSettings.convertToFloats(); // converts positions into easier to serialize object
-
-        string positionData = JsonConvert.SerializeObject(posSetConv); // converts position data into a string
-
-        if (System.IO.File.Exists(totalPathString))
-        {
-            Debug.Log("Overwriting file \"" + totalPathString + "\".");
-        }
-
-        using (System.IO.FileStream fs = System.IO.File.Create(totalPathString))
-        {
-            using var sr = new StreamWriter(fs);
-
-            sr.Write(positionData);
-        }
-
-        Debug.Log("Creating file \"" + totalPathString + "\" with position data.");
-
-        // save light data
-
-        string lightFileName = "LightData.json";
-        totalPathString = System.IO.Path.Combine(pathString, lightFileName);
-        string lightData = JsonConvert.SerializeObject(lampSettings); // converts data in the NPCsettings object into a string
+        string achievementFileName = "AchievementData.json";
+        totalPathString = System.IO.Path.Combine(pathString, achievementFileName);
+        string achievementData = JsonConvert.SerializeObject(achievementSettings.Achievements); // converts data in the NPCsettings object into a string
 
         System.IO.Directory.CreateDirectory(pathString);
 
@@ -345,120 +223,93 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
         {
             using var sr = new StreamWriter(fs);
 
-            sr.Write(lightData);
-        }
-
-        Debug.Log("Creating file \"" + totalPathString + "\" with light data.");
-
-        // save paper data
-
-        string paperFileName = "PaperData.json";
-        totalPathString = System.IO.Path.Combine(pathString, paperFileName);
-        string paperData = JsonConvert.SerializeObject(paperSettings); // converts data in the NPCsettings object into a string
-
-        System.IO.Directory.CreateDirectory(pathString);
-
-        if (System.IO.File.Exists(totalPathString))
-        {
-            Debug.Log("Overwriting file \"" + totalPathString + "\".");
-        }
-
-        using (System.IO.FileStream fs = System.IO.File.Create(totalPathString))
-        {
-            using var sr = new StreamWriter(fs);
-
-            sr.Write(paperData);
-        }
-
-        Debug.Log("Creating file \"" + totalPathString + "\" with paper data.");
-
-        // save pen data
-
-        string penFileName = "PenData.json";
-        totalPathString = System.IO.Path.Combine(pathString, penFileName);
-        string penData = JsonConvert.SerializeObject(penSettings); // converts data in the NPCsettings object into a string
-
-        System.IO.Directory.CreateDirectory(pathString);
-
-        if (System.IO.File.Exists(totalPathString))
-        {
-            Debug.Log("Overwriting file \"" + totalPathString + "\".");
-        }
-
-        using (System.IO.FileStream fs = System.IO.File.Create(totalPathString))
-        {
-            using var sr = new StreamWriter(fs);
-
-            sr.Write(penData);
-        }
-
-        Debug.Log("Creating file \"" + totalPathString + "\" with pen data.");
-
-        // save key data
-
-        string keyFileName = "KeyData.json";
-        totalPathString = System.IO.Path.Combine(pathString, keyFileName);
-        string keyData = JsonConvert.SerializeObject(keySettings); // converts data in the NPCsettings object into a string
-
-        System.IO.Directory.CreateDirectory(pathString);
-
-        if (System.IO.File.Exists(totalPathString))
-        {
-            Debug.Log("Overwriting file \"" + totalPathString + "\".");
-        }
-
-        using (System.IO.FileStream fs = System.IO.File.Create(totalPathString))
-        {
-            using var sr = new StreamWriter(fs);
-
-            sr.Write(keyData);
+            sr.Write(achievementData);
         }
 
         Debug.Log("Creating file \"" + totalPathString + "\" with key data.");
 
     }
 
-    public void ImportSaveData()
+    public void ImportSaveData(string savename)
     {
+        var savesFolder = System.IO.Path.Combine(pathString, "saves");
+        var saveFile = System.IO.Path.Combine(savesFolder, savename + ".json");
 
+        if(!File.Exists(saveFile))
+        {
+            return;
+        }
+
+        FileStream fileStream = File.OpenRead(saveFile);
+        StreamReader fileReader = new(fileStream);
+        string fileData = fileReader.ReadToEnd();
+        fileReader.Dispose();
+        fileStream.Dispose();
+
+        this.saveFile = JsonConvert.DeserializeObject<SaveFile>(fileData);
     }
 
-    /*--------------------------------------------------------
-     * This method gets the behavior settings for the NPCs
-     * and stores them into the NPCsettings object
-     * ------------------------------------------------------*/
+    public void ImportAchievements()
+    {
+        var saveFile = System.IO.Path.Combine(pathString, "AchievementData.json");
+
+        if(!File.Exists(saveFile))
+        {
+            return;
+        }
+
+        FileStream fileStream = File.OpenRead(saveFile);
+        StreamReader fileReader = new(fileStream);
+        string fileData = fileReader.ReadToEnd();
+        fileReader.Dispose();
+        fileStream.Dispose();
+
+        this.achievementSettings.Achievements = JsonConvert.DeserializeObject<AchievementSave[]>(fileData);
+    }
+
+    /// <summary>
+    /// This method gets the behavior settings for the NPCs
+    /// and stores them into the NPCsettings object
+    /// </summary>
     public void CreateBehaviorSettings()
     {
-        NPCsettings.getAllBehaviorSettings(npcList);
+        var behaviorMaker = new NPCBehaviorSetting();
+        behaviorMaker.getAllBehaviorSettings(npcList);
+        saveFile.NPCBehaviorSettings = behaviorMaker.behaviorSetting;
     }
 
-    /*--------------------------------------------------------
-     * This method takes the data in the NPCsettings object
-     * using it to set the behaviors of the NPCs.
-     * ------------------------------------------------------*/
+    /// <summary>
+    /// This method takes the data in the NPCsettings object
+    /// using it to set the behaviors of the NPCs.
+    /// </summary>
     public void SetBehaviorSettings()
     {
-        NPCsettings.setAllBehaviorSettings(npcList);
+        var behaviorSetter = new NPCBehaviorSetting();
+        behaviorSetter.behaviorSetting = saveFile.NPCBehaviorSettings;
+        behaviorSetter.setAllBehaviorSettings(npcList);
     }
 
-   /*--------------------------------------------------------
-    * This method gets the position settings for the NPCs and 
-    * player and stores them into the positionSettings object
-    * ------------------------------------------------------*/
+    /// <summary>
+    /// This method gets the position settings for the NPCs and 
+    /// player and stores them into the positionSettings object
+    /// </summary>
     public void CreatePositionSettings()
     {
-        positionSettings.getAllPositionSettings(npcList);
-        positionSettings.getPlayerPositionSettings(player);
+        var positionSettings = new PositionSettings();
+        positionSettings.GetAllPositionSettings(npcList);
+        positionSettings.GetPlayerPositionSettings(player);
+        saveFile.PositionSettings = positionSettings.convertToFloats();
     }
 
-    /*--------------------------------------------------------
-     * This method uses the data in the positionSettings object 
-     * and sets the positions of the NPCs and players.
-     * ------------------------------------------------------*/
+    /// <summary>
+    /// This method uses the data in the positionSettings object 
+    /// and sets the positions of the NPCs and players.
+    /// </summary>
     public void SetPositionSettings()
     {
-        positionSettings.setAllPositionSettings(npcList);
-        positionSettings.setPlayerPositionSettings(player);
+        var positionSettings = saveFile.PositionSettings.convertToVector3();
+        positionSettings.SetAllPositionSettings(npcList);
+        positionSettings.SetPlayerPositionSettings(player);
     }
 
     /*--------------------------------------------------------
@@ -468,7 +319,9 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
      * ------------------------------------------------------*/
     public void CreateLightSettings()
     {
-        lampSettings.getAllLightSettings(lampList);
+        var lampSettings = new LightSettings();
+        lampSettings.GetAllLightSettings(lampList);
+        saveFile.LightSettings = lampSettings.lightSettings;
     }
 
     /*--------------------------------------------------------
@@ -478,7 +331,9 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
      * ------------------------------------------------------*/
     public void SetLightSettings()
     {
-        lampSettings.setAllLightSettings(lampList);
+        var lampSettings = new LightSettings();
+        lampSettings.lightSettings = saveFile.LightSettings;
+        lampSettings.SetAllLightSettings(lampList);
     }
 
     /*--------------------------------------------------------
@@ -488,9 +343,13 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
      * ------------------------------------------------------*/
     public void CreateObjectSettings()
     {
-        paperSettings.getAllObjectSettings(paperList);
-        penSettings.getAllObjectSettings(penList);
-        keySettings.getAllObjectSettings(keyList);
+        var objectSettings = new PickableObjectSettings();
+        objectSettings.GetAllObjectSettings(paperList);
+        saveFile.PaperSettings = objectSettings.objectSettings;
+        objectSettings.GetAllObjectSettings(penList);
+        saveFile.PenSettings = objectSettings.objectSettings;
+        objectSettings.GetAllObjectSettings(keyList);
+        saveFile.KeySettings = objectSettings.objectSettings;
 
     }
     /*--------------------------------------------------------
@@ -500,9 +359,13 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
      * ------------------------------------------------------*/
     public void SetObjectSettings()
     {
-        paperSettings.setAllObjectSettings(paperList);
-        penSettings.setAllObjectSettings(penList);
-        keySettings.setAllObjectSettings(keyList);
+        var objectSettings = new PickableObjectSettings();
+        objectSettings.objectSettings = saveFile.PaperSettings;
+        objectSettings.SetAllObjectSettings(paperList);
+        objectSettings.objectSettings = saveFile.PenSettings;
+        objectSettings.SetAllObjectSettings(penList);
+        objectSettings.objectSettings = saveFile.KeySettings;
+        objectSettings.SetAllObjectSettings(keyList);
     }
 
     /*--------------------------------------------------------
@@ -512,31 +375,49 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
 
     public void CreateAchievementSettings()
     {
-
+        achievementSettings.LoadAchievementsFromGame();
     }
 
     public void SetAchievementSettings()
     {
-
+        achievementSettings.LoadAchievementFromSave();
     }
 
     public void CreateInventory()
     {
-
+        saveFile.PensHeld = player.invScript.Pens;
+        saveFile.PaperHeld = player.invScript.Paper;
+        saveFile.LettersHeld = player.invScript.Letters.ToArray();
     }
 
     public void SetInventory()
     {
-
+        player.invScript.Pens = saveFile.PensHeld;
+        player.invScript.Paper = saveFile.PaperHeld;
+        player.invScript.inventoryObjects = new List<GameObject>();
+        player.invScript.inventoryNames = new List<string>();
+        for(int i = 0; i < keyList.Length; i++)
+        {
+            if(saveFile.KeySettings[i])
+            {
+                player.invScript.inventoryNames.Add(keyList[i].GetComponent<KeyScript>().objectName);
+                player.invScript.inventoryObjects.Add(keyList[i]);
+            }
+        }
+        player.invScript.Letters = saveFile.LettersHeld.ToList();
     }
 
     public void CreateLog()
     {
-
+        var logList = GameObject.FindObjectOfType<Log>();
+        saveFile.Logs = logList.LogList.ToArray();
+        saveFile.LogsCounter = logList.Counter;
     }
     public void SetLog()
     {
-
+        var logList = GameObject.FindObjectOfType<Log>();
+        logList.LogList = saveFile.Logs.ToList();
+        logList.Counter = saveFile.LogsCounter;
     }
 
     public void NextDayUpdates()
@@ -580,7 +461,7 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
         int randomValue;
         for (int i=0; i < num; i++)
         {
-            randomValue = Random.Range(0, paperList.Length);
+            randomValue = UnityEngine.Random.Range(0, paperList.Length);
             paperList[randomValue].SetActive(true);
         }
     }
@@ -594,7 +475,7 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
         int randomValue;
         for (int i = 0; i < num; i++)
         {
-            randomValue = Random.Range(0, penList.Length);
+            randomValue = UnityEngine.Random.Range(0, penList.Length);
             penList[randomValue].SetActive(true);
         }
     }

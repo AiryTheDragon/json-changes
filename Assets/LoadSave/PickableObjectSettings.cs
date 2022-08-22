@@ -3,17 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
    
-public class PickableObjectSettings : ScriptableObject
+public class PickableObjectSettings
 {
 
     public bool[] objectSettings;
 
-    public void Start()
-    {
-
-    }
-
-    public bool[] getAllObjectSettings(GameObject[] objectList)
+    public bool[] GetAllObjectSettings(GameObject[] objectList)
     {
         objectSettings = new bool[objectList.Length];
 
@@ -25,7 +20,7 @@ public class PickableObjectSettings : ScriptableObject
         return objectSettings;
     }
 
-    public void setAllObjectSettings(GameObject[] objectList)
+    public void SetAllObjectSettings(GameObject[] objectList)
     {
 
         for (int i = 0; i < objectList.Length && i< objectSettings.Length; i++)

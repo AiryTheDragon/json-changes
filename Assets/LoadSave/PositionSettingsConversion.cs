@@ -4,7 +4,7 @@ using UnityEngine;
 
 
    
-public class PositionSettingsConversion : ScriptableObject
+public class PositionSettingsConversion
 {
 
     public float[] positionSettingsFloat;
@@ -37,8 +37,8 @@ public class PositionSettingsConversion : ScriptableObject
 
     public PositionSettings convertToVector3()
     {
-        PositionSettings conversion = PositionSettings.CreateInstance<PositionSettings>();
-        conversion.setPositions(positionSettingsFloat, positionNames, playerPositionSettingsFloat);
+        PositionSettings conversion = new PositionSettings();
+        conversion.SetPositions(positionSettingsFloat, positionNames, playerPositionSettingsFloat);
 
         return conversion;
     }
