@@ -96,12 +96,8 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
         ImportNextDayState();
         SetBehaviorSettings();
         SetPositionSettings();
-        SetLightSettings();
-        //TODO update paper, add paper to game based on time slept
-        //TODO update pens, add pens to game based on time slept
+        SetLightSettings();      
         //TODO update suspecion, based on time slept.
-        //TODO set clock
-
     }
 
     // Do I need this one?
