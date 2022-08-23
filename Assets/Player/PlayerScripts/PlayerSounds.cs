@@ -11,6 +11,8 @@ public class PlayerSounds : MonoBehaviour
     public AudioClip Locked = null;
     public AudioClip Brush = null;
     public AudioClip Wallbump = null;
+    public AudioClip Rooster = null;
+    public AudioClip Night = null;
 
 #pragma warning disable 414
     public AudioClip Footsteps = null;
