@@ -201,6 +201,7 @@ public class Player : MonoBehaviour
 
                 // Check whether colliding with this npc gave us an achievement.
                 achievementList.CheckMoralAchievements(npc);
+                achievementList.CheckLetterTypeAchievements(letter);
             }
         }
     }

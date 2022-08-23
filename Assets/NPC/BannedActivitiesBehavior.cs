@@ -73,6 +73,8 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
         ActivityCategory ActivityBanned2 = null;
         ActivityCategory ActivityUnBanned = null;
 
+        log.AddItem("Notice", "Law Updates for Day " + Clock.Time.Day + ".");
+
         int maxValue = ListOfBannableActivities.ActivityCategories.Count;
 
         // choose unban
@@ -128,12 +130,13 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
                 BannedActivities.RemoveAt(index);
                 BanLevels.RemoveAt(index);
                 Debug.Log(act + "is no longer banned");
+                log.AddItem("Unban", act + " is now longer banned.");
             }
         }
         if (changed)
         {
             Debug.Log(AC.UnBanText + " " + AC.GroupName + " is no longer banned.");
-            log.AddItem("Unban", AC.UnBanText + " " + AC.GroupName + " is no longer banned.");
+            log.AddItem("The Manager", AC.UnBanText + " " + AC.GroupName + " is no longer banned.");
         }
         else
         {

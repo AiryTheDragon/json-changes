@@ -26,7 +26,8 @@ public enum Achievement
     Victorious,
     SilverTongue,
     Hoarder,
-    Aaaaaaaaaah
+    Aaaaaaaaaah,
+    NoMoreGames
 
 }
 

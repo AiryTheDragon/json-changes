@@ -175,6 +175,14 @@ public class AchievementList : MonoBehaviour
         Item20.isDone = false;
         AllAchievements.Add(Item20);
 
+        AchievementItem Item21 = AchievementItem.CreateInstance<AchievementItem>();
+        // Pee in the bushes
+        Item21.AchievementType = Achievement.NoMoreGames;
+        Item21.AchievementName = "No more games!";
+        Item21.AchievementDescription = "Deliver a letter warning about programming video games.";
+        Item21.isDone = false;
+        AllAchievements.Add(Item21);
+
     }
 
     // Searches for an achievement by its position in the list.
@@ -290,6 +298,18 @@ public class AchievementList : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// The method should check the type of ban for the letter and see if an achievement should be awarded
+    /// </summary>
+    /// <param name="letter"></param>
+    public void CheckLetterTypeAchievements(Letter letter)
+    {
+        /*TODO
+        if (letter.banType=="Working on game");
+        */
+    }
+
 
     public void TryGetAchievement(Achievement ach)
     {
