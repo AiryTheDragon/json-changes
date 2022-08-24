@@ -70,9 +70,9 @@ public class GameSelectionScript : MonoBehaviour
     {
         foreach(var button in SlotButtons)
         {
-            button.GetComponent<Image>().color = new Color(0x2b, 0x2b, 0x2b);
+            button.GetComponent<Image>().color = new Color32(0x2b, 0x2b, 0x2b, 0xff);
         }
-        SlotButtons[id-1].GetComponent<Image>().color = new Color(0x20, 0x20, 0x20);
+        SlotButtons[id-1].GetComponent<Image>().color = new Color32(0x20, 0x20, 0x20, 0xff);
         var slotCreated = SlotButtons[id-1].GetComponentsInChildren<TextMeshProUGUI>().First(x => x.name == "NameText").text == "Open";
         if(slotCreated)
         {
@@ -98,11 +98,12 @@ public class GameSelectionScript : MonoBehaviour
             return;
         }
 
-        var slotCreated = SlotButtons[selectedSlot-1].GetComponentsInChildren<TextMeshProUGUI>().First(x => x.name == "NameText").text == "Open";
+        var slotCreated = SlotButtons[selectedSlot-1].GetComponentsInChildren<TextMeshProUGUI>().First(x => x.name == "NameText").text != "Open";
         if(!slotCreated)
         {
             Player.SaveFile = selectedSlot;
             SceneManager.LoadScene("NameScene");
+            
         }
         else
         {

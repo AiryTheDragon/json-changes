@@ -1754,7 +1754,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &401446590
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1798,8 +1798,8 @@ MonoBehaviour:
   - {fileID: 504460045}
   - {fileID: 2079139255}
   - {fileID: 64237698}
-  LeftButton: {fileID: 0}
-  RightButton: {fileID: 0}
+  LeftButton: {fileID: 975423736}
+  RightButton: {fileID: 1143616196}
 --- !u!114 &401446592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2867,6 +2867,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c79de83a4e31d24eafc6199dd78ed04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NextPanel: {fileID: 401446589}
+  ParentPanel: {fileID: 811036315}
 --- !u!114 &811036321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3429,9 +3431,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: BtnClickToNameScene, Assembly-CSharp
-        m_MethodName: BtnNewScene
+      - m_Target: {fileID: 401446591}
+        m_TargetAssemblyTypeName: GameSelectionScript, Assembly-CSharp
+        m_MethodName: LeftButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4106,9 +4108,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: QuitGame, Assembly-CSharp
-        m_MethodName: BtnQuit
+      - m_Target: {fileID: 401446591}
+        m_TargetAssemblyTypeName: GameSelectionScript, Assembly-CSharp
+        m_MethodName: RightButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4868,7 +4870,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1239078593
 RectTransform:
   m_ObjectHideFlags: 0
