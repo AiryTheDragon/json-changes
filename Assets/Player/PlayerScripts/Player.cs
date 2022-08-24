@@ -54,6 +54,8 @@ public class Player : MonoBehaviour
 
     public Log log;
 
+    public static int SaveFile;
+
     //Input keys
     private MenuBehavior menu;
     private bool iDown;
