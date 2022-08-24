@@ -10,6 +10,7 @@ public class Activity : MonoBehaviour
 
     public ClockTime ActivityTime;
 
+    // name and Name make this activity unique.
     public string Name;
 
     // Start is called before the first frame update

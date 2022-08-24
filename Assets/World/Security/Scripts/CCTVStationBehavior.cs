@@ -15,7 +15,6 @@ public class CCTVStationBehavior : MonoBehaviour, INeedsClockUpdate
     void Start()
     {
         GameObject.Find("Clock").GetComponent<ClockBehavior>().NeedsClockUpdate.Add(this);
-        Debug.Log("Security Monitoring initialized");
     }
 
     // Update is called once per frame

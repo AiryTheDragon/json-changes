@@ -15,7 +15,7 @@ public class SaveFile
     public bool[] LightSettings;
 
     public bool[] PaperSettings;
-
+    
     public bool[] PenSettings;
 
     public bool[] KeySettings;
@@ -31,4 +31,6 @@ public class SaveFile
     public LogItem[] Logs;
 
     public int LogsCounter;
+
+    public Dictionary<string, Person> PeopleKnown;
 }

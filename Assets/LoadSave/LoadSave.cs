@@ -503,4 +503,14 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
     {
         Clock.Time = new ClockTime(saveFile.Time);
     }
+
+    public void SaveKnownPeople()
+    {
+        saveFile.PeopleKnown = player.PeopleKnown;
+    }
+
+    public void LoadKnownPeople()
+    {
+        player.PeopleKnown = saveFile.PeopleKnown;
+    }
 }

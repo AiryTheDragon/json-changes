@@ -90,7 +90,9 @@ public class LetterCreator : MonoBehaviour
         if(SelectedPerson != null)
         {
             CurrentNotebook = ActivitySelector;
-            ActivitySelector.GetComponent<ActionSelectorBehavior>().SetActivities(SelectedPerson.SeenActivities.Where(
+            ActivitySelector.GetComponent<ActionSelectorBehavior>().SetActivities(SelectedPerson.SeenActivities
+            .Select(x => GameObject.FindObjectsOfType<Activity>().First(y => y.name == x.SystemName && y.Name == x.ReadableName))
+            .Where(
                     x => BannedActivitiesObject.GetComponent<BannedActivitiesBehavior>().BannedActivities.Contains(x)
                 ).ToList());
             ActivitySelector.SetActive(true);
@@ -120,7 +122,8 @@ public class LetterCreator : MonoBehaviour
                 player.invScript.AddLetter(letter);
                 player.invScript.Pens--;
                 player.invScript.Paper--;
-                player.PeopleKnown[letter.Recieving.Name].SeenActivities.Remove(SelectedActivity);
+                var seenActivity = player.PeopleKnown[letter.Recieving.Name].SeenActivities.First(x => x.SystemName == SelectedActivity.name && x.ReadableName == SelectedActivity.Name);
+                player.PeopleKnown[letter.Recieving.Name].SeenActivities.Remove(seenActivity);
                 Debug.Log("Wrote a letter to " + SelectedPerson.Name + " about " + SelectedActivity.Name + " affecting morale by " + letter.ManipulationLevelIncrease);
 
                 // Check on writing letter achievement.
