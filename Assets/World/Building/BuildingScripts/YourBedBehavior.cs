@@ -36,7 +36,9 @@ public class YourBedBehavior : MonoBehaviour, IConfirmScript
         loadSaveObject.SaveNextDayState();
         loadSaveObject.LoadNextDayState();
         loadSaveObject.NextDayUpdates();
-        //loadSaveObject.CreateSaveData();
+        loadSaveObject.CreateSaveData($"save{Player.SaveFile}");
+        loadSaveObject.ExportSaveData($"save{Player.SaveFile}");
+        
     }
 
 
