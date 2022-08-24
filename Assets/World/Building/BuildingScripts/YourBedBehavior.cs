@@ -8,9 +8,11 @@ public class YourBedBehavior : MonoBehaviour, IConfirmScript
 {
   
     public GameObject confirmObject;
+    public GameObject yesButton;
     public AudioClip _inBed;
     private AudioSource _source = null;
     public LoadSave loadSaveObject;
+    public ClockBehavior clock;
     
     // Start is called before the first frame update
     void Start()
@@ -42,10 +44,26 @@ public class YourBedBehavior : MonoBehaviour, IConfirmScript
     private void OnMouseUpAsButton()
     {
         confirmObject.GetComponent<ConfirmMenu>().script = this;
-        confirmObject.GetComponent<ConfirmMenu>().UpdateText("Do you want to sleep until the next day?");
-        _source.clip = _inBed;
-        _source.Play();
-        confirmObject.SetActive(true);
+        if (clock.timeToNextDay().Hour >= 0 && clock.timeToNextDay().Hour < 9)
+        {
+
+            confirmObject.GetComponent<ConfirmMenu>().UpdateText("Do you want to sleep until the next day?");
+            _source.clip = _inBed;
+            _source.Play();
+            confirmObject.SetActive(true);
+            yesButton.SetActive(true);
+        }
+        else
+        {
+            confirmObject.GetComponent<ConfirmMenu>().script = this;
+            confirmObject.GetComponent<ConfirmMenu>().UpdateText("It is too bright to go to bed.");
+            _source.clip = _inBed;
+            _source.Play();
+            confirmObject.SetActive(true);
+            yesButton.SetActive(false);
+        }
+
+
     }
 
 

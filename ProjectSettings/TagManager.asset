@@ -33,6 +33,7 @@ TagManager:
   - PeeShrub
   - Sign
   - SecurityCamera
+  - YesButton
   layers:
   - Default
   - TransparentFX
