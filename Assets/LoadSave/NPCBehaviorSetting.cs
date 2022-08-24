@@ -23,6 +23,10 @@ public class NPCBehaviorSetting
 
     public void setAllBehaviorSettings(NPCBehavior[] NPClist)
     {
+        if(behaviorSetting is null)
+        {
+            throw new System.Exception("BehaviorSetting has not been loaded.");
+        }
         Debug.Log("behaviorSetting length" + behaviorSetting.Length);
         for (int i = 0; i < NPClist.Length; i++)
         {

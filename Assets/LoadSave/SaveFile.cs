@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class SaveFile
 {
+    public string PlayerName;
+
+    public ClockTime Time;
+
     public BehaviorSet[] NPCBehaviorSettings;
 
     public PositionSettingsConversion PositionSettings = new();

@@ -48,6 +48,8 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
     public void CreateSaveData(string saveName)
     {
         saveFile = new();
+        SavePlayerName();
+        SaveClockTime();
         CreateBehaviorSettings();
         CreatePositionSettings();
         CreateLightSettings();
@@ -60,6 +62,8 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
     public void LoadSaveData(string saveName)
     {
         saveFile = new();
+        LoadClockTime();
+        LoadPlayerName();
         SetBehaviorSettings();
         SetPositionSettings();
         SetLightSettings();
@@ -480,5 +484,23 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
         }
     }
 
+    private void SavePlayerName()
+    {
+        saveFile.PlayerName = Player.Name;
+    }
 
+    private void LoadPlayerName()
+    {
+        Player.Name = saveFile.PlayerName;
+    }
+
+    private void SaveClockTime()
+    {
+        saveFile.Time = new ClockTime(Clock.Time);
+    }
+
+    public void LoadClockTime()
+    {
+        Clock.Time = new ClockTime(saveFile.Time);
+    }
 }
