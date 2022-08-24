@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Person
 {
-    public List<Activity> SeenActivities = new List<Activity>();
+    public List<SeenActivity> SeenActivities = new List<SeenActivity>();
 
     public string Name;
 

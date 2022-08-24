@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -213,9 +214,11 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         var person = GetPersonInformation();
         if(Player.PeopleKnown.ContainsKey(person.Name))
         {
-            if(ActivityTracker.RunningActivity != null && !Player.PeopleKnown[person.Name].SeenActivities.Contains(ActivityTracker.RunningActivity))
+            if(ActivityTracker.RunningActivity != null &&
+                !Player.PeopleKnown[person.Name].SeenActivities.Any(x => x.SystemName == ActivityTracker.RunningActivity.name && x.ReadableName == ActivityTracker.RunningActivity.Name))
             {
-                Player.PeopleKnown[person.Name].SeenActivities.Add(ActivityTracker.RunningActivity);
+                Player.PeopleKnown[person.Name].SeenActivities.Add(new SeenActivity() { SystemName = ActivityTracker.RunningActivity.name,
+                                                                                        ReadableName = ActivityTracker.RunningActivity.Name });
             }
         }
         else
@@ -223,7 +226,8 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
             Player.PeopleKnown.Add(this.Name, person);
             if(ActivityTracker.RunningActivity != null)
             {
-                person.SeenActivities.Add(ActivityTracker.RunningActivity);
+                person.SeenActivities.Add(new SeenActivity() { SystemName = ActivityTracker.RunningActivity.name,
+                                                               ReadableName = ActivityTracker.RunningActivity.Name });
             }
         }
         Player.NPCInfoUI.OpenNPCInfo(this);

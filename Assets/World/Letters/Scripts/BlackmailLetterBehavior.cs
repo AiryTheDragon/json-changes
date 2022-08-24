@@ -32,7 +32,7 @@ public class BlackmailLetterBehavior : MonoBehaviour
         if(person != null)
         {
             PersonText.GetComponent<TextMeshProUGUI>().text = person.Name;
-            if(SelectedActivity != null && !person.SeenActivities.Where(x => x.Name == SelectedActivity.Name).Any())
+            if(SelectedActivity != null && !person.SeenActivities.Where(x => x.ReadableName == SelectedActivity.Name && x.SystemName == SelectedActivity.name).Any())
             {
                 SelectActivity(null);
             }

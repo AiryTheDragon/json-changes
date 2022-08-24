@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
 
     public double MaxSuspicion = 100;
 
-    public Dictionary<string, Person> PeopleKnown = new Dictionary<string, Person>();
+    public Dictionary<string, Person> PeopleKnown = new ();
 
     public CharacterBehavior CharacterBehavior;
 
