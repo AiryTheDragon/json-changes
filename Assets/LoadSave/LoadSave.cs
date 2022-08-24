@@ -41,6 +41,13 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
         paperList = GameObject.FindGameObjectsWithTag("Paper");
         penList = GameObject.FindGameObjectsWithTag("Pen");
         keyList = GameObject.FindGameObjectsWithTag("Key");
+        player = GameObject.FindObjectOfType<Player>();
+
+        if(string.IsNullOrWhiteSpace(Player.Name))
+        {
+            ImportSaveData($"save{Player.SaveFile}");
+            LoadSaveData($"save{Player.SaveFile}");
+        }
 
         Clock.NeedsClockUpdate.Add(this);
     }
