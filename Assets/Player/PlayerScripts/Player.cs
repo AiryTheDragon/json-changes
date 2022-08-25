@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 
     private int ughCount = 0;
 
-    private PlayerSounds _playerSounds;
+    public PlayerSounds _playerSounds;
 
     /// <summary>
     /// The source player noises come from.
@@ -335,6 +335,20 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
+    /// Called when we need to lower suspicion to the player.<br/>
+    /// Called when a player sleeps
+    /// Reduces suspicion by 1% per hour sleeping
+    /// </summary>
+    public void ReduceSuspicion( int min )
+    {
+        this.Suspicion -= min * MaxSuspicion / 6000;
+        if (this.Suspicion<0d)
+        { 
+            this.Suspicion = 0d;
+        }
+    }
+
+    /// <summary>
     /// Called when we want to end the game.
     /// </summary>
     public void Revolt()
@@ -358,7 +372,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// Helper function for playing an audio clip.
     /// </summary>
-    private void PlayAudioClip(AudioClip clip)
+    public void PlayAudioClip(AudioClip clip)
     {
         _source.clip = clip;
         _source.Play();

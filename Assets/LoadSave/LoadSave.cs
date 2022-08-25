@@ -436,30 +436,31 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
         LoadNextDayState();
         ResupplyPaper(Clock.timeToNextDay().Hour);  //add paper based on the time that passes to next morning
         ResupplyPens(Clock.timeToNextDay().Hour);   //add pens based on the time that passes to next morning
+        player.ReduceSuspicion(Clock.timeToNextDay().Hour * 60 + Clock.timeToNextDay().Minute); // reduce suspicion
         Clock.Time = Clock.nextDayTime();
     }
-
-
 
     // currently being used for testing purposes
     public void UpdateClock(ClockTime time)
     {
-        if (time.Hour==5 && time.Minute==0)
+        /*
+        if (time.Hour==6 && time.Minute==45)
         {
             Debug.Log("Getting behaviors, positions, light settings.");
             CreateNextDayState();
             ExportNextDayState();
         }
-
-        
-        /*
-        if (time.Hour==6 && time.Minute==0)
-        {
-            Debug.Log("Setting behaviors, positions, lights.");
-            ImportNextDayState();
-            LoadNextDayState();
-        }
         */
+
+        if (time.Hour == 6 && time.Minute == 51)
+        {
+            player.PlayAudioClip(player._playerSounds.Rooster);
+        }
+
+        if (time.Hour == 22 && time.Minute == 0)
+        {
+            player.PlayAudioClip(player._playerSounds.Night);
+        }
         
     }
 
@@ -478,9 +479,9 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
     }
 
     /*--------------------------------------------------------
-  * This method will reactivate up to num pens in
-  * the game in a random manner
-  * ------------------------------------------------------*/
+    * This method will reactivate up to num pens in
+    * the game in a random manner
+    * ------------------------------------------------------*/
     public void ResupplyPens(int num)
     {
         int randomValue;
