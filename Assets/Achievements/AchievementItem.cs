@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AchievementItem : ScriptableObject
+public class AchievementItem
 {
     public Achievement AchievementType;
     public string AchievementName;
