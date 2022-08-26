@@ -457,7 +457,7 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
             player.PlayAudioClip(player._playerSounds.Rooster);
         }
 
-        if (time.Hour == 22 && time.Minute == 0)
+        if (time.Hour == 21 && time.Minute == 0)
         {
             player.PlayAudioClip(player._playerSounds.Night);
         }
