@@ -2834,6 +2834,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HelpMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 23246645418165712, guid: 3a9a71031cd04c9429b10f1c09afb726, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8489742893525479852, guid: 3a9a71031cd04c9429b10f1c09afb726, type: 3}
       propertyPath: m_RootOrder
       value: 11
