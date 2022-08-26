@@ -73,7 +73,7 @@ public class GameSelectionScript : MonoBehaviour
             button.GetComponent<Image>().color = new Color32(0x2b, 0x2b, 0x2b, 0xff);
         }
         SlotButtons[id-1].GetComponent<Image>().color = new Color32(0x20, 0x20, 0x20, 0xff);
-        var slotCreated = SlotButtons[id-1].GetComponentsInChildren<TextMeshProUGUI>().First(x => x.name == "NameText").text == "Open";
+        var slotCreated = SlotButtons[id-1].GetComponentsInChildren<TextMeshProUGUI>().First(x => x.name == "NameText").text != "Open";
         if(slotCreated)
         {
             LeftButton.GetComponentInChildren<TextMeshProUGUI>().text = "Play";
