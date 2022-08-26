@@ -587,8 +587,8 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
     // This method gets the current activity action, activity and group of activity information and saves it as an object which can be later reset
     public BehaviorSet getBehavior()
     {
-        ActivityActionSet actionInfo = ActivityActionSet.CreateInstance<ActivityActionSet>();
-        BehaviorSet behaviorInfo = BehaviorSet.CreateInstance<BehaviorSet>();
+        ActivityActionSet actionInfo = new();
+        BehaviorSet behaviorInfo = new();
         ActivityAction action = ActivityTracker.GetCurrentAction();
 
         behaviorInfo.NPCName = Name;

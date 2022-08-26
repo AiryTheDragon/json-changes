@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public class BehaviorSet : ScriptableObject
+public class BehaviorSet
 {
     // keep each groupOfActivitiesName in list unique
     public string NPCName;  // the name of the NPC

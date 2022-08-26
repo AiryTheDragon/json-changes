@@ -201,7 +201,7 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
         string totalPathString = System.IO.Path.Combine(savesFolderPath, savename + ".json");
         string saveData = JsonConvert.SerializeObject(saveFile); // converts data in the NPCsettings object into a string
 
-        System.IO.Directory.CreateDirectory(pathString);
+        System.IO.Directory.CreateDirectory(savesFolderPath);
 
         if (System.IO.File.Exists(totalPathString))
         {

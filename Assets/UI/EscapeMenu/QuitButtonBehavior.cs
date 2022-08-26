@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using TMPro;
 using System.Linq;
@@ -19,6 +20,6 @@ public class QuitButtonBehavior : ButtonBase
 
     public override void OnPointerClick(PointerEventData eventData)
     {
-        Application.Quit();
+        SceneManager.LoadScene("StartScene");
     }
 }

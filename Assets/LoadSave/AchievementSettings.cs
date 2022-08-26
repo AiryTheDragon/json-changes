@@ -11,8 +11,10 @@ public class AchievementSettings
         Achievements = new AchievementSave[achievementList.Count];
         for(int i = 0; i < Achievements.Length; i++)
         {
-            Achievements[i].Name = achievementList[i].AchievementName;
-            Achievements[i].Complete = achievementList[i].isDone;
+            Achievements[i] = new AchievementSave() {
+                Name = achievementList[i].AchievementName,
+                Complete = achievementList[i].isDone
+            };
         }
     }
 
