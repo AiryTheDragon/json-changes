@@ -18,7 +18,7 @@ public class BtnClick : MonoBehaviour
             string filePath = Path.Combine(saveLocation, $"save{Player.SaveFile}.json");
             using var fileStream = File.Create(filePath);
             using StreamWriter fileWriter = new(fileStream);
-            fileWriter.Write($"{{\"PlayerName\":\"{Player.Name}\",\"Time\":{{\"Hour\":5,\"Minute\":13,\"Day\":0}}");
+            fileWriter.Write($"{{\"PlayerName\":\"{Player.Name}\",\"Time\":{{\"Hour\":5,\"Minute\":13,\"Day\":0}}}}");
         }
         catch (Exception)
         {

@@ -43,6 +43,8 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
         keyList = GameObject.FindGameObjectsWithTag("Key");
         player = GameObject.FindObjectOfType<Player>();
 
+
+
         if(string.IsNullOrWhiteSpace(Player.Name))
         {
             ImportSaveData($"save{Player.SaveFile}");
