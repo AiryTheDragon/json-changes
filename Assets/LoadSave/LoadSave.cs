@@ -25,13 +25,14 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
 
     private SaveFile saveFile;
 
-    private string fileFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
+    private string fileFolder;
     private string subpathString = "EEData";
     private string pathString;
 
 
     public void Start()
     {
+        fileFolder = Application.persistentDataPath;
         pathString = System.IO.Path.Combine(fileFolder, subpathString);
 
         saveFile = new SaveFile();
