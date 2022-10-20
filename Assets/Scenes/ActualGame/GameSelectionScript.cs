@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 public class GameSelectionScript : MonoBehaviour
 {
 
-    public string SaveLocation = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EEData/saves");
+    public string SaveLocation;
 
     public List<GameObject> SlotButtons;
 
@@ -26,6 +26,7 @@ public class GameSelectionScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SaveLocation = System.IO.Path.Combine(Application.persistentDataPath, "EEData/saves");
         LeftButton.SetActive(false);
         RightButton.SetActive(false);
 
