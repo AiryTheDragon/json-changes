@@ -11,7 +11,7 @@ public class Log : MonoBehaviour
     public void AddItem(string type, string note)
     {
 
-        LogItem logItem = LogItem.CreateInstance<LogItem>();
+        LogItem logItem = new LogItem();
         logItem.Number = Counter;
         logItem.Time = new ClockTime(clock.Time);
         logItem.NoticeType = type;
