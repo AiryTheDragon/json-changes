@@ -23,6 +23,8 @@ public class GameSelectionScript : MonoBehaviour
 
     private int selectedSlot = 0;
 
+    public GameObject PreviousPanel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -128,5 +130,11 @@ public class GameSelectionScript : MonoBehaviour
         RightButton.SetActive(false);
         SlotButtons[selectedSlot-1].GetComponentsInChildren<TextMeshProUGUI>().First(x => x.name == "NameText").text = "Open";
         SlotButtons[selectedSlot-1].GetComponentsInChildren<TextMeshProUGUI>().First(x => x.name == "DayText").text = "";
+    }
+
+    public void BackButtonClick()
+    {
+        PreviousPanel.SetActive(true);
+        gameObject.SetActive(false);
     }
 }
