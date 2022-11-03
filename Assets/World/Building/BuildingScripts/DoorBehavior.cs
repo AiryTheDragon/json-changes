@@ -43,16 +43,7 @@ public class DoorBehavior : MonoBehaviour
         {
             if(!open)
             {
-                closedDoorObject.GetComponent<SpriteRenderer>().enabled = false;
-                closedDoorObject.GetComponent<BoxCollider2D>().enabled = false;
-                closedDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = false;
-                openDoorObject.GetComponent<SpriteRenderer>().enabled = true;
-                openDoorObject.GetComponent<BoxCollider2D>().enabled = true;
-                openDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = true;
-
-                _source.clip = _doorOpen;
-                _source.Play();
-                open = true;
+                OpenDoor(true);
             }
             colliding++;
         }
@@ -60,16 +51,7 @@ public class DoorBehavior : MonoBehaviour
         {
             if(!open)
             {
-                closedDoorObject.GetComponent<SpriteRenderer>().enabled = false;
-                closedDoorObject.GetComponent<BoxCollider2D>().enabled = false;
-                closedDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = false;
-                openDoorObject.GetComponent<SpriteRenderer>().enabled = true;
-                openDoorObject.GetComponent<BoxCollider2D>().enabled = true;
-                openDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = true;
-
-                _source.clip = _doorOpen;
-                _source.Play();
-                open = true;
+                OpenDoor(true);
             }
             colliding++;
         }
@@ -88,33 +70,50 @@ public class DoorBehavior : MonoBehaviour
 
         if (colliding == 0 && open)
         {
-            closedDoorObject.GetComponent<SpriteRenderer>().enabled = true;
-            closedDoorObject.GetComponent<BoxCollider2D>().enabled = true;
-            closedDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = true;
-            openDoorObject.GetComponent<SpriteRenderer>().enabled = false;
-            openDoorObject.GetComponent<BoxCollider2D>().enabled = false;
-            openDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = false;
-
-
-            if (collision.tag == "Player")
-            {
-                _source.clip = _doorClose;
-                _source.Play();
-            }
-            open = false;
+            CloseDoor(collision.tag == "Player");
         }
         
     }
 
 
-    void openDoor()
+    public void OpenDoor(bool playSound)
     {
+        closedDoorObject.GetComponent<SpriteRenderer>().enabled = false;
+        closedDoorObject.GetComponent<BoxCollider2D>().enabled = false;
 
+        var shadowCaster = closedDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>();
+
+        //closedDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().enabled = false;
+        closedDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = false;
+        openDoorObject.GetComponent<SpriteRenderer>().enabled = true;
+        openDoorObject.GetComponent<BoxCollider2D>().enabled = true;
+        //openDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().enabled = false;
+        openDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = true;
+
+        if(playSound)
+        {
+            _source.clip = _doorOpen;
+            _source.Play();
+        }
+        open = true;
     }
 
-    void closeDoor()
+    public void CloseDoor(bool playSound)
     {
+        closedDoorObject.GetComponent<SpriteRenderer>().enabled = true;
+        closedDoorObject.GetComponent<BoxCollider2D>().enabled = true;
+        closedDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = true;
+        openDoorObject.GetComponent<SpriteRenderer>().enabled = false;
+        openDoorObject.GetComponent<BoxCollider2D>().enabled = false;
+        openDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = false;
 
+
+        if (playSound)
+        {
+            _source.clip = _doorClose;
+            _source.Play();
+        }
+        open = false;
     }
 
 
