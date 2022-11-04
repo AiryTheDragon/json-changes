@@ -9,9 +9,9 @@ namespace NPC
 
         public string Name { get; set; }
 
-        public ILocation Address { get; set; }
+        public Location Address { get; set; }
 
-        public ILocation PersonalRoom { get; set; }
+        public Location PersonalRoom { get; set; }
 
         public int Relationship;
 
