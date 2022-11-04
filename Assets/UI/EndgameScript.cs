@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class EndgameScript : MonoBehaviour
 {
@@ -76,7 +77,7 @@ public class EndgameScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        SceneManager.LoadScene("StartScene");
     }
 
     public void NextPanelClick()
@@ -87,7 +88,7 @@ public class EndgameScript : MonoBehaviour
 
     public void ExitGame()
     {
-        Application.Quit();
+        SceneManager.LoadScene("CreditsScene");
     }
 
     public string TextFailure()
