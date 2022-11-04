@@ -11,7 +11,7 @@ public class IntroTextDisplay : MonoBehaviour
 
     public GameObject FinalPanel;
 
-    private DateTime StartTime = DateTime.Now;
+    private DateTime SlideStartTime = DateTime.Now;
 
     public int SecondsPerText;
 
@@ -22,28 +22,34 @@ public class IntroTextDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        SlideStartTime = DateTime.Now;
+        CurrentText = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        double totalSeconds = ((DateTime.Now - StartTime).TotalMilliseconds / 1000.0);
-        int currentText = (int)(totalSeconds / SecondsPerText);
-        if(CurrentText != currentText && currentText < TextList.Count)
+        double totalSeconds = ((DateTime.Now - SlideStartTime).TotalMilliseconds / 1000.0);
+        int slide = (int)(totalSeconds / SecondsPerText);
+        if(slide >= 1)
         {
-            TextList[currentText - 1].SetActive(false);
-            TextList[currentText].SetActive(true);  
+            NextSlide();
         }
-        else if(currentText >= TextList.Count)
+    }
+
+    public void NextSlide()
+    {
+        SlideStartTime = DateTime.Now;
+        CurrentText++;
+        if(CurrentText < TextList.Count)
+        {
+            TextList[CurrentText - 1].SetActive(false);
+            TextList[CurrentText].SetActive(true);
+        }
+        else
         {
             this.gameObject.SetActive(false);
             FinalPanel.SetActive(true);
         }
-    }
-
-    public void BeginGame()
-    {
-        
     }
 }
