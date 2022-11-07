@@ -21,6 +21,8 @@ public class ActionSelectorBehavior : MonoBehaviour
 
     public GameObject LetterCreator;
 
+    public GameObject NoneSeenText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,9 +60,23 @@ public class ActionSelectorBehavior : MonoBehaviour
         {
             return;
         }
+        int i = 0;
+        if(SeenActionDisplays.Count < 1)
+        {
+            this.page = 0;
+            NextPageButton.SetActive(false);
+            PreviousPageButton.SetActive(false);
+            for(i = 0; i < SeenActionDisplays.Count; i++)
+            {
+                SeenActionDisplays[i].GetComponent<SeenActionDisplayBehavior>().SetDisplayActivity(null);
+            }
+            NoneSeenText.SetActive(true);
+            return;
+        }
+        NoneSeenText.SetActive(false);
 
         this.page = page;
-        int i = 0;
+        
         for(i = 0; i < SeenActionDisplays.Count && i + (page - 1) * SeenActionDisplays.Count < ActivitiesToDisplay.Count; i++)
         {
             SeenActionDisplays[i].GetComponent<SeenActionDisplayBehavior>().SetDisplayActivity(ActivitiesToDisplay[i + (page - 1) * SeenActionDisplays.Count]);
