@@ -49,6 +49,7 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
         if(string.IsNullOrWhiteSpace(Player.Name))
         {
             ImportSaveData($"save{Player.SaveFile}");
+            ImportAchievements();
             LoadSaveData($"save{Player.SaveFile}");
         }
 
@@ -71,7 +72,10 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
 
     public void LoadSaveData(string saveName)
     {
-        saveFile = new();
+        if(saveFile is null)
+        {
+            saveFile = new();
+        }
         LoadClockTime();
         LoadPlayerName();
         SetBehaviorSettings();
@@ -389,7 +393,7 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
         player.invScript.inventoryNames = new List<string>();
         for(int i = 0; i < keyList.Length; i++)
         {
-            if(saveFile.KeySettings[i])
+            if(!saveFile.KeySettings[i])
             {
                 player.invScript.inventoryNames.Add(keyList[i].GetComponent<KeyScript>().objectName);
                 player.invScript.inventoryObjects.Add(keyList[i]);
