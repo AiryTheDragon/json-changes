@@ -9,10 +9,10 @@ public class EarnAchievementAllowedHere : MonoBehaviour
         if (collision.tag == "Player")
         {
             Player player = collision.GetComponent<Player>();
-            AchievementItem achItem = player.achievementList.getItem(Achievement.AreYouAllowedInHere);
+            AchievementItem achItem = AchievementList.GetItem(Achievement.AreYouAllowedInHere);
             if (!achItem.isDone)
             {
-                player.achievementList.makeAchievement(achItem);
+                AchievementList.MakeAchievement(achItem, player.achievementList);
             }
         }
     }  

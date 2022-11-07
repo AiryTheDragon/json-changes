@@ -8,10 +8,10 @@ public class EarnAchievementPress : MonoBehaviour
     {
         if (collision.tag == "Player")
         {Player player = collision.GetComponent<Player>();
-            AchievementItem achItem = player.achievementList.getItem(Achievement.MeetThePress);
+            AchievementItem achItem = AchievementList.GetItem(Achievement.MeetThePress);
             if (!achItem.isDone)
             {
-                player.achievementList.makeAchievement(achItem);
+                AchievementList.MakeAchievement(achItem, player.achievementList);
             }
         }
     }  

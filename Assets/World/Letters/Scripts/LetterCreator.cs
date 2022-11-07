@@ -127,10 +127,10 @@ public class LetterCreator : MonoBehaviour
                 Debug.Log("Wrote a letter to " + SelectedPerson.Name + " about " + SelectedActivity.Name + " affecting morale by " + letter.ManipulationLevelIncrease);
 
                 // Check on writing letter achievement.
-                AchievementItem achItem = player.achievementList.getItem(Achievement.MightierThanTheSword);
+                AchievementItem achItem = AchievementList.GetItem(Achievement.MightierThanTheSword);
                 if (!achItem.isDone)
                 {
-                    player.achievementList.makeAchievement(achItem);
+                    AchievementList.MakeAchievement(achItem, player.achievementList);
                 }
 
 

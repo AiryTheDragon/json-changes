@@ -10,10 +10,10 @@ public class EarnAchievementPrison : MonoBehaviour
         {
 
             Player player = collision.GetComponent<Player>();
-            AchievementItem achItem = player.achievementList.getItem(Achievement.SightseeThePrison);
+            AchievementItem achItem = AchievementList.GetItem(Achievement.SightseeThePrison);
             if (!achItem.isDone)
             {
-                player.achievementList.makeAchievement(achItem);
+                AchievementList.MakeAchievement(achItem, player.achievementList);
             }
         }
     }
