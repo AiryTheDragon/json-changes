@@ -166,7 +166,7 @@ public class LetterCreator : MonoBehaviour
         CurrentLetter = BlackmailLetter;
         CurrentLetter.SetActive(true);
         BlackmailLetter.GetComponent<BlackmailLetterBehavior>().SelectPerson(null);
-        People = PlayerVariable.GetComponent<Player>().PeopleKnown.Values.ToList();
+        People = PlayerVariable.GetComponent<Player>().PeopleKnown.Values.OrderBy(x => x.Name).ToList();
         InkAmountText.text = $"{PlayerVariable.GetComponent<Player>().invScript.Pens}";
         PaperAmountText.text = $"{PlayerVariable.GetComponent<Player>().invScript.Paper}";
         Creator.SetActive(true);
