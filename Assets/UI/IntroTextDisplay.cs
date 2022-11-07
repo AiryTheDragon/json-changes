@@ -19,11 +19,16 @@ public class IntroTextDisplay : MonoBehaviour
 
     public int CurrentText;
 
+    public AudioSource FirstSound;
+
+    public AudioSource SecondSound;
+
     // Start is called before the first frame update
     void Start()
     {
         SlideStartTime = DateTime.Now;
         CurrentText = 0;
+        FirstSound.Play();
     }
 
     // Update is called once per frame
@@ -33,6 +38,13 @@ public class IntroTextDisplay : MonoBehaviour
         int slide = (int)(totalSeconds / SecondsPerText);
         if(slide >= 1)
         {
+
+            if (CurrentText == 1)
+            {
+                FirstSound.Stop();
+                SecondSound.Play();
+            }
+
             NextSlide();
         }
     }
