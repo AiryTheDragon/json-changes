@@ -45,6 +45,17 @@ public class YourBedBehavior : MonoBehaviour, IConfirmScript
 
     private void OnMouseUpAsButton()
     {
+        var canvas = FindObjectOfType<MainCanvasBehavior>();
+        if(canvas is not null)
+        {
+            if(canvas.AnyMenuOpen())
+            {
+                return;
+            }
+        }
+
+
+
         confirmObject.GetComponent<ConfirmMenu>().script = this;
         if (clock.timeToNextDay().Hour >= 0 && clock.timeToNextDay().Hour < 10)
         {
