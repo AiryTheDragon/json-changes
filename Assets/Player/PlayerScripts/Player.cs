@@ -227,10 +227,10 @@ public class Player : MonoBehaviour
 
             if (invScript.Paper >= 10 && invScript.Pens >= 10)
             {
-                AchievementItem achItem = achievementList.getItem(Achievement.Hoarder);
+                AchievementItem achItem = AchievementList.GetItem(Achievement.Hoarder);
                 if (!achItem.isDone)
                 {
-                    achievementList.makeAchievement(achItem);
+                    AchievementList.MakeAchievement(achItem, achievementList);
                 }
             }
         }
@@ -243,10 +243,10 @@ public class Player : MonoBehaviour
 
             if (invScript.Paper >= 10 && invScript.Pens >= 10)
             {
-                AchievementItem achItem = achievementList.getItem(Achievement.Hoarder);
+                AchievementItem achItem = AchievementList.GetItem(Achievement.Hoarder);
                 if (!achItem.isDone)
                 {
-                    achievementList.makeAchievement(achItem);
+                    AchievementList.MakeAchievement(achItem, achievementList);
                 }
             }
         }

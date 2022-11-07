@@ -16,60 +16,60 @@ public class EndgameScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AchievementList achList = new AchievementList();
+        //AchievementList achList = new AchievementList();
 
         if(Player.Score <= (int)(.1 * MaxScore))
         {
             LetterText.text = TextFailure();
-            AchievementItem achItem = achList.getItem(Achievement.WhiskedAway);
+            AchievementItem achItem = AchievementList.GetItem(Achievement.WhiskedAway);
             if (!achItem.isDone)
             {
-                achList.makeAchievement(achItem);
+                AchievementList.MakeAchievement(achItem, null);
             }
         }
         else if (Player.Score <= (int)(.25 * MaxScore))
         {
             LetterText.text = TextAlmostBad();
-            AchievementItem achItem = achList.getItem(Achievement.Isolation);
+            AchievementItem achItem = AchievementList.GetItem(Achievement.Isolation);
             if (!achItem.isDone)
             {
-                achList.makeAchievement(achItem);
+                AchievementList.MakeAchievement(achItem, null);
             }
         }
         else if (Player.Score <= (int)(.4 * MaxScore))
         {
             LetterText.text = TextBad();
-            AchievementItem achItem = achList.getItem(Achievement.Executed);
+            AchievementItem achItem = AchievementList.GetItem(Achievement.Executed);
             if (!achItem.isDone)
             {
-                achList.makeAchievement(achItem);
+                AchievementList.MakeAchievement(achItem, null);
             }
         }
         else if (Player.Score <= (int)(.6 * MaxScore))
         {
             LetterText.text = TextAlmostGood();
-            AchievementItem achItem = achList.getItem(Achievement.BatteredButFree);
+            AchievementItem achItem = AchievementList.GetItem(Achievement.BatteredButFree);
             if (!achItem.isDone)
             {
-                achList.makeAchievement(achItem);
+                AchievementList.MakeAchievement(achItem, null);
             }
         }
         else if (Player.Score < MaxScore)
         {
             LetterText.text = TextGood();
-            AchievementItem achItem = achList.getItem(Achievement.Victorious);
+            AchievementItem achItem = AchievementList.GetItem(Achievement.Victorious);
             if (!achItem.isDone)
             {
-                achList.makeAchievement(achItem);
+                AchievementList.MakeAchievement(achItem, null);
             }
         }
         else
         {
             LetterText.text = TextAwesome();
-            AchievementItem achItem = achList.getItem(Achievement.SilverTongue);
+            AchievementItem achItem = AchievementList.GetItem(Achievement.SilverTongue);
             if (!achItem.isDone)
             {
-                achList.makeAchievement(achItem);
+                AchievementList.MakeAchievement(achItem, null);
             }
         }
     }

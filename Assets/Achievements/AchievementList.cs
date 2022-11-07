@@ -10,10 +10,10 @@ public class AchievementList : MonoBehaviour
 
     public void Start()
     {
-        createAchievementList();
+        CreateAchievementList();
     }
 
-    public void createAchievementList()
+    private static void CreateAchievementList()
     {
         AchievementItem Item1 = new();
         // Mike and Daniel support achievement
@@ -189,7 +189,7 @@ public class AchievementList : MonoBehaviour
     }
 
     // Searches for an achievement by its position in the list.
-    public AchievementItem getItem(int number)
+    public static AchievementItem GetItem(int number)
     {
         AchievementItem Item = null;
         if (number < AllAchievements.Count && number>=0)
@@ -201,7 +201,7 @@ public class AchievementList : MonoBehaviour
 
     // Searches for an achievement by string name
     // if found, it returns the achievement, if not, it returns null.
-    public AchievementItem getItem(Achievement ach)
+    public static AchievementItem GetItem(Achievement ach)
     {
         AchievementItem Item = null;
         bool found = false;
@@ -253,51 +253,51 @@ public class AchievementList : MonoBehaviour
             }
             if (maxMike && maxDaniel)
             {
-                AchievementItem achItem = getItem(Achievement.WinOverTheCreators);
+                AchievementItem achItem = GetItem(Achievement.WinOverTheCreators);
                 if (!achItem.isDone)
                 {
-                    makeAchievement(achItem);
+                    MakeAchievement(achItem, this);
                 }
             }
             if (maxOnna && maxDonald)
             {
-                AchievementItem achItem = getItem(Achievement.ParentialApproval);
+                AchievementItem achItem = GetItem(Achievement.ParentialApproval);
                 if (!achItem.isDone)
                 {
-                    makeAchievement(achItem);
+                    MakeAchievement(achItem, this);
                 }
             }
             if (npc.Name.Equals("Airy"))
             {
-                AchievementItem achItem = getItem(Achievement.TameTheDragon);
+                AchievementItem achItem = GetItem(Achievement.TameTheDragon);
                 if (!achItem.isDone)
                 {
-                    makeAchievement(achItem);
+                    MakeAchievement(achItem, this);
                 }
             }
             if (npc.Name.Equals("Manager George"))
             {
-                AchievementItem achItem = getItem(Achievement.ManageTheManager);
+                AchievementItem achItem = GetItem(Achievement.ManageTheManager);
                 if (!achItem.isDone)
                 {
-                    makeAchievement(achItem);
+                    MakeAchievement(achItem, this);
                 }
             }
         }            
         if (npc.Name.Equals("Manager George"))
         {
-            AchievementItem achItem = getItem(Achievement.Hypocrisy);
+            AchievementItem achItem = GetItem(Achievement.Hypocrisy);
             if (!achItem.isDone)
             {
-                makeAchievement(achItem);
+                MakeAchievement(achItem, this);
             }
         }
         if (npc.tag.Equals("GuardNPC"))
         {
-            AchievementItem achItem = getItem(Achievement.CatchTheGuards);
+            AchievementItem achItem = GetItem(Achievement.CatchTheGuards);
             if (!achItem.isDone)
             {
-                makeAchievement(achItem);
+                MakeAchievement(achItem, this);
             }
         }
     }
@@ -320,20 +320,20 @@ public class AchievementList : MonoBehaviour
         if(!achievement.isDone)
         {
             achievement.isDone = true;
-            awardAchievement(achievement);
+            AwardAchievement(achievement);
         }
     }
 
-    public void makeAchievement(AchievementItem item)
+    public static void MakeAchievement(AchievementItem item, AchievementList list)
     {
         if (!item.isDone)
         {
             item.isDone = true;
-            awardAchievement(item);
+            if(list != null) list.AwardAchievement(item);
         }
     }
 
-    private void awardAchievement(AchievementItem item)
+    private void AwardAchievement(AchievementItem item)
     {
         if (player != null)
         {

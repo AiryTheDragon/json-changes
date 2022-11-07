@@ -13,7 +13,7 @@ public class BtnClick : MonoBehaviour
 
         try
         {
-            string saveLocation = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EEData/saves");
+            string saveLocation = System.IO.Path.Combine(Application.persistentDataPath, "EEData/saves");
             Directory.CreateDirectory(saveLocation);
             string filePath = Path.Combine(saveLocation, $"save{Player.SaveFile}.json");
             using var fileStream = File.Create(filePath);

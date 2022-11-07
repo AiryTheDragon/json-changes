@@ -127,10 +127,10 @@ public class LetterCreator : MonoBehaviour
                 Debug.Log("Wrote a letter to " + SelectedPerson.Name + " about " + SelectedActivity.Name + " affecting morale by " + letter.ManipulationLevelIncrease);
 
                 // Check on writing letter achievement.
-                AchievementItem achItem = player.achievementList.getItem(Achievement.MightierThanTheSword);
+                AchievementItem achItem = AchievementList.GetItem(Achievement.MightierThanTheSword);
                 if (!achItem.isDone)
                 {
-                    player.achievementList.makeAchievement(achItem);
+                    AchievementList.MakeAchievement(achItem, player.achievementList);
                 }
 
 
@@ -166,7 +166,7 @@ public class LetterCreator : MonoBehaviour
         CurrentLetter = BlackmailLetter;
         CurrentLetter.SetActive(true);
         BlackmailLetter.GetComponent<BlackmailLetterBehavior>().SelectPerson(null);
-        People = PlayerVariable.GetComponent<Player>().PeopleKnown.Values.ToList();
+        People = PlayerVariable.GetComponent<Player>().PeopleKnown.Values.OrderBy(x => x.Name).ToList();
         InkAmountText.text = $"{PlayerVariable.GetComponent<Player>().invScript.Pens}";
         PaperAmountText.text = $"{PlayerVariable.GetComponent<Player>().invScript.Paper}";
         Creator.SetActive(true);

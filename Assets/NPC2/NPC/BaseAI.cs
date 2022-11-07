@@ -7,6 +7,8 @@ namespace NPC
     {
         public int Id { get; set; }
         public PersonInfo Self { get; set; }
+
+        
         protected Dictionary<int, PersonInfo> Relationships { get; set; } = new();
     }
 }
