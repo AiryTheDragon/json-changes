@@ -13,7 +13,7 @@ public class InvScript : MonoBehaviour
 
     public int Pens = 0;
 
-    private Dictionary<string, GameObject> inventoryDict = new Dictionary<string, GameObject>();
+    public Dictionary<string, GameObject> inventoryDict = new Dictionary<string, GameObject>();
 
     // Start is called before the first frame update
     void Start()

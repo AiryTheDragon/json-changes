@@ -404,6 +404,7 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
             {
                 player.invScript.inventoryNames.Add(keyList[i].GetComponent<KeyScript>().objectName);
                 player.invScript.inventoryObjects.Add(keyList[i]);
+                player.invScript.inventoryDict.Add(keyList[i].GetComponent<KeyScript>().objectName, keyList[i]);
             }
         }
         player.invScript.Letters = saveFile.LettersHeld.ToList();
