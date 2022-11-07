@@ -181,8 +181,13 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
 
         // save next day data
 
+
         string savesFolderPath = Path.Combine(pathString, "saves");
         string totalPathString = System.IO.Path.Combine(savesFolderPath, savename + ".json");
+
+        Debug.Log("Exporting data from folder " + savesFolderPath);
+        Debug.Log("Exporting data from file path" + totalPathString);
+
         string saveData = JsonConvert.SerializeObject(saveFile); // converts data in the NPCsettings object into a string
 
         System.IO.Directory.CreateDirectory(savesFolderPath);
@@ -230,6 +235,8 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
         var savesFolder = System.IO.Path.Combine(pathString, "saves");
         var saveFile = System.IO.Path.Combine(savesFolder, savename + ".json");
 
+        Debug.Log("Importing data from folder " + savesFolder);
+        Debug.Log("Importing data from file " + saveFile);
         if(!File.Exists(saveFile))
         {
             return;

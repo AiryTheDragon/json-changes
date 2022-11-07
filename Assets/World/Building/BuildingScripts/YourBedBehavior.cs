@@ -46,7 +46,8 @@ public class YourBedBehavior : MonoBehaviour, IConfirmScript
     private void OnMouseUpAsButton()
     {
         confirmObject.GetComponent<ConfirmMenu>().script = this;
-        if (clock.timeToNextDay().Hour >= 0 && clock.timeToNextDay().Hour < 10)
+        // if (clock.timeToNextDay().Hour >= 0 && clock.timeToNextDay().Hour < 10)
+        if (true)  // TODO changed for testing purposes
         {
 
             confirmObject.GetComponent<ConfirmMenu>().UpdateText("Do you want to sleep until the next day?");
