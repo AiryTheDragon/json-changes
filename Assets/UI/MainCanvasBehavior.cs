@@ -8,11 +8,13 @@ public class MainCanvasBehavior : MonoBehaviour
 
     public GameObject LetterWorkspace;
 
+    public GameObject ConfirmationMenu;
+
     /// <summary>
     /// Returns true if any menu that could cover a clickable is open.
     /// </summary>
     public bool AnyMenuOpen()
     {
-        return Menu.activeInHierarchy || LetterWorkspace.activeInHierarchy;
+        return Menu.activeInHierarchy || LetterWorkspace.activeInHierarchy || ConfirmationMenu.activeInHierarchy;
     }
 }
