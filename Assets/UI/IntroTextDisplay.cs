@@ -39,11 +39,7 @@ public class IntroTextDisplay : MonoBehaviour
         if(slide >= 1)
         {
 
-            if (CurrentText == 1)
-            {
-                FirstSound.Stop();
-                SecondSound.Play();
-            }
+            
 
             NextSlide();
         }
@@ -51,6 +47,13 @@ public class IntroTextDisplay : MonoBehaviour
 
     public void NextSlide()
     {
+
+        if (CurrentText == 1)
+        {
+            FirstSound.Stop();
+            SecondSound.Play();
+        }
+
         SlideStartTime = DateTime.Now;
         CurrentText++;
         if(CurrentText < TextList.Count)

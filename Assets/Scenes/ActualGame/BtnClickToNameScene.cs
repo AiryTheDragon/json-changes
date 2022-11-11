@@ -9,6 +9,7 @@ public class BtnClickToNameScene : MonoBehaviour
     public GameObject NextPanel;
     public GameObject ParentPanel;
 
+    
     public void BtnNewScene()
     {
         //SceneManager.LoadScene("NameScene");
@@ -17,6 +18,6 @@ public class BtnClickToNameScene : MonoBehaviour
         NextPanel.SetActive(true);
         ParentPanel.SetActive(false);
     }
-
+    
 
 }
