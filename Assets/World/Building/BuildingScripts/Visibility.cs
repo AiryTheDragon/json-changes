@@ -25,7 +25,8 @@ public class Visibility : MonoBehaviour
         if (collider.tag == "Ceiling")
         {
             SpriteRenderer spriteRenderer = collider.GetComponentInChildren<SpriteRenderer>();
-            spriteRenderer.color = noShowObject;
+            //spriteRenderer.color = noShowObject;
+            spriteRenderer.enabled = false;
         }
 
     }
@@ -35,7 +36,8 @@ public class Visibility : MonoBehaviour
         if (collider.tag == "Ceiling")
         {
             SpriteRenderer spriteRenderer = collider.GetComponentInChildren<SpriteRenderer>();
-            spriteRenderer.color = showObject;
+            //priteRenderer.color = showObject;
+            spriteRenderer.enabled = true;
         }
 
     }
