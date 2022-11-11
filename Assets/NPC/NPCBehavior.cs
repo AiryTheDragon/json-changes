@@ -211,6 +211,10 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
 
     void OnMouseUpAsButton()
     {
+        if(IsHidden())
+        {
+            return;
+        }
         var person = GetPersonInformation();
         if(Player.PeopleKnown.ContainsKey(person.Name))
         {
@@ -499,10 +503,8 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         }
     }
 
-    void createMessage(string text)
+    bool IsHidden()
     {
-        // First we need to check if we're able to say hi.
-
         Vector3 position = GetComponent<Transform>().position;
         var castRay = new Ray(position + new Vector3(0, 0, 1), new Vector3(0, 0, -1));
         var hits = Physics2D.OverlapBoxAll(new Vector2(position.x - 0.5f, position.y - 0.5f), new Vector2(1, 1), 0.0f);
@@ -510,9 +512,21 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         {
             if(hits[i].gameObject.tag == "Ceiling" && hits[i].gameObject.GetComponentInChildren<SpriteRenderer>().enabled)
             {
-                return;
+                return true;
             }
         }
+
+        return false;
+    }
+
+    void createMessage(string text)
+    {
+        // First we need to check if we're able to say hi.
+        if(IsHidden())
+        {
+            return;
+        }
+        
         
 
         speechObject.SetActive(true);
