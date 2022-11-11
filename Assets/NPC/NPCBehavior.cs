@@ -501,6 +501,20 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
 
     void createMessage(string text)
     {
+        // First we need to check if we're able to say hi.
+
+        Vector3 position = GetComponent<Transform>().position;
+        var castRay = new Ray(position + new Vector3(0, 0, 1), new Vector3(0, 0, -1));
+        var hits = Physics2D.OverlapBoxAll(new Vector2(position.x - 0.5f, position.y - 0.5f), new Vector2(1, 1), 0.0f);
+        for(int i = 0; i < hits.Length; i++)
+        {
+            if(hits[i].gameObject.tag == "Ceiling" && hits[i].gameObject.GetComponentInChildren<SpriteRenderer>().enabled)
+            {
+                return;
+            }
+        }
+        
+
         speechObject.SetActive(true);
 
         speechObject.GetComponentInChildren<TextMeshPro>().text = text;
