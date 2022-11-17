@@ -410,6 +410,12 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
             ActivityTracker.CompleteAction(Clock.Time);
             BeginAction(ActivityTracker.GetCurrentAction());
         }
+        else if (action is ActivitySetTime)
+        {
+            Clock.Time = new ClockTime(((ActivitySetTime)action).day, ((ActivitySetTime)action).hour, ((ActivitySetTime)action).day);
+            ActivityTracker.CompleteAction(Clock.Time);
+            BeginAction(ActivityTracker.GetCurrentAction());
+        }
     }
 
 
