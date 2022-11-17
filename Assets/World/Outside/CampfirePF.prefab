@@ -113,8 +113,8 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
-  m_ShadowIntensityEnabled: 0
-  m_ShadowIntensity: 0.75
+  m_ShadowIntensityEnabled: 1
+  m_ShadowIntensity: 0.5
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_Vertices:
@@ -315,6 +315,7 @@ MonoBehaviour:
   _turnLightOff: {fileID: 8300000, guid: c7cf3dd6c4eab5b43858b1eb257e46aa, type: 3}
   onDoorObject: {fileID: 1521658167807709787}
   offDoorObject: {fileID: 5969519496020017373}
+  on: 0
 --- !u!82 &6390766743747959478
 AudioSource:
   m_ObjectHideFlags: 0
