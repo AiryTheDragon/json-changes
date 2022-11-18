@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class ActivitySetTime : ActivityAction
 {
-    public int minute;
-    public int hour;
     public int day;
+    public int hour;
+    public int minute;
+
+ 
 
 
 
