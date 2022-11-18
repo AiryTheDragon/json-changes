@@ -57,6 +57,8 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
 
     public AudioSource _source = null;
 
+    public TutorialTests tutorial=null;
+
     //[SerializeField] private AudioClip _ow = null;
     //private AudioSource _source = null;
 
@@ -409,6 +411,50 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
             GetComponentInChildren<GuardBehavior>().Patrolling = false;
             ActivityTracker.CompleteAction(Clock.Time);
             BeginAction(ActivityTracker.GetCurrentAction());
+        }
+        else if (action is ActivitySetTime) // used in tutorial to adjust time
+        {
+            if (tutorial==null)
+            {
+                tutorial = GameObject.Find("Phil").GetComponent<TutorialTests>();
+            }
+
+
+            Clock.Time = new ClockTime(((ActivitySetTime)action).day, ((ActivitySetTime)action).hour, ((ActivitySetTime)action).minute);
+            ActivityTracker.CompleteAction(Clock.Time);
+            BeginAction(ActivityTracker.GetCurrentAction());
+        }
+        else if (action is ActivityTutorialResetTests) // used in tutorial to reset testing values
+        {
+            if (tutorial == null)
+            {
+                tutorial = GameObject.Find("NPC").GetComponent<TutorialTests>();
+            }
+
+            tutorial.ResetTests();
+            ActivityTracker.CompleteAction(Clock.Time);
+            BeginAction(ActivityTracker.GetCurrentAction());
+
+        }
+        else if (action is ActivityTutorialMonitor) // used in tutorial to set the tests to be monitored
+        {
+            if (tutorial == null)
+            {
+                tutorial = GameObject.Find("NPC").GetComponent<TutorialTests>();
+            }
+
+            tutorial.updateMonitorTests((ActivityTutorialMonitor)action);
+            ActivityTracker.CompleteAction(Clock.Time);
+            BeginAction(ActivityTracker.GetCurrentAction());
+        }
+        else if (action is ActivityEnabling) // used in tutorial to set the tests to be monitored
+        {
+            ActivityEnabling act = (ActivityEnabling)action;
+
+            act.thisObject.SetActive(act.state);
+            ActivityTracker.CompleteAction(Clock.Time);
+            BeginAction(ActivityTracker.GetCurrentAction());
+
         }
     }
 
