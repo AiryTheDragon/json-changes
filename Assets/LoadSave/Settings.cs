@@ -1,6 +1,5 @@
 public class Settings
 {
     public string SpeechBubbleSize = "large";
-    public int ScreenWidth = 1920;
-    public int ScreenHeight = 1080;
+    public Resolutions ScreenSize = Resolutions.R1920X1080;
 }
