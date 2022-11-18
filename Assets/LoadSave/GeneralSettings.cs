@@ -23,6 +23,7 @@ public class GeneralSettings
         } catch (Exception)
         {
             Settings = new Settings();
+            SaveSettings();
         }
     }
 

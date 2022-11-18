@@ -126,6 +126,7 @@ MonoBehaviour:
   WaypointPrefab: {fileID: 4441818672936420333, guid: 109ea93d2c5b939c58f88a4434919dfd, type: 3}
   ReturnLocation: {fileID: 0}
   _source: {fileID: 0}
+  tutorial: {fileID: 0}
 --- !u!114 &3725225578617467916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,7 +313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 603582295781429553, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1232196572896474221, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
       propertyPath: m_text
@@ -424,11 +425,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9053537657320410203, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 3.08
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9053537657320410203, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.86
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9053537657320410203, guid: 4d8f525fd78a36d40bcce405c60c3de8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -475,7 +476,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2706035464404476142, guid: 669221900389ae8ab93da1fccaaec5b3, type: 3}
       propertyPath: m_InstanceId
-      value: -118036
+      value: -246622
       objectReference: {fileID: 0}
     - target: {fileID: 7925677224147551241, guid: 669221900389ae8ab93da1fccaaec5b3, type: 3}
       propertyPath: m_RootOrder
@@ -527,7 +528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8805490388421281083, guid: 669221900389ae8ab93da1fccaaec5b3, type: 3}
       propertyPath: m_InstanceId
-      value: -118026
+      value: -246612
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 669221900389ae8ab93da1fccaaec5b3, type: 3}
