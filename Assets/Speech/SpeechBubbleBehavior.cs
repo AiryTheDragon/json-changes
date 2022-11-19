@@ -7,6 +7,8 @@ public class SpeechBubbleBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        var settings = new GeneralSettings();
+        settings.LoadSettings();
         string speechBubbleSize = GeneralSettings.Settings.SpeechBubbleSize;
 
         Transform transform = GetComponent<Transform>();
