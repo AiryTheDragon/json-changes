@@ -44,13 +44,17 @@ namespace StartScene
             {
                 case Resolutions.R1920X1080:
                     PlayButton.GetComponent<Transform>().localPosition = new Vector3(-500, 0, 0);
-                    PlayButton.GetComponent<Transform>().localScale = new Vector3(1, 1, 1);
+                    PlayButton.GetComponent<RectTransform>().sizeDelta = new Vector2(710, 170);
+                    PlayButton.GetComponentInChildren<TextMeshProUGUI>().fontSize = 140;
                     OptionsButton.GetComponent<Transform>().localPosition = new Vector3(-500, -250, 0);
-                    OptionsButton.GetComponent<Transform>().localScale = new Vector3(1, 1, 1);
+                    OptionsButton.GetComponent<RectTransform>().sizeDelta = new Vector2(710, 170);
+                    OptionsButton.GetComponentInChildren<TextMeshProUGUI>().fontSize = 140;
                     HelpButton.GetComponent<Transform>().localPosition = new Vector3(500, 0, 0);
-                    HelpButton.GetComponent<Transform>().localScale = new Vector3(1, 1, 1);
+                    HelpButton.GetComponent<RectTransform>().sizeDelta = new Vector2(710, 170);
+                    HelpButton.GetComponentInChildren<TextMeshProUGUI>().fontSize = 140;
                     ExitButton.GetComponent<Transform>().localPosition = new Vector3(500, -250, 0);
-                    ExitButton.GetComponent<Transform>().localScale = new Vector3(1, 1, 1);
+                    ExitButton.GetComponent<RectTransform>().sizeDelta = new Vector2(710, 170);
+                    ExitButton.GetComponentInChildren<TextMeshProUGUI>().fontSize = 140;
 
                     Background.GetComponent<Transform>().localPosition = new Vector3(0, 0, 0);
                     Background.GetComponent<Transform>().localScale = new Vector3(1, 1.1f, 1);
@@ -58,6 +62,42 @@ namespace StartScene
                     Text.GetComponent<TextMeshProUGUI>().fontSize = 189;
                     break;
                 case Resolutions.R1280X1024:
+                    PlayButton.GetComponent<Transform>().localPosition = new Vector3(-300, 0, 0);
+                    PlayButton.GetComponent<RectTransform>().sizeDelta = new Vector2(500, 170);
+                    PlayButton.GetComponentInChildren<TextMeshProUGUI>().fontSize = 140;
+                    OptionsButton.GetComponent<Transform>().localPosition = new Vector3(-300, -250, 0);
+                    OptionsButton.GetComponent<RectTransform>().sizeDelta = new Vector2(500, 170);
+                    OptionsButton.GetComponentInChildren<TextMeshProUGUI>().fontSize = 140;
+                    HelpButton.GetComponent<Transform>().localPosition = new Vector3(300, 0, 0);
+                    HelpButton.GetComponent<RectTransform>().sizeDelta = new Vector2(500, 170);
+                    HelpButton.GetComponentInChildren<TextMeshProUGUI>().fontSize = 140;
+                    ExitButton.GetComponent<Transform>().localPosition = new Vector3(300, -250, 0);
+                    ExitButton.GetComponent<RectTransform>().sizeDelta = new Vector2(500, 170);
+                    ExitButton.GetComponentInChildren<TextMeshProUGUI>().fontSize = 140;
+
+                    Background.GetComponent<Transform>().localPosition = new Vector3(0, 0, 0);
+                    Background.GetComponent<Transform>().localScale = new Vector3(1, 1.1f, 1);
+                    Text.GetComponent<Transform>().localPosition = new Vector3(0, 220, 0);
+                    Text.GetComponent<TextMeshProUGUI>().fontSize = 189;
+                    break;
+                case Resolutions.R3840X2160:
+                    PlayButton.GetComponent<Transform>().localPosition = new Vector3(-600, 0, 0);
+                    PlayButton.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, 540);
+                    PlayButton.GetComponentInChildren<TextMeshProUGUI>().fontSize = 280;
+                    OptionsButton.GetComponent<Transform>().localPosition = new Vector3(-600, -500, 0);
+                    OptionsButton.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, 540);
+                    OptionsButton.GetComponentInChildren<TextMeshProUGUI>().fontSize = 280;
+                    HelpButton.GetComponent<Transform>().localPosition = new Vector3(600, 0, 0);
+                    HelpButton.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, 540);
+                    HelpButton.GetComponentInChildren<TextMeshProUGUI>().fontSize = 280;
+                    ExitButton.GetComponent<Transform>().localPosition = new Vector3(600, -500, 0);
+                    ExitButton.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, 540);
+                    ExitButton.GetComponentInChildren<TextMeshProUGUI>().fontSize = 280;
+
+                    Background.GetComponent<Transform>().localPosition = new Vector3(0, 0, 0);
+                    Background.GetComponent<Transform>().localScale = new Vector3(2, 2.2f, 1);
+                    Text.GetComponent<Transform>().localPosition = new Vector3(0, 540, 0);
+                    Text.GetComponent<TextMeshProUGUI>().fontSize = 378;
                     break;
             }
         }
