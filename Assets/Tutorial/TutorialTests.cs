@@ -29,11 +29,30 @@ public class TutorialTests : MonoBehaviour
     public bool Monitor3 = false;
     public double SpeedTime = 0.0;
 
-    // variables used in test 4 unassuming
+    // variables used in test 4 plodding
     public ClockTime Test4Time = new ClockTime(0, 3, 15);
     public bool Test4Status = false;
     public bool Monitor4 = false;
     public double SlowTime = 0.0;
+
+    // variables used in test 5 click on NPC
+    public ClockTime Test5Time = new ClockTime(0, 4, 15);
+    public bool Test5Status = false;
+    public bool Monitor5 = false;
+
+    // variables used in test 6 pick up paper
+    public ClockTime Test6Time = new ClockTime(0, 5, 35);
+    public bool Test6Status = false;
+    public bool Monitor6 = false;
+    public GameObject paper;
+    public GameObject pen;
+
+    // variables used in test 7 approach desk
+    public ClockTime Test7Time = new ClockTime(0, 6, 0);
+    public bool Test7Status = false;
+    public bool Monitor7 = false;
+
+
 
     // The game clock
     public ClockBehavior GameClock;
@@ -77,6 +96,32 @@ public class TutorialTests : MonoBehaviour
                 Monitor4 = false;
             }
         }
+        if (Monitor5)
+        {
+            if (UpdateTest5())
+            {
+                GameClock.Time = new ClockTime(Test5Time);
+                Monitor5 = false;
+            }
+        }
+        if (Monitor6)
+        {
+            if (UpdateTest6())
+            {
+                GameClock.Time = new ClockTime(Test6Time);
+                Monitor6 = false;
+            }
+        }
+        if (Monitor7)
+        {
+            if (UpdateTest7())
+            {
+                GameClock.Time = new ClockTime(Test7Time);
+                Monitor7 = false;
+            }
+        }
+
+
     }
 
     public void ResetTests()
@@ -89,9 +134,13 @@ public class TutorialTests : MonoBehaviour
         Test2Status = false;
         SpeedTime = 0.0;
         SlowTime = 0.0;
+        Test3Status = false;
+        Test4Status = false;
+        Test5Status = false;
+        Test6Status = false;
+        Test7Status = false;
 
-
-}
+    }
 
     public void MonitorTest1(bool value)
     {
@@ -111,6 +160,19 @@ public class TutorialTests : MonoBehaviour
         Monitor4 = value;
     }
 
+    public void MonitorTest5(bool value)
+    {
+        Monitor5 = value;
+    }
+    public void MonitorTest6(bool value)
+    {
+        Monitor6 = value;
+    }
+
+    public void MonitorTest7(bool value)
+    {
+        Monitor7 = value;
+    }
     public bool UpdateTest1()
     {
         if (Input.GetAxis("Horizontal") > 0)
@@ -150,7 +212,7 @@ public class TutorialTests : MonoBehaviour
 
     public bool UpdateTest3()
     {
-        if ((Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) && Input.GetAxis("Fire1")>0)
+        if ((Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) && Input.GetAxis("Fire1") > 0)
         {
             SpeedTime += Time.deltaTime;
         }
@@ -178,13 +240,47 @@ public class TutorialTests : MonoBehaviour
         return Test4Status;
     }
 
+    public bool UpdateTest5()
+    {
+        return Test5Status;
+    }
 
-    public void updateMonitorTests(ActivityTutorialMonitor list)
+    public bool UpdateTest6()
+    {
+        if (!paper.activeSelf && !pen.activeSelf)
+        {
+            Test6Status = true;
+        }
+        return Test6Status;
+    }
+
+    public bool UpdateTest7()
+    {
+        return Test7Status;
+    }
+    public bool EnterDesk(bool value)
+    {
+        Test7Status = value;
+        return Test7Status;
+    }
+
+        public void updateMonitorTests(ActivityTutorialMonitor list)
     {
         Monitor1 = list.Test1;
         Monitor2 = list.Test2;
         Monitor3 = list.Test3;
         Monitor4 = list.Test4;
+        Monitor5 = list.Test5;
+        Monitor6 = list.Test6;
+        Monitor7 = list.Test7;
+    }
+
+    void OnMouseUpAsButton()
+    {
+        if (Monitor5)
+        {
+            Test5Status = true;
+        }
     }
 
 
