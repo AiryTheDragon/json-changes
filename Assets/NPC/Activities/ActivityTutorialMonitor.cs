@@ -10,6 +10,7 @@ public class ActivityTutorialMonitor : ActivityAction
     public bool Test4;
     public bool Test5;
     public bool Test6;
+    public bool Test7;
 
 
 }
