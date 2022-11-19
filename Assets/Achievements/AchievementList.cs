@@ -1,11 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using UnityEngine;
+using Steamworks;
+//using Steam
 
+#if !(UNITY_STANDALONE_WIN || UNITY_STANDALONE_LINUX || UNITY_STANDALONE_OSX || STEAMWORKS_WIN || STEAMWORKS_LIN_OSX)
+    #define DISABLESTEAMWORKS
+#endif
 public class AchievementList : MonoBehaviour
 {
     public static List<AchievementItem> AllAchievements { get; set; } = new();
+
+    public static bool Initialized = false;
+
+    #if !DISABLESTEAMWORKS
+    public static bool SteamWorks = false;
+    #endif
     public Player player;
 
     public void Start()
@@ -15,6 +27,15 @@ public class AchievementList : MonoBehaviour
 
     private static void CreateAchievementList()
     {
+        if(Initialized)
+        {
+            return;
+        }
+        else
+        {
+            Initialized = true;
+        }
+
         AchievementItem Item1 = new();
         // Mike and Daniel support achievement
         Item1.AchievementType = Achievement.WinOverTheCreators;
@@ -186,6 +207,9 @@ public class AchievementList : MonoBehaviour
         };
         AllAchievements.Add(Item21);
 
+        #if !DISABLESTEAMWORKS
+            SteamWorks = SteamAPI.Init();
+        #endif
     }
 
     // Searches for an achievement by its position in the list.
@@ -344,6 +368,24 @@ public class AchievementList : MonoBehaviour
         {
             Debug.Log("Made achievement " + item.AchievementName);
         }
+
+        #if !DISABLESTEAMWORKS
+
+        string name = item.AchievementType.ToString();
+
+        try {
+            Steamworks.SteamUserStats.GetAchievement(name, out bool achievementCompleted);
+            if (!achievementCompleted)
+            {
+                Steamworks.SteamUserStats.SetAchievement(name);
+            }
+        }
+        catch(Exception e )
+        {
+            Debug.Log(e.ToString());
+        }
+
+        #endif
         // do something!
     }
 }

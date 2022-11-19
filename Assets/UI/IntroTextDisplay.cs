@@ -26,6 +26,8 @@ public class IntroTextDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        var settings = new GeneralSettings();
+        settings.LoadSettings();
         SlideStartTime = DateTime.Now;
         CurrentText = 0;
         FirstSound.Play();
