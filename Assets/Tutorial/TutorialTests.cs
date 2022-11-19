@@ -48,7 +48,7 @@ public class TutorialTests : MonoBehaviour
     public GameObject pen;
 
     // variables used in test 7 approach desk
-    public ClockTime Test7Time = new ClockTime(0, 6, 0);
+    public ClockTime Test7Time = new ClockTime(0, 7, 0);
     public bool Test7Status = false;
     public bool Monitor7 = false;
 
@@ -56,6 +56,10 @@ public class TutorialTests : MonoBehaviour
 
     // The game clock
     public ClockBehavior GameClock;
+
+    public GameObject TextBox;
+    public TutorialTextChat TutorialText;
+
 
     public void Start()
     {
@@ -118,10 +122,9 @@ public class TutorialTests : MonoBehaviour
             {
                 GameClock.Time = new ClockTime(Test7Time);
                 Monitor7 = false;
+                TextBox.SetActive(true);
             }
         }
-
-
     }
 
     public void ResetTests()
