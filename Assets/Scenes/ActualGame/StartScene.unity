@@ -1090,7 +1090,7 @@ RectTransform:
   m_GameObject: {fileID: 181328036}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 185904659}
@@ -1098,8 +1098,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.4749, y: -1.9001}
-  m_SizeDelta: {x: 1980.468, y: 1140.7899}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 2048, y: 1024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &181328038
 MonoBehaviour:
@@ -1234,6 +1234,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NextPanel: {fileID: 811036315}
   audioSource: {fileID: 1545233937}
+  Background: {fileID: 181328036}
+  Paper: {fileID: 346505890}
+  Text: {fileID: 1165713549}
+  NextButton: {fileID: 1338783691}
 --- !u!1 &236666745
 GameObject:
   m_ObjectHideFlags: 0
@@ -1755,7 +1759,7 @@ RectTransform:
   m_GameObject: {fileID: 346505890}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.669, y: 1.454, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 185904659}
@@ -1764,7 +1768,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 58}
-  m_SizeDelta: {x: 627.6682, y: 818.7507}
+  m_SizeDelta: {x: 794, y: 1123}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &346505892
 MonoBehaviour:
@@ -3226,7 +3230,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &811036316
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3303,12 +3307,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f153f37342bdf96ea9e25e005bde7ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayButton: {fileID: 0}
-  OptionsButton: {fileID: 0}
-  HelpButton: {fileID: 0}
-  ExitButton: {fileID: 0}
-  Text: {fileID: 0}
-  Background: {fileID: 0}
+  PlayButton: {fileID: 1472269115}
+  OptionsButton: {fileID: 1216173557}
+  HelpButton: {fileID: 1414141665}
+  ExitButton: {fileID: 1072572927}
+  Text: {fileID: 860518005}
+  Background: {fileID: 104633446}
   SelectGamePanel: {fileID: 401446589}
   OptionsLetterText: {fileID: 1165713551}
   OptionsPanel: {fileID: 185904658}
@@ -4537,7 +4541,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.8032, y: 58.0265}
-  m_SizeDelta: {x: 558.29, y: 766.5801}
+  m_SizeDelta: {x: 1116.58, y: 1533.1602}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1165713551
 MonoBehaviour:
@@ -4604,8 +4608,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 72
+  m_fontSizeBase: 72
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5213,7 +5217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1239078593
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5425,6 +5429,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NextPanel: {fileID: 811036315}
   audioSource: {fileID: 1545233937}
+  Background: {fileID: 593692229}
+  Paper: {fileID: 0}
+  Text: {fileID: 0}
+  NextButton: {fileID: 236666745}
 --- !u!114 &1309994351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5500,8 +5508,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000030518, y: -438}
-  m_SizeDelta: {x: 235.3677, y: 127.8493}
+  m_AnchoredPosition: {x: 0, y: -918}
+  m_SizeDelta: {x: 470, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1338783693
 MonoBehaviour:
@@ -6736,8 +6744,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 67
-  m_fontSizeBase: 67
+  m_fontSize: 134
+  m_fontSizeBase: 134
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
