@@ -82,16 +82,16 @@ namespace StartScene
                     break;
                 case Resolutions.R3840X2160:
                     PlayButton.GetComponent<Transform>().localPosition = new Vector3(-600, 0, 0);
-                    PlayButton.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, 540);
+                    PlayButton.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, 340);
                     PlayButton.GetComponentInChildren<TextMeshProUGUI>().fontSize = 280;
                     OptionsButton.GetComponent<Transform>().localPosition = new Vector3(-600, -500, 0);
-                    OptionsButton.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, 540);
+                    OptionsButton.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, 340);
                     OptionsButton.GetComponentInChildren<TextMeshProUGUI>().fontSize = 280;
                     HelpButton.GetComponent<Transform>().localPosition = new Vector3(600, 0, 0);
-                    HelpButton.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, 540);
+                    HelpButton.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, 340);
                     HelpButton.GetComponentInChildren<TextMeshProUGUI>().fontSize = 280;
                     ExitButton.GetComponent<Transform>().localPosition = new Vector3(600, -500, 0);
-                    ExitButton.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, 540);
+                    ExitButton.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, 340);
                     ExitButton.GetComponentInChildren<TextMeshProUGUI>().fontSize = 280;
 
                     Background.GetComponent<Transform>().localPosition = new Vector3(0, 0, 0);
