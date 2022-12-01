@@ -69,6 +69,26 @@ public class MainCanvasBehavior : MonoBehaviour
 
                 ConfirmationMenu.GetComponent<RectTransform>().localScale = new Vector3(2, 2, 1);
                 break;
+            case Resolutions.R1280X1024:
+                // Setup Always Visible elements.
+                Minimap.GetComponent<Transform>().localPosition = new Vector3(-442, 335, 0);
+                Minimap.GetComponent<Transform>().localScale = new Vector3(0.75f, 0.75f, 1);
+                
+                SuspicionBar.GetComponent<RectTransform>().anchoredPosition = new Vector3(492, 410, 0);
+                SuspicionBar.GetComponent<RectTransform>().localScale = new Vector3(0.75f, 0.75f, 1);
+
+                BugReportButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(490, 354, 0);
+                BugReportButton.GetComponent<RectTransform>().localScale = new Vector3(0.75f, 0.75f, 1);
+
+                ClockTimeDisplay.GetComponent<RectTransform>().anchoredPosition = new Vector3(-550, 442, 0);
+                ClockTimeDisplay.GetComponent<RectTransform>().sizeDelta = new Vector2(150, 75);
+                ClockTimeDisplay.GetComponent<Text>().fontSize = 31;
+
+                NPCInfoMenu.GetComponent<RectTransform>().localScale = new Vector3(0.75f, 0.75f, 1);
+                NPCInfoMenu.GetComponent<RectTransform>().localPosition = new Vector3(20, -60, 0);
+
+                ConfirmationMenu.GetComponent<RectTransform>().localScale = new Vector3(0.75f, 0.75f, 1);
+                break;
         }
     }
 
