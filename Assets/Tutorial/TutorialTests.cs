@@ -68,7 +68,7 @@ public class TutorialTests : MonoBehaviour
     public bool Monitor10 = false;
 
     // variables used in test 10 returning to the desk
-    public ClockTime Test11Time = new ClockTime(0, 11, 0);
+    public ClockTime Test11Time = new ClockTime(0, 12, 0);
     public bool Test11Status = false;
     public bool Monitor11 = false;
 

@@ -67,7 +67,7 @@ public class YourBedBehavior : MonoBehaviour, IConfirmScript
             confirmObject.SetActive(true);
             yesButton.SetActive(true);
         }
-        else
+        /*else
         {
             confirmObject.GetComponent<ConfirmMenu>().script = this;
             confirmObject.GetComponent<ConfirmMenu>().UpdateText("It is too bright to go to bed.");
@@ -75,7 +75,7 @@ public class YourBedBehavior : MonoBehaviour, IConfirmScript
             _source.Play();
             confirmObject.SetActive(true);
             yesButton.SetActive(false);
-        }
+        }*/
 
 
     }
