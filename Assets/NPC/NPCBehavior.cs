@@ -283,12 +283,12 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
 
     public void BeginAction(ActivityAction action)
     {
-        if(action is null)
+        if (action is null)
         {
             Clock.NeedsClockUpdate.Add(this);
             return;
         }
-        if(action is ActivityWait)
+        if (action is ActivityWait)
         {
             waitUntil = new ClockTime(Clock.Time);
             waitUntil.AddMinutes(((ActivityWait)action).Minutes);
@@ -360,13 +360,13 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
             RunNextActivityGroup();
             //Player._source.Stop();
         }
-        else if (action is ActivityBGMusicStop)  
+        else if (action is ActivityBGMusicStop)
         {
             ((ActivityBGMusicStop)action).stopClip();
             ActivityTracker.CompleteAction(Clock.Time);
             BeginAction(ActivityTracker.GetCurrentAction());
         }
-        else if (action is ActivityBGMusicUpdate) 
+        else if (action is ActivityBGMusicUpdate)
         {
             ((ActivityBGMusicUpdate)action).playClip();
             ActivityTracker.CompleteAction(Clock.Time);
@@ -398,7 +398,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         }
         else if (action is ActivityFindNewActivity)
         {
-            
+
         }
         else if (action is ActivityStartPatrol)
         {
@@ -414,7 +414,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         }
         else if (action is ActivitySetTime) // used in tutorial to adjust time
         {
-            if (tutorial==null)
+            if (tutorial == null)
             {
                 tutorial = GameObject.Find("Phil").GetComponent<TutorialTests>();
             }
@@ -456,8 +456,13 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
             BeginAction(ActivityTracker.GetCurrentAction());
 
         }
+        else if (action is ActivityTutorialBoxSpeak)
+        {
+            createTableMessage(((ActivityTutorialBoxSpeak)action));
+            ActivityTracker.CompleteAction(Clock.Time);
+            BeginAction(ActivityTracker.GetCurrentAction());
+        }
     }
-
 
     public override void OnTargetReached()
     {
@@ -581,6 +586,17 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         messageTimeRemaining = messageDuration;
         isMessage = true;
     }
+
+    void createTableMessage(ActivityTutorialBoxSpeak action)
+    {
+       
+        // speechObject.SetActive(true);
+
+        ActivityTutorialBoxSpeak.boxText.setText(action.text);
+        messageTimeRemaining = messageDuration;
+        isMessage = true;
+    }
+
 
     // This method sets the current activity action, activity and group of activity, based on information given object.  It does so by using the
     // current information stored in the NPC's Activity groups

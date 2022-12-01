@@ -52,7 +52,25 @@ public class TutorialTests : MonoBehaviour
     public bool Test7Status = false;
     public bool Monitor7 = false;
 
+    // variables used in test 8 click revolt
+    public ClockTime Test8Time = new ClockTime(0, 8, 0);
+    public bool Test8Status = false;
+    public bool Monitor8 = false;
 
+    // variables used in test 9 click leave
+    public ClockTime Test9Time = new ClockTime(0, 9, 0);
+    public bool Test9Status = false;
+    public bool Monitor9 = false;
+
+    // variables used in test 10 returning to the desk
+    public ClockTime Test10Time = new ClockTime(0, 10, 0);
+    public bool Test10Status = false;
+    public bool Monitor10 = false;
+
+    // variables used in test 10 returning to the desk
+    public ClockTime Test11Time = new ClockTime(0, 11, 0);
+    public bool Test11Status = false;
+    public bool Monitor11 = false;
 
     // The game clock
     public ClockBehavior GameClock;
@@ -63,7 +81,7 @@ public class TutorialTests : MonoBehaviour
 
     public void Start()
     {
-        
+        ActivityTutorialBoxSpeak.boxText = TutorialText;
     }
 
     public void Update()
@@ -106,6 +124,7 @@ public class TutorialTests : MonoBehaviour
             {
                 GameClock.Time = new ClockTime(Test5Time);
                 Monitor5 = false;
+
             }
         }
         if (Monitor6)
@@ -114,6 +133,7 @@ public class TutorialTests : MonoBehaviour
             {
                 GameClock.Time = new ClockTime(Test6Time);
                 Monitor6 = false;
+
             }
         }
         if (Monitor7)
@@ -123,6 +143,45 @@ public class TutorialTests : MonoBehaviour
                 GameClock.Time = new ClockTime(Test7Time);
                 Monitor7 = false;
                 TextBox.SetActive(true);
+
+            }
+        }
+        if (Monitor8)
+        {
+            if (UpdateTest8())
+            {
+                GameClock.Time = new ClockTime(Test8Time);
+                Monitor8 = false;
+
+            }
+        }
+        if (Monitor9)
+        {
+            if (UpdateTest9())
+            {
+                GameClock.Time = new ClockTime(Test9Time);
+                Monitor9 = false;
+                TextBox.SetActive(false);
+
+            }
+        }
+        if (Monitor10)
+        {
+            if (UpdateTest10())
+            {
+                GameClock.Time = new ClockTime(Test10Time);
+                Monitor10 = false;
+                TextBox.SetActive(true);
+
+            }
+        }
+        if (Monitor11)
+        {
+            if (UpdateTest11())
+            {
+                GameClock.Time = new ClockTime(Test11Time);
+                Monitor10 = false;
+
             }
         }
     }
@@ -142,6 +201,10 @@ public class TutorialTests : MonoBehaviour
         Test5Status = false;
         Test6Status = false;
         Test7Status = false;
+        Test8Status = false;
+        Test9Status = false;
+        Test10Status = false;
+        Test11Status = false;
 
     }
 
@@ -176,6 +239,28 @@ public class TutorialTests : MonoBehaviour
     {
         Monitor7 = value;
     }
+
+    public void MonitorTest8(bool value)
+    {
+        Monitor8 = value;
+    }
+
+    public void MonitorTest9(bool value)
+    {
+        Monitor9 = value;
+    }
+
+    public void MonitorTest10(bool value)
+    {
+        Monitor10 = value;
+    }
+
+    public void MonitorTest11(bool value)
+    {
+        Monitor11 = value;
+    }
+
+
     public bool UpdateTest1()
     {
         if (Input.GetAxis("Horizontal") > 0)
@@ -261,13 +346,65 @@ public class TutorialTests : MonoBehaviour
     {
         return Test7Status;
     }
-    public bool EnterDesk(bool value)
+
+    public bool UpdateTest8()
     {
-        Test7Status = value;
-        return Test7Status;
+        return Test8Status;
     }
 
-        public void updateMonitorTests(ActivityTutorialMonitor list)
+    public bool UpdateTest9()
+    {
+        return Test9Status;
+    }
+
+    public bool UpdateTest10()
+    {
+        return Test10Status;
+    }
+    public bool UpdateTest11()
+    {
+        return Test11Status;
+    }
+
+    public void EnterDesk(bool value)
+    {
+        if (Monitor7)
+        {
+            Test7Status = value;
+        }
+
+        if (Monitor10)
+        {
+            Test10Status = value;
+        }
+
+    }
+
+    public void ClickRevoltLetter()
+    {
+        if (Monitor8)
+        {
+            Test8Status = true;
+        }
+    }
+
+    public void ClickLeave()
+    {
+        if (Monitor9)
+        {
+            Test9Status = true;
+        }
+    }
+
+    public void ClickCreateLetter()
+    {
+        if (Monitor11)
+        {
+            Test11Status = true;
+        }
+    }
+
+    public void updateMonitorTests(ActivityTutorialMonitor list)
     {
         Monitor1 = list.Test1;
         Monitor2 = list.Test2;
@@ -276,6 +413,10 @@ public class TutorialTests : MonoBehaviour
         Monitor5 = list.Test5;
         Monitor6 = list.Test6;
         Monitor7 = list.Test7;
+        Monitor8 = list.Test8;
+        Monitor9 = list.Test9;
+        Monitor10 = list.Test10;
+        Monitor11 = list.Test11;
     }
 
     void OnMouseUpAsButton()
