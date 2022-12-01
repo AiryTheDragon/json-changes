@@ -180,7 +180,8 @@ public class TutorialTests : MonoBehaviour
             if (UpdateTest11())
             {
                 GameClock.Time = new ClockTime(Test11Time);
-                Monitor10 = false;
+                Monitor11 = false;
+                TextBox.SetActive(false);
 
             }
         }
