@@ -40,6 +40,25 @@ public class LetterCreator : MonoBehaviour
     void Start()
     {
         PlayerVariable = GameObject.Find("Player");
+
+        GeneralSettings setting = new();
+        setting.LoadSettings();
+
+        switch(GeneralSettings.Settings.ScreenSize)
+        {
+            case Resolutions.R1920X1080:
+                GetComponent<Transform>().localScale = new Vector3(1, 1, 1);
+
+                break;
+            case Resolutions.R3840X2160:
+                GetComponent<Transform>().localScale = new Vector3(2, 2, 1);
+
+                break;
+            case Resolutions.R1280X1024:
+                GetComponent<Transform>().localScale = new Vector3(0.68f, 0.68f, 1);
+
+                break;
+        }
     }
 
     // Update is called once per frame
