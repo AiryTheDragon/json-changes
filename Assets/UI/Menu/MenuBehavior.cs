@@ -32,6 +32,26 @@ public class MenuBehavior : MonoBehaviour, IManualUpdate
             //SelectTab(inventoryTab.GetComponent<TabBehavior>());
             player = Resources.FindObjectsOfTypeAll<Player>().First();
         }
+
+
+        var settings = new GeneralSettings();
+        settings.LoadSettings();
+
+        switch(GeneralSettings.Settings.ScreenSize)
+        {
+            case Resolutions.R1920X1080:
+                GetComponent<Transform>().position = new Vector3(0, 0, 0);
+                GetComponent<Transform>().localScale = new Vector3(1, 1, 1);
+                break;
+            case Resolutions.R1280X1024:
+                GetComponent<Transform>().position = new Vector3(0, 0, 0);
+                GetComponent<Transform>().localScale = new Vector3(0.9f, 0.9f, 1);
+                break;
+            case Resolutions.R3840X2160:
+                GetComponent<Transform>().position = new Vector3(0, 0, 0);
+                GetComponent<Transform>().localScale = new Vector3(2.1f, 2.1f, 1);
+                break;
+        }
     }
 
     // Update is called once per frame
