@@ -9,7 +9,7 @@ public class TutorialPlayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Writing Desk")
+        if (collision.gameObject.tag.Equals("Writing Desk"))
         {
             testCode.EnterDesk(true);
         }

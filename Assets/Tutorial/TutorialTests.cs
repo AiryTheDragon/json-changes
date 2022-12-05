@@ -67,10 +67,27 @@ public class TutorialTests : MonoBehaviour
     public bool Test10Status = false;
     public bool Monitor10 = false;
 
-    // variables used in test 10 returning to the desk
+    // variables used in test 11 writing a letter
     public ClockTime Test11Time = new ClockTime(0, 12, 0);
     public bool Test11Status = false;
     public bool Monitor11 = false;
+    public LetterCreator LetterMaker;
+
+    // variables used in test 12 deliver letter
+    public ClockTime Test12Time = new ClockTime(0, 13, 0);
+    public bool Test12Status = false;
+    public bool Monitor12 = false;
+    public int Morale = 0;
+
+    // variables used in test 10 returning to the desk
+    public ClockTime Test13Time = new ClockTime(0, 12, 0);
+    public bool Test13Status = false;
+    public bool Monitor13 = false;
+
+    // variables used in test 10 returning to the desk
+    public ClockTime Test14Time = new ClockTime(0, 12, 0);
+    public bool Test14Status = false;
+    public bool Monitor14 = false;
 
     // The game clock
     public ClockBehavior GameClock;
@@ -185,6 +202,33 @@ public class TutorialTests : MonoBehaviour
 
             }
         }
+
+        if (Monitor12)
+        {
+            if (UpdateTest12())
+            {
+                GameClock.Time = new ClockTime(Test12Time);
+                Monitor12 = false;
+            }
+        }
+
+        if (Monitor13)
+        {
+            if (UpdateTest13())
+            {
+                GameClock.Time = new ClockTime(Test13Time);
+                Monitor13 = false;
+            }
+        }
+
+        if (Monitor14)
+        {
+            if (UpdateTest14())
+            {
+                GameClock.Time = new ClockTime(Test14Time);
+                Monitor14 = false;
+            }
+        }
     }
 
     public void ResetTests()
@@ -206,7 +250,9 @@ public class TutorialTests : MonoBehaviour
         Test9Status = false;
         Test10Status = false;
         Test11Status = false;
-
+        Test12Status = false;
+        Test13Status = false;
+        Test14Status = false;
     }
 
     public void MonitorTest1(bool value)
@@ -261,6 +307,20 @@ public class TutorialTests : MonoBehaviour
         Monitor11 = value;
     }
 
+    public void MonitorTest12(bool value)
+    {
+        Monitor12 = value;
+    }
+
+    public void MonitorTest13(bool value)
+    {
+        Monitor13 = value;
+    }
+
+    public void MonitorTest14(bool value)
+    {
+        Monitor14 = value;
+    }
 
     public bool UpdateTest1()
     {
@@ -366,7 +426,25 @@ public class TutorialTests : MonoBehaviour
     {
         return Test11Status;
     }
+    public bool UpdateTest12()
+    {
+        if (GetComponent<NPCBehavior>().ManipulationLevel != Morale)
+        {
+            Morale = GetComponent<NPCBehavior>().ManipulationLevel;
+            Test12Status = true;
+        }
+        return Test12Status;
+    }
 
+    public bool UpdateTest13()
+    {
+        return Test13Status;
+    }
+
+    public bool UpdateTest14()
+    {
+        return Test14Status;
+    }
     public void EnterDesk(bool value)
     {
         if (Monitor7)
@@ -402,6 +480,7 @@ public class TutorialTests : MonoBehaviour
         if (Monitor11)
         {
             Test11Status = true;
+            LetterMaker.CreateLetter();
         }
     }
 
@@ -418,6 +497,14 @@ public class TutorialTests : MonoBehaviour
         Monitor9 = list.Test9;
         Monitor10 = list.Test10;
         Monitor11 = list.Test11;
+        if (!Monitor12 && list.Test12) // if starting to monitor manipulation level, set initial value
+        {
+            Morale = GetComponent<NPCBehavior>().ManipulationLevel;
+        }
+        Monitor12 = list.Test12;
+        Monitor13 = list.Test13;
+        Monitor14 = list.Test14;
+
     }
 
     void OnMouseUpAsButton()
