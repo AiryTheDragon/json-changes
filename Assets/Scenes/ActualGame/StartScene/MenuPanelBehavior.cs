@@ -22,9 +22,6 @@ namespace StartScene
         // BtnSelectGame variables.
         public GameObject SelectGamePanel;
 
-        // BtnOptions variables.
-        public TextMeshProUGUI OptionsLetterText;
-
         public GameObject OptionsPanel;
 
         public AudioSource OptionsAudioSource;
@@ -117,8 +114,6 @@ namespace StartScene
 
         public void BtnOptions()
         {
-            OptionsLetterText.SetText($"Dear Player,\n\nThis feature is not implemented yet.  Please choose another option." +
-            "\n\nExtra options bring conflict,\nYour Local Area Manager");
             OptionsAudioSource.Play();
             gameObject.SetActive(false);
             OptionsPanel.SetActive(true);

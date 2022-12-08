@@ -45,7 +45,7 @@ public class MainCanvasBehavior : MonoBehaviour
                 ClockTimeDisplay.GetComponent<Text>().fontSize = 42;
 
                 NPCInfoMenu.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-                NPCInfoMenu.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
+                NPCInfoMenu.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 0);
 
                 ConfirmationMenu.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
                 break;
@@ -65,7 +65,7 @@ public class MainCanvasBehavior : MonoBehaviour
                 ClockTimeDisplay.GetComponent<Text>().fontSize = 84;
 
                 NPCInfoMenu.GetComponent<RectTransform>().localScale = new Vector3(2, 2, 1);
-                NPCInfoMenu.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
+                NPCInfoMenu.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 0);
 
                 ConfirmationMenu.GetComponent<RectTransform>().localScale = new Vector3(2, 2, 1);
                 break;
@@ -85,7 +85,7 @@ public class MainCanvasBehavior : MonoBehaviour
                 ClockTimeDisplay.GetComponent<Text>().fontSize = 31;
 
                 NPCInfoMenu.GetComponent<RectTransform>().localScale = new Vector3(0.75f, 0.75f, 1);
-                NPCInfoMenu.GetComponent<RectTransform>().localPosition = new Vector3(20, -60, 0);
+                NPCInfoMenu.GetComponent<RectTransform>().anchoredPosition = new Vector3(20, -60, 0);
 
                 ConfirmationMenu.GetComponent<RectTransform>().localScale = new Vector3(0.75f, 0.75f, 1);
                 break;
