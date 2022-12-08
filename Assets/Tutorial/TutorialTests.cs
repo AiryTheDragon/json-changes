@@ -80,7 +80,7 @@ public class TutorialTests : MonoBehaviour
     public int Morale = 0;
 
     // variables used in test 10 returning to the desk
-    public ClockTime Test13Time = new ClockTime(0, 12, 0);
+    public ClockTime Test13Time = new ClockTime(0, 14, 30);
     public bool Test13Status = false;
     public bool Monitor13 = false;
 
@@ -218,6 +218,7 @@ public class TutorialTests : MonoBehaviour
             {
                 GameClock.Time = new ClockTime(Test13Time);
                 Monitor13 = false;
+                TextBox.SetActive(true);
             }
         }
 
@@ -438,6 +439,10 @@ public class TutorialTests : MonoBehaviour
 
     public bool UpdateTest13()
     {
+        if (Input.GetKey(KeyCode.I) || Input.GetKey(KeyCode.Escape))
+        {
+            Test13Status = true;
+        }
         return Test13Status;
     }
 
