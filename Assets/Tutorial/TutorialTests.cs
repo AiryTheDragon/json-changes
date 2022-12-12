@@ -44,8 +44,8 @@ public class TutorialTests : MonoBehaviour
     public ClockTime Test6Time = new ClockTime(0, 5, 35);
     public bool Test6Status = false;
     public bool Monitor6 = false;
-    public GameObject paper;
-    public GameObject pen;
+    public GameObject Paper;
+    public GameObject Pen;
 
     // variables used in test 7 approach desk
     public ClockTime Test7Time = new ClockTime(0, 7, 0);
@@ -79,15 +79,28 @@ public class TutorialTests : MonoBehaviour
     public bool Monitor12 = false;
     public int Morale = 0;
 
-    // variables used in test 10 returning to the desk
+    // variables used in test 13 open notebook
     public ClockTime Test13Time = new ClockTime(0, 14, 30);
     public bool Test13Status = false;
     public bool Monitor13 = false;
 
-    // variables used in test 10 returning to the desk
-    public ClockTime Test14Time = new ClockTime(0, 12, 0);
+    // variables used in test 14 pick up key
+    public ClockTime Test14Time = new ClockTime(0, 19, 30);
     public bool Test14Status = false;
     public bool Monitor14 = false;
+    public GameObject HomeKey;
+
+    // variables used in test 15 guard escort back to TV
+    public ClockTime Test15Time = new ClockTime(0, 20, 30);
+    public bool Test15Status = false;
+    public bool Monitor15 = false;
+    public GameObject Guard;
+
+    // variables used in test 16 use bed
+    public ClockTime Test16Time = new ClockTime(0, 21, 30);
+    public bool Test16Status = false;
+    public bool Monitor16 = false;
+    public GameObject Bed;
 
     // The game clock
     public ClockBehavior GameClock;
@@ -228,6 +241,25 @@ public class TutorialTests : MonoBehaviour
             {
                 GameClock.Time = new ClockTime(Test14Time);
                 Monitor14 = false;
+                Guard.GetComponent<GuardBehavior>().ChasePlayer();
+            }
+        }
+
+        if (Monitor15)
+        {
+            if (UpdateTest15())
+            {
+                GameClock.Time = new ClockTime(Test15Time);
+                Monitor15 = false;
+            }
+        }
+
+        if (Monitor15)
+        {
+            if (UpdateTest16())
+            {
+                GameClock.Time = new ClockTime(Test16Time);
+                Monitor16 = false;
             }
         }
     }
@@ -254,6 +286,8 @@ public class TutorialTests : MonoBehaviour
         Test12Status = false;
         Test13Status = false;
         Test14Status = false;
+        Test15Status = false;
+        Test16Status = false;
     }
 
     public void MonitorTest1(bool value)
@@ -321,6 +355,16 @@ public class TutorialTests : MonoBehaviour
     public void MonitorTest14(bool value)
     {
         Monitor14 = value;
+    }
+
+    public void MonitorTest15(bool value)
+    {
+        Monitor15 = value;
+    }
+
+    public void MonitorTest16(bool value)
+    {
+        Monitor16 = value;
     }
 
     public bool UpdateTest1()
@@ -397,7 +441,7 @@ public class TutorialTests : MonoBehaviour
 
     public bool UpdateTest6()
     {
-        if (!paper.activeSelf && !pen.activeSelf)
+        if (!Paper.activeSelf && !Pen.activeSelf)
         {
             Test6Status = true;
         }
@@ -448,7 +492,26 @@ public class TutorialTests : MonoBehaviour
 
     public bool UpdateTest14()
     {
+        if (!HomeKey.activeSelf)
+        {
+            Test14Status = true;
+        }
         return Test14Status;
+    }
+
+    public bool UpdateTest15()
+    {
+        if (Guard.GetComponent<GuardBehavior>().Patrolling)
+        { 
+            Test15Status = true;
+        }
+
+        return Test15Status;
+    }
+
+    public bool UpdateTest16()
+    {
+        return Test16Status;
     }
     public void EnterDesk(bool value)
     {
@@ -509,6 +572,8 @@ public class TutorialTests : MonoBehaviour
         Monitor12 = list.Test12;
         Monitor13 = list.Test13;
         Monitor14 = list.Test14;
+        Monitor15 = list.Test15;
+        Monitor16 = list.Test16;
 
     }
 

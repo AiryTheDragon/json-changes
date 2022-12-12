@@ -38,9 +38,7 @@ public class GuardBehavior : MonoBehaviour, INeedsClockUpdate
             {
                 if(Configuration.EscortOnSight || collider.gameObject.GetComponent<Player>().Suspicion >= collider.gameObject.GetComponent<Player>().MaxSuspicion)
                 {
-                    MyNPCBehavior.ActivityTracker.RunActivityGroup(Configuration.EscortPlayerActivityGroup);
-                    Patrolling = false;
-                    MyNPCBehavior.BeginAction(MyNPCBehavior.ActivityTracker.GetCurrentAction());
+                    ChasePlayer();
                 }
             }
             else if(collider.tag == "NPC")
@@ -85,5 +83,12 @@ public class GuardBehavior : MonoBehaviour, INeedsClockUpdate
                 person.gameObject.GetComponent<NPCBehavior>().AddSuspicion(Configuration.SuspicionPerMinute);
             }
         }
+    }
+
+    public void ChasePlayer()
+    {
+        MyNPCBehavior.ActivityTracker.RunActivityGroup(Configuration.EscortPlayerActivityGroup);
+        Patrolling = false;
+        MyNPCBehavior.BeginAction(MyNPCBehavior.ActivityTracker.GetCurrentAction());
     }
 }
