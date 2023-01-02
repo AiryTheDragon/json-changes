@@ -51,13 +51,13 @@ public class NotePanelBehavior : MonoBehaviour
 
     public void OnEnable()
     {
-        var saveButton = uiDoc.rootVisualElement.Q<UnityEngine.UIElements.Button>("SaveButton");
+        /*var saveButton = uiDoc.rootVisualElement.Q<UnityEngine.UIElements.Button>("SaveButton");
         saveButton.RegisterCallback<ClickEvent>(SaveButtonClick);
         saveButton.SetEnabled(true);
 
         var cancelButton = uiDoc.rootVisualElement.Q<UnityEngine.UIElements.Button>("CancelButton");
         cancelButton.RegisterCallback<ClickEvent>(CancelButtonClick);
-        cancelButton.SetEnabled(true);
+        cancelButton.SetEnabled(true);*/
     }
 
     public void CancelButtonClick(ClickEvent evt)
