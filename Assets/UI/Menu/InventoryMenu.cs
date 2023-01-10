@@ -35,9 +35,12 @@ public class InventoryMenu : MonoBehaviour, IManualUpdate
             Start();
             return;
         }
+        // list # of paper and pens on top
         StringBuilder leftPageText = new("Paper: ");
         leftPageText.Append(player.invScript.Paper.ToString()).Append("\t\tPens: ");
         leftPageText.Append(player.invScript.Pens);
+
+        // list inventory items
         int i = 0;
         for(i = 0; i < player.invScript.inventoryNames.Count && i < LeftPageLines; i++)
         {
