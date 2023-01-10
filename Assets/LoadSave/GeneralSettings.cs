@@ -35,7 +35,7 @@ public class GeneralSettings
             string fileData = JsonConvert.SerializeObject(Settings);
             string pathString = System.IO.Path.Combine(Application.persistentDataPath, "EEData/Settings.json");
 
-            using FileStream stream = File.OpenWrite(pathString);
+            using FileStream stream = File.Open(pathString, FileMode.Truncate, FileAccess.Write);
             using StreamWriter writer = new(stream);
 
             writer.Write(fileData);

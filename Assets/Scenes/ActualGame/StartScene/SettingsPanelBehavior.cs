@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine.UIElements;
 using UnityEngine.UI;
 using TMPro;
 
-public class NotePanelBehavior : MonoBehaviour
+public class SettingsPanelBehavior : MonoBehaviour
 { 
     public GameObject NextPanel;
     public AudioSource audioSource;
@@ -13,14 +14,17 @@ public class NotePanelBehavior : MonoBehaviour
     public GameObject Background;
     public GameObject ReturnButton;
     public GameObject SaveButton;
+
+    public GameObject ResolutionDropDown;
+    public GameObject SpeechBubbleSizeDropDown;
     
-    public UIDocument uiDoc;
 
     public void Start()
     {
         var settings = new GeneralSettings();
         settings.LoadSettings();
 
+        /*
         switch(GeneralSettings.Settings.ScreenSize)
         {
             case Resolutions.R1920X1080:
@@ -45,7 +49,7 @@ public class NotePanelBehavior : MonoBehaviour
                 ReturnButton.GetComponentInChildren<TextMeshProUGUI>().fontSize = 134;
                 break;
         }
-
+        */
         
     }
 
@@ -60,16 +64,28 @@ public class NotePanelBehavior : MonoBehaviour
         cancelButton.SetEnabled(true);*/
     }
 
-    public void CancelButtonClick(ClickEvent evt)
+    public void ReturnButtonClick()
     {
         audioSource.Play();
         gameObject.SetActive(false);
         NextPanel.SetActive(true);
     }
 
-    public void SaveButtonClick(ClickEvent evt)
+    public void SaveButtonClick()
     {
+        var resDropDown = ResolutionDropDown.GetComponent<TMP_Dropdown>();
+        Enum.TryParse(resDropDown.options[resDropDown.value].text, out Resolutions newResolution);
 
+        var speechsizeDropDown = SpeechBubbleSizeDropDown.GetComponent<TMP_Dropdown>();
+        string newSpeechBubbleSize = speechsizeDropDown.options[speechsizeDropDown.value].text;
+
+        var settings = new GeneralSettings();
+        settings.LoadSettings();
+        GeneralSettings.Settings.SpeechBubbleSize = newSpeechBubbleSize;
+        GeneralSettings.Settings.ScreenSize = newResolution;
+        settings.SaveSettings();
+
+        
     }
 
 }
