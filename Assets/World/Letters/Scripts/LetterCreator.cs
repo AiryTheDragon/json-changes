@@ -137,6 +137,7 @@ public class LetterCreator : MonoBehaviour
                 Letter letter = new Letter();
                 letter.Recieving = SelectedPerson;
                 letter.ManipulationLevelIncrease = BannedActivitiesObject.GetComponent<BannedActivitiesBehavior>().GetBanLevel(SelectedActivity);
+                letter.Description = "Letter to " + SelectedPerson.Name + " regarding " + SelectedActivity.Name + ".";
                 var player = PlayerVariable.GetComponent<Player>();
                 player.invScript.AddLetter(letter);
                 player.invScript.Pens--;
