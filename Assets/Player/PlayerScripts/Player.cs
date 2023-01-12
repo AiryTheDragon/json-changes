@@ -63,6 +63,10 @@ public class Player : MonoBehaviour
 
     public bool inputEnabled = true;
 
+    // used for confirmation notice
+    public GameObject confirmObject;
+    public GameObject yesButton;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -201,6 +205,12 @@ public class Player : MonoBehaviour
                 log.AddItem("Notice", "Delivered a letter to " + npc.Name + " affecting morale by " + letter.ManipulationLevelIncrease);
                 log.AddItem(npc.Name, "Morale is now " + npc.ManipulationLevel + ".");
 
+                confirmObject.GetComponent<ConfirmMenu>().UpdateText("Letter delivered to " + npc.Name + ".");
+                //_source.clip = _inBed;
+                //_source.Play();
+                confirmObject.SetActive(true);
+                confirmObject.GetComponent<ConfirmMenu>().UpdateNoText("Ok!");
+                yesButton.SetActive(false); // additional option not needed
                 // Check whether colliding with this npc gave us an achievement.
                 achievementList.CheckMoralAchievements(npc);
                 achievementList.CheckLetterTypeAchievements(letter);

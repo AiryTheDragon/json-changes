@@ -64,6 +64,8 @@ public class YourBedBehavior : MonoBehaviour, IConfirmScript
             confirmObject.GetComponent<ConfirmMenu>().UpdateText("Do you want to sleep until the next day?");
             _source.clip = _inBed;
             _source.Play();
+            confirmObject.GetComponent<ConfirmMenu>().UpdateYesText("Yes!");
+            confirmObject.GetComponent<ConfirmMenu>().UpdateNoText("No!");
             confirmObject.SetActive(true);
             yesButton.SetActive(true);
         }
