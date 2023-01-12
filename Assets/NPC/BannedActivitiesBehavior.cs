@@ -14,6 +14,30 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
 
     private ClockBehavior Clock;
 
+    public GameObject confirmObject;
+    public GameObject yesButton;
+    public AudioClip _lawNotice;
+    private AudioSource _source = null;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        Clock = GameObject.Find("Clock").GetComponent<ClockBehavior>();
+        Clock.NeedsClockUpdate.Add(this);
+        _source = GetComponent<AudioSource>();
+        if (_source == null)
+        {
+            Debug.Log("Audio Source is NULL");
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
     public void BanActivity(Activity activity)
     {
         if(BannedActivities.Contains(activity))
@@ -40,18 +64,6 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Clock = GameObject.Find("Clock").GetComponent<ClockBehavior>();
-        Clock.NeedsClockUpdate.Add(this);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void UpdateClock(ClockTime time)
     {
@@ -62,6 +74,8 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
 
         }
     }
+
+    // This method updates the banned activites in the game.
     private void UpdateBans()
     {
         // algorithm to ban and unban activities.  Choose one sleep to ban and one to unban
@@ -102,6 +116,8 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
         {
             unban(ActivityUnBanned);
         }
+
+        NotifyPlayerOfUpdate();
 
     }
 
@@ -182,6 +198,17 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
             Debug.Log(AC.MoreBanText + " " + AC.GroupName + " is now more strongly banned.");
             log.AddItem("The Manager", AC.MoreBanText + " " + AC.GroupName + " is now more strongly banned.");
         }
+    }
+
+    // This method loads the confirmation notice on the player screen notifying the player that a law update happened
+    private void NotifyPlayerOfUpdate()
+    {
+
+        confirmObject.GetComponent<ConfirmMenu>().UpdateText("You have received notification from the Manager that new laws were enacted.  You have noted it in your notebook.");
+        _source.clip = _lawNotice;
+        _source.Play();
+        confirmObject.SetActive(true);
+        yesButton.SetActive(false); // no additional action can be done
     }
 
 }
