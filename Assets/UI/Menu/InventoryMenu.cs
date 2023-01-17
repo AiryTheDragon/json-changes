@@ -8,7 +8,7 @@ using TMPro;
 
 public class InventoryMenu : MonoBehaviour, IManualUpdate
 {
-    Player player;
+    public Player player;
 
     public GameObject LeftPage;
 
@@ -74,11 +74,13 @@ public class InventoryMenu : MonoBehaviour, IManualUpdate
     // Start is called before the first frame update
     void Start()
     {
-        Player[] Players = Resources.FindObjectsOfTypeAll<Player>();
-
-
-
-        player = Resources.FindObjectsOfTypeAll<Player>().First();
+        player = GameObject.Find("Player").GetComponent<Player>();
+        /*
+        if (player is null)
+        {
+            player = Resources.FindObjectsOfTypeAll<Player>().First();
+        }
+        */
         ManualUpdate();
 
     }
