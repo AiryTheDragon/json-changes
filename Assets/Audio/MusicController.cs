@@ -6,7 +6,7 @@ public class MusicController : MonoBehaviour
 {
 
     public MusicList musicList;
-    public MusicZone musicZone;
+    // public MusicZone musicZone;
     public MusicListEnum musicListEnum;
 
     public bool inBoomBoxZone = false;
