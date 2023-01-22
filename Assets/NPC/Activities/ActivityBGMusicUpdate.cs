@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class ActivityBGMusicUpdate : ActivityAction
 {
-    public BackgroundMusicScript backMusic;
-    public AudioClip audioClip;
+    public MusicController musicController;
+    public MusicListEnum audioClip;
 
     public void playClip()
     {
-        backMusic.play(audioClip);
+        Debug.LogError("Attempting to play an audioclip");
+        musicController.currentAudio = audioClip;
+        musicController.Play(audioClip);
+        
     }
-
+        
 
 }
 

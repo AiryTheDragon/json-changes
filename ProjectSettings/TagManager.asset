@@ -35,6 +35,8 @@ TagManager:
   - SecurityCamera
   - YesButton
   - TutorialTextbox
+  - BoomBox
+  - MusicController
   layers:
   - Default
   - TransparentFX

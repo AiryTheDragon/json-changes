@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BackgroundMusicScript : MonoBehaviour
 {
+    /*
     public AudioClip _sneakingAround;
     public AudioClip _tension;
 
@@ -54,5 +55,6 @@ public class BackgroundMusicScript : MonoBehaviour
     {
         return Playing;
     }
+    */
 }
 

@@ -42,6 +42,16 @@ public class LampBehavior : MonoBehaviour
             onDoorObject.GetComponent<Light2D>().enabled = true;
             // onDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = true;
 
+            if (this.CompareTag("BoomBox"))
+            {
+                Debug.LogWarning("You clicked the Boombox!");
+                // get musicController to be able to adjust background music
+                MusicController musicController = musicController = GameObject.FindGameObjectWithTag("MusicController").GetComponent<MusicController>();
+                musicController.TurnOnBoomBox();
+                
+            }
+
+
             _source.clip = _turnLightOn;
             _source.Play();
             on = true;
@@ -57,6 +67,7 @@ public class LampBehavior : MonoBehaviour
             onDoorObject.GetComponent<SpriteRenderer>().enabled = true;
             onDoorObject.GetComponent<Light2D>().enabled = true;
             // onDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = true;
+
             on = true;
         }
     }
@@ -69,6 +80,18 @@ public class LampBehavior : MonoBehaviour
             // onDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = false;
             offDoorObject.GetComponent<SpriteRenderer>().enabled = true;
             // offDoorObject.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().castsShadows = true;
+
+            if (this.CompareTag("BoomBox"))
+            {
+                Debug.LogWarning("You clicked the Boombox!");
+                
+                // get musicController to be able to adjust background music
+                MusicController musicController = musicController = GameObject.FindGameObjectWithTag("MusicController").GetComponent<MusicController>();
+                musicController.TurnOffBoomBox();
+                
+            }
+
+
 
             _source.clip = _turnLightOff;
             _source.Play();

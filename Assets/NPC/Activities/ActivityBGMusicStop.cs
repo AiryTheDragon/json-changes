@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class ActivityBGMusicStop : ActivityAction
 {
+    /*
     public BackgroundMusicScript backMusic;
 
     public void stopClip()
     {
         backMusic.stop();
     }
-
+    */
 }
 
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NoMusicTriggerScript : MonoBehaviour
 {
+    /*
     public BackgroundMusicScript backMusic;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -15,5 +16,5 @@ public class NoMusicTriggerScript : MonoBehaviour
 
         }
     }
-
+    */
 }

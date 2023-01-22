@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
     public double Suspicion { get; private set; }
 
     public double MaxSuspicion = 100;
+    public double warningSuspicion;
 
     public Dictionary<string, Person> PeopleKnown = new ();
 
@@ -67,6 +68,8 @@ public class Player : MonoBehaviour
     public GameObject confirmObject;
     public GameObject yesButton;
 
+    public MusicController musicController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -83,6 +86,14 @@ public class Player : MonoBehaviour
         {
             _source.clip = _playerSounds.Ow;
         }
+
+        if (musicController is null)
+        {
+            musicController = GameObject.FindGameObjectWithTag("MusicController").GetComponent<MusicController>();
+        }
+
+        warningSuspicion = .75 * MaxSuspicion;
+
     }
 
     // Update is called once per frame
@@ -338,10 +349,21 @@ public class Player : MonoBehaviour
     {
         // If we multiply by the move speed and divide by two, suspicion will range from 1 - 4
         this.Suspicion += suspicion / 2f * CurrentSpeed;
+
         if (Suspicion >= MaxSuspicion)
         {
             Revolt();
         }
+
+        if (Suspicion >= warningSuspicion)
+        {
+            musicController.IsHighSus();
+        }
+        else
+        {
+            musicController.IsNotHighSus();
+        }
+
     }
 
     /// <summary>

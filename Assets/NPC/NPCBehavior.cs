@@ -57,6 +57,8 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
 
     public AudioSource _source = null;
 
+    public MusicController musicController = null;
+
     public TutorialTests tutorial=null;
 
     //[SerializeField] private AudioClip _ow = null;
@@ -95,6 +97,12 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
             waypoint.transform.SetParent(GameObject.Find("Clock").transform, true);
             home = waypoint.transform;
         }
+
+        if (musicController is null)
+        {
+            musicController = GameObject.FindGameObjectWithTag("MusicController").GetComponent<MusicController>();
+        }
+
 
         //GetComponent<AIDestinationSetter>().target = runningActivity.GetDestination().GetComponent<Transform>();
         //base.Start();
@@ -320,12 +328,36 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         else if (action is ActivityTurnOn)
         {
             ((ActivityTurnOn)action).lampObject.GetComponent<LampBehavior>().TurnOn();
+
+            if (((ActivityTurnOn)action).lampObject.CompareTag("BoomBox"))
+            {
+              /*
+               * if (musicController is null)
+                {
+                    musicController = GameObject.FindGameObjectWithTag("MusicController").GetComponent<MusicController>();
+                }
+              */
+                musicController.TurnOnBoomBox();
+            }
+
             ActivityTracker.CompleteAction(Clock.Time);
             BeginAction(ActivityTracker.GetCurrentAction());
         }
         else if (action is ActivityTurnOff)
         {
             ((ActivityTurnOff)action).lampObject.GetComponent<LampBehavior>().TurnOff();
+
+            if (((ActivityTurnOff)action).lampObject.CompareTag("BoomBox"))
+            {
+                /*
+                if (musicController is null)
+                {
+                    musicController = GameObject.FindGameObjectWithTag("MusicController").GetComponent<MusicController>();
+                }
+                */
+                musicController.TurnOffBoomBox();
+            }
+
             ActivityTracker.CompleteAction(Clock.Time);
             BeginAction(ActivityTracker.GetCurrentAction());
 
@@ -333,6 +365,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         else if (action is ActivityCatchPlayer)
         {
             GetComponent<AIDestinationSetter>().target = Player.GetComponent<Transform>();
+            musicController.IsChased();
             //Player._source.Stop();
             //((ActivityCatchPlayer)action).chaseMusic.Play();
         }
@@ -345,6 +378,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         {
             GetComponent<AIDestinationSetter>().target = ((ActivityEscortPlayer)action).Destination.GetComponent<Transform>();
             Player.beingEscorted = true;
+            musicController.IsCaught();
             //Player._source.Stop();
             //((ActivityEscortPlayer)action).escortMusic.Play();
         }
@@ -360,17 +394,23 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
             RunNextActivityGroup();
             //Player._source.Stop();
         }
-        else if (action is ActivityBGMusicStop)
+        else if (action is ActivityBGMusicStop)  // do not use, it is depreciated
         {
-            ((ActivityBGMusicStop)action).stopClip();
+            Debug.LogError("Attempting action ActivityBGMusicStop");
+       
+            //((ActivityBGMusicStop)action).playClip();
             ActivityTracker.CompleteAction(Clock.Time);
             BeginAction(ActivityTracker.GetCurrentAction());
+            
         }
         else if (action is ActivityBGMusicUpdate)
         {
+            Debug.LogError("Attempting ActivityBGMusicUpdate");
+
             ((ActivityBGMusicUpdate)action).playClip();
             ActivityTracker.CompleteAction(Clock.Time);
             BeginAction(ActivityTracker.GetCurrentAction());
+            
         }
         else if (action is ActivityPlaySound)
         {
@@ -496,6 +536,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         {
             ActivityTracker.CompleteAction(Clock.Time);
             Player.beingEscorted = false;
+            musicController.IsReleased();
             BeginAction(ActivityTracker.GetCurrentAction());
         }
         base.OnTargetReached();
