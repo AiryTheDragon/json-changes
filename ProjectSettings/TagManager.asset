@@ -37,6 +37,7 @@ TagManager:
   - TutorialTextbox
   - BoomBox
   - MusicController
+  - LetterWorkspace
   layers:
   - Default
   - TransparentFX

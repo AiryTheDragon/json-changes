@@ -14,6 +14,8 @@ public class LetterCreator : MonoBehaviour
 
     public GameObject BlackmailLetter;
 
+    public GameObject GiftLetter;
+
     public GameObject RevolutionLetter;
 
     public TextMeshProUGUI RevolutionLetterText;
@@ -35,7 +37,9 @@ public class LetterCreator : MonoBehaviour
     public TextMeshProUGUI InkAmountText;
 
     public TextMeshProUGUI PaperAmountText;
-    
+
+    public TextMeshProUGUI BookAmountText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,6 +71,30 @@ public class LetterCreator : MonoBehaviour
         
     }
 
+
+    public void SelectBlackmailLetter()
+    {
+        if (CurrentLetter != null)
+        {
+            CurrentLetter.SetActive(false);
+        }
+        EnterCreator();
+    }
+
+
+    public void SelectGiftLetter()
+    {
+        if (PlayerVariable.GetComponent<InvScript>().Books > 0)
+        {
+            if (CurrentLetter != null)
+            {
+                CurrentLetter.SetActive(false);
+            }
+            CurrentLetter = GiftLetter;
+            GiftLetter.SetActive(true);
+        }
+    }
+
     public void SelectRevolutionLetter()
     {
         if(CurrentLetter != null)
@@ -75,7 +103,6 @@ public class LetterCreator : MonoBehaviour
         }
         CurrentLetter = RevolutionLetter;
         RevolutionLetter.SetActive(true);
-        RevolutionLetterText.SetText($"\nViva\nLa\nRevolution\n\n-{Player.Name}");
     }
 
     public void OpenPersonSelector()
@@ -163,6 +190,28 @@ public class LetterCreator : MonoBehaviour
             PlayerVariable.GetComponent<Player>().Revolt();
             LeaveCreator();
         }
+        else if(CurrentLetter.name == "GiftLetter")
+        {
+            Letter letter = new Letter();
+            letter.Recieving = SelectedPerson;
+            letter.ManipulationLevelIncrease = 2;
+            letter.Description = "Letter to " + SelectedPerson.Name + " gifting a Freedom book.";
+            var player = PlayerVariable.GetComponent<Player>();
+            player.invScript.AddLetter(letter);
+            player.invScript.Pens--;
+            player.invScript.Paper--;
+            player.invScript.Books--;
+            Debug.Log("Wrote a letter to " + SelectedPerson.Name + " gifting a Freedom book affecting morale by 2.");
+
+            // Check on writing letter achievement.
+            AchievementItem achItem = AchievementList.GetItem(Achievement.MightierThanTheSword);
+            if (!achItem.isDone)
+            {
+                AchievementList.MakeAchievement(achItem, player.achievementList);
+            }
+
+            LeaveCreator();
+        }
     }
 
     public void LeaveCreator()
@@ -189,6 +238,7 @@ public class LetterCreator : MonoBehaviour
         People = PlayerVariable.GetComponent<Player>().PeopleKnown.Values.OrderBy(x => x.Name).ToList();
         InkAmountText.text = $"{PlayerVariable.GetComponent<Player>().invScript.Pens}";
         PaperAmountText.text = $"{PlayerVariable.GetComponent<Player>().invScript.Paper}";
+        BookAmountText.text = $"{PlayerVariable.GetComponent<Player>().invScript.Books}";
         Creator.SetActive(true);
     }
 }

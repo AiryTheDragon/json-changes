@@ -5,12 +5,13 @@ using System.Linq;
 
 public class WritingDeskBehavior : MonoBehaviour
 {
-    public GameObject LetterCreator;
+    public LetterCreator letterCreator;
 
     // Start is called before the first frame update
     void Start()
     {
-        LetterCreator = Resources.FindObjectsOfTypeAll<LetterCreator>().First().gameObject;
+        //LetterCreator = Resources.FindObjectsOfTypeAll<LetterCreator>().First().gameObject;
+        letterCreator = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().letterCreator;
     }
 
     // Update is called once per frame
@@ -21,6 +22,8 @@ public class WritingDeskBehavior : MonoBehaviour
 
     public void OpenLetterCreator()
     {
-        LetterCreator.GetComponent<LetterCreator>().EnterCreator();
+       
+
+        letterCreator.EnterCreator();
     }
 }
