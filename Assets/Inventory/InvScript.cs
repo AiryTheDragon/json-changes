@@ -13,6 +13,8 @@ public class InvScript : MonoBehaviour
 
     public int Pens = 0;
 
+    public int Books = 0;
+
     public Dictionary<string, GameObject> inventoryDict = new Dictionary<string, GameObject>();
 
     // Start is called before the first frame update
@@ -45,6 +47,10 @@ public class InvScript : MonoBehaviour
         else if(gameObject.tag == "Pen")
         {
             Pens++;
+        }
+        else if (gameObject.CompareTag("FreedomBook"))
+        {
+            Books++;
         }
         else if (gameObject.tag == "Cupcake")
         {

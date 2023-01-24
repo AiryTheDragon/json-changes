@@ -112,8 +112,9 @@ public class InventoryMenu : MonoBehaviour, IManualUpdate
 
         // list # of paper and pens on top
         StringBuilder leftPageText = new("Paper: ");
-        leftPageText.Append(player.invScript.Paper.ToString()).Append("\t\tPens: ");
-        leftPageText.Append(player.invScript.Pens).Append("\n");
+        leftPageText.Append(player.invScript.Paper.ToString()).Append("\tPens: ");
+        leftPageText.Append(player.invScript.Pens).Append("\tBooks: ");
+        leftPageText.Append(player.invScript.Books).Append("\n");
 
         StringBuilder rightPageText = new StringBuilder();
 
