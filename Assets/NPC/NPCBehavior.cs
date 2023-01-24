@@ -378,6 +378,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         {
             GetComponent<AIDestinationSetter>().target = ((ActivityEscortPlayer)action).Destination.GetComponent<Transform>();
             Player.beingEscorted = true;
+            Player.letterCreator.LeaveCreator();
             musicController.IsCaught();
             //Player._source.Stop();
             //((ActivityEscortPlayer)action).escortMusic.Play();

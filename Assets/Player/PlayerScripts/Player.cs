@@ -70,6 +70,8 @@ public class Player : MonoBehaviour
 
     public MusicController musicController;
 
+    public LetterCreator letterCreator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -326,8 +328,11 @@ public class Player : MonoBehaviour
         {
             collision.gameObject.GetComponent<SecurityCameraBehavior>().seesPlayer = false;
         }
+        else if (collision.gameObject.tag == "Writing Desk")
+        {
+            letterCreator.LeaveCreator();
+        }
     }
-
     /// <summary>
     /// Activate the speech bubble above the player's head and<br/>
     /// set the text inside it.
