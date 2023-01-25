@@ -308,6 +308,12 @@ public class AchievementList : MonoBehaviour
                 }
             }
         }            
+       
+    }
+
+    // This method will check for achievements related to being caught in an illegal act
+    public void CheckIllegalAchievements(NPCBehavior npc)
+    {
         if (npc.Name.Equals("Manager George"))
         {
             AchievementItem achItem = GetItem(Achievement.Hypocrisy);
@@ -332,9 +338,14 @@ public class AchievementList : MonoBehaviour
     /// <param name="letter"></param>
     public void CheckLetterTypeAchievements(Letter letter)
     {
-        /*TODO
-        if (letter.banType=="Working on game");
-        */
+        if (letter.Type == LetterType.Gaming)
+        {
+            AchievementItem achItem = GetItem(Achievement.NoMoreGames);
+            if (!achItem.isDone)
+            {
+                MakeAchievement(achItem, this);
+            }
+        }
     }
 
 

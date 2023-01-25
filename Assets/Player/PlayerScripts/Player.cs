@@ -224,9 +224,17 @@ public class Player : MonoBehaviour
                 confirmObject.SetActive(true);
                 confirmObject.GetComponent<ConfirmMenu>().UpdateNoText("Ok!");
                 yesButton.SetActive(false); // additional option not needed
+                
                 // Check whether colliding with this npc gave us an achievement.
                 achievementList.CheckMoralAchievements(npc);
-                achievementList.CheckLetterTypeAchievements(letter);
+                if (letter.Type == LetterType.Blackmail || letter.Type == LetterType.Gaming)
+                {
+                    achievementList.CheckIllegalAchievements(npc);
+                }
+                if (letter.Type == LetterType.Gaming)
+                {
+                    achievementList.CheckLetterTypeAchievements(letter);
+                }
             }
         }
     }

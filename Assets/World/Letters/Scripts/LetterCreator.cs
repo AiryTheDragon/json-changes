@@ -165,6 +165,14 @@ public class LetterCreator : MonoBehaviour
                 letter.Recieving = SelectedPerson;
                 letter.ManipulationLevelIncrease = BannedActivitiesObject.GetComponent<BannedActivitiesBehavior>().GetBanLevel(SelectedActivity);
                 letter.Description = "Letter to " + SelectedPerson.Name + " regarding " + SelectedActivity.Name + ".";
+                if (SelectedActivity.Name.Equals("programming video games"))
+                {
+                    letter.Type = LetterType.Gaming;
+                }
+                else
+                {
+                    letter.Type = LetterType.Blackmail;
+                }
                 var player = PlayerVariable.GetComponent<Player>();
                 player.invScript.AddLetter(letter);
                 player.invScript.Pens--;
@@ -180,8 +188,6 @@ public class LetterCreator : MonoBehaviour
                     AchievementList.MakeAchievement(achItem, player.achievementList);
                 }
 
-
-
                 LeaveCreator();
             }
         }
@@ -196,6 +202,7 @@ public class LetterCreator : MonoBehaviour
             letter.Recieving = SelectedPerson;
             letter.ManipulationLevelIncrease = 2;
             letter.Description = "Letter to " + SelectedPerson.Name + " gifting a Freedom book.";
+            letter.Type = LetterType.Gift;
             var player = PlayerVariable.GetComponent<Player>();
             player.invScript.AddLetter(letter);
             player.invScript.Pens--;

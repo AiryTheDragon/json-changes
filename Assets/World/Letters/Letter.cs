@@ -7,4 +7,5 @@ public class Letter
     public Person Recieving;
     public int ManipulationLevelIncrease;
     public string Description;
+    public LetterType Type;
 }
