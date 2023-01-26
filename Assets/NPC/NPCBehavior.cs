@@ -8,7 +8,7 @@ using Pathfinding;
 using TMPro;
 	using Pathfinding.Util;
 
-public class NPCBehavior : AIPath, INeedsClockUpdate
+public class NPCBehavior : AIPath, INeedsClockUpdate, IClickable
 {
     //public List<GameObject> paths;
 
@@ -219,7 +219,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
         CalculateNextRotation(slowdown, out nextRotation);
     }
 
-    void OnMouseUpAsButton()
+    public void OnMouseUpAsButton()
     {
         if(IsHidden())
         {

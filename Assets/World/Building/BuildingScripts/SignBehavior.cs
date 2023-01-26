@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using System.Linq;
 
-public class SignBehavior : MonoBehaviour
+public class SignBehavior : MonoBehaviour, IClickable
 {
     private static CanvasSignBehavior _canvasSign;
 
@@ -33,7 +33,7 @@ public class SignBehavior : MonoBehaviour
         
     }
 
-    private void OnMouseUpAsButton()
+    public void OnMouseUpAsButton()
     {
         canvasSign.Open(expandedText);
     }
