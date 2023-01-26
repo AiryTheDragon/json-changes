@@ -17,6 +17,8 @@ public class BannedActivitiesMenuBehavior : MonoBehaviour, IManualUpdate
 
     private List<string> bannedList;
 
+    private List<string> uniqueBannedList;
+
     private bool started = false;
 
     private int currentPage = 1;
@@ -48,7 +50,7 @@ public class BannedActivitiesMenuBehavior : MonoBehaviour, IManualUpdate
         if(currentPage < 1) currentPage = 1;
         if(currentPage > pages) currentPage = pages;
 
-        List<string> readable = bannedList.Skip((currentPage - 1) * 10).Take(10).ToList();
+        List<string> readable = uniqueBannedList.Skip((currentPage - 1) * 10).Take(10).ToList();
         StringBuilder leftText = new StringBuilder();
         StringBuilder rightText = new StringBuilder();
         for(int i = 0; i < 5 && i < readable.Count; i++)
@@ -74,7 +76,23 @@ public class BannedActivitiesMenuBehavior : MonoBehaviour, IManualUpdate
             Start();
         }
         bannedList = bannedActivities.BannedActivities.Select(x => x.Name).ToList();
-        pages = Math.Max(0, (bannedList.Count - 1)) / 10 + 1;
+        UpdateList();
+        pages = Math.Max(0, (uniqueBannedList.Count - 1)) / 10 + 1;
         SetPage();
     }
+
+    // this method removes non-unique items from the banned list
+    public void UpdateList()
+    {
+        uniqueBannedList = new List<string>();
+        for (int i=0; i < bannedList.Count; i++)
+        {
+            if (!uniqueBannedList.Contains(bannedList[i]))
+            {
+                uniqueBannedList.Add(bannedList[i]);
+            }
+        }
+    }
+
+
 }

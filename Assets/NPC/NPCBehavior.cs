@@ -59,7 +59,9 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
 
     public MusicController musicController = null;
 
-    public TutorialTests tutorial=null;
+    public TutorialTests tutorial = null;
+
+    public BannedActivitiesBehavior BannedActivities;
 
     //[SerializeField] private AudioClip _ow = null;
     //private AudioSource _source = null;
@@ -103,6 +105,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
             musicController = GameObject.FindGameObjectWithTag("MusicController").GetComponent<MusicController>();
         }
 
+        BannedActivities = GameObject.FindGameObjectWithTag("BannedActivities").GetComponent<BannedActivitiesBehavior>();
 
         //GetComponent<AIDestinationSetter>().target = runningActivity.GetDestination().GetComponent<Transform>();
         //base.Start();
@@ -231,8 +234,17 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
             if(ActivityTracker.RunningActivity != null &&
                 !Player.PeopleKnown[person.Name].SeenActivities.Any(x => x.SystemName == ActivityTracker.RunningActivity.name && x.ReadableName == ActivityTracker.RunningActivity.Name))
             {
-                Player.PeopleKnown[person.Name].SeenActivities.Add(new SeenActivity() { SystemName = ActivityTracker.RunningActivity.name,
-                                                                                        ReadableName = ActivityTracker.RunningActivity.Name });
+
+                SeenActivity seenActivity = new SeenActivity()
+                {
+                    SystemName = ActivityTracker.RunningActivity.name,
+                    ReadableName = ActivityTracker.RunningActivity.Name
+                };
+
+                if (!FoundInActivites(person.Name, seenActivity.ReadableName) && IsBanned(ActivityTracker.RunningActivity))
+                {
+                    Player.PeopleKnown[person.Name].SeenActivities.Add(seenActivity);
+                }
             }
         }
         else
@@ -240,8 +252,16 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
             Player.PeopleKnown.Add(this.Name, person);
             if(ActivityTracker.RunningActivity != null)
             {
-                person.SeenActivities.Add(new SeenActivity() { SystemName = ActivityTracker.RunningActivity.name,
-                                                               ReadableName = ActivityTracker.RunningActivity.Name });
+                SeenActivity seenActivity = new SeenActivity()
+                {
+                    SystemName = ActivityTracker.RunningActivity.name,
+                    ReadableName = ActivityTracker.RunningActivity.Name
+                };
+
+                if (!FoundInActivites(person.Name, seenActivity.ReadableName) && IsBanned(ActivityTracker.RunningActivity))
+                {
+                    person.SeenActivities.Add(seenActivity);
+                }
             }
         }
         Player.NPCInfoUI.OpenNPCInfo(this);
@@ -820,6 +840,35 @@ public class NPCBehavior : AIPath, INeedsClockUpdate
 
 
         return behaviorInfo;
+    }
+
+    // this method is used to check if the given text in activity string if sound in the list of activities, to avoid repeated adding
+    // of activities with the same activityText
+    private bool FoundInActivites(string personName, string activityText)
+    {
+        bool found = false;
+        Person person = Player.PeopleKnown[personName];
+
+        for (int i = 0; i < person.SeenActivities.Count && !found; i++)
+        {
+            if (person.SeenActivities[i].ReadableName.Equals(activityText))
+            {
+                found = true;
+            }
+        }
+        return found;
+    }
+
+    public bool IsBanned(Activity activity)
+    {
+        bool isFound = false;
+
+        if (BannedActivities.BannedActivities.Contains(activity))
+        {
+            isFound = true;
+        }
+
+        return isFound;
     }
 
     public void AddSuspicion(double amount)

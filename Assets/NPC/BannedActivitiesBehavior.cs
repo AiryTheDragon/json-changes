@@ -134,6 +134,10 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
         Activity act;
         int index = -1;
 
+        // used to add notification only once in notices
+        List<string> unbanText = new List<string>();
+        string unbanString = "";
+
         // check each activity if banned
         for (int i = 0; i < AC.Activities.Count; i++)
         {
@@ -145,8 +149,16 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
                 changed = true;
                 BannedActivities.RemoveAt(index);
                 BanLevels.RemoveAt(index);
-                Debug.Log(act + "is no longer banned");
-                log.AddItem("Unban", act + " is now longer banned.");
+
+                RemoveActivitiesFromSeen(act);
+                // add notificiation only once in notices 
+                unbanString = act.Name + " is now longer banned.";
+                if (!unbanText.Contains(unbanString))
+                {
+                    unbanText.Add(unbanString);
+                    Debug.Log(unbanString);
+                    log.AddItem("Unban", unbanString);
+                }
             }
         }
         if (changed)
@@ -167,25 +179,44 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
         Activity act;
         int index = -1;
 
+        // used to add notification only once in notices
+        List<string> banText = new List<string>();
+        string banString = "";
+
         // check each activity if unbanned
         for (int i = 0; i < AC.Activities.Count; i++)
         {
+
             // check if activity unbanned
             act = AC.Activities[i];
             if (BannedActivities.Contains(act))
             {
                 index = getPos(act);
                 BanLevels[index] = BanLevels[index] + 1;
-                Debug.Log(act + " is now banned at level " + BanLevels[index]);
-                log.AddItem("Tougher ban", act + " is now banned at level " + BanLevels[index]);
+
+                // add notificiation only once in notices 
+                banString = act.Name + " is now banned at level " + BanLevels[index] + ".";
+                if (!banText.Contains(banString))
+                {
+                    banText.Add(banString);
+                    Debug.Log(banString);
+                    log.AddItem("Tougher ban", banString);
+                }
             }
             else
             {
                 changed = true;
                 BannedActivities.Add(act);
                 BanLevels.Add(1);
-                Debug.Log(act + " is now banned at level 1");
-                log.AddItem("New ban", act + " is now banned at level 1");
+
+                // add notificiation only once in notices 
+                banString = act.Name + " is now banned at level 1.";
+                if (!banText.Contains(banString))
+                {
+                    banText.Add(banString);
+                    Debug.Log(banString);
+                    log.AddItem("New ban", banString);
+                }
             }
         }
         if (changed) // new addition to list
@@ -211,4 +242,22 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
         yesButton.SetActive(false); // no additional action can be done
     }
 
+    private void RemoveActivitiesFromSeen(Activity activity)
+    {
+        Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        
+        foreach (Person person in player.PeopleKnown.Values)
+        {
+            List<SeenActivity> seen = person.SeenActivities;
+
+            for (int i = 0; i < seen.Count; i++)
+            {
+                if (seen[i].ReadableName.Equals(activity.Name))
+                {
+                    seen.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
+    }
 }
