@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.Rendering.Universal;
 
-public class LampBehavior : MonoBehaviour
+public class LampBehavior : MonoBehaviour, IClickable
 {
     [SerializeField] private AudioClip _turnLightOn = null;
     [SerializeField] private AudioClip _turnLightOff = null;
@@ -112,7 +112,7 @@ public class LampBehavior : MonoBehaviour
         }
     }
 
-    private void OnMouseUpAsButton()
+    public void OnMouseUpAsButton()
     {
         Toggle();
         Debug.Log("Light is toggled.");
