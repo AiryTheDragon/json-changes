@@ -57,8 +57,7 @@ public class YourBedBehavior : MonoBehaviour, IConfirmScript
 
 
         confirmObject.GetComponent<ConfirmMenu>().script = this;
-        //if (clock.timeToNextDay().Hour >= 0 && clock.timeToNextDay().Hour < 10)
-        if (true)
+        if (clock.timeToNextDay().Hour >= 0 && clock.timeToNextDay().Hour < 10)
         {
 
             confirmObject.GetComponent<ConfirmMenu>().UpdateText("Do you want to sleep until the next day?");
@@ -69,7 +68,7 @@ public class YourBedBehavior : MonoBehaviour, IConfirmScript
             confirmObject.SetActive(true);
             yesButton.SetActive(true);
         }
-        /*else
+        else
         {
             confirmObject.GetComponent<ConfirmMenu>().script = this;
             confirmObject.GetComponent<ConfirmMenu>().UpdateText("It is too bright to go to bed.");
@@ -77,7 +76,7 @@ public class YourBedBehavior : MonoBehaviour, IConfirmScript
             _source.Play();
             confirmObject.SetActive(true);
             yesButton.SetActive(false);
-        }*/
+        }
 
 
     }

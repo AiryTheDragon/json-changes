@@ -428,7 +428,7 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
         LoadNextDayState();
         ResupplyPaper(Clock.timeToNextDay().Hour);  //add paper based on the time that passes to next morning
         ResupplyPens(Clock.timeToNextDay().Hour);   //add pens based on the time that passes to next morning
-        player.ReduceSuspicion(Clock.timeToNextDay().Hour * 60 + Clock.timeToNextDay().Minute); // reduce suspicion
+        player.ReduceSuspicion(2 * (Clock.timeToNextDay().Hour * 60 + Clock.timeToNextDay().Minute)); // reduce suspicion
         Clock.Time = Clock.nextDayTime();
     }
 
