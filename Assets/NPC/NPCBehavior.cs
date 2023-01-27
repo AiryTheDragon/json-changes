@@ -172,6 +172,16 @@ public class NPCBehavior : AIPath, INeedsClockUpdate, IClickable
                 return;
             }
 
+            // Check if the player is caught
+            if(Player.beingEscorted)
+            {
+                ActivityTracker.CompleteAction(Clock.Time);
+                BeginAction(ActivityTracker.GetCurrentAction());
+                ActivityTracker.CompleteAction(Clock.Time);
+                BeginAction(ActivityTracker.GetCurrentAction());
+                return;
+            }
+
         }
         else if (ActivityTracker.GetCurrentAction() is ActivityCatchNPC)
         {
