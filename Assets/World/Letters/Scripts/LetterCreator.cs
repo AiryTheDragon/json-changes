@@ -34,6 +34,8 @@ public class LetterCreator : MonoBehaviour
 
     public GameObject Creator;
 
+    public GameObject GiftButton;
+
     public TextMeshProUGUI InkAmountText;
 
     public TextMeshProUGUI PaperAmountText;
@@ -246,6 +248,16 @@ public class LetterCreator : MonoBehaviour
         InkAmountText.text = $"{PlayerVariable.GetComponent<Player>().invScript.Pens}";
         PaperAmountText.text = $"{PlayerVariable.GetComponent<Player>().invScript.Paper}";
         BookAmountText.text = $"{PlayerVariable.GetComponent<Player>().invScript.Books}";
+
+        if (PlayerVariable.GetComponent<Player>().invScript.Books<1)
+        {
+            GiftButton.SetActive(false);
+        }
+        else
+        {
+            GiftButton.SetActive(true);
+        }
+
         Creator.SetActive(true);
     }
 }
