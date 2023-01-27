@@ -8,6 +8,8 @@ public class DoorBehavior : MonoBehaviour
     [SerializeField] string doorKeyName="HomeKey";
     [SerializeField] bool needKey = true;
 
+    [SerializeField] bool unlockedSwapped = false;
+
     [SerializeField] private AudioClip _doorClose = null;
     [SerializeField] private AudioClip _doorOpen = null;
 
@@ -20,6 +22,8 @@ public class DoorBehavior : MonoBehaviour
 
     public int colliding = 0;
     bool open = false;
+
+    private bool playerEnteredUnlocked = false;
 
     // Start is called before the first frame update
     void Start()
@@ -37,15 +41,28 @@ public class DoorBehavior : MonoBehaviour
         
     }
 
+    private bool OnUnlockedSide(Collider2D collision)
+    {
+        if(!unlockedSwapped)
+        {
+            return transform.InverseTransformPoint(collision.bounds.center).x > 0;
+        }
+        else
+        {
+            return transform.InverseTransformPoint(collision.bounds.center).x < 0;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && (!needKey || playerInv.haveItem(doorKeyName)))
+        if (collision.tag == "Player" && (!needKey || playerInv.haveItem(doorKeyName) || OnUnlockedSide(collision)))
         {
             if(!open)
             {
                 OpenDoor(true);
             }
             colliding++;
+            playerEnteredUnlocked = true;
         }
         else if(collision.tag == "GuardNPC" || collision.tag == "NPC")
         {
@@ -63,9 +80,10 @@ public class DoorBehavior : MonoBehaviour
         {
             colliding = Math.Max(0, colliding - 1);
         }
-        else if (collision.tag == "Player" && (!needKey || playerInv.haveItem(doorKeyName)))
+        else if (collision.tag == "Player" && (!needKey || playerInv.haveItem(doorKeyName) || playerEnteredUnlocked))
         {
             colliding = Math.Max(0, colliding - 1);
+            playerEnteredUnlocked = false;
         }
 
         if (colliding == 0 && open)

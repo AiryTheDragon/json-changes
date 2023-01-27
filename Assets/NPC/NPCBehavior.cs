@@ -63,6 +63,8 @@ public class NPCBehavior : AIPath, INeedsClockUpdate, IClickable
 
     public BannedActivitiesBehavior BannedActivities;
 
+    private ClockTime lastSeenChaseTime;
+
     //[SerializeField] private AudioClip _ow = null;
     //private AudioSource _source = null;
 
@@ -140,11 +142,46 @@ public class NPCBehavior : AIPath, INeedsClockUpdate, IClickable
         else if (ActivityTracker.GetCurrentAction() is ActivityCatchPlayer)
         {
             var activity = (ActivityCatchPlayer)ActivityTracker.GetCurrentAction();
+
+            // Check if the player is caught.
             if((GetComponent<Transform>().position - Player.GetComponent<Transform>().position).magnitude < 0.6)
             {
                 ActivityTracker.CompleteAction(Clock.Time);
                 BeginAction(ActivityTracker.GetCurrentAction());
+                return;
             }
+            // Check if the player is close enough to reset the clock time for deaggro.
+            else if((GetComponent<Transform>().position - Player.GetComponent<Transform>().position).magnitude < 12)
+            {
+                lastSeenChaseTime = new ClockTime(Clock.Time);
+                GameObject.FindObjectOfType<SuspicionSliderBehavior>().UpdateLastSeen(lastSeenChaseTime);
+            }
+
+            // Check if the player should be deaggroed
+            if(Clock.Time.subtractClockTime(lastSeenChaseTime).Minute > 5)
+            {
+                ActivityTracker.CompleteAction(Clock.Time);
+                if(ActivityTracker.GetCurrentAction() is ActivityEscortPlayer)
+                {
+                    BeginAction(ActivityTracker.GetCurrentAction());
+                    ActivityTracker.CompleteAction(Clock.Time);
+                    Player.beingEscorted = false;
+                }
+                BeginAction(ActivityTracker.GetCurrentAction());
+                musicController.IsReleased();
+                return;
+            }
+
+            // Check if the player is caught
+            if(Player.beingEscorted)
+            {
+                ActivityTracker.CompleteAction(Clock.Time);
+                BeginAction(ActivityTracker.GetCurrentAction());
+                ActivityTracker.CompleteAction(Clock.Time);
+                BeginAction(ActivityTracker.GetCurrentAction());
+                return;
+            }
+
         }
         else if (ActivityTracker.GetCurrentAction() is ActivityCatchNPC)
         {
@@ -388,6 +425,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate, IClickable
             musicController.IsChased();
             //Player._source.Stop();
             //((ActivityCatchPlayer)action).chaseMusic.Play();
+            lastSeenChaseTime = new ClockTime(Clock.Time);
         }
         else if (action is ActivityCatchNPC)
         {

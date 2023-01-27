@@ -114,6 +114,15 @@ public class LampBehavior : MonoBehaviour, IClickable
 
     public void OnMouseUpAsButton()
     {
+        var canvas = FindObjectOfType<MainCanvasBehavior>();
+        if(canvas is not null)
+        {
+            if(canvas.AnyMenuOpen())
+            {
+                return;
+            }
+        }
+        
         Toggle();
         Debug.Log("Light is toggled.");
     }
