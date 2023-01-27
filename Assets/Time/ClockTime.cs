@@ -123,4 +123,56 @@ public class ClockTime
         return differenceClockTime;
     }
 
+    public static bool operator >(ClockTime a, ClockTime b)
+    {
+        if(a.Year > b.Year)
+        {
+            return true;
+        }
+        else if(a.Day > b.Day)
+        {
+            return true;
+        }
+        else if(a.Hour > b.Hour)
+        {
+            return true;
+        }
+        else if(a.Minute > b.Minute)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public static bool operator <(ClockTime a, ClockTime b)
+    {
+        if(a.Year < b.Year)
+        {
+            return true;
+        }
+        else if(a.Day < b.Day)
+        {
+            return true;
+        }
+        else if(a.Hour < b.Hour)
+        {
+            return true;
+        }
+        else if(a.Minute < b.Minute)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public static bool operator ==(ClockTime a, ClockTime b)
+    {
+        return a.Year == b.Year && a.Day == b.Day && a.Hour == b.Hour && a.Minute == b.Minute;
+    }
+
+    public static bool operator !=(ClockTime a, ClockTime b)
+    {
+        return a.Year != b.Year || a.Day != b.Day || a.Hour != b.Hour || a.Minute != b.Minute;
+    }
+
 }
