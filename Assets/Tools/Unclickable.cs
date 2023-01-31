@@ -23,6 +23,9 @@ public class Unclickable : MonoBehaviour, IClickable
         // Cast the ray into the game.
         var hits = Physics.RaycastAll(castRay.origin, castRay.direction, 100, 0, QueryTriggerInteraction.Collide);
 
+        // Make sure everything is sorted by z
+        hits = hits.OrderBy(x => x.collider.bounds.center.z).ToArray();
+
         // Get all objects that it hit.
         var myColliders = GetComponents<Collider2D>().Select(x => x.GetInstanceID());
 

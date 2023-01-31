@@ -65,6 +65,8 @@ public class NPCBehavior : AIPath, INeedsClockUpdate, IClickable
 
     private ClockTime lastSeenChaseTime;
 
+    public Collider2D ClickableArea;
+
     //[SerializeField] private AudioClip _ow = null;
     //private AudioSource _source = null;
 
@@ -265,6 +267,29 @@ public class NPCBehavior : AIPath, INeedsClockUpdate, IClickable
         {
             return;
         }
+
+        // Check if it hit this collider
+        // Get a ray from the current mouse position into the game.
+        Vector3 mousePos = Input.mousePosition;
+
+        Ray castRay = Camera.main.ScreenPointToRay(mousePos);
+
+        int lmask = LayerMask.GetMask("Default");
+
+        // Cast the ray into the game.
+        //var hits = Physics.RaycastAll(castRay.origin, castRay.direction, 100, LayerMask.GetMask("Default"), QueryTriggerInteraction.Collide)
+        //                  .Select(x => x.colliderInstanceID)
+        //                  .ToList();
+
+        var hits = Physics2D.GetRayIntersectionAll(castRay, 100, lmask).ToList();
+
+        int mycl = ClickableArea.GetInstanceID();
+
+        if(!hits.Any(x => x.collider == ClickableArea))
+        {
+            return;
+        }
+
         var person = GetPersonInformation();
         if(Player.PeopleKnown.ContainsKey(person.Name))
         {
