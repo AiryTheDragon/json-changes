@@ -48,21 +48,26 @@ public class TutorialTests : MonoBehaviour
     public GameObject Pen;
 
     // variables used in test 7 approach desk
-    public ClockTime Test7Time = new ClockTime(0, 7, 0);
+    public ClockTime Test7Time = new ClockTime(0, 6, 0);
     public bool Test7Status = false;
     public bool Monitor7 = false;
 
-    // variables used in test 8 click revolt
-    public ClockTime Test8Time = new ClockTime(0, 8, 0);
+    // variables used in test 8 click gift
+    public ClockTime Test8Time = new ClockTime(0, 7, 0);
     public bool Test8Status = false;
     public bool Monitor8 = false;
 
-    // variables used in test 9 click leave
-    public ClockTime Test9Time = new ClockTime(0, 9, 0);
+    // variables used in test 8a click revolt
+    public ClockTime Test8ATime = new ClockTime(0, 8, 0);
+    public bool Test8AStatus = false;
+    public bool Monitor8A = false;
+
+    // variables used in test 9 click warning
+    public ClockTime Test9Time = new ClockTime(0, 10, 0);
     public bool Test9Status = false;
     public bool Monitor9 = false;
 
-    // variables used in test 10 returning to the desk
+    // variables used in test 10 returning to the desk - This section removed from the tutorial
     public ClockTime Test10Time = new ClockTime(0, 10, 0);
     public bool Test10Status = false;
     public bool Monitor10 = false;
@@ -185,13 +190,22 @@ public class TutorialTests : MonoBehaviour
 
             }
         }
+        if (Monitor8A)
+        {
+            if (UpdateTest8A())
+            {
+                GameClock.Time = new ClockTime(Test8ATime);
+                Monitor8A = false;
+
+            }
+        }
         if (Monitor9)
         {
             if (UpdateTest9())
             {
                 GameClock.Time = new ClockTime(Test9Time);
                 Monitor9 = false;
-                TextBox.SetActive(false);
+                // TextBox.SetActive(false);
 
             }
         }
@@ -280,6 +294,7 @@ public class TutorialTests : MonoBehaviour
         Test6Status = false;
         Test7Status = false;
         Test8Status = false;
+        Test8AStatus = false;
         Test9Status = false;
         Test10Status = false;
         Test11Status = false;
@@ -325,6 +340,11 @@ public class TutorialTests : MonoBehaviour
     public void MonitorTest8(bool value)
     {
         Monitor8 = value;
+    }
+
+    public void MonitorTest8A(bool value)
+    {
+        Monitor8A = value;
     }
 
     public void MonitorTest9(bool value)
@@ -458,6 +478,11 @@ public class TutorialTests : MonoBehaviour
         return Test8Status;
     }
 
+    public bool UpdateTest8A()
+    {
+        return Test8AStatus;
+    }
+
     public bool UpdateTest9()
     {
         return Test9Status;
@@ -527,7 +552,7 @@ public class TutorialTests : MonoBehaviour
 
     }
 
-    public void ClickRevoltLetter()
+    public void ClickGiftLetter()
     {
         if (Monitor8)
         {
@@ -535,6 +560,22 @@ public class TutorialTests : MonoBehaviour
         }
     }
 
+    public void ClickRevoltLetter()
+    {
+        if (Monitor8A)
+        {
+            Test8AStatus = true;
+        }
+    }
+
+    public void ClickWarningLetter()
+    {
+        if (Monitor9)
+        {
+            Test9Status = true;
+        }
+    }
+    /* The tutorial was changed, this is no longer needed
     public void ClickLeave()
     {
         if (Monitor9)
@@ -542,7 +583,7 @@ public class TutorialTests : MonoBehaviour
             Test9Status = true;
         }
     }
-
+    */
     public void ClickCreateLetter()
     {
         if (Monitor11)
@@ -562,6 +603,7 @@ public class TutorialTests : MonoBehaviour
         Monitor6 = list.Test6;
         Monitor7 = list.Test7;
         Monitor8 = list.Test8;
+        Monitor8A = list.Test8A;
         Monitor9 = list.Test9;
         Monitor10 = list.Test10;
         Monitor11 = list.Test11;

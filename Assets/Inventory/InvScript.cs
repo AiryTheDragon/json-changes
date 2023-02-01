@@ -54,11 +54,14 @@ public class InvScript : MonoBehaviour
         }
         else if (gameObject.tag == "Cupcake")
         {
+            /*
             string thisName = gameObject.GetComponent<KeyScript>().objectName;
             inventoryNames.Add(thisName);
             inventoryObjects.Add(gameObject);
             Debug.Log(thisName + "   " + gameObject.name);
             inventoryDict.Add(thisName, gameObject);
+            */
+            gameObject.SetActive(false);
         }
     }
 

@@ -9,7 +9,6 @@ public class ActivityBGMusicUpdate : ActivityAction
 
     public void playClip()
     {
-        Debug.LogError("Attempting to play an audioclip");
         musicController.currentAudio = audioClip;
         musicController.Play(audioClip);
         

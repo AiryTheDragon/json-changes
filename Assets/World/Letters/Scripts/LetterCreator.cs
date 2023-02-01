@@ -42,6 +42,8 @@ public class LetterCreator : MonoBehaviour
 
     public TextMeshProUGUI BookAmountText;
 
+    public bool inTutorial = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -86,7 +88,8 @@ public class LetterCreator : MonoBehaviour
 
     public void SelectGiftLetter()
     {
-        if (PlayerVariable.GetComponent<InvScript>().Books > 0)
+
+        if (PlayerVariable.GetComponent<InvScript>().Books > 0 || inTutorial)
         {
             if (CurrentLetter != null)
             {
@@ -95,6 +98,7 @@ public class LetterCreator : MonoBehaviour
             CurrentLetter = GiftLetter;
             GiftLetter.SetActive(true);
         }
+ 
     }
 
     public void SelectRevolutionLetter()
@@ -127,6 +131,12 @@ public class LetterCreator : MonoBehaviour
             CurrentLetter.GetComponent<BlackmailLetterBehavior>().SelectPerson(person);
             SelectedActivity = CurrentLetter.GetComponent<BlackmailLetterBehavior>().SelectedActivity;
         }
+        else if (CurrentLetter.name == "GiftLetter")
+        {
+            CurrentLetter.GetComponent<GiftLetterBehavior>().SelectPerson(person);
+        }
+
+
     }
 
     public void OpenActivitySelector()
@@ -249,15 +259,17 @@ public class LetterCreator : MonoBehaviour
         PaperAmountText.text = $"{PlayerVariable.GetComponent<Player>().invScript.Paper}";
         BookAmountText.text = $"{PlayerVariable.GetComponent<Player>().invScript.Books}";
 
-        if (PlayerVariable.GetComponent<Player>().invScript.Books<1)
+        if (!inTutorial)
         {
-            GiftButton.SetActive(false);
+            if (PlayerVariable.GetComponent<Player>().invScript.Books < 1)
+            {
+                GiftButton.SetActive(false);
+            }
+            else
+            {
+                GiftButton.SetActive(true);
+            }
         }
-        else
-        {
-            GiftButton.SetActive(true);
-        }
-
         Creator.SetActive(true);
     }
 }

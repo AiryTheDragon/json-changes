@@ -60,7 +60,7 @@ public class TutorialBedBehavior : MonoBehaviour, IConfirmScript
 
 
         confirmObject.GetComponent<ConfirmMenu>().script = this;
-        if (clock.timeToNextDay().Hour >= 0 && clock.timeToNextDay().Hour < 9)
+        if (clock.timeToNextDay().Hour >= 7 && clock.timeToNextDay().Hour < 9)
         {
 
             confirmObject.GetComponent<ConfirmMenu>().UpdateText("Do you want to wake up?");
