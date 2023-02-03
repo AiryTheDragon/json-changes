@@ -30,7 +30,7 @@ public class MusicController : MonoBehaviour
         }
         else
         {
-            _source.clip = musicList.Outside;
+            _source.clip = musicList.Home;
         }
     }
 
@@ -42,72 +42,7 @@ public class MusicController : MonoBehaviour
         if (currentZone != zone)
         {
             currentZone = zone;
-            if (!isCaught && !isChased && !isHighSus)
-            {
-                nextAudio = MusicListEnum.NoSound;
-                switch (zone)
-                {
-
-                    case MusicZone.Home:
-                        nextAudio = MusicListEnum.Home;
-                        break;
-                    case MusicZone.Outside:
-                        nextAudio = MusicListEnum.Outside;
-                        break;
-                    case MusicZone.BoomBox:
-                        if (isBoomBoxOn)
-                        {
-                            nextAudio = MusicListEnum.NoSound;
-                        }
-                        else
-                        {
-                            nextAudio = MusicListEnum.Outside;
-                        }
-                        break;
-                    case MusicZone.Jail:
-                        nextAudio = MusicListEnum.Jail;
-                        break;
-                    case MusicZone.JailCell:
-                        nextAudio = MusicListEnum.JailCell;
-                        break;
-                    case MusicZone.PrintingPress:
-                        nextAudio = MusicListEnum.PrintingPress;
-                        break;
-                    case MusicZone.Admin:
-                        nextAudio = MusicListEnum.Admin;
-                        break;
-                    case MusicZone.Other:
-                        nextAudio = MusicListEnum.NoSound;
-                        break;
-                }
-            }
-            else if (isHighSus)
-            {
-                if (isCaught)
-                {
-                    nextAudio = MusicListEnum.HighSusCaught;
-                }
-                else if (isChased)
-                {
-                    nextAudio = MusicListEnum.HighSusChase;
-                }
-                else if (currentZone == MusicZone.BoomBox && isBoomBoxOn)
-                {
-                    nextAudio = MusicListEnum.NoSound;
-                }
-                else
-                {
-                    nextAudio = MusicListEnum.HighSusOutside;
-                }
-            }
-            else if (isCaught)
-            {
-                nextAudio = MusicListEnum.Caught;
-            }
-            else if (isChased)
-            {
-                nextAudio = MusicListEnum.Chase;
-            }
+            nextAudio = GetMusic();
             
             if (nextAudio!=currentAudio)
             {
@@ -245,13 +180,93 @@ public class MusicController : MonoBehaviour
 
     public void Play(MusicListEnum newAudio)
     {
+        currentAudio = newAudio;
         _source.clip = musicList.GetClip(newAudio);
         _source.Play();
         Playing = true;
+    }
+
+    // starts the music playing going if it is not playing
+    public void Play()
+    {
+        Play(GetMusic());
     }
     public bool IsPlaying()
     {
         return Playing;
     }
+
+    public MusicListEnum GetMusic()
+    {
+        MusicListEnum nextAudio = MusicListEnum.NoSound;
+        if (!isCaught && !isChased && !isHighSus)
+        {
+            switch (currentZone)
+            {
+
+                case MusicZone.Home:
+                    nextAudio = MusicListEnum.Home;
+                    break;
+                case MusicZone.Outside:
+                    nextAudio = MusicListEnum.Outside;
+                    break;
+                case MusicZone.BoomBox:
+                    if (isBoomBoxOn)
+                    {
+                        nextAudio = MusicListEnum.NoSound;
+                    }
+                    else
+                    {
+                        nextAudio = MusicListEnum.Outside;
+                    }
+                    break;
+                case MusicZone.Jail:
+                    nextAudio = MusicListEnum.Jail;
+                    break;
+                case MusicZone.JailCell:
+                    nextAudio = MusicListEnum.JailCell;
+                    break;
+                case MusicZone.PrintingPress:
+                    nextAudio = MusicListEnum.PrintingPress;
+                    break;
+                case MusicZone.Admin:
+                    nextAudio = MusicListEnum.Admin;
+                    break;
+                case MusicZone.Other:
+                    nextAudio = MusicListEnum.NoSound;
+                    break;
+            }
+        }
+        else if (isHighSus)
+        {
+            if (isCaught)
+            {
+                nextAudio = MusicListEnum.HighSusCaught;
+            }
+            else if (isChased)
+            {
+                nextAudio = MusicListEnum.HighSusChase;
+            }
+            else if (currentZone == MusicZone.BoomBox && isBoomBoxOn)
+            {
+                nextAudio = MusicListEnum.NoSound;
+            }
+            else
+            {
+                nextAudio = MusicListEnum.HighSusOutside;
+            }
+        }
+        else if (isCaught)
+        {
+            nextAudio = MusicListEnum.Caught;
+        }
+        else if (isChased)
+        {
+            nextAudio = MusicListEnum.Chase;
+        }
+        return nextAudio;
+    }
+
+
 }
 

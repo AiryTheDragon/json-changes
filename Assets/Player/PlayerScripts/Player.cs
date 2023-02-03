@@ -92,8 +92,9 @@ public class Player : MonoBehaviour
         if (musicController is null)
         {
             musicController = GameObject.FindGameObjectWithTag("MusicController").GetComponent<MusicController>();
-        }
 
+        }
+        musicController.Play();
         warningSuspicion = .75 * MaxSuspicion;
 
     }
