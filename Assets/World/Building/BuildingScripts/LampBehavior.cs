@@ -83,7 +83,6 @@ public class LampBehavior : MonoBehaviour, IClickable
 
             if (this.CompareTag("BoomBox"))
             {
-                Debug.LogWarning("You clicked the Boombox!");
                 
                 // get musicController to be able to adjust background music
                 MusicController musicController = musicController = GameObject.FindGameObjectWithTag("MusicController").GetComponent<MusicController>();

@@ -36,7 +36,6 @@ public class MusicController : MonoBehaviour
 
     public void EnterZone(MusicZone zone)
     {
-        Debug.Log("New zone entered!");
         MusicListEnum nextAudio = MusicListEnum.Other;
 
         if (currentZone != zone)

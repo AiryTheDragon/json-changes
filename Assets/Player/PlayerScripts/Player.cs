@@ -246,7 +246,15 @@ public class Player : MonoBehaviour
         {
             CreateMessage("Awesome!");
             PlayAudioClip(_playerSounds.Tada);
-            invScript.addItem(collision.gameObject);
+            if (!invScript.haveItem(collision.gameObject.GetComponent<KeyScript>().objectName))
+            {
+                invScript.addItem(collision.gameObject);
+            }
+            else
+            {
+                Debug.LogWarning(collision.gameObject.GetComponent<KeyScript>().objectName + " was already in the inventory.");
+            }
+
             collision.gameObject.SetActive(false);
         }
         else if (collision.gameObject.tag == "Paper")

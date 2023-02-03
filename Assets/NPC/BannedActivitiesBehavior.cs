@@ -163,12 +163,11 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
         }
         if (changed)
         {
-            Debug.Log(AC.UnBanText + " " + AC.GroupName + " is no longer banned.");
             log.AddItem("The Manager", AC.UnBanText + " " + AC.GroupName + " is no longer banned.");
         }
         else
         {
-            Debug.Log("The 'Manager' has itchy fingers.");
+            log.AddItem("The Manager", "The Manager is happy with the current laws.");
         }
     }
 
@@ -214,19 +213,16 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
                 if (!banText.Contains(banString))
                 {
                     banText.Add(banString);
-                    Debug.Log(banString);
                     log.AddItem("New ban", banString);
                 }
             }
         }
         if (changed) // new addition to list
         {
-            Debug.Log(AC.BanText + " " + AC.GroupName + " is now banned.");
             log.AddItem("The Manager", AC.BanText + " " + AC.GroupName + " is now banned.");
         }
         else // already on list
         {
-            Debug.Log(AC.MoreBanText + " " + AC.GroupName + " is now more strongly banned.");
             log.AddItem("The Manager", AC.MoreBanText + " " + AC.GroupName + " is now more strongly banned.");
         }
     }
