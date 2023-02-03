@@ -38,6 +38,7 @@ TagManager:
   - BoomBox
   - MusicController
   - LetterWorkspace
+  - GiantCupcake
   layers:
   - Default
   - TransparentFX

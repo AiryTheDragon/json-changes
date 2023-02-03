@@ -26,7 +26,8 @@ public enum Achievement
     SilverTongue,
     Hoarder,
     Aaaaaaaaaah,
-    NoMoreGames
+    NoMoreGames,
+    TheCakeIsNotALie
 
 }
 

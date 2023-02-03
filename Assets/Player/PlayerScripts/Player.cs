@@ -302,6 +302,13 @@ public class Player : MonoBehaviour
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
         }
+        else if (collision.gameObject.tag == "GiantCupcake")
+        {
+            CreateMessage("Yum!");
+            invScript.addItem(collision.gameObject);
+            collision.gameObject.SetActive(false);
+            achievementList.TryGetAchievement(Achievement.TheCakeIsNotALie);
+        }
         else if (collision.gameObject.tag == "Writing Desk")
         {
             if (invScript.Paper >= 1 && invScript.Pens >= 1)

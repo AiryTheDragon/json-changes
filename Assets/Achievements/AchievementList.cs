@@ -197,7 +197,7 @@ public class AchievementList : MonoBehaviour
         AllAchievements.Add(Item20);
 
 
-        // Pee in the bushes
+        // Catch Mike or Daniel working on games while illegal
         AchievementItem Item21 = new()
         {
             AchievementType = Achievement.NoMoreGames,
@@ -207,8 +207,18 @@ public class AchievementList : MonoBehaviour
         };
         AllAchievements.Add(Item21);
 
-        #if !DISABLESTEAMWORKS
-            SteamWorks = SteamAPI.Init();
+        // Catch Mike or Daniel working on games while illegal
+        AchievementItem Item22 = new()
+        {
+            AchievementType = Achievement.TheCakeIsNotALie,
+            AchievementName = "The cake is not a lie!",
+            AchievementDescription = "Find the giant cupcake!",
+            isDone = false
+        };
+        AllAchievements.Add(Item22);
+
+#if !DISABLESTEAMWORKS
+        SteamWorks = SteamAPI.Init();
         #endif
     }
 
