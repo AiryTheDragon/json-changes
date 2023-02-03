@@ -171,6 +171,10 @@ public class NPCBehavior : AIPath, INeedsClockUpdate, IClickable
                 }
                 BeginAction(ActivityTracker.GetCurrentAction());
                 musicController.IsReleased();
+
+                Player.AddSuspicion(GetComponentInChildren<GuardBehavior>().Configuration.SuspicionPerMinute*10);
+                Player.log.AddItem("Warning", Name + " gave up chasing you, but reported you as suspicious.");
+
                 return;
             }
 
