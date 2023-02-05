@@ -130,6 +130,7 @@ public class LetterCreator : MonoBehaviour
         {
             CurrentLetter.GetComponent<BlackmailLetterBehavior>().SelectPerson(person);
             SelectedActivity = CurrentLetter.GetComponent<BlackmailLetterBehavior>().SelectedActivity;
+            OpenActivitySelector();
         }
         else if (CurrentLetter.name == "GiftLetter")
         {
