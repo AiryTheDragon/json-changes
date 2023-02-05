@@ -108,6 +108,7 @@ public class LetterCreator : MonoBehaviour
             CurrentLetter.SetActive(false);
         }
         CurrentLetter = RevolutionLetter;
+        RevolutionLetterText.text = "\nViva\nLa\nRevolution\n\n- " + Player.Name;
         RevolutionLetter.SetActive(true);
     }
 
