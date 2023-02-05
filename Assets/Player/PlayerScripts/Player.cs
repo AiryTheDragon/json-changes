@@ -294,6 +294,7 @@ public class Player : MonoBehaviour
         {
             CreateMessage("Freedom!");
             invScript.addItem(collision.gameObject);
+            PlayAudioClip(_playerSounds.Freedom);
             collision.gameObject.SetActive(false);
         }
         else if (collision.gameObject.tag == "Cupcake")
