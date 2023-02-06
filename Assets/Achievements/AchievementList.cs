@@ -54,8 +54,8 @@ public class AchievementList : MonoBehaviour
 
         AchievementItem Item3 = new();
         // Don and Onna support achievement
-        Item3.AchievementType = Achievement.ParentialApproval;
-        Item3.AchievementName = "Parential approval";
+        Item3.AchievementType = Achievement.ParentalApproval;
+        Item3.AchievementName = "Parental approval";
         Item3.AchievementDescription = "Achieve full support of Don and Onna.";
         Item3.isDone = false;
         AllAchievements.Add(Item3);
@@ -295,7 +295,7 @@ public class AchievementList : MonoBehaviour
             }
             if (maxOnna && maxDonald)
             {
-                AchievementItem achItem = GetItem(Achievement.ParentialApproval);
+                AchievementItem achItem = GetItem(Achievement.ParentalApproval);
                 if (!achItem.isDone)
                 {
                     MakeAchievement(achItem, this);

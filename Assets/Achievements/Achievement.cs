@@ -8,7 +8,7 @@ public enum Achievement
 {
     WinOverTheCreators,
     TameTheDragon,
-    ParentialApproval,
+    ParentalApproval,
     CatchTheGuards,
     Hypocrisy,
     ManageTheManager,
