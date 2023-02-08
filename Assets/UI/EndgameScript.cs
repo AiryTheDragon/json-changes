@@ -77,7 +77,7 @@ public class EndgameScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SceneManager.LoadScene("StartScene");
+        //SceneManager.LoadScene("StartScene");
     }
 
     public void NextPanelClick()
