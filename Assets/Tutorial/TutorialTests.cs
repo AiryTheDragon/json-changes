@@ -589,7 +589,7 @@ public class TutorialTests : MonoBehaviour
         if (Monitor11)
         {
             Test11Status = true;
-            LetterMaker.CreateLetter();
+            // LetterMaker.CreateLetter();  This will be called through the other button.
         }
     }
 

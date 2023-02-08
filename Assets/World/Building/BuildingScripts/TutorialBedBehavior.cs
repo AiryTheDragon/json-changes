@@ -64,6 +64,8 @@ public class TutorialBedBehavior : MonoBehaviour, IConfirmScript
         {
 
             confirmObject.GetComponent<ConfirmMenu>().UpdateText("Do you want to wake up?");
+            confirmObject.GetComponent<ConfirmMenu>().UpdateYesText("Yes!");
+            confirmObject.GetComponent<ConfirmMenu>().UpdateNoText("No!");
             _source.clip = _inBed;
             _source.Play();
             confirmObject.SetActive(true);
@@ -73,6 +75,7 @@ public class TutorialBedBehavior : MonoBehaviour, IConfirmScript
         {
             confirmObject.GetComponent<ConfirmMenu>().script = this;
             confirmObject.GetComponent<ConfirmMenu>().UpdateText("You are unable to wake up.");
+            confirmObject.GetComponent<ConfirmMenu>().UpdateNoText("Ok!");
             _source.clip = _inBed;
             _source.Play();
             confirmObject.SetActive(true);

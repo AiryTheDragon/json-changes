@@ -72,6 +72,7 @@ public class YourBedBehavior : MonoBehaviour, IConfirmScript
         {
             confirmObject.GetComponent<ConfirmMenu>().script = this;
             confirmObject.GetComponent<ConfirmMenu>().UpdateText("It is too bright to go to bed.");
+            confirmObject.GetComponent<ConfirmMenu>().UpdateNoText("Ok.");
             _source.clip = _inBed;
             _source.Play();
             confirmObject.SetActive(true);
