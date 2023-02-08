@@ -157,6 +157,11 @@ public class LetterCreator : MonoBehaviour
                 ).ToList());
             ActivitySelector.SetActive(true);
         }
+        else
+        {
+            ActivitySelector.GetComponent<ActionSelectorBehavior>().SetActivities(new List<Activity>());
+            ActivitySelector.SetActive(true);
+        }
     }
 
     public void ActivitySelected(Activity activity)

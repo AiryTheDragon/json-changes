@@ -5877,8 +5877,8 @@ RectTransform:
   - {fileID: 8229585803747576416}
   - {fileID: 3887142335791955089}
   - {fileID: 4282510763137920334}
-  - {fileID: 6575214119732583470}
   - {fileID: 8615686071654540937}
+  - {fileID: 6575214119732583470}
   - {fileID: 6168587976145080458}
   - {fileID: 9004857359478588188}
   m_Father: {fileID: 7206391910605173263}
@@ -5949,8 +5949,8 @@ MonoBehaviour:
   - {fileID: 1910849460892743069}
   - {fileID: 1448994630830892098}
   ActivitiesToDisplay: []
-  NextPageButton: {fileID: 8434522542308518972}
-  PreviousPageButton: {fileID: 7868489235520147023}
+  NextPageButton: {fileID: 7868489235520147023}
+  PreviousPageButton: {fileID: 8434522542308518972}
   PageNumberDisplay: {fileID: 4993316658426575984}
   LetterCreator: {fileID: 6991000880820771969}
   NoneSeenText: {fileID: 2496951034742008917}
@@ -6585,7 +6585,7 @@ GameObject:
   - component: {fileID: 8645618052838276973}
   - component: {fileID: 4456258036754585936}
   m_Layer: 0
-  m_Name: TurnLeftButton
+  m_Name: TurnRightButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6604,7 +6604,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7107355274243809504}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6692,7 +6692,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8645618052838276973}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2020850947580907366}
+        m_TargetAssemblyTypeName: ActionSelectorBehavior, Assembly-CSharp
+        m_MethodName: NextPage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7979191408578750240
 GameObject:
   m_ObjectHideFlags: 0
@@ -6978,7 +6990,7 @@ GameObject:
   - component: {fileID: 1376985380632244140}
   - component: {fileID: 8534565592674145799}
   m_Layer: 0
-  m_Name: TurnRightButton
+  m_Name: TurnLeftButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6997,7 +7009,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7107355274243809504}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7085,7 +7097,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1376985380632244140}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2020850947580907366}
+        m_TargetAssemblyTypeName: ActionSelectorBehavior, Assembly-CSharp
+        m_MethodName: PreviousPage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8618430423449206853
 GameObject:
   m_ObjectHideFlags: 0

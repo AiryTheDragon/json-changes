@@ -107,7 +107,7 @@ public class ActionSelectorBehavior : MonoBehaviour
 
     private bool HasNextPage()
     {
-        if((ActivitiesToDisplay.Count - 1) / 2 > page) //TODO check this formula
+        if((page < totalPages))  
         {
             return true;
         }
