@@ -146,7 +146,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate, IClickable
             var activity = (ActivityCatchPlayer)ActivityTracker.GetCurrentAction();
 
             // Check if the player is caught.
-            if((GetComponent<Transform>().position - Player.GetComponent<Transform>().position).magnitude < 0.6)
+            if((GetComponent<Transform>().position - Player.GetComponent<Transform>().position).magnitude < 0.8)
             {
                 ActivityTracker.CompleteAction(Clock.Time);
                 BeginAction(ActivityTracker.GetCurrentAction());
@@ -192,7 +192,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate, IClickable
         else if (ActivityTracker.GetCurrentAction() is ActivityCatchNPC)
         {
             var activity = (ActivityCatchNPC)ActivityTracker.GetCurrentAction();
-            if((GetComponent<Transform>().position - GetComponentInChildren<GuardBehavior>().Target.GetComponent<Transform>().position).magnitude < 0.6)
+            if((GetComponent<Transform>().position - GetComponentInChildren<GuardBehavior>().Target.GetComponent<Transform>().position).magnitude < 0.8)
             {
                 ActivityTracker.CompleteAction(Clock.Time);
                 BeginAction(ActivityTracker.GetCurrentAction());

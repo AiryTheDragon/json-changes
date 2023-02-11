@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Assets.Scenes.ActualGame;
 
 public class EndgameScript : MonoBehaviour
 {
     public TextMeshProUGUI LetterText;
 
     public GameObject NextPanel;
+    public CreditsScroll Credits;
+    public EndGameMusicController endGameMusicController;
 
     private int MaxScore = 78;
 
@@ -17,15 +20,17 @@ public class EndgameScript : MonoBehaviour
     void Start()
     {
         //AchievementList achList = new AchievementList();
-
-        if(Player.Score <= (int)(.1 * MaxScore))
+        if (Player.Score <= (int)(.1 * MaxScore))
         {
             LetterText.text = TextFailure();
+            endGameMusicController.Play(EndGameMusicListEnum.WhiskedAway);
             AchievementItem achItem = AchievementList.GetItem(Achievement.WhiskedAway);
             if (!achItem.isDone)
             {
                 AchievementList.MakeAchievement(achItem, null);
             }
+
+
         }
         else if (Player.Score <= (int)(.25 * MaxScore))
         {
@@ -35,6 +40,7 @@ public class EndgameScript : MonoBehaviour
             {
                 AchievementList.MakeAchievement(achItem, null);
             }
+            endGameMusicController.Play(EndGameMusicListEnum.Isolation);
         }
         else if (Player.Score <= (int)(.4 * MaxScore))
         {
@@ -44,6 +50,7 @@ public class EndgameScript : MonoBehaviour
             {
                 AchievementList.MakeAchievement(achItem, null);
             }
+            endGameMusicController.Play(EndGameMusicListEnum.Executed);
         }
         else if (Player.Score <= (int)(.6 * MaxScore))
         {
@@ -53,6 +60,7 @@ public class EndgameScript : MonoBehaviour
             {
                 AchievementList.MakeAchievement(achItem, null);
             }
+            endGameMusicController.Play(EndGameMusicListEnum.BatteredButFree);
         }
         else if (Player.Score < MaxScore)
         {
@@ -62,6 +70,7 @@ public class EndgameScript : MonoBehaviour
             {
                 AchievementList.MakeAchievement(achItem, null);
             }
+            endGameMusicController.Play(EndGameMusicListEnum.Victorious);
         }
         else
         {
@@ -71,6 +80,7 @@ public class EndgameScript : MonoBehaviour
             {
                 AchievementList.MakeAchievement(achItem, null);
             }
+            endGameMusicController.Play(EndGameMusicListEnum.SilverTongue);
         }
     }
 
@@ -84,6 +94,9 @@ public class EndgameScript : MonoBehaviour
     {
         NextPanel.SetActive(true);
         gameObject.SetActive(false);
+        Credits.isScrolling = true;
+        endGameMusicController.Play(EndGameMusicListEnum.Dreams);
+
     }
 
     public void ExitGame()
