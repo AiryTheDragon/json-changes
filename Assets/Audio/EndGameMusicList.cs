@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class EndGameMusicList : MonoBehaviour
 {
+    public AudioClip HeyYouMale;
+    public AudioClip HeyYouFemale;
+    public AudioClip HaltMale;
+    public AudioClip HaltFemale;
     public AudioClip WhiskedAwayEnding;
     public AudioClip Isolation;
     public AudioClip Executed;
@@ -19,6 +23,18 @@ public class EndGameMusicList : MonoBehaviour
         AudioClip thisClip = NoSound;
         switch(audio)
         {
+            case EndGameMusicListEnum.HeyYouMale:
+                thisClip = HeyYouMale;
+                break;
+            case EndGameMusicListEnum.HeyYouFemale:
+                thisClip = HeyYouFemale;
+                break;
+            case EndGameMusicListEnum.HaltMale:
+                thisClip = HaltMale;
+                break;
+            case EndGameMusicListEnum.HaltFemale:
+                thisClip = HaltFemale;
+                break;
             case EndGameMusicListEnum.WhiskedAway:
                 thisClip = WhiskedAwayEnding;
                 break;

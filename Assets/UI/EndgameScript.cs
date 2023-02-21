@@ -10,6 +10,7 @@ public class EndgameScript : MonoBehaviour
     public TextMeshProUGUI LetterText;
 
     public GameObject NextPanel;
+    public GameObject Panel;
     public CreditsScroll Credits;
     public EndGameMusicController endGameMusicController;
 
@@ -89,6 +90,12 @@ public class EndgameScript : MonoBehaviour
     {
         //SceneManager.LoadScene("StartScene");
     }
+
+    public void PanelClick()
+    {
+        Panel.SetActive(true);
+    }
+
 
     public void NextPanelClick()
     {

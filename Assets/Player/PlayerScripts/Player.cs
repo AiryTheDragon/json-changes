@@ -49,6 +49,9 @@ public class Player : MonoBehaviour
 
     public static string Name = "DaDarkWizard";
 
+    // flags used for credits scene
+    public static List<string> PeopleMax = new List<string>();
+
     public bool beingEscorted;
 
     public static int Score = 0;
@@ -426,6 +429,10 @@ public class Player : MonoBehaviour
         {
             int change = person.Value - ((Math.Max(0, Math.Min(person.Value, 5 - person.ManipulationLevel))));
             score += change;
+            if (person.Value>=-5)
+            {
+                PeopleMax.Add(person.Name);
+            }
         }
 
         Score = score;

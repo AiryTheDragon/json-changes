@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 public enum EndGameMusicListEnum
 {
+    HeyYouMale,
+    HeyYouFemale,
+    HaltMale,
+    HaltFemale,
     WhiskedAway,
     Isolation,
     Executed,
