@@ -429,7 +429,7 @@ public class Player : MonoBehaviour
         {
             int change = person.Value - ((Math.Max(0, Math.Min(person.Value, 5 - person.ManipulationLevel))));
             score += change;
-            if (person.Value>=-5)
+            if (person.Value>=5)
             {
                 PeopleMax.Add(person.Name);
             }

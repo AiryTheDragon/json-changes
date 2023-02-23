@@ -10,7 +10,14 @@ public class EndgameScript : MonoBehaviour
     public TextMeshProUGUI LetterText;
 
     public GameObject NextPanel;
-    public GameObject Panel;
+  
+    public GameObject WhiskAwayImage;
+    public GameObject IsolationImage;
+    public GameObject ExecutedImage;
+    public GameObject BatteredButFreeImage;
+    public GameObject VictoriousImage;
+    public GameObject SilverTongueImage;
+
     public CreditsScroll Credits;
     public EndGameMusicController endGameMusicController;
 
@@ -25,57 +32,72 @@ public class EndgameScript : MonoBehaviour
         {
             LetterText.text = TextFailure();
             endGameMusicController.Play(EndGameMusicListEnum.WhiskedAway);
+            ClearPanels();
+            WhiskAwayImage.SetActive(true);
             AchievementItem achItem = AchievementList.GetItem(Achievement.WhiskedAway);
             if (!achItem.isDone)
             {
                 AchievementList.MakeAchievement(achItem, null);
             }
-
-
         }
         else if (Player.Score <= (int)(.25 * MaxScore))
         {
             LetterText.text = TextAlmostBad();
+            ClearPanels();
+            IsolationImage.SetActive(true);
             AchievementItem achItem = AchievementList.GetItem(Achievement.Isolation);
             if (!achItem.isDone)
             {
                 AchievementList.MakeAchievement(achItem, null);
             }
             endGameMusicController.Play(EndGameMusicListEnum.Isolation);
+
         }
         else if (Player.Score <= (int)(.4 * MaxScore))
         {
             LetterText.text = TextBad();
+            ClearPanels();
+            ExecutedImage.SetActive(true);
             AchievementItem achItem = AchievementList.GetItem(Achievement.Executed);
             if (!achItem.isDone)
             {
                 AchievementList.MakeAchievement(achItem, null);
             }
             endGameMusicController.Play(EndGameMusicListEnum.Executed);
+
         }
         else if (Player.Score <= (int)(.6 * MaxScore))
         {
             LetterText.text = TextAlmostGood();
+            ClearPanels();
+            BatteredButFreeImage.SetActive(true);
             AchievementItem achItem = AchievementList.GetItem(Achievement.BatteredButFree);
             if (!achItem.isDone)
             {
                 AchievementList.MakeAchievement(achItem, null);
             }
             endGameMusicController.Play(EndGameMusicListEnum.BatteredButFree);
+
         }
         else if (Player.Score < MaxScore)
         {
             LetterText.text = TextGood();
+            ClearPanels();
+            VictoriousImage.SetActive(true);
             AchievementItem achItem = AchievementList.GetItem(Achievement.Victorious);
             if (!achItem.isDone)
             {
                 AchievementList.MakeAchievement(achItem, null);
             }
             endGameMusicController.Play(EndGameMusicListEnum.Victorious);
+
+
         }
         else
         {
             LetterText.text = TextAwesome();
+            ClearPanels();
+            SilverTongueImage.SetActive(true);
             AchievementItem achItem = AchievementList.GetItem(Achievement.SilverTongue);
             if (!achItem.isDone)
             {
@@ -91,11 +113,6 @@ public class EndgameScript : MonoBehaviour
         //SceneManager.LoadScene("StartScene");
     }
 
-    public void PanelClick()
-    {
-        Panel.SetActive(true);
-    }
-
 
     public void NextPanelClick()
     {
@@ -106,9 +123,19 @@ public class EndgameScript : MonoBehaviour
 
     }
 
+    public void ClearPanels()
+    {
+    WhiskAwayImage.SetActive(false);
+    IsolationImage.SetActive(false);
+    ExecutedImage.SetActive(false);
+    BatteredButFreeImage.SetActive(false);
+    VictoriousImage.SetActive(false);
+    SilverTongueImage.SetActive(false);
+}
+
     public void ExitGame()
     {
-        SceneManager.LoadScene("CreditsScene");
+        SceneManager.LoadScene("StartScene");
     }
 
     public string TextFailure()
