@@ -207,7 +207,7 @@ public class AchievementList : MonoBehaviour
         };
         AllAchievements.Add(Item21);
 
-        // Catch Mike or Daniel working on games while illegal
+        // Find the giant cupcake!
         AchievementItem Item22 = new()
         {
             AchievementType = Achievement.TheCakeIsNotALie,
@@ -216,6 +216,16 @@ public class AchievementList : MonoBehaviour
             isDone = false
         };
         AllAchievements.Add(Item22);
+
+        // Complete the tutorial
+        AchievementItem Item23 = new()
+        {
+            AchievementType = Achievement.Awoken,
+            AchievementName = "Awoken",
+            AchievementDescription = "Complete the tutorial.",
+            isDone = false
+        };
+        AllAchievements.Add(Item23);
 
 #if !DISABLESTEAMWORKS
         SteamWorks = SteamAPI.Init();

@@ -27,7 +27,8 @@ public enum Achievement
     Hoarder,
     Aaaaaaaaaah,
     NoMoreGames,
-    TheCakeIsNotALie
+    TheCakeIsNotALie,
+    Awoken
 
 }
 
