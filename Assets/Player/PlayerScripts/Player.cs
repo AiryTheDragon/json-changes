@@ -100,6 +100,12 @@ public class Player : MonoBehaviour
         musicController.Play();
         warningSuspicion = .75 * MaxSuspicion;
 
+        if (TutorialBedBehavior.tutorialComplete)
+        {
+            achievementList.TryGetAchievement(Achievement.Awoken);
+        }
+
+
     }
 
     // Update is called once per frame

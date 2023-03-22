@@ -14,6 +14,7 @@ public class TutorialBedBehavior : MonoBehaviour, IConfirmScript
     private AudioSource _source = null;
     public LoadSave loadSaveObject;
     public ClockBehavior clock;
+    public static bool tutorialComplete = false;
     
     // Start is called before the first frame update
     void Start()
@@ -33,14 +34,7 @@ public class TutorialBedBehavior : MonoBehaviour, IConfirmScript
 
     public void ConfirmAction()
     {
-        Debug.LogWarning("The next day state is being saved.\nWe don't want this in the launched game.");
-        /*
-        loadSaveObject.SaveNextDayState();
-        loadSaveObject.LoadNextDayState();
-        loadSaveObject.NextDayUpdates();
-        loadSaveObject.CreateSaveData($"save{Player.SaveFile}");
-        loadSaveObject.ExportSaveData($"save{Player.SaveFile}");
-        */
+        tutorialComplete = true;
         SceneManager.LoadScene("MainScene");
     }
 
