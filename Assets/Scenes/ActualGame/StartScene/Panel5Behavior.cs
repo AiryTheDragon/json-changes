@@ -10,6 +10,7 @@ namespace StartScene.MasterPanel
         // Start is called before the first frame update
         void Start()
         {
+            /*
             TextMeshProUGUI elem = GetComponentInChildren<TextMeshProUGUI>();
             var settings = new GeneralSettings();
             settings.LoadSettings();
@@ -22,6 +23,7 @@ namespace StartScene.MasterPanel
                     elem.fontSize = 140;
                     break;
             }
+            */
         }
     }
 }
