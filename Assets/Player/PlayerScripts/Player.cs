@@ -311,6 +311,9 @@ public class Player : MonoBehaviour
             CreateMessage("Yum!");
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
+            log.AddItem("Note", "While you enjoy the small cupcake, you feel it is a lie.  Could a bigger one exist?");
+            NPCInfoUI.OpenMessage("You eat the cupcake.  Yum.");
+
         }
         else if (collision.gameObject.tag == "GiantCupcake")
         {

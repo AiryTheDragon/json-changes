@@ -40,6 +40,12 @@ public class NPCInfoBehavior : MonoBehaviour
         this.gameObject.SetActive(true);
     }
 
+    public void OpenMessage(string text)
+    {
+        TextComponent.text = text;
+        this.gameObject.SetActive(true);
+    }
+
     public void AchievementInfo(AchievementItem item)
     {
 
