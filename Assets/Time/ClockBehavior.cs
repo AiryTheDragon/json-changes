@@ -13,12 +13,17 @@ public class ClockBehavior : MonoBehaviour
 
     public ClockTime NewDayTime = new ClockTime(0, 6, 50);
 
+    public bool StartAtMidnight = false;
+
     public List<INeedsClockUpdate> NeedsClockUpdate = new List<INeedsClockUpdate>();
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (StartAtMidnight)
+        {
+            Time = new ClockTime(0, 0, 0);
+        }
     }
 
     // Update is called once per frame
