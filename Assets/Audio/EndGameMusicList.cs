@@ -50,6 +50,9 @@ public class EndGameMusicList : MonoBehaviour
             case EndGameMusicListEnum.Victorious:
                 thisClip = Victorious;
                 break;
+            case EndGameMusicListEnum.SilverTongue:
+                thisClip = SilverTongue;
+                break;
             case EndGameMusicListEnum.Dreams:
                 thisClip = Dreams;
                 break;

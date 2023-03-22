@@ -27,83 +27,84 @@ public class EndgameScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //AchievementList achList = new AchievementList();
+        // create list if it doesn't exist, mostly for testing purposes on credits scene
+        AchievementList achList = new AchievementList();
+        if (!AchievementList.Initialized)
+        {
+            achList.Start();
+        }
+
         if (Player.Score <= (int)(.1 * MaxScore))
         {
-            LetterText.text = TextFailure();
-            endGameMusicController.Play(EndGameMusicListEnum.WhiskedAway);
-            ClearPanels();
-            WhiskAwayImage.SetActive(true);
             AchievementItem achItem = AchievementList.GetItem(Achievement.WhiskedAway);
             if (!achItem.isDone)
             {
-                AchievementList.MakeAchievement(achItem, null);
+                achList.TryGetAchievement(Achievement.WhiskedAway);
             }
+            LetterText.text = TextFailure(achItem);
+            endGameMusicController.Play(EndGameMusicListEnum.WhiskedAway);
+            ClearPanels();
+            WhiskAwayImage.SetActive(true);            
         }
         else if (Player.Score <= (int)(.25 * MaxScore))
         {
-            LetterText.text = TextAlmostBad();
-            ClearPanels();
-            IsolationImage.SetActive(true);
             AchievementItem achItem = AchievementList.GetItem(Achievement.Isolation);
             if (!achItem.isDone)
             {
-                AchievementList.MakeAchievement(achItem, null);
+                achList.TryGetAchievement(Achievement.Isolation);
             }
-            endGameMusicController.Play(EndGameMusicListEnum.Isolation);
-
+            LetterText.text = TextAlmostBad(achItem);
+            endGameMusicController.Play(EndGameMusicListEnum.Isolation); 
+            ClearPanels();
+            IsolationImage.SetActive(true);
         }
         else if (Player.Score <= (int)(.4 * MaxScore))
         {
-            LetterText.text = TextBad();
-            ClearPanels();
-            ExecutedImage.SetActive(true);
             AchievementItem achItem = AchievementList.GetItem(Achievement.Executed);
             if (!achItem.isDone)
             {
-                AchievementList.MakeAchievement(achItem, null);
+                achList.TryGetAchievement(Achievement.Executed);
             }
-            endGameMusicController.Play(EndGameMusicListEnum.Executed);
-
+            endGameMusicController.Play(EndGameMusicListEnum.Executed); 
+            LetterText.text = TextBad(achItem);
+            ClearPanels();
+            ExecutedImage.SetActive(true);
         }
         else if (Player.Score <= (int)(.6 * MaxScore))
         {
-            LetterText.text = TextAlmostGood();
-            ClearPanels();
-            BatteredButFreeImage.SetActive(true);
             AchievementItem achItem = AchievementList.GetItem(Achievement.BatteredButFree);
             if (!achItem.isDone)
             {
-                AchievementList.MakeAchievement(achItem, null);
+                achList.TryGetAchievement(Achievement.BatteredButFree);
             }
-            endGameMusicController.Play(EndGameMusicListEnum.BatteredButFree);
-
+            endGameMusicController.Play(EndGameMusicListEnum.BatteredButFree); 
+            LetterText.text = TextAlmostGood(achItem);
+            ClearPanels();
+            BatteredButFreeImage.SetActive(true);
         }
         else if (Player.Score < MaxScore)
         {
-            LetterText.text = TextGood();
-            ClearPanels();
-            VictoriousImage.SetActive(true);
             AchievementItem achItem = AchievementList.GetItem(Achievement.Victorious);
             if (!achItem.isDone)
             {
-                AchievementList.MakeAchievement(achItem, null);
+                achList.TryGetAchievement(Achievement.Victorious);
             }
-            endGameMusicController.Play(EndGameMusicListEnum.Victorious);
-
-
+            endGameMusicController.Play(EndGameMusicListEnum.Victorious); 
+            LetterText.text = TextGood(achItem);
+            ClearPanels();
+            VictoriousImage.SetActive(true);
         }
         else
         {
-            LetterText.text = TextAwesome();
-            ClearPanels();
-            SilverTongueImage.SetActive(true);
             AchievementItem achItem = AchievementList.GetItem(Achievement.SilverTongue);
             if (!achItem.isDone)
             {
-                AchievementList.MakeAchievement(achItem, null);
+                achList.TryGetAchievement(Achievement.SilverTongue);
             }
-            endGameMusicController.Play(EndGameMusicListEnum.SilverTongue);
+            endGameMusicController.Play(EndGameMusicListEnum.SilverTongue); 
+            LetterText.text = TextAwesome(achItem);
+            ClearPanels();
+            SilverTongueImage.SetActive(true);          
         }
     }
 
@@ -138,47 +139,53 @@ public class EndgameScript : MonoBehaviour
         SceneManager.LoadScene("StartScene");
     }
 
-    public string TextFailure()
+    public string TextFailure(AchievementItem item)
     {
         return $"Dear {Player.Name},\n\nAfter much debate in our offices, we have decided the best course of action to take with one so " +
             "foolish as you is to quietly whisk you away.\n\nI hope you enjoy the rest of your life in prison.\n\nSuffer for the Greater Good,\n" +
-            "Your Local Area Manager.";
+            "Your Local Area Manager." +
+            $"\n\nAchievement:  {item.AchievementName}";
     }
 
-    public string TextAlmostBad()
+    public string TextAlmostBad(AchievementItem item)
     {
         return $"Dear {Player.Name},\n\nHow you convinced those poor fools to follow you I will always wonder." +
             "\n\nThis will be the last communication you hear from us. As a dangerous entity, you have been assigned strict isolation." +
-            "\n\nEnjoy your Private Cell,\nYour Local Area Manager.";
+            "\n\nEnjoy your Private Cell,\nYour Local Area Manager." +
+            $"\n\nAchievement:  {item.AchievementName}";
     }
 
-    public string TextBad()
+    public string TextBad(AchievementItem item)
     {
         return $"Dear {Player.Name},\n\nWith such a bloody revolt as offered by yourself, we have no choice but to execute you for your crimes.\n\n" +
             "A date for your life's end will be set in the future.\n\n" +
-            "Pray during your Last Moments,\nYour Local Area Manager.";
+            "Pray during your Last Moments,\nYour Local Area Manager." +
+            $"\n\nAchievement:  {item.AchievementName}";
     }
 
-    public string TextAlmostGood()
+    public string TextAlmostGood(AchievementItem item)
     {
-        return $"Dear {Player.Name},\n\nWe thank you for inciting revolution and leading us to take back our lives and humanity.\n\n" +
+        return $"Dear {Player.Name},\nWe thank you for inciting revolution and leading us to take back our lives and humanity.\n\n" +
             "We ask that you continue to help in every way you can to care for the wounded, sick, and dying. It is unfortunate the results were so bloody.\n\n" +
-            "Thank you,\nA New Community.";
+            "Thank you,\nA New Community." +
+            $"\n\nAchievement:  {item.AchievementName}";
     }
 
-    public string TextGood()
+    public string TextGood(AchievementItem item)
     {
-        return $"Dear PlayerName,\n\nThank you for leading us to a bright new future! With your marvelous plotting, we were able to peacefully " +
-                "transition by putting the few set in their old ways to rest.\n\nWe hope your skill and ideas will continue to be a beacon of hope." +   
-                "Thank You,\nA New Community.";
+        return $"Dear PlayerName,\nThank you for leading us to a bright new future! With your marvelous plotting, we were able to peacefully " +
+                "transition by putting the few set in their old ways to rest.\n\nWe hope your skill and ideas will continue to be a beacon of hope." +
+                "\n\nThank You,\nA New Community." +
+                $"\n\nAchievement:  {item.AchievementName}";
     }
 
-    public string TextAwesome()
+    public string TextAwesome(AchievementItem item)
     {
-        return $"Dear PlayerName,\n\nWe are is awe of your skill and wisdom at how you managed to gain the confidence and support of the " + 
+        return $"Dear PlayerName,\nWe are in awe of your skill and wisdom at how you managed to gain the confidence and support of the " + 
                 "entire community! Thank you for leading us to a bright new future!" +
                 "\n\nWe have confidence in your skill and know your ideas will be a lasting beacon of hope to all of us." +
-                "Thank You,\nA New Community.";
+                "\nThank You,\nA New Community." +
+                $"\n\nAchievement:  {item.AchievementName}";
     }
 
 
