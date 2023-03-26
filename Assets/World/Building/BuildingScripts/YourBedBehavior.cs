@@ -13,6 +13,7 @@ public class YourBedBehavior : MonoBehaviour, IConfirmScript
     private AudioSource _source = null;
     public LoadSave loadSaveObject;
     public ClockBehavior clock;
+    public MusicController musicController;
     
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,7 @@ public class YourBedBehavior : MonoBehaviour, IConfirmScript
         loadSaveObject.NextDayUpdates();
         loadSaveObject.CreateSaveData($"save{Player.SaveFile}");
         loadSaveObject.ExportSaveData($"save{Player.SaveFile}");
+        musicController.IsReleased(); // resets music after sleeping
         
     }
 
