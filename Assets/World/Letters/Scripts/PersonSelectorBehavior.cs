@@ -5,9 +5,9 @@ using TMPro;
 
 public class PersonSelectorBehavior : MonoBehaviour
 {
-    private int page = 1;
+    private int currentPage = 1;
 
-    private int totalPages;
+    private int pages = 1;
 
     private List<Person> People = new List<Person>();
 
@@ -38,22 +38,30 @@ public class PersonSelectorBehavior : MonoBehaviour
         this.People = people;
         if(people.Count <= PersonDisplays.Count)
         {
-            totalPages = 1;
+            pages = 1;
         }
         else
         {
-            totalPages = ((people.Count - 1) / PersonDisplays.Count) + 1;
+            pages = ((people.Count - 1) / PersonDisplays.Count) + 1;
         }
-        SetPage(1);
+        if (currentPage >= 1 && currentPage <= pages)
+        {
+            SetPage(currentPage);
+        }
+        else
+        {
+            SetPage(1);
+        }
+        ;
     }
 
     public void SetPage(int page)
     {
-        if(page > totalPages || page < 1)
+        if(page > pages || page < 1)
         {
             return;
         }
-        this.page = page;
+        this.currentPage = page;
         int i = 0;
         for(; i < PersonDisplays.Count && i + (page - 1) * PersonDisplays.Count < People.Count; i++)
         {
@@ -65,7 +73,7 @@ public class PersonSelectorBehavior : MonoBehaviour
             PersonDisplays[i].GetComponent<PersonDisplayBehavior>().SetPerson(null);
         }
 
-        PageNumberDisplay.GetComponent<TextMeshProUGUI>().text = $"Page {this.page}/{this.totalPages}";
+        PageNumberDisplay.GetComponent<TextMeshProUGUI>().text = $"Page {this.currentPage}/{this.pages}";
         if(HasNextPage())
         {
             NextPageButton.SetActive(true);
@@ -87,7 +95,7 @@ public class PersonSelectorBehavior : MonoBehaviour
 
     private bool HasNextPage()
     {
-        if((People.Count + 1)/ 2 > page)
+        if((People.Count + 1)/ 2 > currentPage)
         {
             return true;
         }
@@ -96,7 +104,7 @@ public class PersonSelectorBehavior : MonoBehaviour
 
     public bool HasPreviousPage()
     {
-        if(page - 1 > 0)
+        if(currentPage - 1 > 0)
         {
             return true;
         }
@@ -107,7 +115,7 @@ public class PersonSelectorBehavior : MonoBehaviour
     {
         if(HasNextPage())
         {
-            SetPage(page + 1);
+            SetPage(currentPage + 1);
         }
     }
 
@@ -115,7 +123,7 @@ public class PersonSelectorBehavior : MonoBehaviour
     {
         if(HasPreviousPage())
         {
-            SetPage(page - 1);
+            SetPage(currentPage - 1);
         }
     }
 }
