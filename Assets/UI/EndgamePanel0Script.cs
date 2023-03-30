@@ -54,8 +54,6 @@ public class EndgamePanel0Script : MonoBehaviour
     public GameObject Slowpoke1;
     public GameObject Tiny1;
 
-    private int MaxScore = 78;
-
 
     // Start is called before the first frame update
     void Start()

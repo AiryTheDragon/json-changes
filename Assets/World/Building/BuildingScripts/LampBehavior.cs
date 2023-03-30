@@ -122,7 +122,6 @@ public class LampBehavior : MonoBehaviour, IClickable
         }
         
         Toggle();
-        Debug.Log("Light is toggled.");
     }
 
     public void Toggle()
