@@ -27,14 +27,14 @@ public class CCTVStationBehavior : MonoBehaviour, INeedsClockUpdate
 
         if (GuardsWatching > 0)
         {
-            Debug.Log("A guard is watching the security cameras.");
+//           Debug.Log("A guard is watching the security cameras.");
             foreach(var camera in Cameras)
             {
                 var cameraBehavior = camera.GetComponent<SecurityCameraBehavior>();
                 if(cameraBehavior.seesPlayer)
                 {
                     cameraBehavior.playerCollision.GetComponentInParent<Player>().AddSuspicion(cameraBehavior.SuspicionPerMinute);
-                    Debug.Log("Your behaviors is regarded as suspicious..." + cameraBehavior.SuspicionPerMinute);
+ //                   Debug.Log("Your behaviors is regarded as suspicious..." + cameraBehavior.SuspicionPerMinute);
                 }
             }
         }
@@ -43,25 +43,25 @@ public class CCTVStationBehavior : MonoBehaviour, INeedsClockUpdate
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("A " + collision.tag + " is by the security monitors.");
+    //    Debug.Log("A " + collision.tag + " is by the security monitors.");
 
 
         if (collision.CompareTag("GuardNPC"))
         {
             GuardsWatching++;
-            Debug.Log("A guard is watching the security monitors.");
+        //    Debug.Log("A guard is watching the security monitors.");
         }
         UpdateMonitors();
     }
 
     public void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("A " + collision.tag + " left the security monitors.");
+        //Debug.Log("A " + collision.tag + " left the security monitors.");
 
 
         if (collision.CompareTag("GuardNPC"))
         {
-            Debug.Log("A guard is no longer watching the security monitors.");
+            //Debug.Log("A guard is no longer watching the security monitors.");
             GuardsWatching--;
             if (GuardsWatching < 0)
             {

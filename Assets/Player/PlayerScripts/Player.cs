@@ -434,11 +434,12 @@ public class Player : MonoBehaviour
     private void CalculateScore()
     {
         int score = 0;
+        PeopleMax = new List<string>();
         foreach (var person in PeopleKnown.Values)
         {
             int change = person.Value - ((Math.Max(0, Math.Min(person.Value, 5 - person.ManipulationLevel))));
             score += change;
-            if (person.Value>=5)
+            if (person.ManipulationLevel>=5)
             {
                 PeopleMax.Add(person.Name);
             }
