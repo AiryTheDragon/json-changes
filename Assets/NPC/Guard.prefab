@@ -163,7 +163,7 @@ PrefabInstance:
     - target: {fileID: 1196200629941457010, guid: bf12acc6f69191aa696bfe319494ef4e, type: 3}
       propertyPath: ClickableArea
       value: 
-      objectReference: {fileID: 5379116514343746835}
+      objectReference: {fileID: 3018279303619329453}
     - target: {fileID: 1786765241873333807, guid: bf12acc6f69191aa696bfe319494ef4e, type: 3}
       propertyPath: m_Name
       value: NPC
@@ -174,7 +174,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3277146806036876671, guid: bf12acc6f69191aa696bfe319494ef4e, type: 3}
       propertyPath: m_InstanceId
-      value: -20356
+      value: -26694
       objectReference: {fileID: 0}
     - target: {fileID: 3638793278835605987, guid: bf12acc6f69191aa696bfe319494ef4e, type: 3}
       propertyPath: m_RootOrder
@@ -226,7 +226,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: ac3510daa7ebe27298053124aaeef4c6, type: 3}
     - target: {fileID: 7213657405908680813, guid: bf12acc6f69191aa696bfe319494ef4e, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8269846519489095850, guid: bf12acc6f69191aa696bfe319494ef4e, type: 3}
       propertyPath: m_Mesh
@@ -234,13 +234,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8269846519489095850, guid: bf12acc6f69191aa696bfe319494ef4e, type: 3}
       propertyPath: m_InstanceId
-      value: -20366
+      value: -26704
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf12acc6f69191aa696bfe319494ef4e, type: 3}
 --- !u!4 &1978012231057407354 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3638793278835605987, guid: bf12acc6f69191aa696bfe319494ef4e, type: 3}
+  m_PrefabInstance: {fileID: 2957977176141380761}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &3018279303619329453 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 67498577130815796, guid: bf12acc6f69191aa696bfe319494ef4e, type: 3}
   m_PrefabInstance: {fileID: 2957977176141380761}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &4149251989107961067 stripped
@@ -254,8 +259,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65ddae18caee7d5089d4cb1fd4e17433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!58 &5379116514343746835 stripped
-CircleCollider2D:
-  m_CorrespondingSourceObject: {fileID: 7181743224551883146, guid: bf12acc6f69191aa696bfe319494ef4e, type: 3}
-  m_PrefabInstance: {fileID: 2957977176141380761}
-  m_PrefabAsset: {fileID: 0}

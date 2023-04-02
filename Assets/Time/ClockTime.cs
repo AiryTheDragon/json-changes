@@ -167,12 +167,35 @@ public class ClockTime
 
     public static bool operator ==(ClockTime a, ClockTime b)
     {
+        if(a.GetHashCode() != b.GetHashCode())
+        {
+            return false;
+        }
         return a.Year == b.Year && a.Day == b.Day && a.Hour == b.Hour && a.Minute == b.Minute;
     }
 
     public static bool operator !=(ClockTime a, ClockTime b)
     {
+        if(a.GetHashCode() != b.GetHashCode())
+        {
+            return true;
+        }
         return a.Year != b.Year || a.Day != b.Day || a.Hour != b.Hour || a.Minute != b.Minute;
+    }
+
+    public override bool Equals(object obj)
+    {
+        if (obj is ClockTime)
+        {
+            return this == (ClockTime)obj;
+        }
+        
+        return false;
+    }
+
+    public override int GetHashCode()
+    {
+        return (Day, Hour, Minute).GetHashCode();
     }
 
 }
