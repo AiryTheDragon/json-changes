@@ -24,8 +24,10 @@ public class CCTVStationBehavior : MonoBehaviour, INeedsClockUpdate
 
     public void UpdateClock(ClockTime time)
     {
+
         if (GuardsWatching > 0)
         {
+            Debug.Log("A guard is watching the security cameras.");
             foreach(var camera in Cameras)
             {
                 var cameraBehavior = camera.GetComponent<SecurityCameraBehavior>();
@@ -38,6 +40,37 @@ public class CCTVStationBehavior : MonoBehaviour, INeedsClockUpdate
         }
     }
 
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("A " + collision.tag + " is by the security monitors.");
+
+
+        if (collision.CompareTag("GuardNPC"))
+        {
+            GuardsWatching++;
+            Debug.Log("A guard is watching the security monitors.");
+        }
+        UpdateMonitors();
+    }
+
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        Debug.Log("A " + collision.tag + " left the security monitors.");
+
+
+        if (collision.CompareTag("GuardNPC"))
+        {
+            Debug.Log("A guard is no longer watching the security monitors.");
+            GuardsWatching--;
+            if (GuardsWatching < 0)
+            {
+                GuardsWatching = 0;
+            }
+        }
+        UpdateMonitors();
+    }
+    /*
     public void OnCollisionEnter2D(Collision2D collision)
     {
         
@@ -68,7 +101,7 @@ public class CCTVStationBehavior : MonoBehaviour, INeedsClockUpdate
         UpdateMonitors();
         
     }
-
+    */
     public void UpdateMonitors()
     {
         if(GuardsWatching > 0)

@@ -152,11 +152,10 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
 
                 RemoveActivitiesFromSeen(act);
                 // add notificiation only once in notices 
-                unbanString = act.Name + " is now longer banned.";
+                unbanString = act.Name + " is no longer banned.";
                 if (!unbanText.Contains(unbanString))
                 {
                     unbanText.Add(unbanString);
-                    Debug.Log(unbanString);
                     log.AddItem("Unban", unbanString);
                 }
             }
