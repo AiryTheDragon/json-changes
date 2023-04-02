@@ -184,7 +184,7 @@ public class LetterCreator : MonoBehaviour
                 letter.Recieving = SelectedPerson;
                 letter.ManipulationLevelIncrease = BannedActivitiesObject.GetComponent<BannedActivitiesBehavior>().GetBanLevel(SelectedActivity);
                 letter.Description = "Letter to " + SelectedPerson.Name + " regarding " + SelectedActivity.Name + ".";
-                if (SelectedActivity.Name.Equals("programming video games"))
+                if (SelectedActivity.Name.Equals("Working on game"))
                 {
                     letter.Type = LetterType.Gaming;
                 }
