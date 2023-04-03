@@ -69,13 +69,6 @@ public class LetterCreator : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
     public void SelectBlackmailLetter()
     {
         if (CurrentLetter != null)
@@ -180,10 +173,12 @@ public class LetterCreator : MonoBehaviour
         {
             if(SelectedActivity != null && SelectedPerson != null)
             {
-                Letter letter = new Letter();
-                letter.Recieving = SelectedPerson;
-                letter.ManipulationLevelIncrease = BannedActivitiesObject.GetComponent<BannedActivitiesBehavior>().GetBanLevel(SelectedActivity);
-                letter.Description = "Letter to " + SelectedPerson.Name + " regarding " + SelectedActivity.Name + ".";
+                Letter letter = new()
+                {
+                    Recieving = SelectedPerson,
+                    ManipulationLevelIncrease = BannedActivitiesObject.GetComponent<BannedActivitiesBehavior>().GetBanLevel(SelectedActivity),
+                    Description = "Letter to " + SelectedPerson.Name + " regarding " + SelectedActivity.Name + "."
+                };
                 if (SelectedActivity.Name.Equals("Working on game"))
                 {
                     letter.Type = LetterType.Gaming;
@@ -217,11 +212,13 @@ public class LetterCreator : MonoBehaviour
         }
         else if(CurrentLetter.name == "GiftLetter")
         {
-            Letter letter = new Letter();
-            letter.Recieving = SelectedPerson;
-            letter.ManipulationLevelIncrease = 2;
-            letter.Description = "Letter to " + SelectedPerson.Name + " gifting a Freedom book.";
-            letter.Type = LetterType.Gift;
+            Letter letter = new()
+            {
+                Recieving = SelectedPerson,
+                ManipulationLevelIncrease = 2,
+                Description = "Letter to " + SelectedPerson.Name + " gifting a Freedom book.",
+                Type = LetterType.Gift
+            };
             var player = PlayerVariable.GetComponent<Player>();
             player.invScript.AddLetter(letter);
             player.invScript.Pens--;

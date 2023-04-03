@@ -32,12 +32,6 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void BanActivity(Activity activity)
     {
         if(BannedActivities.Contains(activity))
@@ -79,13 +73,13 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
     private void UpdateBans()
     {
         // algorithm to ban and unban activities.  Choose one sleep to ban and one to unban
-        int BanValue1 = -1;
-        int BanValue2 = -1;
+        int BanValue1;
+        int BanValue2;
+        int UnBanValue;
 
-        int UnBanValue = -1;
-        ActivityCategory ActivityBanned1 = null;
-        ActivityCategory ActivityBanned2 = null;
-        ActivityCategory ActivityUnBanned = null;
+        ActivityCategory ActivityBanned1;
+        ActivityCategory ActivityBanned2;
+        ActivityCategory ActivityUnBanned;
 
         log.AddItem("Notice", "Law Updates for Day " + Clock.Time.Day + ".");
 
@@ -109,12 +103,12 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
             UnBanValue = -1;
         }
 
-        ban(ActivityBanned1);
-        ban(ActivityBanned2);
+        Ban(ActivityBanned1);
+        Ban(ActivityBanned2);
 
         if (UnBanValue >= 0)
         {
-            unban(ActivityUnBanned);
+            Unban(ActivityUnBanned);
         }
 
         NotifyPlayerOfUpdate();
@@ -122,21 +116,21 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
     }
 
     // Gets the position of an activity in the Banned activity list
-    private int getPos(Activity activity)
+    private int GetPos(Activity activity)
     {
         return BannedActivities.IndexOf(activity);
     }
 
     //unbans activities in the given ActivityCategory
-    private void unban(ActivityCategory AC)
+    private void Unban(ActivityCategory AC)
     {
         bool changed = false;
         Activity act;
-        int index = -1;
+        int index;
 
         // used to add notification only once in notices
-        List<string> unbanText = new List<string>();
-        string unbanString = "";
+        List<string> unbanText = new();
+        string unbanString;
 
         // check each activity if banned
         for (int i = 0; i < AC.Activities.Count; i++)
@@ -145,7 +139,7 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
             act = AC.Activities[i];
             if (BannedActivities.Contains(act))
             {
-                index = getPos(act);
+                index = GetPos(act);
                 changed = true;
                 BannedActivities.RemoveAt(index);
                 BanLevels.RemoveAt(index);
@@ -171,15 +165,15 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
     }
 
     //bans activities in the given ActivityCategory
-    private void ban(ActivityCategory AC)
+    private void Ban(ActivityCategory AC)
     {
         bool changed = false;
         Activity act;
-        int index = -1;
+        int index;
 
         // used to add notification only once in notices
-        List<string> banText = new List<string>();
-        string banString = "";
+        List<string> banText = new();
+        string banString;
 
         // check each activity if unbanned
         for (int i = 0; i < AC.Activities.Count; i++)
@@ -189,7 +183,7 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
             act = AC.Activities[i];
             if (BannedActivities.Contains(act))
             {
-                index = getPos(act);
+                index = GetPos(act);
                 BanLevels[index] = BanLevels[index] + 1;
 
                 // add notificiation only once in notices 
@@ -197,7 +191,6 @@ public class BannedActivitiesBehavior : MonoBehaviour, INeedsClockUpdate
                 if (!banText.Contains(banString))
                 {
                     banText.Add(banString);
-                    Debug.Log(banString);
                     log.AddItem("Tougher ban", banString);
                 }
             }

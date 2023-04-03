@@ -21,13 +21,7 @@ public class SecurityCameraBehavior : MonoBehaviour
     public bool seesPlayer;
 
     public Collider2D playerCollision;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+  
     // Update is called once per frame
     void Update()
     {

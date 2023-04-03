@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
     public static string Name = "DaDarkWizard";
 
     // flags used for credits scene
-    public static List<string> PeopleMax = new List<string>();
+    public static List<string> PeopleMax = new();
 
     public bool beingEscorted;
 
@@ -176,7 +176,7 @@ public class Player : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.gameObject.tag == "Lava")
+        if (collision.gameObject.CompareTag("Lava"))
         {
             _source.clip = _playerSounds.Ow;
             CreateMessage("Ow.");
@@ -186,13 +186,13 @@ public class Player : MonoBehaviour
 
         }
 
-        if (collision.gameObject.tag == "Shrub")
+        if (collision.gameObject.CompareTag("Shrub"))
         {
             _source.clip = _playerSounds.Brush;
             _source.Play();
         }
 
-        if (collision.gameObject.tag == "PeeShrub")
+        if (collision.gameObject.CompareTag("PeeShrub"))
         {
             CreateMessage("Aaaaaaaaaah.");
             _source.clip = _playerSounds.Brush;
@@ -200,20 +200,20 @@ public class Player : MonoBehaviour
             achievementList.TryGetAchievement(Achievement.Aaaaaaaaaah);
         }
 
-        if (collision.gameObject.tag == "Door")
+        if (collision.gameObject.CompareTag("Door"))
         {
             CreateMessage("I don't have the key.");
             _source.clip = _playerSounds.Locked;
             _source.Play();
         }
 
-        if (collision.gameObject.tag == "Rock" || collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Garbage")
+        if (collision.gameObject.CompareTag("Rock") || collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Garbage"))
         {
             _source.clip = _playerSounds.Wallbump;
             _source.Play();
         }
 
-        if (collision.gameObject.tag == "NPC" || collision.gameObject.tag == "GuardNPC")
+        if (collision.gameObject.CompareTag("NPC") || collision.gameObject.CompareTag("GuardNPC"))
         {
             var npc = collision.gameObject.GetComponent<NPCBehavior>();
             if (invScript.Letters.Where(x => x.Recieving.Name == npc.Name).Any())
@@ -251,7 +251,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Key")
+        if (collision.gameObject.CompareTag("Key"))
         {
             CreateMessage("Awesome!");
             PlayAudioClip(_playerSounds.Tada);
@@ -266,7 +266,7 @@ public class Player : MonoBehaviour
 
             collision.gameObject.SetActive(false);
         }
-        else if (collision.gameObject.tag == "Paper")
+        else if (collision.gameObject.CompareTag("Paper"))
         {
             CreateMessage("More paper for more letters!");
 
@@ -283,7 +283,7 @@ public class Player : MonoBehaviour
                 }
             }
         }
-        else if (collision.gameObject.tag == "Pen")
+        else if (collision.gameObject.CompareTag("Pen"))
         {
             CreateMessage("Another pen for another letter!");
             PlayAudioClip(_playerSounds.Pen);
@@ -299,14 +299,14 @@ public class Player : MonoBehaviour
                 }
             }
         }
-        else if (collision.gameObject.tag == "FreedomBook")
+        else if (collision.gameObject.CompareTag("FreedomBook"))
         {
             CreateMessage("Freedom!");
             invScript.addItem(collision.gameObject);
             PlayAudioClip(_playerSounds.Freedom);
             collision.gameObject.SetActive(false);
         }
-        else if (collision.gameObject.tag == "Cupcake")
+        else if (collision.gameObject.CompareTag("Cupcake"))
         {
             CreateMessage("Yum!");
             invScript.addItem(collision.gameObject);
@@ -315,14 +315,14 @@ public class Player : MonoBehaviour
             NPCInfoUI.OpenMessage("You eat the cupcake.  Yum.");
 
         }
-        else if (collision.gameObject.tag == "GiantCupcake")
+        else if (collision.gameObject.CompareTag("GiantCupcake"))
         {
             CreateMessage("Yum!");
             invScript.addItem(collision.gameObject);
             collision.gameObject.SetActive(false);
             achievementList.TryGetAchievement(Achievement.TheCakeIsNotALie);
         }
-        else if (collision.gameObject.tag == "Writing Desk")
+        else if (collision.gameObject.CompareTag("Writing Desk"))
         {
             if (invScript.Paper >= 1 && invScript.Pens >= 1)
             {
@@ -339,7 +339,7 @@ public class Player : MonoBehaviour
                 PlayAudioClip(_playerSounds.Ugh);
             }
         }
-        else if(collision.gameObject.tag == "SecurityCamera")
+        else if(collision.gameObject.CompareTag("SecurityCamera"))
         {
             collision.gameObject.GetComponent<SecurityCameraBehavior>().seesPlayer = true;
         }
@@ -347,7 +347,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "TV")
+        if (collision.gameObject.CompareTag("TV"))
         {
             if (ughCount % 10 == 0)
             {
@@ -361,11 +361,11 @@ public class Player : MonoBehaviour
             ughCount++;
             _source.Play();
         }
-        else if (collision.gameObject.tag == "SecurityCamera")
+        else if (collision.gameObject.CompareTag("SecurityCamera"))
         {
             collision.gameObject.GetComponent<SecurityCameraBehavior>().seesPlayer = false;
         }
-        else if (collision.gameObject.tag == "Writing Desk")
+        else if (collision.gameObject.CompareTag("Writing Desk"))
         {
             letterCreator.LeaveCreator();
         }
@@ -439,9 +439,11 @@ public class Player : MonoBehaviour
         {
             int change = person.Value - ((Math.Max(0, Math.Min(person.Value, 5 - person.ManipulationLevel))));
             score += change;
+            Debug.Log("NPC " + person.Name + " of importance " + person.Value + " has morale " + person.ManipulationLevel + " and is scored " + change + ".");
             if (person.ManipulationLevel>=5)
             {
                 PeopleMax.Add(person.Name);
+                Debug.Log("NPC " + person.Name + " added to Max list.");
             }
         }
 

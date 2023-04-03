@@ -51,8 +51,8 @@ public class BannedActivitiesMenuBehavior : MonoBehaviour, IManualUpdate
         if(currentPage > pages) currentPage = pages;
 
         List<string> readable = uniqueBannedList.Skip((currentPage - 1) * 10).Take(10).ToList();
-        StringBuilder leftText = new StringBuilder();
-        StringBuilder rightText = new StringBuilder();
+        StringBuilder leftText = new();
+        StringBuilder rightText = new();
         for(int i = 0; i < 5 && i < readable.Count; i++)
         {
             leftText.Append(readable[i]).Append("\n");

@@ -342,7 +342,7 @@ public class AchievementList : MonoBehaviour
                 MakeAchievement(achItem, this);
             }
         }
-        if (npc.tag.Equals("GuardNPC"))
+        if (npc.CompareTag("GuardNPC"))
         {
             AchievementItem achItem = GetItem(Achievement.CatchTheGuards);
             if (!achItem.isDone)

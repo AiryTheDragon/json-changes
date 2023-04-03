@@ -6,21 +6,9 @@ public class CameraVision : MonoBehaviour
 {
     public GameObject parentScript;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.tag == "Player")
+        if(collider.CompareTag("Player"))
         {
             parentScript.GetComponent<SecurityCameraBehavior>().seesPlayer = true;
             parentScript.GetComponent<SecurityCameraBehavior>().playerCollision = collider;
@@ -29,7 +17,7 @@ public class CameraVision : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D collider)
     {
-        if(collider.tag == "Player")
+        if(collider.CompareTag("Player"))
         {
             parentScript.GetComponent<SecurityCameraBehavior>().seesPlayer = false;
         }

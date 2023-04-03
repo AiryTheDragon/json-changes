@@ -9,7 +9,7 @@ public class PersonSelectorBehavior : MonoBehaviour
 
     private int pages = 1;
 
-    private List<Person> People = new List<Person>();
+    private List<Person> People = new();
 
     public List<GameObject> PersonDisplays;
 
@@ -21,12 +21,6 @@ public class PersonSelectorBehavior : MonoBehaviour
 
     public GameObject LetterCreator;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     public void SelectPerson(Person person)
     {

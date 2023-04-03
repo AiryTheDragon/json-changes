@@ -28,7 +28,7 @@ public class EndgameScript : MonoBehaviour
     void Start()
     {
         // create list if it doesn't exist, mostly for testing purposes on credits scene
-        AchievementList achList = new AchievementList();
+        AchievementList achList = new();
         if (!AchievementList.Initialized)
         {
             achList.Start();
@@ -108,13 +108,7 @@ public class EndgameScript : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //SceneManager.LoadScene("StartScene");
-    }
-
-
+    
     public void NextPanelClick()
     {
         NextPanel.SetActive(true);

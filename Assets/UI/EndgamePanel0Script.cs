@@ -144,7 +144,7 @@ public class EndgamePanel0Script : MonoBehaviour
             {
                 George.SetActive(true);
             }
-            if (Player.PeopleMax.Contains("Joe(Unknown)"))
+            if (Player.PeopleMax.Contains("Joe (Unknown)"))
             {
                 HoboJoe.SetActive(true);
             }

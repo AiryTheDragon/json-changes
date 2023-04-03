@@ -85,12 +85,6 @@ public class InventoryMenu : MonoBehaviour, IManualUpdate
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void ManualUpdate()
     {
         if (player is null)
@@ -116,7 +110,7 @@ public class InventoryMenu : MonoBehaviour, IManualUpdate
         leftPageText.Append(player.invScript.Pens).Append("\tBooks: ");
         leftPageText.Append(player.invScript.Books).Append("\n");
 
-        StringBuilder rightPageText = new StringBuilder();
+        StringBuilder rightPageText = new();
 
         for (int i = 0; i < LeftPageLines - 1 && i < readable.Count; i++)
         {

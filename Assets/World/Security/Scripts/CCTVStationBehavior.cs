@@ -17,11 +17,6 @@ public class CCTVStationBehavior : MonoBehaviour, INeedsClockUpdate
         GameObject.Find("Clock").GetComponent<ClockBehavior>().NeedsClockUpdate.Add(this);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     public void UpdateClock(ClockTime time)
     {
 

@@ -25,12 +25,6 @@ public class YourBedBehavior : MonoBehaviour, IConfirmScript
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void ConfirmAction()
     {
         Debug.LogWarning("The next day state is being saved.\nWe don't want this in the launched game.");

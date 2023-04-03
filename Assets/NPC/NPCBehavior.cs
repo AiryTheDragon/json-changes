@@ -301,7 +301,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate, IClickable
                 !Player.PeopleKnown[person.Name].SeenActivities.Any(x => x.SystemName == ActivityTracker.RunningActivity.name && x.ReadableName == ActivityTracker.RunningActivity.Name))
             {
 
-                SeenActivity seenActivity = new SeenActivity()
+                SeenActivity seenActivity = new()
                 {
                     SystemName = ActivityTracker.RunningActivity.name,
                     ReadableName = ActivityTracker.RunningActivity.Name
@@ -318,7 +318,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate, IClickable
             Player.PeopleKnown.Add(this.Name, person);
             if(ActivityTracker.RunningActivity != null)
             {
-                SeenActivity seenActivity = new SeenActivity()
+                SeenActivity seenActivity = new()
                 {
                     SystemName = ActivityTracker.RunningActivity.name,
                     ReadableName = ActivityTracker.RunningActivity.Name
@@ -335,11 +335,13 @@ public class NPCBehavior : AIPath, INeedsClockUpdate, IClickable
 
     public Person GetPersonInformation()
     {
-        var person = new Person();
-        person.Name = Name;
-        person.ManipulationLevel = ManipulationLevel;
-        person.Value = Value;
-        person.PositionName = PositionName;
+        var person = new Person
+        {
+            Name = Name,
+            ManipulationLevel = ManipulationLevel,
+            Value = Value,
+            PositionName = PositionName
+        };
         return person;
     }
 
@@ -690,7 +692,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate, IClickable
         var hits = Physics2D.OverlapBoxAll(new Vector2(position.x - 0.5f, position.y - 0.5f), new Vector2(1, 1), 0.0f);
         for(int i = 0; i < hits.Length; i++)
         {
-            if(hits[i].gameObject.tag == "Ceiling" && hits[i].gameObject.GetComponentInChildren<SpriteRenderer>().enabled)
+            if(hits[i].gameObject.CompareTag("Ceiling") && hits[i].gameObject.GetComponentInChildren<SpriteRenderer>().enabled)
             {
                 return true;
             }

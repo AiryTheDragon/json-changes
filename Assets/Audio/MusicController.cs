@@ -36,8 +36,7 @@ public class MusicController : MonoBehaviour
 
     public void EnterZone(MusicZone zone)
     {
-        MusicListEnum nextAudio = MusicListEnum.Other;
-
+        MusicListEnum nextAudio;
         if (currentZone != zone)
         {
             currentZone = zone;
