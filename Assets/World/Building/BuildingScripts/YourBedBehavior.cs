@@ -28,7 +28,7 @@ public class YourBedBehavior : MonoBehaviour, IConfirmScript
     public void ConfirmAction()
     {
         Debug.LogWarning("The next day state is being saved.\nWe don't want this in the launched game.");
-        loadSaveObject.SaveNextDayState();
+    //    loadSaveObject.SaveNextDayState();
         loadSaveObject.LoadNextDayState();
         loadSaveObject.NextDayUpdates();
         loadSaveObject.CreateSaveData($"save{Player.SaveFile}");
