@@ -21,7 +21,7 @@ public class Unclickable : MonoBehaviour, IClickable
         Ray castRay = Camera.main.ScreenPointToRay(mousePos);
 
         // Cast the ray into the game.
-        var hits = Physics.RaycastAll(castRay.origin, castRay.direction, 100, 0, QueryTriggerInteraction.Collide);
+        var hits = Physics.RaycastAll(castRay.origin, castRay.direction, Mathf.Infinity, 0, QueryTriggerInteraction.Collide);
 
         // Make sure everything is sorted by z
         hits = hits.OrderBy(x => x.collider.bounds.center.z).ToArray();
