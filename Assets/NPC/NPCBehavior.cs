@@ -546,7 +546,7 @@ public class NPCBehavior : AIPath, INeedsClockUpdate, IClickable
         {
             if (tutorial == null)
             {
-                tutorial = GameObject.Find("Phil").GetComponent<TutorialTests>();
+                tutorial = GameObject.Find("DaDarkWizard").GetComponent<TutorialTests>();
             }
 
 
