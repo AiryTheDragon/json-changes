@@ -162,14 +162,235 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
     public void ImportNextDayState()
     {
         Debug.Log("Testing File loading");
-        
+        /*
         string nextDayData = @"{""PlayerName"":null,""Time"":null,""NPCBehaviorSettings"":
 [{""NPCName"":""Mike"",""groupOfActivitiesName"":""Mike's Night Activities"",""activityPos"":9,""actionPos"":5,""actionInfo"":{""type"":13,""endTime"":{""Hour"":6,""Minute"":58,""Day"":0,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":0,""DayOfMonth"":0,""DayOfYear"":0},""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":false,""isPatrolling"":false,""name"":"""",""hideFlags"":0},{""NPCName"":""Helpful Phil"",""groupOfActivitiesName"":""Phil's Daytime Activities"",""activityPos"":1,""actionPos"":38,""actionInfo"":{""type"":13,""endTime"":{""Hour"":6,""Minute"":48,""Day"":0,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":0,""DayOfMonth"":0,""DayOfYear"":0},""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":false,""isPatrolling"":false,""name"":"""",""hideFlags"":0},{""NPCName"":""Sassy Sam"",""groupOfActivitiesName"":""Sam's Night Activities"",""activityPos"":4,""actionPos"":1,""actionInfo"":{""type"":13,""endTime"":{""Hour"":7,""Minute"":26,""Day"":0,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":0,""DayOfMonth"":0,""DayOfYear"":0},""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":false,""isPatrolling"":false,""name"":"""",""hideFlags"":0},{""NPCName"":""Jade"",""groupOfActivitiesName"":""Jade's Night Activities"",""activityPos"":2,""actionPos"":1,""actionInfo"":{""type"":13,""endTime"":{""Hour"":7,""Minute"":36,""Day"":0,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":0,""DayOfMonth"":0,""DayOfYear"":0},""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":false,""isPatrolling"":false,""name"":"""",""hideFlags"":0},{""NPCName"":""Dee"",""groupOfActivitiesName"":""Dee's Daytime Activities"",""activityPos"":0,""actionPos"":2,""actionInfo"":{""type"":13,""endTime"":{""Hour"":6,""Minute"":46,""Day"":0,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":0,""DayOfMonth"":0,""DayOfYear"":0},""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":true,""isPatrolling"":true,""name"":"""",""hideFlags"":0},{""NPCName"":""Joe (Unknown)"",""groupOfActivitiesName"":""Hobo Joe's Night Activities"",""activityPos"":8,""actionPos"":0,""actionInfo"":{""type"":15,""endTime"":null,""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":false,""isPatrolling"":false,""name"":"""",""hideFlags"":0},{""NPCName"":""Slowpoke"",""groupOfActivitiesName"":""Slowpoke's Day Activities"",""activityPos"":0,""actionPos"":0,""actionInfo"":{""type"":15,""endTime"":null,""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":true,""isPatrolling"":true,""name"":"""",""hideFlags"":0},{""NPCName"":""Jessie"",""groupOfActivitiesName"":""Jessie's Night Activities"",""activityPos"":1,""actionPos"":7,""actionInfo"":{""type"":15,""endTime"":null,""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":true,""isPatrolling"":true,""name"":"""",""hideFlags"":0},{""NPCName"":""Isaac"",""groupOfActivitiesName"":""Isaac's Night Activities"",""activityPos"":9,""actionPos"":1,""actionInfo"":{""type"":13,""endTime"":{""Hour"":7,""Minute"":41,""Day"":0,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":0,""DayOfMonth"":0,""DayOfYear"":0},""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":false,""isPatrolling"":false,""name"":"""",""hideFlags"":0},{""NPCName"":""Autumn"",""groupOfActivitiesName"":""Autumn's Night Activities"",""activityPos"":10,""actionPos"":1,""actionInfo"":{""type"":13,""endTime"":{""Hour"":7,""Minute"":25,""Day"":0,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":0,""DayOfMonth"":0,""DayOfYear"":0},""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":false,""isPatrolling"":false,""name"":"""",""hideFlags"":0},{""NPCName"":""Bob"",""groupOfActivitiesName"":""GuardBossKey"",""activityPos"":0,""actionPos"":26,""actionInfo"":{""type"":13,""endTime"":{""Hour"":6,""Minute"":45,""Day"":0,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":0,""DayOfMonth"":0,""DayOfYear"":0},""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":true,""isPatrolling"":true,""name"":"""",""hideFlags"":0},{""NPCName"":""Maxxy JJ"",""groupOfActivitiesName"":""Max's Night Activities"",""activityPos"":8,""actionPos"":1,""actionInfo"":{""type"":13,""endTime"":{""Hour"":7,""Minute"":3,""Day"":0,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":0,""DayOfMonth"":0,""DayOfYear"":0},""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":false,""isPatrolling"":false,""name"":"""",""hideFlags"":0},{""NPCName"":""Manager George"",""groupOfActivitiesName"":""George's Night Activities"",""activityPos"":8,""actionPos"":1,""actionInfo"":{""type"":15,""endTime"":null,""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":false,""isPatrolling"":false,""name"":"""",""hideFlags"":0},{""NPCName"":""Slinky"",""groupOfActivitiesName"":""Patrolling the player house"",""activityPos"":0,""actionPos"":3,""actionInfo"":{""type"":15,""endTime"":null,""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":true,""isPatrolling"":true,""name"":"""",""hideFlags"":0},{""NPCName"":""Karon"",""groupOfActivitiesName"":""Patrol the sidewalk"",""activityPos"":0,""actionPos"":2,""actionInfo"":{""type"":15,""endTime"":null,""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":true,""isPatrolling"":true,""name"":"""",""hideFlags"":0},{""NPCName"":""Sarah"",""groupOfActivitiesName"":""Sarah's Daytime1 Activities"",""activityPos"":4,""actionPos"":16,
 ""actionInfo"":{""type"":13,""endTime"":{""Hour"":6,""Minute"":46,""Day"":0,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":0,""DayOfMonth"":0,""DayOfYear"":0},""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":false,""isPatrolling"":false,""name"":"""",""hideFlags"":0},{""NPCName"":""Donald"",""groupOfActivitiesName"":""Mike's Night Activities"",""activityPos"":9,""actionPos"":5,""actionInfo"":{""type"":13,""endTime"":{""Hour"":6,""Minute"":52,""Day"":0,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":0,""DayOfMonth"":0,""DayOfYear"":0},""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":false,""isPatrolling"":false,""name"":"""",""hideFlags"":0},{""NPCName"":""Daniel"",""groupOfActivitiesName"":""Daniel's Night Activities"",""activityPos"":9,""actionPos"":1,""actionInfo"":{""type"":13,""endTime"":{""Hour"":7,""Minute"":5,""Day"":0,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":0,""DayOfMonth"":0,""DayOfYear"":0},""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":false,""isPatrolling"":false,""name"":"""",""hideFlags"":0},{""NPCName"":""Dum"",""groupOfActivitiesName"":""Dum's Daytime Activities"",""activityPos"":0,""actionPos"":3,""actionInfo"":{""type"":15,""endTime"":null,""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":true,""isPatrolling"":true,""name"":"""",""hideFlags"":0},{""NPCName"":""Pear"",""groupOfActivitiesName"":""Pear's Daytime Activities"",""activityPos"":0,""actionPos"":20,""actionInfo"":{""type"":15,""endTime"":null,""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":true,""isPatrolling"":true,""name"":"""",""hideFlags"":0},{""NPCName"":""Airy"",""groupOfActivitiesName"":""Airy's Night Activities"",""activityPos"":2,""actionPos"":47,""actionInfo"":{""type"":15,""endTime"":null,""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":false,""isPatrolling"":false,""name"":"""",""hideFlags"":0},{""NPCName"":""Onna"",""groupOfActivitiesName"":""Onna's Night Activities"",""activityPos"":15,""actionPos"":1,""actionInfo"":{""type"":13,""endTime"":{""Hour"":6,""Minute"":54,""Day"":0,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":0,""DayOfMonth"":0,""DayOfYear"":0},""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":false,""isPatrolling"":false,""name"":"""",""hideFlags"":0},{""NPCName"":""Frank"",""groupOfActivitiesName"":""Escort NPC Male"",""activityPos"":0,""actionPos"":3,""actionInfo"":{""type"":6,""endTime"":null,""data"":""Airy"",""name"":"""",""hideFlags"":0},""isGuard"":true,""isPatrolling"":false,""name"":"""",""hideFlags"":0},{""NPCName"":""Tiny"",""groupOfActivitiesName"":""Tiny's Night Activities"",""activityPos"":5,""actionPos"":1,""actionInfo"":{""type"":13,""endTime"":{""Hour"":7,""Minute"":33,""Day"":0,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":0,""DayOfMonth"":0,""DayOfYear"":0},""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":true,""isPatrolling"":false,""name"":"""",""hideFlags"":0},{""NPCName"":""Bethany"",""groupOfActivitiesName"":""Bethany's Night Activities"",""activityPos"":12,""actionPos"":1,""actionInfo"":{""type"":13,""endTime"":{""Hour"":6,""Minute"":55,""Day"":0,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":0,""DayOfMonth"":0,""DayOfYear"":0},""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":false,""isPatrolling"":false,""name"":"""",""hideFlags"":0},{""NPCName"":""Liberty"",""groupOfActivitiesName"":""Liberty's Daytime Activities"",""activityPos"":2,""actionPos"":9,""actionInfo"":{""type"":13,""endTime"":{""Hour"":6,""Minute"":47,""Day"":0,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":0,""DayOfMonth"":0,""DayOfYear"":0},""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":false,""isPatrolling"":false,""name"":"""",""hideFlags"":0},{""NPCName"":""Jonathan"",""groupOfActivitiesName"":""Jon's Night Activities"",""activityPos"":11,""actionPos"":1,""actionInfo"":{""type"":13,""endTime"":{""Hour"":7,""Minute"":39,""Day"":0,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":0,""DayOfMonth"":0,""DayOfYear"":0},""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":false,""isPatrolling"":false,""name"":"""",""hideFlags"":0},{""NPCName"":""Karen"",""groupOfActivitiesName"":""Karen's Night Activities"",""activityPos"":6,""actionPos"":3,""actionInfo"":{""type"":13,""endTime"":{""Hour"":6,""Minute"":49,""Day"":0,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":0,""DayOfMonth"":0,""DayOfYear"":0},""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":false,""isPatrolling"":false,""name"":"""",""hideFlags"":0},{""NPCName"":""Deaf Jacob"",""groupOfActivitiesName"":""Daniel's Night Activities"",""activityPos"":6,""actionPos"":1,""actionInfo"":{""type"":13,""endTime"":{""Hour"":7,""Minute"":22,""Day"":0,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":0,""DayOfMonth"":0,""DayOfYear"":0},""data"":null,""name"":"""",""hideFlags"":0},""isGuard"":false,""isPatrolling"":false,""name"":"""",""hideFlags"":0}],""PositionSettings"":{""positionSettingsFloat"":[16.441185,25.7297211,-1.0,6.546749,-2.20869064,-2.0,7.44116974,-24.2524261,-1.0,15.9399376,83.736,-1.0,-19.94749,-68.72664,-2.0,-49.43396,-80.68292,-1.0,27.121048,-0.716712952,-2.0,0.252436638,-94.02751,-2.0,15.6965981,-49.2805939,-1.0,16.6900635,-49.25727,-1.0,31.0000114,-95.24902,-2.0,14.5221672,-24.3069763,-1.0,-30.2763519,-99.9118958,-2.0,4.0076623,-10.0230675,-2.0,-9.750047,-28.0567169,-2.0,-55.01893,-100.751953,-1.0,-50.4460258,24.2718525,-1.0,-45.9409256,-0.7622986,-1.0,-16.8432617,-70.25421,-2.0,-18.619091,-57.35339,-2.0,-18.7499123,-8.372704,-2.0,-50.4396057,53.5005951,-1.0,-18.7498741,-8.972706,-2.0,13.5133619,-88.55359,-2.0,-49.94953,-25.0237427,-1.0,13.5410957,53.7924271,-2.0,-50.2501869,-49.2499924,-1.0,-21.5587883,-86.269,-2.0,-77.9785843,91.19717,-1.0],""positionNames"":[""Mike"",""Helpful Phil"",""Sassy Sam"",""Jade"",""Dee"",""Joe (Unknown)"",""Slowpoke"",""Jessie"",""Isaac"",""Autumn"",""Bob"",""Maxxy JJ"",""Manager George"",""Slinky"",""Karon"",""Sarah"",""Donald"",""Daniel"",""Dum"",""Pear"",""Airy"",""Onna"",""Frank"",""Tiny"",""Bethany"",""Liberty"",""Jonathan"",""Karen"",""Deaf Jacob""],""playerPositionSettingsFloat"":[16.2862988,-0.623662353,0.0]},""LightSettings"":[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,true,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,true,false,false,false,false],""PaperSettings"":null,""PenSettings"":null,""KeySettings"":null,""MiscSettings"":null,""PensHeld"":0,""PaperHeld"":0,""LettersHeld"":null,""Logs"":null,""LogsCounter"":0,""PeopleKnown"":null}";
-        
+        */
+        string nextDayData = @"{ ""PlayerName"":null,""Time"":null,""NPCBehaviorSettings"":[{
+            ""NPCName"":
+""Mike"",""groupOfActivitiesName"":""Mike's Night Activities"",""activityPos"":9,
+ ""actionPos"":1,""actionInfo"":{
+                ""type"":13,""endTime"":{
+                    ""Hour"":6,""Minute"":51,
+""Day"":1,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":1,
+""DayOfMonth"":1,""DayOfYear"":1},""data"":null},""isGuard"":false,
+""isPatrolling"":false},{
+            ""NPCName"":""Helpful Phil"",
+""groupOfActivitiesName"":""Phil's Daytime Activities"",
+""activityPos"":1,""actionPos"":54,""actionInfo"":{
+                ""type"":13,
+""endTime"":{
+                    ""Hour"":6,""Minute"":50,""Day"":1,""Week"":0,""Year"":0,
+""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":1,""DayOfMonth"":1,
+""DayOfYear"":1},""data"":null},""isGuard"":false,""isPatrolling"":false},
+{
+            ""NPCName"":""Sassy Sam"",""groupOfActivitiesName"":""Sam's Night Activities"",
+""activityPos"":4,""actionPos"":1,""actionInfo"":{
+                ""type"":13,
+""endTime"":{
+                    ""Hour"":7,""Minute"":14,""Day"":1,""Week"":0,""Year"":0,
+""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":1,""DayOfMonth"":1,
+""DayOfYear"":1},""data"":null},""isGuard"":false,""isPatrolling"":false},
+{
+            ""NPCName"":""Jade"",""groupOfActivitiesName"":""Jade's Night Activities"",
+""activityPos"":4,""actionPos"":7,""actionInfo"":{
+                ""type"":13,""endTime"":
+{
+                    ""Hour"":6,""Minute"":52,""Day"":1,""Week"":0,""Year"":0,""MonthOfYear"":0,
+""WeekOfYear"":0,""DayOfWeek"":1,""DayOfMonth"":1,""DayOfYear"":1},""data"":null},
+""isGuard"":false,""isPatrolling"":false},{
+            ""NPCName"":""Dee"",
+""groupOfActivitiesName"":""Dee's Daytime Activities"",""activityPos"":0,
+""actionPos"":2,""actionInfo"":{
+                ""type"":13,""endTime"":{
+                    ""Hour"":6,""Minute"":47,
+""Day"":1,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":1,
+""DayOfMonth"":1,""DayOfYear"":1},""data"":null},""isGuard"":true,""isPatrolling"":true},
+{
+            ""NPCName"":""Joe(Unknown)"",""groupOfActivitiesName"":""Hobo Joe's Night Activities"",
+""activityPos"":11,""actionPos"":7,""actionInfo"":
+{
+                ""type"":13,""endTime"":{
+                    ""Hour"":6,""Minute"":46,""Day"":1,""Week"":0,
+""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":1,
+""DayOfMonth"":1,""DayOfYear"":1},""data"":null},""isGuard"":false,
+""isPatrolling"":false},{
+            ""NPCName"":""Slowpoke"",""groupOfActivitiesName"":
+""Slowpoke's Day Activities"",""activityPos"":0,""actionPos"":0,""actionInfo"":
+{ ""type"":15,""endTime"":null,""data"":null},""isGuard"":true,""isPatrolling"":true},
+{
+            ""NPCName"":""Jessie"",""groupOfActivitiesName"":""Jessie's Night Activities"",
+""activityPos"":4,""actionPos"":0,""actionInfo"":{
+                ""type"":15,""endTime"":null,
+""data"":null},""isGuard"":true,""isPatrolling"":false},{
+            ""NPCName"":""Isaac"",
+""groupOfActivitiesName"":""Isaac's Night Activities"",""activityPos"":10,
+""actionPos"":1,""actionInfo"":{
+                ""type"":13,""endTime"":{
+                    ""Hour"":6,""Minute"":
+49,""Day"":1,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,
+""DayOfWeek"":1,""DayOfMonth"":1,""DayOfYear"":1},""data"":null},""isGuard"":false,
+""isPatrolling"":false},{
+            ""NPCName"":""Autumn"",""groupOfActivitiesName"":
+""Autumn's Night Activities"",""activityPos"":10,""actionPos"":1,""actionInfo"":
+{
+                ""type"":13,""endTime"":{
+                    ""Hour"":7,""Minute"":43,""Day"":1,""Week"":0,""Year"":0,
+""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":1,""DayOfMonth"":1,
+""DayOfYear"":1},""data"":null},""isGuard"":false,""isPatrolling"":false},
+{
+            ""NPCName"":""Bob"",""groupOfActivitiesName"":""GuardBossKey"",
+""activityPos"":0,""actionPos"":30,""actionInfo"":{
+                ""type"":13,""endTime"":
+{
+                    ""Hour"":6,""Minute"":46,""Day"":1,""Week"":0,""Year"":0,""MonthOfYear"":0,
+""WeekOfYear"":0,""DayOfWeek"":1,""DayOfMonth"":1,""DayOfYear"":1},""data"":null},
+""isGuard"":true,""isPatrolling"":true},{
+            ""NPCName"":""Maxxy JJ"",
+""groupOfActivitiesName"":""Max's Night Activities"",""activityPos"":9,
+""actionPos"":1,""actionInfo"":{
+                ""type"":13,""endTime"":
+{
+                    ""Hour"":7,""Minute"":11,""Day"":1,""Week"":0,""Year"":0,""MonthOfYear"":0,
+""WeekOfYear"":0,""DayOfWeek"":1,""DayOfMonth"":1,""DayOfYear"":1},
+""data"":null},""isGuard"":false,""isPatrolling"":false},
+{
+            ""NPCName"":""Manager George"",""groupOfActivitiesName"":
+""George's Night Activities"",""activityPos"":7,""actionPos"":5,""actionInfo"":
+{
+                ""type"":13,""endTime"":{
+                    ""Hour"":6,""Minute"":45,""Day"":1,
+""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":1,
+""DayOfMonth"":1,""DayOfYear"":1},""data"":null},""isGuard"":false,
+""isPatrolling"":false},{
+            ""NPCName"":""Slinky"",""groupOfActivitiesName"":
+""Patrolling the player house"",""activityPos"":0,""actionPos"":8,""actionInfo"":
+{ ""type"":15,""endTime"":null,""data"":null},""isGuard"":true,
+""isPatrolling"":true},{
+            ""NPCName"":""Karon"",""groupOfActivitiesName"":
+""Escort NPC Female"",""activityPos"":0,""actionPos"":3,""actionInfo"":
+{ ""type"":6,""endTime"":null,""data"":""Airy""},""isGuard"":true,
+""isPatrolling"":false},{
+            ""NPCName"":""Sarah"",""groupOfActivitiesName"":
+""Sarah's Daytime1 Activities"",""activityPos"":4,""actionPos"":16,
+""actionInfo"":{
+                ""type"":13,""endTime"":{
+                    ""Hour"":6,""Minute"":53,""Day"":1,
+""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":1,
+""DayOfMonth"":1,""DayOfYear"":1},""data"":null},""isGuard"":false,
+""isPatrolling"":false},{
+            ""NPCName"":""Donald"",""groupOfActivitiesName"":
+""Mike's Night Activities"",""activityPos"":10,""actionPos"":1,""actionInfo"":
+{
+                ""type"":13,""endTime"":{
+                    ""Hour"":7,""Minute"":8,""Day"":1,""Week"":0,
+""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":1,""DayOfMonth"":1,
+""DayOfYear"":1},""data"":null},""isGuard"":false,""isPatrolling"":false},
+{
+            ""NPCName"":""Daniel"",""groupOfActivitiesName"":""Daniel's Night Activities"",
+""activityPos"":9,""actionPos"":1,""actionInfo"":{
+                ""type"":13,""endTime"":
+{
+                    ""Hour"":7,""Minute"":26,""Day"":1,""Week"":0,""Year"":0,""MonthOfYear"":0,
+""WeekOfYear"":0,""DayOfWeek"":1,""DayOfMonth"":1,""DayOfYear"":1},""data"":null},
+""isGuard"":false,""isPatrolling"":false},{
+            ""NPCName"":""Dum"",
+""groupOfActivitiesName"":""Dum's Daytime Activities"",""activityPos"":0,
+""actionPos"":3,""actionInfo"":{ ""type"":15,""endTime"":null,""data"":null},
+""isGuard"":true,""isPatrolling"":true},{
+            ""NPCName"":""Pear"",
+""groupOfActivitiesName"":""Pear's Daytime Activities"",""activityPos"":0,
+""actionPos"":19,""actionInfo"":{ ""type"":15,""endTime"":null,""data"":null},
+""isGuard"":true,""isPatrolling"":true},{
+            ""NPCName"":""Airy"",
+""groupOfActivitiesName"":""Airy's Night Activities"",""activityPos"":2,
+""actionPos"":27,""actionInfo"":{ ""type"":15,""endTime"":null,""data"":null},
+""isGuard"":false,""isPatrolling"":false},{
+            ""NPCName"":""Onna"",
+""groupOfActivitiesName"":""Onna's Night Activities"",""activityPos"":15,
+""actionPos"":1,""actionInfo"":{
+                ""type"":13,""endTime"":{
+                    ""Hour"":6,""Minute"":58,
+""Day"":1,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,
+""DayOfWeek"":1,""DayOfMonth"":1,""DayOfYear"":1},""data"":null},
+""isGuard"":false,""isPatrolling"":false},{
+            ""NPCName"":""Frank"",
+""groupOfActivitiesName"":""Patrol the sidewalk"",""activityPos"":0,
+""actionPos"":19,""actionInfo"":{ ""type"":15,""endTime"":null,""data"":null},
+""isGuard"":true,""isPatrolling"":true},{
+            ""NPCName"":""Tiny"",
+""groupOfActivitiesName"":""Tiny's Night Activities"",""activityPos"":7,
+""actionPos"":1,""actionInfo"":{
+                ""type"":13,""endTime"":{
+                    ""Hour"":7,
+""Minute"":27,""Day"":1,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,
+""DayOfWeek"":1,""DayOfMonth"":1,""DayOfYear"":1},""data"":null},
+""isGuard"":true,""isPatrolling"":false},{
+            ""NPCName"":""Bethany"",
+""groupOfActivitiesName"":""Bethany's Night Activities"",""activityPos"":13,
+""actionPos"":1,""actionInfo"":{
+                ""type"":13,""endTime"":{
+                    ""Hour"":7,
+""Minute"":20,""Day"":1,""Week"":0,""Year"":0,""MonthOfYear"":0,
+""WeekOfYear"":0,""DayOfWeek"":1,""DayOfMonth"":1,""DayOfYear"":1},
+""data"":null},""isGuard"":false,""isPatrolling"":false},
+{
+            ""NPCName"":""Liberty"",""groupOfActivitiesName"":
+""Liberty's Daytime Activities"",""activityPos"":10,""actionPos"":0,
+""actionInfo"":{ ""type"":15,""endTime"":null,""data"":null},
+""isGuard"":false,""isPatrolling"":false},{
+            ""NPCName"":""Jonathan"",
+""groupOfActivitiesName"":""Jon's Night Activities"",""activityPos"":10,
+""actionPos"":7,""actionInfo"":{
+                ""type"":13,""endTime"":{
+                    ""Hour"":6,
+""Minute"":53,""Day"":1,""Week"":0,""Year"":0,""MonthOfYear"":0,
+""WeekOfYear"":0,""DayOfWeek"":1,""DayOfMonth"":1,""DayOfYear"":1},
+""data"":null},""isGuard"":false,""isPatrolling"":false},
+{
+            ""NPCName"":""Karen"",""groupOfActivitiesName"":""Karen's Night Activities"",
+""activityPos"":6,""actionPos"":5,""actionInfo"":{
+                ""type"":13,""endTime"":
+{
+                    ""Hour"":6,""Minute"":50,""Day"":1,""Week"":0,""Year"":0,""MonthOfYear"":0,
+""WeekOfYear"":0,""DayOfWeek"":1,""DayOfMonth"":1,""DayOfYear"":1},""data"":null},
+""isGuard"":false,""isPatrolling"":false},{
+            ""NPCName"":""Deaf Jacob"",
+""groupOfActivitiesName"":""Daniel's Night Activities"",""activityPos"":3,
+""actionPos"":1,""actionInfo"":{
+                ""type"":13,""endTime"":{
+                    ""Hour"":6,""Minute"":57,
+""Day"":1,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,
+""DayOfWeek"":1,""DayOfMonth"":1,""DayOfYear"":1},""data"":null},
+""isGuard"":false,""isPatrolling"":false}],""PositionSettings"":
+{
+            ""positionSettingsFloat"":[16.4467888,25.4782162,0.0,6.54706573,-1.96686554,0.0,
+7.44615936,-24.5106964,0.0,15.9387894,83.4930344,0.0,-19.95039,-68.72443,0.0,
+-2.72161865,-24.23288,0.0,44.8036842,-89.8221741,0.0,-22.576416,-88.41278,0.0,
+15.4415359,-49.5058746,0.0,16.439064,-49.5045929,0.0,31.0020638,-97.2513,0.0,
+15.9443436,-24.5131073,0.0,-34.75289,-94.54274,0.0,1.35977459,10.2508888,0.0,
+-32.7499428,75.29346,0.0,-55.02148,-101.001556,0.0,-50.4470024,24.5154781,0.0,
+-45.9396439,-0.51335907,0.0,-16.8447952,-70.2588654,0.0,-22.5303154,-53.97948,
+0.0,-32.74996,75.8934555,0.0,-50.4521179,53.5282936,0.0,-20.3977013,-55.9445839,
+0.0,13.5150747,-88.55731,0.0,-49.94268,-25.0213776,0.0,-53.2875061,-90.3912659,
+0.0,-50.21492,-49.5000153,0.0,-21.2568359,-86.0591,0.0,-77.444664,90.9747,0.0],
+""positionNames"":[""Mike"",""Helpful Phil"",""Sassy Sam"",""Jade"",""Dee"",
+""Joe(Unknown)"",""Slowpoke"",""Jessie"",""Isaac"",""Autumn"",""Bob"",
+""Maxxy JJ"",""Manager George"",""Slinky"",""Karon"",""Sarah"",""Donald"",""Daniel"",
+""Dum"",""Pear"",""Airy"",""Onna"",""Frank"",""Tiny"",""Bethany"",
+""Liberty"",""Jonathan"",""Karen"",""Deaf Jacob""],""playerPositionSettingsFloat"":
+[14.2435446,-2.58444166,0.0]},""LightSettings"":[false,false,false,false,false,false,false,true,
+false,false,false,false,false,false,true,false,false,false,false,false,true,true,
+false,false,false,false,true,false,false,false,false,false,false,true,false,
+false,false,false,false,false,false,false,false,false,false,true,false,true,
+false,false,false,false,false,false,false,true,false],""PaperSettings"":null,
+""PenSettings"":null,""KeySettings"":null,""BookSettings"":null,
+""MiscSettings"":null,""PensHeld"":0,""PaperHeld"":0,""BooksHeld"":0,
+""LettersHeld"":null,""Logs"":null,""LogsCounter"":0,""PeopleKnown"":null}";
 
 
-        saveFile = JsonConvert.DeserializeObject<SaveFile>(nextDayData);
+    saveFile = JsonConvert.DeserializeObject<SaveFile>(nextDayData);
         
 
     }
