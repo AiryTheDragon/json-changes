@@ -23,6 +23,7 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
     public Log logSettings; // TODO
     public ClockBehavior Clock;
     public Player player;
+    public BannedActivitiesBehavior bannedList;
 
     private SaveFile saveFile;
 
@@ -45,8 +46,7 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
         keyList = GameObject.FindGameObjectsWithTag("Key");
         bookList = GameObject.FindGameObjectsWithTag("FreedomBook");
         player = GameObject.FindObjectOfType<Player>();
-
-
+        bannedList = GameObject.FindObjectOfType<BannedActivitiesBehavior>();
 
         if(string.IsNullOrWhiteSpace(Player.Name))
         {
@@ -70,6 +70,8 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
         CreateAchievementSettings();
         CreateInventory();
         CreateLog();
+        SaveKnownPeople();
+        SaveBannedActivities();
     }
 
     public void LoadSaveData(string saveName)
@@ -87,6 +89,8 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
         SetAchievementSettings();
         SetInventory();
         SetLog();
+        LoadKnownPeople();
+        LoadBannedActivities();
     }
     
     /// <summary>
@@ -208,7 +212,7 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
 ""Day"":1,""Week"":0,""Year"":0,""MonthOfYear"":0,""WeekOfYear"":0,""DayOfWeek"":1,
 ""DayOfMonth"":1,""DayOfYear"":1},""data"":null},""isGuard"":true,""isPatrolling"":true},
 {
-            ""NPCName"":""Joe(Unknown)"",""groupOfActivitiesName"":""Hobo Joe's Night Activities"",
+            ""NPCName"":""Joe (Unknown)"",""groupOfActivitiesName"":""Hobo Joe's Night Activities"",
 ""activityPos"":11,""actionPos"":7,""actionInfo"":
 {
                 ""type"":13,""endTime"":{
@@ -376,7 +380,7 @@ public class LoadSave : MonoBehaviour, INeedsClockUpdate
 0.0,13.5150747,-88.55731,0.0,-49.94268,-25.0213776,0.0,-53.2875061,-90.3912659,
 0.0,-50.21492,-49.5000153,0.0,-21.2568359,-86.0591,0.0,-77.444664,90.9747,0.0],
 ""positionNames"":[""Mike"",""Helpful Phil"",""Sassy Sam"",""Jade"",""Dee"",
-""Joe(Unknown)"",""Slowpoke"",""Jessie"",""Isaac"",""Autumn"",""Bob"",
+""Joe (Unknown)"",""Slowpoke"",""Jessie"",""Isaac"",""Autumn"",""Bob"",
 ""Maxxy JJ"",""Manager George"",""Slinky"",""Karon"",""Sarah"",""Donald"",""Daniel"",
 ""Dum"",""Pear"",""Airy"",""Onna"",""Frank"",""Tiny"",""Bethany"",
 ""Liberty"",""Jonathan"",""Karen"",""Deaf Jacob""],""playerPositionSettingsFloat"":
@@ -738,5 +742,15 @@ false,false,false,false,false,false,false,true,false],""PaperSettings"":null,
     public void LoadKnownPeople()
     {
         player.PeopleKnown = saveFile.PeopleKnown;
+    }
+
+    public void SaveBannedActivities()
+    {
+        saveFile.Banned = bannedList;
+    }
+
+    public void LoadBannedActivities()
+    {
+        bannedList = saveFile.Banned;
     }
 }

@@ -37,4 +37,6 @@ public class SaveFile
     public int LogsCounter;
 
     public Dictionary<string, Person> PeopleKnown;
+
+    public BannedActivitiesBehavior Banned;
 }
