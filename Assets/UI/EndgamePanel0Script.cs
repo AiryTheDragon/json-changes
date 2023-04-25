@@ -12,6 +12,7 @@ public class EndgamePanel0Script : MonoBehaviour
     public EndGameMusicController endGameMusicController;
     public double timer = 0.0;
     public int stage = 0;
+    private int MaxScore = 78;
 
     public GameObject Airy;
     public GameObject Autumn;
@@ -32,6 +33,7 @@ public class EndgamePanel0Script : MonoBehaviour
     public GameObject Phil;
     public GameObject Sarah;
     public GameObject SassySam;
+    public GameObject DaDarkWizard;
 
     public GameObject Bob;
     public GameObject Dee;
@@ -219,6 +221,10 @@ public class EndgamePanel0Script : MonoBehaviour
             {
                 Tiny.SetActive(true);
                 Tiny1.SetActive(false);
+            }
+            if (Player.Score>=MaxScore)
+            {
+                DaDarkWizard.SetActive(true);
             }
 
         }
